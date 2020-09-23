@@ -3,13 +3,12 @@
 ## thesis metadata ##
 #####################
 title: |
-  `oxforddown`: \
-  An Oxford University Thesis \
-  Template for R Markdown
-author: Author Name
-college: Your College
-degree: Doctor of Philosophy
-degreedate: Michaelmas 2018
+  My thesis title \
+  Title second row 
+author: Shiran Koifman
+college:
+degree:
+degreedate: January 15 2021
 abstract: |
   `r paste(readLines("front-and-back-matter/_abstract.Rmd"), collapse = '\n  ')`
 acknowledgements: |
@@ -26,11 +25,11 @@ bibliography-heading-in-pdf: Works Cited
 #####################
 ## PDF formatting  ##
 #####################
-abstractseparate: true  # include front page w/ abstract for examination schools?
+abstractseparate: false  # include front page w/ abstract for examination schools?
 bib-humanities: true   #set to true if you want in-text references formatted as author-year
 doi-in-bibliography: true #set to true if you want DOI's to be shown in the bibliography
 draft: true # add as DRAFT mark in the footer?
-page-layout: nobind #'nobind' for PDF output (equal margins), 'twoside' for two-sided binding (mirror margins and blank pages), leave blank for one-sided binding (left margin > right margin)
+page-layout: twoside #'nobind' for PDF output (equal margins), 'twoside' for two-sided binding (mirror margins and blank pages), leave blank for one-sided binding (left margin > right margin)
 hidelinks: true #if false, the PDF output highlights clickable links with a colored border - you will probably want to set this to true for PDF version you wish to physically print
 toc-depth: 2 # depth of heading to include in table of contents
 lof: true # list of figures in front matter?

@@ -8,177 +8,746 @@ documentclass: book
 bibliography: references.bib
 ---
 
-# Citations and cross-references {#cites-and-refs} 
-\chaptermark{Cites and cross-refs}
+# APD study {#APD-study} 
+\chaptermark{APD study}
 \minitoc <!-- this will include a mini table of contents-->
 
-## Citations
-The usual way to include citations in an *R Markdown* document is to put references in a plain text file with the extension **.bib**, in **BibTex** format.[^bib-formats]
-Then reference the path to this file in **index.Rmd**'s YAML header with `bibliography: example.bib`.
+## Introduction
 
-[^bib-formats]: The bibliography can be in other formats as well, including EndNote (**.enl**) and RIS (**.ris**), see [rmarkdown.rstudio.com/authoring_bibliographies_and_citations](https://rmarkdown.rstudio.com/authoring_bibliographies_and_citations.html).
+## Methods
 
-Most reference managers can create a .bib file with you references automatically.
-However, the **by far** best reference manager to use with *R Markdown* is [Zotero](https://www.zotero.org) with the [Better BibTex plug-in](https://retorque.re/zotero-better-bibtex/), because the `citr` plugin for RStudio (see below) can read references directly from your Zotero library!
+### Participants
+```{r, include=FALSE}
+if(!require(ggplot2)){install.packages("ggplot2")}
+if(!require(ggplot2)){install.packages("plyr")}
+if(!require(ggplot2)){install.packages("dplyr")}
+if(!require(ggplot2)){install.packages("psych")}
+if(!require(english)){install.packages("english")}
+if(!require(english)){install.packages("stringr")}
 
-Here is an example of an entry in a **.bib** file:
-```bibtex
-@article{Shea2014,
-  author =        {Shea, Nicholas and Boldt, Annika},
-  journal =       {Trends in Cognitive Sciences},
-  pages =         {186--193},
-  title =         {{Supra-personal cognitive control}},
-  volume =        {18},
-  year =          {2014},
-  doi =           {10.1016/j.tics.2014.01.006},
-}
+require(ggplot2)
+require(dplyr)
+require(plyr)
+require(psych)
+require(english)
+require(stringr)
+require(knitr)
+require(kableExtra)
+
+
+## Initialisation ----------------------------------------------------------------------------------------------------
+date <-Sys.Date()
+FileDir <- getwd()
+
+# Filter buttons------------------------------------------------------------------------------------------------------
+# 1. Remove NA's and observations with bad adaptive tracks 
+CleanData <- 0 # On=1/Off=0 button
+
+# 2. Remove specifc subjects 
+RmvSubj <- 1 # On=1/Off=0 button
+Subj2Remove <-c("APD14")  #"TD11"
+
+# 3. Remove subjects based on their quality evaluation made by the examiner on the testing day 
+QualityCtrl <- 0 # On=1/Off=0 button
+rmvEval <- c("Bad") #  "Good" / "Maybe" / "Bad"
+
+# 4. Remove APD subjects based on their diagnosis 
+DiagCtrl <- 0 # On=1/Off=0 button
+rmvDiag <- c("LiD","susAPD") #  "APD" / "LiD" (i.e., AP deficit and not a DISORDER) / "susAPD"
+
+# 5. Removce APD subjects WITHOUT SPD patterns 
+APDsubTypCtrl <- 0 # On=1/Off=0 button
+rmvAPDType <- c(NA, "MissingReoprt") #  "SPD"
+
+rmvOutlrs <- 0
+# --------------------------------------------------------------------------------------------------------------------
+
+# get demographics ---------------------------------------------------------------------------------------------------
+d<- read.csv(file.path(FileDir,'Files','AllListenersDemographics_SK.csv'),header=T) 
+
+# Clean data
+d[is.na(d),]
+d <- na.omit(d) # remove rows with missing data
+
+# calculate age from DOB and testing day
+if(!require(eeptools)){install.packages("eeptools")}
+library(eeptools)
+
+d$Age <- age_calc(as.Date(d$DOB,"%d/%m/%Y"),
+                   as.Date(d$TestDate,"%d/%m/%Y"),
+                   units = "years", precise = TRUE)
+d$Age <- round(d$Age,1)
+
+#unique(d$listener)
+#length(unique(d$listener))
+
+# get additional demographics -------------------------------------------------------------------------------------- 
+d_Info <- read.csv(file.path(FileDir,'Files','BackgroundInfo.csv'),header=T)
+d_Info <- d_Info[,-match(c("DOB", "TestingDay","Age", "Sex","Group"),names(d_Info))]
+
+# merge data frames  -----------------------------------------------------------------------------------------------
+d <- merge(d_Info,d,by=c("listener"))
+cols <- c("AuditoryTraining","EarProblems","EarProblemsDur","SLT","Grommets","MusicalTraining","FMuse","Otoscopy","NrmlSpchUnderstanding")
+d[cols] <- lapply(d[cols], factor)
+
+# Filter data by groups  -------------------------------------------------------------------------------------------
+TD <- d %>% filter(Group=="TD") %>% droplevels() 
+APD <- d %>% filter(Group=="APD") %>% droplevels()
+SexFreq_APD <- count(APD,"Sex")
+DiagFreq <- count(APD,"Diagnosis")
+SPDFreq <- count(APD,"Subtype")
+ClinicFreq <- count(APD,"Clinic")
+
+TD_Age <- describe(TD$Age)
+APD_Age <-describe(APD$Age)
+
+Age_min <- ifelse(TD_Age$min >APD_Age$min,TD_Age$min,APD_Age$min)
+Age_max <- ifelse(TD_Age$max >APD_Age$max,TD_Age$max,APD_Age$max)
+
+## ------------------------------------------------------------------------------------------------------------------
+# Some filtering: 
+## ------------------------------------------------------------------------------------------------------------------
+# Remove certain subjects 
+if (RmvSubj==1){d <- d[ ! d$listener %in% Subj2Remove, ] %>% droplevels()}
+
+# Quality control: Include / Subjects based on the quality of their testing 
+if (QualityCtrl==1){d <- d[ ! d$ExpEval %in% rmvEval, ] %>% droplevels()}
+
+# Remove APD subjects based on their diagnosis
+if (DiagCtrl==1){d <- d[ ! d$Diagnosis %in% rmvDiag, ] %>% droplevels()}
+
+# Include only APD subjects with SPD patterns 
+if (APDsubTypCtrl==1){d <- d[ ! d$Subtype %in% rmvAPDType, ] %>% droplevels()}
+
+# Remove outliers |z| > 2 
+rmvOutlrs = 0
+# -------------------------------------------------------------------------------------------------------------------
+
+# Filter data by groups  -------------------------------------------------------------------------------------------
+Clean.TD <- d %>% filter(Group=="TD") %>% droplevels() 
+Clean.APD <- d %>% filter(Group=="APD") %>% droplevels() 
+
+Clean.TD_Age <- describe(Clean.TD$Age)
+Clean.APD_Age <-describe(Clean.APD$Age)
+
+SexFreq_Clean.APD <- count(Clean.APD,"Sex")
+DiagFreq.Clean <- count(Clean.APD,"Diagnosis")
+SPDFreq.Clean <- count(Clean.APD,"Subtype")
+ClinicFreq.Clean <- count(Clean.APD,"Clinic")
+
+SexFreq_Clean.TD <- count(Clean.TD,"Sex")
+
+# Test for age difference between the groups
+# use Welch approximation t-test due to the uneven sample size
+
+Age.t_test <- t.test(Age~ Group, data=d, conf.level = 0.95, paired = FALSE)
+# Results: t = 3.43, df = 40.955, p-value = 0.00139
+# There is a significant difference between the groups, with APD children on average ~2 years older than the TD children.
+
+test <- glm(Age ~ Group, data=d)
+summary(test)
 ```
 
-In this entry highlighed section, 'Shea2014' is the **citation identifier**.
-To default way to cite an entry in your text is with this syntax: `[@citation-identifier]`.
+`r  Hmisc::capitalize(as.character(as.english(sum(TD_Age$n,APD_Age$n),english.UK = TRUE)))` primary school children native British English speakers with normal hearing acuity participated in the study. Amongst them `r as.english(sum(APD_Age$n)-1,english.UK = TRUE)` belonged to the APD clinical group (`r SexFreq_APD[1,2]` females) with an average age of `r round(Clean.APD_Age$mean,2)` $\pm$\ `r round(Clean.APD_Age$sd,2)` years (range: `r round(Clean.APD_Age$min,2)` - `r round(Clean.APD_Age$max,2)` years). One APD child was excluded from the analysis due to raised thresholds (PTA>25\ dB\ HL). APD children were recruited in two ways. Children diagnosed with APD at Great Ormond Street Hospital (GOSH) and at the London Hearing and Balance Centre (LHBC), London, UK, and fulfilled the recruitment criteria were identified and contacted by a clinical team member. The parents/caregivers were provided with information about the study and means of contact to express interest in participation. Others were recruited by advertisements in social networks, where parents were requested to fill-out an interest form that included screening questions to ensure they fulfil the participation requirements. [To add percentage for clinics, diagnosed/LiD/susAPD and SPD pattern?]{.correction} The remaining `r as.english(sum(TD_Age$n),english.UK = TRUE)` (`r SexFreq_Clean.TD[1,2]` females) comprised of typically developing control children (TD) with no reported concerns or diagnosis of a language or other cognitive developmental disorders. The TD group average age was `r round(Clean.TD_Age$mean,2)` $\pm$\ `r round(Clean.TD_Age$sd,2)` years and ranged  between `r round(Clean.TD_Age$min,2)` to `r round(Clean.TD_Age$max,2)` years (A detailed description of the groups is shown in Tab. ??). 
 
-So I might cite some things [@Shea2014; @Lottridge2012].
 
-### PDF output
-In PDF output, the bibliography is handled by the OxThesis LaTeX template.
-If you set `bib-humanities: true` in **index.Rmd**, then in-text references will be formatted as author-year; otherwise references will be shown as numbers.
+Difference in variance for age between the two groups was tested using t-test with Welch degrees of freedom correction for uneven sample-size, showing a significant difference in age between the groups [t(`r round(Age.t_test$parameter,2)`)=`r  round(Age.t_test$statistic,2)`, p=`r round(Age.t_test$p.value,3)`].   
 
-If you choose author-year formatting, a number of variations on the citation syntax are useful to know:
+The project was approved by the UCL Research Ethics Committee (Project ID Number 0544/006) and the NHS Health Research Authority HRA (REC reference: 18/LO/0250). The testing commenced once an informed consent was given by both the parent/caregiver and the child.
 
-- Put author names outside the parenthesis
-  - This: `@Shea2014 says blah.`
-  - Becomes: @Shea2014 says blah.
-- Include only the citation-year (in parenthesis)
-  - This: `Shea et al. says blah [-@Shea2014]`
-  - Becomes: Shea et al. says blah [-@Shea2014]
-- Add text and page or chapter references to the citation
-  - This: `[see @Shea2014, pp. 33-35; also @Wu2016, ch. 1]`
-  - Becomes: Blah blah [see @Shea2014, pp. 33-35; also @Wu2016, ch. 1].
+- Background questionnaire 
+- Otoscopic examination was carried out to ensure the eardrum is visible, healthy and intact. 
+- Location of the testing
+- duration of the session
 
-### Gitbook output
-In gitbook output, citations are by default inserted in the Chicago author-date format.
+Participants from both TD and APD group completed the same battery of tests listed below
 
-To change the format, add `csl: some-other-style.csl` in **index.Rmd**'s YAML header. 
-You can browse through and download styles at [zotero.org/styles](https://www.zotero.org/styles).
 
+
+### Auditory evaluation
+
+#### **Standard audiometry**
+
+```{r label='PTA', fig.cap="APD participants pure-tone audiogram thresholds for standard frequencies plotted for the left and the right ear (black). The shaded grey area represents the TD group range of audiometric thresholds and the white line represents the mean at each frequency. The dashed line represents the threshold criteria of hearing level $\\leq$ 25\ dB\ HL.", echo=FALSE, fig.align='center', figures-side, out.width='85%',fig.width=12, fig.height=6}
+
+# Define axes
+# xaxis=c(1:8) # number of frequencies tested
+# 250	500	1000	2000	4000	6000	8000
+FreqAxis=c("0.25","0.5","1","2","4","8")
+frqs=c(0.25,0.5,1,2,4,8)
+
+# min and max of y axis
+max	=	max((d[1:nrow(d),28:39]),na.rm=T) + 17
+min	=	min(d[1:nrow(d),28:39],na.rm=T) - 10
+
+# Plot overlapping individual audiograms of test group, mean of test group, and mean +/- 1 sd of control group
+# Assumes test group and control group are in same .csv file (different columns)
+
+TD = d[grep("TD", d[,1]),] 	 #control group
+APD = d[grep("APD", d[,1]),] #test group
+
+# plot left and right ear
+#layout(matrix(c(1:2), 1, 2, byrow = TRUE))
+par(mfrow=c(1,2),mar=c(0,0,0,1.5),oma=c(7,7,1,1))
+
+for (j in 1:2){
+  
+  # create empty plot
+  plot(frqs,xlim=c(frqs[1],max(frqs)),type="n",axes=FALSE,ann=FALSE,ylim=rev(range(c(min,max))),log = "x")
+  box()
+  
+  mtext(outer=T,side=1,line=3,text="frequency (kHz)",cex=1.5)		
+  mtext(outer=T,side=2,line=3,text="threshold (dB HL)",cex=1.5)	
+  
+  if (j<=1){
+    axis(2,col="black",cex.axis=1.5)
+    text(5,-14,"Left",cex=1.5)
+  }  else {
+    text(5,-14,"Right",cex=1.5)
+  }
+  
+  axis(1,at=frqs,lab=FreqAxis,cex.axis=1.5)
+  
+  # Left ear
+  if (j<=1) {
+    numCol = 34:39
+  } else {
+    # Right ear
+    numCol = 28:33
+  }
+  # calculate mean for test group
+  avg<-vector()
+  for (i in numCol){
+    avg[i-(numCol[1]-1)]<-mean(APD[1:length(APD[,1]),i])
+  }
+  
+  ## calculate mean and sd for control group
+  stdev <- vector()
+  mn <- vector()
+  for (i in numCol){
+    stdev[i-(numCol[1]-1)]<-sd(TD[1:length(TD[,1]),i],na.rm=T)
+    mn[i-(numCol[1]-1)]<-mean(TD[1:length(TD[,1]),i],na.rm=T)
+  }
+  
+  # calculate min and max for control group
+  mnn <- vector()
+  mx <- vector()
+  for (i in numCol){
+    mnn[i-(numCol[1]-1)]<-min(TD[1:length(TD[,1]),i],na.rm=T)
+    mx[i-(numCol[1]-1)]<-max(TD[1:length(TD[,1]),i],na.rm=T)
+  }
+  
+  # calculate upper and lower boundaries of shaded area
+  upper <- mnn
+  lower <- mx
+  
+  # plot shaded area (mean +/- 1 sd)
+  xx <- c(frqs, rev(frqs))
+  yy <- c(lower,rev(upper))
+  polygon(xx, yy, col="lightgrey",border=NA)
+  
+  # plot mean control group
+  lines(frqs,mn,col="white",lwd=3)
+  
+  # plot individual audiograms test group
+  for (i in 1:length(APD[,1])){
+    lines(frqs,APD[i,numCol])
+  }
+  
+  # plot mean test group
+  lines(frqs,avg,lwd=4, col="black")
+  
+  # plot exclusion criteria line
+  #lines(c(0:9), seq(25,25,length=10),lty=2,lwd=3)
+  lines(c(0.25, 0.50, 1.00, 2.00, 4.00, 4.00, 2.00, 1.00, 0.50, 0.25), seq(25,25,length=10),lty=2,lwd=3)
+  
+  if (j<=1){
+    yplot <- 35
+    # plot legend
+    legend(0.24,yplot, c("Mean APD","Individual APD","Mean and range TD","NH criteria"),
+           lty=c(1,1,1,2),lwd=c(3,2,8,2),col=c("black","black","lightgrey","black"),cex=0.8,bty=0,box.col="white")
+
+    # Add white line to legend for mean
+    segments(x0 = .24, y0 = 42.8, x1 = .33, y1 = 42.8,col = "white", lwd = 3)   
+  }
+}
+
+```
+
+A standard air conduction pure-tone audiometric evaluation at $\frac{1}{3}$ octave band frequencies ranging between 0.25 to 8\ kHz was carried out using ???? audiometer and ??? headphones. Normal hearing acuity was defined by thresholds $\leq$ 25\ dB\ HL for frequencies ranging from 0.25 to 4\ kHz. Thresholds at 8\ kHz were $\leq$  25\ dB\ HL for all the participants, excluding two participants with measured thresholds at 35 and 30\ dB\ HL in one ear, respectively. The listeners' thresholds for the left and the right ear are plotted in Figure \@ref(fig:PTA). The shaded grey area represents the TD group thresholds range and the white line represents their mean at each frequency. The black lines represents the individual thresholds in the APD group and the group mean is marked by the bold black line. The dashed line represents the maximal thresholds criteria $\leq$ 25\ dB\ HL for normal hearing.
+
+[Results belong here??]{.correction} 
+<!--
+One participant from the clinical group was excluded from the analysis due to large accumulation of cerumen (right eardrum was not visible) and raised thresholds predominantly in the blocked right ear (with right and left ear PTA equals 36.25 and 13.75\ dB\ HL, respectively). 
+-->
+
+
+#### Extended high-frequency audiometry (EHFA)
+
+Extended high-frequency pure-tone audiometry was carried out at four $\frac{1}{3}$ octave band frequencies 8, 11, 16, \& 20\ kHz using a locally developed MATLAB based software which generated and collected the data. Measurements took place at SHaPS, UCL laboratory in an electromagnetically shielded sound proof booth which is typically used for EEG measurements. A Windows PC situated outside the booth was connected via USB to an RME ???? sound card (Audio AG, Haimhausen Germany) and an ER10X Extended-Bandwidth Acoustic Probe System (Etym$\bar{o}$tic Research, Elk Grove Village, IL) which was located in the testing booth. Once the ear probe was placed in the child's ear, an in-situ sound pressure level calibration was performed (chirp noise) using a MATLAB code provided by ????. 
+
+Speak with KZ about the measurements
+
+#### Switching task (ST)
+The switching task (ST) is a novel speech-on-speech listening task that involves perception of interrupted and periodically segmented speech that is switched between the two ears out-of-phase with an interrupted distractor. Since segments of the target and of the distractor are never presented in the same ear at the same time, it enables to eliminate peripheral (EM) masking, while maintaining high IM for speech distractors. The task assesses the ability to switch attention and integration of binaural information.
+
+Refer to Chapter 2 and briefly describe the stimuli and difference in the methods.
+
+As described in Chapter 2 Section ???, two test versions were used with varying in sentence structure and complexity: 
+1. ASL
+2. CCRM
+
+Masker Types..
+
+
+
+#### Spatialised speech-in-noise (LiSNS-UK)
+The Listening in Spatialised Noise Sentences UK (LiSNS-UK) assesses the ability to use binaural cues in speech-on-speech listening conditions. The test development, speech material normalisation, and norms standardisation followed @Cameron2007 development steps and are described in detail in Chapter ???. The test uses virtualisation techniques to create spatial distribution of sound sources in space for headphones presentation where target sentences [ASL; @MacLeod1990] are presented in two simultaneous speech distractors (unrelated children's stories spoken by the target talker). It comprises of two main listening conditions, differing in their availability of spatial cues. The target sentences are configured to always appear in front of the listener's head, at 0$^{\circ}$ azimuth on the horizontal plane, with the two streams of speech distractors either co-located in space with the target (S0N0), resulting in relatively poor speech perception, or offset in space, with one distractor to either side of the target at $\pm$\ 90$^{\circ}$, resulting in an improvement in speech perception of circa 13\ dB [@Cameron2011], typically termed as spatial release from masking (SRM). This SRM advantage is calculated by taking the difference between performance in the co-located condition and the separated condition. The speech distractors were presented continuously throughout a run at a fixed  65?\ dB\ SPL output level and comprised of a combination of two out of three different passages children stories. A 1-up/1-down adaptive procedure was used, varying the level of the target talker relative to the distractors depending on listener's correct/incorrect response to measure the listeners' speech reception threshold (SRT), i.e., the signal-to-noise-ratio (SNR) yielding 50% speech intelligibility. A 2\ ms long 1\ kHz pure-tone was presented 500\ ms before the target sentence onset at 65?\ dB\ SPL (0 dB SNR) as a reference cue signalling the listener to attend the coming target sentence. The initial target output level was ??\ dB\ SPL with an initial step-size of 4\ dB SNR. The step-size was reduced after every reversal, reaching a minimum step-size of 2\ dB\ SNR after three practice reversals. A stopping rule was introduced in case the maximal SNR was reached more than three times and the procedure was considered to be successfully completed in case test reversals were obtained. The SRT was then calculated by averaging test reversals SNRs (i.e., following three practice reversals). Each run consisted of 25 sentences taken from 8? phonemically-balanced test list which were constructed following the normalisation of the speech. In addition,  a sentence-specific level correction was applied to the target signal (see Chapter ?? for more information). The order of the listening condition, test lists, target sentences and distractors combinations was fixed across all the participants and started with the collocated condition. Spatialisation was applied by convolving each stimuli with head-related transfer functions (HRTFs) at the corresponding azimuthal direction separately for the left and the right channel. The HRTFs were measured with a Knowles Electronics Manikin for Acoustic Research (KEMAR, REF) manikin with a small pinnae taken from the CIPIC HRTF database[^HRTF-footnote] [@Algazi2001; see "special" HRTF data]. A post-equalisation step was applied in order to flatten the magnitude of the headphones frequency response. Headphone-to-ear Transfer Functions (HpTFs) measured with KEMAR manikin for HD-25 supraaural headphones were extracted from @Wierstorf2011 HRTF database. The final mixed stimulus was filtered with the inverse HpTFs separately for the left and the right channel before being combined together as a final step. Every participant was presented with two runs, one for each listening condition (collocated/separated). Testing started following a practice phase of two runs for each of the test conditions with five BKB sentences each [@Bench1979]. Listeners were instructed to verbally repeat the target sentences to the experimenter who was situated alongside the participant in a sound treated chamber. The experimenter scored the response by selecting the correctly repeated keywords on the screen. Listeners were encouraged to guess if unsure while no feedback was given at any time. A loose keyword scoring method was used, whereby errors of case or declension were considered as correct responses. For example, a repetition of the keywords '$<$clown*s*$>$ $<$funny$>$ $<$face*s*$>$' to the stimulus 'The $<$clown$>$ had a $<$funny$>$ $<$face$>$'.
+
+[^HRTF-footnote]: The database is available online in: [https://www.ece.ucdavis.edu/cipic/spatial-sound/hrtf-data/](https://www.ece.ucdavis.edu/cipic/spatial-sound/hrtf-data/)
+
+#### Speech-in-noise (SPIN)
+The speech-in-noise test was used as a more realistic listening situation that is widely used in the clinic as opposed to more complex listening tasks as listed above. The normalised ASL sentences were presented in a speech-shaped-noise (SSN) with spectrum matched to the ASL corpus. The SSN onset was 500\ ms before the target sentence begin. The exact same adaptive proccedure as for the LiSNS-UK was used with the same stop-rules. Each listenr was presented with a single run of 25 sentences following a practice phase with seven BKB sentences. The same test list and sentences order was used across all the listeners.
+
+#### The Environmental Auditory Scene Analysis task (ENVASA)
+In analogy to the classic 'cocktail-party' scenario, ENVASA is a non-linguistic paradigm [@Leech2009] that measures detection of everyday environmental sounds presented in naturalistic auditory scenes and can be used to asses IM effects as well as sustained selective auditory attention skills. In the task, short environmental target sounds (e.g., a "dog's bark", "door knock" or "bouncing ball") were presented in a dichotic background scene (i.e., the target sound is presented only in one ear) consisting of either a single background scene,presented in both ears, or two background scenes, each presented in a different ear. The number of targets, the onset time and presentation ear varied across trials. Four target/background SNRs were employed split into two categories 'low' (-6 and -3\ dB) and 'high' (0 and +3\ dB) by varying the target level. Target/background contextual agreement was manipulated by embedding the target sound in a *congruent* background scene that is in agreement with the listener's expectations (e.g., a cow's 'moo' in a farmyard scene) or in an *incongruent* background scene which violate these expectations (e.g., a cow's 'moo' in a traffic scene). 
+
+Procedure:
+
+The experiment was carried out using the original code and laptop as used and described by @Leech2009. Sounds were presented via Sennheiser HD-25 headphones (REF) and the participants response was recorded using ???? gamepad. The output level was adjusted to a comfortable level before the test started. The participants were situated in front of the laptop placed on a desk and were instructed to hold the gamepad. Prior to the test begin the listeners were presented with a short child-friendly video covering the task's instructions and demonstrated two test trials. Following the instruction video, the examiner gave the child a short recap of the task's instructions and simulated with the child an exemplary trial to make sure the child is familiarised with the task. The task began with three practice trials with provided feedback, while no further feedback was given in the testing phase.  
+
+Every trial was made of two parts, starting with a target audio and visual familiarisation phase before the main target detection phase. Target identification was recorded by pressing one of the three buttons on the gamepad which corresponded to the location of the target objects on the screen. A response was counted as correct only if the participants pushed the corresponding button within 2\ s time interval, 300\ ms following the target onset. The outcome measure was calculated as the percentage of target sounds correctly identified within a condition (%-correct).   
+
+In total there were 92 target sounds presented over 40 trials, with half of the target sounds presented in a single- and half in a dual-background condition. In Occasional foil target items were played at 0\ dB\ SNR without a corresponding picture on the screen and were used to estimate the quality of the participants performance. Each target item was served once as a foil item and their order was randomised.   
+
+Inclusion criteria for the reference condition (single background, congruent at +3 dB SNR): was set to performance below 1 (or 2?) SD below the group mean.  
+
+
+(ref:Leech2009) Schematic of the ENVASA experimental paradigm [taken from @Leech2009]
+```{r ENVASA, fig.cap="(ref:Leech2009)", out.width='65%', fig.align='center', echo=FALSE}
+
+knitr::include_graphics("figures/ENVASAparadigm.png")
+```
+
+#### CELF-RS
+The Recalling Sentences (RS) sub-test of the Clinical Evaluation of Language Fundamentals Fifth UK edition [CELF-5-UK @HWiig2017] was administered to assess the listeners expressive language ability and has been shown to be a good indicator of the listeners general language skills (REF). In the task the child  is presented with pre-recorded sentences of increasing length and complexity and required to repeat sentences without any changes. Scoring were marked by hand by the examiner as instructed by the test manual. The sentences were spoken by a standard southern British English female and were recorded in a sound-treated recording booth at the SHaPS UCL laboratory, London. The sentences were presented using a MATLAB program via headphones using the same experimental equipment as listed above at a comfortable output level of 70\ dB\ HL. The task began with two practice sentences while the number of test items varied depending on the child's age performance. No repetitions or feedback was given during the testing and the test was discontinued in case the child failed to score any points for four consecutive items. Age-scaled score were calculated based on the test norms whereby the cut-off scaled score for abnormal performance is $\leq$\ 7. Average scaled score are between 8 to 12 ($\pm$\ 1\ SD) while scores $\geq$\ 13 (+1\ SD)are classified as above average.
+
+### Questionnaires
+
+#### Medical, Neurological, and Pysiological History {-}
+
+#### The Evaluation pf Children's Listening and Processing Skills (ECLiPS) {-}
+The ECLiPS questionnaire [@Barry2014] comprises of 38 items where the users are asked to express their agreement simple statements about the child's listening and other related skills or behaviours using a five-point Likert scale (from "strongly agree" to "strongly disagree"). The ECLiPS was design to identify listening and communication difficulties in children aged 6 to 11 years. Nonetheless, the UK standardisation study (REF) found little to no age effect on scores in many of the scale items, suggesting the testing age could be extended below and beyond the population used for the development. Based on factor analysis the items are grouped into five subcategories: 1. Speech \& Auditory Processing (SAP), 2. Environmental \& Auditory Sensitivity (EAS), 3. Language, literacy \& laterality (L/L/L), 4. Memory \& Attention (M\&A), 5. Pragmatic \& Social skills (PSS). Age- and sex-scaled scores were computed using the test excel scorer.
+
+A score below the 10$^{th}$ percentile (corresponding to a scale score of circa 6) is generally considered clinically significant.
+
+<!--
+In the results: compare scores with scores obtained by: https://www.nature.com/articles/s41598-018-25316-9.pdf and Moore et al. 2020 (Listening Difficulties in Children: Behavior and Brain Activation Produced by Dichotic Listening of CV Syllables)
+-->
+
+#### The Children's Communication Checklist 2$^{nd}$ edition (CCC-2) {-}
+Communication abilities were assessed using the Children's Communication Checklist second edition questionnaire [CCC-2; @D.V.M.2003] was completed by the child's parent/guardian. The CCC-2 was designed to screen communication problems in children aged 4 to 16 years and comprises of 70 checklist items each comprising of a behaviour statement like "Mixes up words of similar meaning". The respondents are asked to judge how often the behaviours occur using a four-point Likert rating scale: 0. *less than once a week (or never)*, 1. *at least once a week, but not every day*, 2. *once or twice a day*, 3. *several times (more than twice) a day (or always)*. The items are grouped into ten sub-scales of behaviours tapping into different skills (A. Speech, B. Syntax, C. Semantics, D. Coherence, E. Inappropriate initiation, F. Stereotyped language, G. Use of context, H. Non-verbal communication, I. Social relations, J. Interests). Taking the sum of scores for the sub-scales A to H are used to derive the General Communication Composite (GCC) which is used to identify clinically abnormal communication competence. A GCC score < 55 was found by @Norbury2005 to well separate between control and clinical groups, identifying children with scores at the bottom 10\%. Another composite (Social-Interaction Deviance Composite, SIDC) was taken by taking the difference in sum of scales E, H, I, and J from the sum of scales of A to D. Abnormal GCC (<\ 55) combined with a negative SIDC score has been shown to be indicative of an autistic spectrum disorder profile [@D.V.M.2003]. The CCC-2 scaled and composite scores were computed using the test excel scorer. X observations out of Y were removed from the analysis due to inconsistent reports flagged by the test scorer. 
+
+## Results
+
+### Extended high-frequency audiometry (EHFA)
+
+```{r, include=FALSE, warning=FALSE}
+d_HF<- read.csv(file.path(FileDir,'Files','EHF_Audiogram_12082020.csv'),header=T) 
+
+d_HF <- merge(d_Info,d_HF,by=c("listener"))
+#d_HF <- d_HF[,-match(c("Group.y"),names(d_HF))]
+#colnames(d_HF)[2] = "Group"
+d_HF$Group <- factor(d_HF$Group,levels=c("TD","APD"))
+cols <- c("AuditoryTraining","EarProblems","EarProblemsDur","SLT","Grommets","MusicalTraining","FMuse","NrmlSpchUnderstanding")
+d_HF[cols] <- lapply(d_HF[cols], factor)
+
+# Include only HF thresholds ---------------------------------------------------------------------------------------------------
+
+# add Age to the dataframe
+d_HF <- d %>%
+  select(listener, Age) %>%
+  left_join(d_HF, ToAdd, by = "listener")
+
+# add Age and regular audiogram to the dataframe
+d_HF <- d %>%
+  dplyr::select(listener, "L8000_rglr"=L8000,"R8000_rglr"=R8000) %>%
+  left_join(d_HF, ToAdd, by = "listener")
+
+# -- Change data layout from Wide2Long -----------------------
+library(tidyr)
+keycol <- "Frequency"
+valuecol <- "Threshold"
+gathercols <- c("L8000_rglr","R8000_rglr","R8000","R11000","R16000","L8000","L11000","L16000")
+d_HF_L <- gather_(d_HF, keycol, valuecol, gathercols)
+
+# -------------------------------------------------------------- 
+# get ear information as a new column
+library(stringr)
+d_HF_L$Ear <- ifelse(str_detect(d_HF_L$Frequency,"R"),"R","L")
+d_HF_L$Ear <- factor(d_HF_L$Ear,levels=c("R","L"))
+
+d_HF_L$AudiogramType <- ifelse(str_detect(d_HF_L$Frequency,"_rglr"),"Standard","EHF")
+d_HF_L$AudiogramType <- factor(d_HF_L$AudiogramType,levels=c("EHF","Standard"))
+
+# set levels
+d_HF_L$Frequency <- factor(d_HF_L$Frequency,levels=c("L8000_rglr","R8000_rglr","R8000","R11000","R16000","L8000","L11000","L16000"))
+
+d_HF_L$Frequency  <- revalue(d_HF_L$Frequency , c("L8000_rglr"="8000","R8000_rglr"="8000","R8000"="8000",
+                                                  "R11000"="11000", "R16000"="16000","L8000"="8000",
+                                                  "L11000"="11000", "L16000"="16000"))
+
+d_HF_L$Group <- factor(d_HF_L$Group,levels=c("TD","APD"))
+
+
+d_HF_L_8khz <- d_HF_L %>% filter(Frequency=="8000") %>% droplevels()
+# remove incomplete data
+# count(d_HF_L_8khz$listener)
+d_HF_L_8khz <- d_HF_L_8khz[ ! d_HF_L_8khz$listener %in% c("APD08","TD01"), ] %>% droplevels()
+
+d_HF_L_EHF <- d_HF_L %>% filter(AudiogramType=="EHF" & Frequency!="8000") %>% droplevels()
+
+# --------------------------------------------------------------------------------------------------
+# Wilcoxon rank sum test (if data are unpaired) or a Wilcoxon signed rank test (if data are paired).
+# --------------------------------------------------------------------------------------------------
+
+## Wilcoxon signed rank test for paired samples (non-parametric data, when normality assumption is violated)
+# permutation is not supported when using piping..
+
+if(!require(rstatix)){install.packages("rstatix")}
+library(rstatix)
+
+Wilk_EHF <- d_HF_L_8khz %>%
+  group_by(Group,Ear) %>%
+  rstatix::wilcox_test(data =., Threshold ~ AudiogramType, paired=TRUE) %>%
+  adjust_pvalue(method = "bonferroni") %>%
+  add_significance("p.adj")
+
+Wilk_EHF_effectSize <- d_HF_L_8khz %>%
+  group_by(Group,Ear) %>%
+  wilcox_effsize(data =., Threshold ~ AudiogramType, paired=TRUE)
+detach("package:rstatix", unload=TRUE)
+
+
+## Wilcoxon rank-sum test for un-paired samples (non-parametric data, when normality assumption is violated)
+# permutation is not supported when using piping..
+
+if(!require(rstatix)){install.packages("rstatix")}
+library(rstatix)
+
+Wilk_EHF <- d_HF_L_EHF %>%
+  group_by(Ear,Frequency) %>%
+  rstatix::wilcox_test(data =., Threshold ~ Group, paired=FALSE) %>%
+  adjust_pvalue(method = "bonferroni") %>%
+  add_significance("p.adj")
+
+Wilk_EHF_effectSize <- d_HF_L_EHF %>%
+  group_by(Ear,Frequency) %>%
+  wilcox_effsize(data =., Threshold ~ Group, paired=FALSE)
+detach("package:rstatix", unload=TRUE)
+
+```
+
+```{r, include=FALSE}
+# get PTAs:
+# EHF
+d_HF <- d_HF %>% group_by(listener) %>%
+  dplyr::mutate(
+    PTA_R = round(mean(c(R11000,R16000),na.rm=TRUE),2),
+    PTA_L = round(mean(c(L11000,L16000),na.rm=TRUE),2),
+    PTA_RL = round(mean(c(R11000,R16000,L11000,L16000),na.rm=TRUE),2)) %>%
+  ungroup()
+
+d_HF <- as.data.frame(d_HF)
+
+# get PTA in the better ear
+d_HF$PTA_BE <- ifelse((d_HF$PTA_R <= d_HF$PTA_L),d_HF$PTA_R,d_HF$PTA_L)
+d_HF <- drop_na(d_HF, Group) %>% droplevels()
+
+# -- Change data layout from Wide2Long -----------------------
+library(tidyr)
+keycol <- "PTA"
+valuecol <- "Threshold"
+gathercols <- c("PTA_R","PTA_L","PTA_RL","PTA_BE")
+d_HF_PTA_L <- gather_(d_HF, keycol, valuecol, gathercols)
+
+d_HF_PTA_L <- drop_na(d_HF_PTA_L, Threshold) %>% droplevels()
+
+
+d_HF_PTA_L$PTA <- factor(d_HF_PTA_L$PTA,levels=c("PTA_R","PTA_L","PTA_RL","PTA_BE"))
+
+# --------------------------------------------------------------------------------------------------
+## Wilcoxon rank-sum test / Mann-Whitney U test for independent 2 samples in non-parametric data (when normality assumption is violated)
+## ** With permutation **
+
+library(coin)
+
+results_p <- numeric(length(levels(d_HF_PTA_L$PTA))) 
+effectSize <- data.frame()
+for (nCond in 1:length(levels(d_HF_PTA_L$PTA))) {
+  #print(paste0("Calculating z-scores for: ", levels(df_normed$CondCode)[nCond],""))
+  # get all subjects' scores in a single condition 
+  nCondData <- d_HF_PTA_L[which(d_HF_PTA_L$PTA == levels(d_HF_PTA_L$PTA)[nCond]),]
+  results_p[nCond] <- pvalue(coin::wilcox_test(Threshold ~ Group, data = nCondData,
+                                         p.adjust.method ="bonferroni", na.rm=TRUE, paired = FALSE,
+                                         distribution=approximate(nresample=999999)))[1]
+  # optional: get effect size (r):
+  effectSize[nCond,1:length(levels(d_HF_PTA_L$PTA))] <- rstatix::wilcox_effsize(Threshold ~ Group, data = nCondData)
+  }
+
+significance <- ifelse(results_p < .05, "sig.","n.s")
+knitr::kable(cbind(levels(d_HF_PTA_L$PTA),round(results_p,5),significance))
+effectSize
+
+# 
+# if(!require(rstatix)){install.packages("rstatix")}
+# library(rstatix)
+# 
+# Wilk_EHF <- d_HF_PTA_L %>%
+#   group_by(PTA) %>%
+#   rstatix::wilcox_test(data =., Threshold ~ Group, paired=FALSE) %>%
+#   adjust_pvalue(method = "bonferroni") %>%
+#   add_significance("p.adj")
+# 
+# Wilk_EHF_effectSize <- d_HF_PTA_L %>%
+#   group_by(PTA) %>%
+#   wilcox_effsize(data =., Threshold ~ Group, paired=FALSE)
+# detach("package:rstatix", unload=TRUE)
+```
+
+The listeners' thresholds for the left and the right ear are plotted in Figure \@ref(fig:EHF). The shaded grey area represents the TD group thresholds range and the white line represents their mean at each frequency. The black lines represents the individual thresholds in the APD group and the group mean is marked by the bold black line.
+
+[Difference in HL between audiogram types?]{.correction} 
+First, the quality(?) of the thresholds measured with the non-standard ER10X audiogram was tested by comparing the individuals thresholds with those obtained with the standard audiometer. This was tested group-wise for thresholds at 8\ kHz measured in the left and the right ear using Wilcoxon signed rank test for paired samples (rstatix::wilcox_test with bonferroni adjustment; REF). The test showed a significant difference in thresholds between the two audiogram type for the TD group in both right (p=`r round(Wilk_EHF$p.adj[1],3)`, effect size r=`r round(Wilk_EHF_effectSize$effsize[1],3)`) and the left ear (p=`r round(Wilk_EHF$p.adj[2],3)`, r=`r round(Wilk_EHF_effectSize$effsize[2],3)`). No significant difference was found in the APD group in both ears (right: p=`r round(Wilk_EHF$p.adj[3],3)`, r=`r round(Wilk_EHF_effectSize$effsize[3],3)`; left: p=`r round(Wilk_EHF$p.adj[4],3)`, r=`r round(Wilk_EHF_effectSize$effsize[4],3)`). 
+
+
+[Difference between groups]{.correction} 
+Similarly, difference in thresholds between the groups across frequencies (11 & 16\ kHz) and ears (left/right) was tested using a Wilcoxon rank-sum test for unpaired samples (rstatix::wilcox_test with bonferroni adjustment; REF). No significant difference was found between the groups for all frequency/ear combinations (all p>.05).
+
+[PTAs and BEs]{.correction} 
+
+The same holds for PTAs (calculated as the mean of thresholds at 11 & 16\ kHz, severalty for the left and the right ear) as well as for PTA at the better ear, where no significant difference was found between the groups. This was tested using a Wilcoxon rank-sum test for unpaired samples with permutation (coin::wilcox_test, REF). 
+
+```{r label='EHF', fig.cap="APD participants pure-tone thresholds for extended high-frequencies plotted for the left and the right ear (black). The shaded grey area represents the TD group range of audiometric thresholds and the white line represents the mean at each frequency..", echo=FALSE, fig.align='center', figures-side, out.width='85%',fig.width=12, fig.height=6}
+
+# Define axes
+# xaxis=c(1:4) # number of frequencies tested
+# 4000	8000  11000 16000
+FreqAxis = c("8","11","16")
+frqs=c(8,11,16)
+
+# min and max of y axis
+max	=	max((d_HF[1:nrow(d_HF),36:38]),na.rm=T) + 17
+min	=	min(d_HF[1:nrow(d_HF),36:38],na.rm=T) - 10
+
+# Plot overlapping individual audiograms of test group, mean of test group, and mean +/- 1 sd of control group
+# Assumes test group and control group are in same .csv file (different columns)
+
+TD = d_HF[grep("TD", d_HF[,29]),] 	#control group (Group is in column 29)
+APD = d_HF[grep("APD", d_HF[,29]),] #test group
+
+# plot left and right ear
+#layout(matrix(c(1:2), 1, 2, byrow = TRUE))
+par(mfrow=c(1,2),mar=c(0,0,0,1.5),oma=c(7,7,1,1))
+
+for (j in 1:2){
+  
+  # create empty plot
+  plot(frqs,xlim=c(frqs[1],max(frqs)),type="n",axes=FALSE,ann=FALSE,ylim=rev(range(c(min,max))),log = "x")
+  box()
+  
+  mtext(outer=T,side=1,line=3,text="frequency (kHz)",cex=1.5)		
+  mtext(outer=T,side=2,line=3,text="threshold (dB HL)",cex=1.5)	
+  
+  if (j<=1){
+    axis(2,col="black",cex.axis=1.5)
+    text(14,-8,"Left",cex=1.5)
+  }  else {
+    text(14,-8,"Right",cex=1.5)
+  }
+  
+  axis(1,at=frqs,lab=FreqAxis,cex.axis=1.5)
+  
+  # if (j<=1){
+  #   axis(2,at=c(0,10,20,30,40,50,60),cex.axis=1.5)
+  # }
+  
+  # if (j<=1) {
+  #   numCol = 14:21
+  # } else {
+  #   numCol = 6:13
+  # }
+  
+  if (j<=1) {
+    numCol = 36:38
+  } else {
+    numCol = 45:47
+  }
+  # calculate mean for test group
+  avg<-vector()
+  for (i in numCol){
+    avg[i-(numCol[1]-1)]<-mean(APD[1:length(APD[,1]),i],na.rm=T)
+  }
+  
+  ## calculate mean and sd for control group
+  stdev <- vector()
+  mn <- vector()
+  for (i in numCol){
+    stdev[i-(numCol[1]-1)]<-sd(TD[1:length(TD[,1]),i],na.rm=T)
+    mn[i-(numCol[1]-1)]<-mean(TD[1:length(TD[,1]),i],na.rm=T)
+  }
+  
+  # calculate min and max for control group
+  mnn <- vector()
+  mx <- vector()
+  for (i in numCol){
+    mnn[i-(numCol[1]-1)]<-min(TD[1:length(TD[,1]),i],na.rm=T)
+    mx[i-(numCol[1]-1)]<-max(TD[1:length(TD[,1]),i],na.rm=T)
+  }
+  
+  # calculate upper and lower boundaries of shaded area
+  upper <- mnn
+  lower <- mx
+  
+  # plot shaded area (mean +/- 1 sd)
+  xx <- c(frqs, rev(frqs))
+  yy <- c(lower,rev(upper))
+  polygon(xx, yy, col="lightgrey",border=NA)
+  
+  # plot mean control group
+  lines(frqs,mn,col="white",lwd=3)
+  
+  # plot individual audiograms test group
+  for (i in 1:length(APD[,1])){
+    lines(frqs,APD[i,numCol])
+  }
+  
+  # plot mean test group
+  lines(frqs,avg,lwd=4, col="black")
+  
+  if (j<=1){
+    yplot <- 45
+    # plot legend
+    legend(8,yplot, c("Mean APD","Individual APD","Mean and range TD"),lty=c(1,1,1),lwd=c(3,1,8),col=c("black","black","lightgrey"),cex=0.8,bty=0,box.col="white")
+    #legend(.25,yplot, c("Mean older adults","Individual older adults","Mean and range young adults"),lty=c(1,1,1),lwd=c(3,1,1),col=c("black","black","white"),cex=1.3,box.col="white")
+    
+    segments(x0 = 8, y0 = 53.5, x1 = 8.5, y1 = 53.5,col = "white", lwd = 3)
+  }
+}
+
+```
+
+
+### Switching task (ST)
+
+- Describe how data was inspected and corrected for outliers
+
+#### ASL 
+
+#### CCRM
+
+### Spatialised speech-in-noise (LiSNS-UK)
+```{r, echo=FALSE,results='hide',message=FALSE,warning=FALSE}
+
+# Load LiSNS data ------------------------------------------------------------------
+d_LiSNS <- read.csv(file.path(FileDir,'Files','LiSNS_2020-08-19.csv'),header=T) 
+d_LiSNS <- d_LiSNS[ ! d_LiSNS$listener %in% "APD08", ] %>% droplevels()
+
+# Add age info ------------------------------------------------------------------------------------------------------
+# merge the two dataframes
+d_LiSNS <- merge(d_LiSNS,d,by=c("listener"))
+colnames(d_LiSNS)[4] <- "Group"
+## LONG format ---------------------------------------------
+
+# Convert Long2Wide by uRevs and zScores
+d_LiSNS_w <- d_LiSNS %>%
+  pivot_wider(
+    id_cols = "listener",
+    names_from = "CondCode",
+    values_from = c("uRevs")) %>%
+  ungroup()
+
+# get SRM by listener
+d_LiSNS_w$SRM <-  d_LiSNS_w$`LiSNS-S0N0` - d_LiSNS_w$`LiSNS-S0N90`
+```
+
+```{r label='LiSNS-zScores', echo=FALSE,results='hide',message=FALSE,warning=FALSE}
+## get z-scores by speech material
+source("functions/getZ.R")
+
+# add age 
+d_LiSNS2 <- d %>%
+  dplyr::select(listener, Age, group=Group) %>%
+  left_join(d_LiSNS_w, ToAdd, by = "listener")
+
+# change to long to fit the function
+d_LiSNS_L <- d_LiSNS2 %>%
+  pivot_longer(
+    cols = c("SpchInNz","LiSNS-S0N0","LiSNS-S0N90","SRM"), 
+    names_to = "CondCode", 
+    names_ptypes = list(CondCode = factor()),
+    values_to = "uRevs") 
+
+# get z-scores
+Output <- getZ(d_LiSNS_L)
+
+df_normed        <- Output[[1]]
+# label_TD       <- Output[[2]]
+# label_APD      <- Output[[3]]
+# zScores_Sum    <- Output[[4]]
+# zScores_Sum_TD <- Output[[5]]
+
+LiSNS <- df_normed
+
+# change conditions order for the plot
+LiSNS$CondCode <- factor(LiSNS$CondCode,levels=c("SpchInNz", "LiSNS-S0N0", "LiSNS-S0N90", "SRM"))
+LiSNS$CondCode  <- as.factor(revalue(LiSNS$CondCode,c("SpchInNz"="SSN", "LiSNS-S0N0"="S0N0", "LiSNS-S0N90"="S0N90", "SRM"="SRM")))
+#levels(LiSNS$group)
+LiSNS$Group <- factor(LiSNS$Group,levels=c("APD", "TD"))
+
+
+# Some stats and plots--------------------------------------------------------------------------------------------
+
+# summarise condition across listeners 
+# uRevs
+LiSNS_uRevs <- ddply(LiSNS,~CondCode*Group,summarise,n=length(uRevs),mean=round(mean(uRevs,na.rm=TRUE),2),sd=round(sd(uRevs,na.rm=TRUE),2), min=round(min(uRevs,na.rm=TRUE),2),max=round(max(uRevs,na.rm=TRUE),2)) 
+
+LiSNS_uRevs_TD <- LiSNS %>% filter(Group=="TD") %>% ddply(.,~CondCode,summarise,n=length(uRevs),mean=round(mean(uRevs,na.rm=TRUE),2),sd=round(sd(uRevs,na.rm=TRUE),2), min=round(min(uRevs,na.rm=TRUE),2),max=round(max(uRevs,na.rm=TRUE),2)) 
+
+LiSNS_uRevs_APD <- LiSNS %>% filter(Group=="APD") %>% ddply(.,~CondCode,summarise,n=length(uRevs),mean=round(mean(uRevs,na.rm=TRUE),2),sd=round(sd(uRevs,na.rm=TRUE),2), min=round(min(uRevs,na.rm=TRUE),2),max=round(max(uRevs,na.rm=TRUE),2)) 
+
+LiSNS_uRevs <- cbind(LiSNS_uRevs_TD,LiSNS_uRevs_APD[2:6])
+colnames(LiSNS_uRevs)[1] = "condition"
+
+# z-trim
+ddply(LiSNS,~CondCode*Group,summarise,n=length(z_trim),mean=round(mean(z_trim,na.rm=TRUE),2),sd=round(sd(z_trim,na.rm=TRUE),2), min=round(min(z_trim,na.rm=TRUE),2),max=round(max(z_trim,na.rm=TRUE),2)) 
+```
+```{r label='LiSNS-uRevs', echo=FALSE}
+# for more options see: https://cran.r-project.org/web/packages/kableExtra/vignettes/awesome_table_in_pdf.pdf
+kbl(LiSNS_uRevs, booktabs = T, caption = "Add caption here...") %>% 
+  add_header_above(c(" ", "TD" = 5, "APD" = 5))
+```
+
+Descriptive statistics of the listeners performance split across the two groups is given in Tab. ??. A total of two SRTs were obtained for each participant, one for the spatially collocated (S0N0) and one for the spatially separated (S0N90) listening condition. In addition, the listeners' SRM was calculated by taking the difference between the two conditions (SRM = S0N0 - S0N90).
+
+see Table \@ref(tab:LiSNS-uRevs)
+
+### Speech-in-noise (SPIN)
+
+
+### The Environmental Auditory Scene Analysis task (ENVASA)
+
+
+### CELF-RS
+
+
+### Questionnaires
+
+## Discussion
+
+## Conclusion
 
 \clearpage
 
 <!-- clearpage ends the page, and also dumps out all floats.
   Floats are things like tables and figures. -->
-
-### Insert references easily with the `citr` add-in
-For an easy way to insert citations, try the [`citr`](https://github.com/crsh/citr) RStudio add-in (Figure \@ref(fig:citr)).
-You can install this add-in by typing `install.packages("citr")` in the R Console.
-
-```{r citr, echo=FALSE, fig.cap="The `citr` add-in", out.width="80%", fig.align='center'}
-# include dynamic gif if output is HTML; otherwise screenshot
-if (knitr::opts_knit$get('rmarkdown.pandoc.to') == 'html'){
-  knitr::include_graphics("https://raw.githubusercontent.com/crsh/citr/master/tools/images/addin_demo.gif")
-} else {
-  knitr::include_graphics("figures/citr.png")
-}
-```
-
-## Cross-referencing
-We can make cross-references to **sections** within our document, as well as to **figures** (images and plots) and **tables**.
-
-The general cross-referencing syntax is **`\@ref(label)`**
-
-### Section references
-Headers are automatically assigned a reference label, which is the text in lower caps separated by dashes. For example, `# My header` is automatically given the label `my-header`. So `# My header` can be referenced with `\@ref(my-section)`
-
-Remember what we wrote in section \@ref(citations)?
-
-We can also use **hyperlink syntax** and add \# before the label, though this is only guaranteed to work properly in HTML output:
-
-- So if we write `Remember what we wrote up in [the previous section](#citations)?`
-- It becomes Remember what we wrote up in [the previous section](#citations)?
-
-#### Creating custom labels
-It is a very good idea to create **custom labels** for our sections. This is because the automatically assigned labels will change when we change the titles of the sections - to avoid this, we can create the labels ourselves and leave them untouched if we change the section titles.
-
-We create custom labels by adding `{#label}` after a header, e.g. `# My section {#my-label}`.
-See [our chapter title](#cites-and-refs) for an example. That was section \@ref(cites-and-refs).
-
-### Figure (image and plot) references
-- To refer to figures (i.e. images and plots) use the syntax `\@ref(fig:label)`
-- **GOTCHA**: Figures and tables must have captions if you wish to cross-reference them.
-
-Let's add an image:
-```{r captain, fig.align='center', fig.cap="A marvel-lous meme", out.width="65%"}
-knitr::include_graphics("figures/captain.jpeg")
-```
-
-We refer to this image with `\@ref(fig:captain)`.
-So Figure \@ref(fig:captain) is [this image](#fig:captain).
-
-And in Figure \@ref(fig:cars-plot) we saw a [cars plot](#fig:cars-plot).
-
-
-### Table references
-- To refer to tables use the syntax `\@ref(tab:label)`
-
-Let's include a table:
-```{r cars-table2}
-knitr::kable(cars[1:5,],
-            caption="Stopping cars")
-```
-
-We refer to this table with `\@ref(tab:cars-table2)`. 
-So Table \@ref(tab:cars-table2) is [this table](#tab:cars-table2).
-
-And in Table \@ref(tab:cars-table) we saw more or less [the same cars table](#tab:cars-table).
-
-### Including page numbers
-Finally, in the PDF output we might also want to include the page number of a reference, so that it's easy to find in physical printed output.
-LaTeX has a command for this, which looks like this: `\pageref{fig/tab:label}` (note: curly braces, not parentheses)
-
-When we output to PDF, we can use raw LaTeX directly in our .Rmd files. So if we wanted to include the page of the cars plot we could write:
-
-- This: `Figure \@ref(fig:cars-plot) on page \pageref(fig:cars-plot)`
-- Becomes: Figure \@ref(fig:cars-plot) on page \pageref{fig:cars-plot}
-
-#### Include page numbers only in PDF output
-A problem here is that LaTeX commands don't display in HTML output, so in the gitbook output we'd see simply "Figure \@ref(fig:cars-plot) on page ".
-
-One way to get around this is to use inline R code to insert the text, and use an `ifelse` statement to check the output format and then insert the appropriate text.
-
-- So this: `` ``r ''`r ifelse(knitr::is_latex_output(), "Figure \\@ref(fig:cars-plot) on page \\pageref{fig:cars-plot}", "")` ``
-- Inserts this (check this on both PDF and gitbook): `r ifelse(knitr::is_latex_output(), "Figure \\@ref(fig:cars-plot) on page \\pageref{fig:cars-plot}", "")`
-
-Note that we need to escape the backslash with another backslash here to get the correct output.
-
-
-## Customising your thesis' front matter 'n stuff
-### Shorten captions shown in the list of figures (PDF)
-You might want your list of figures (which follows the table of contents) to have shorter (or just different) figure descriptions than the actual figure captions.
-
-Do this using the chunk option `fig.scap` ('short caption'), for example `{r captain-image, fig.cap="A very long and descriptive (and potentially boring) caption that doesn't fit in the list of figures, but helps the reader understand what the figure communicates.", fig.scap="A concise description for the list of figures"`
-
-
-### Shorten captions shown in the list of tables (PDF)
-You might want your list of tables (which follows the list of figures in your thesis front matter) to have shorter (or just different) table descriptions than the actual table captions.
-
-If you are using `knitr::kable` to generate a table, you can do this with the argument `caption.short`, e.g.:
-
-```r
-knitr::kable(mtcars,
-              caption = "A very long and descriptive (and potentially
-              boring) caption that doesn't fit in the list of figures,
-              but helps the reader understand what the figure 
-              communicates.",
-              caption.short = "A concise description for the list of tables")
-```
-
-### Shorting the running header (PDF)
-You might want a chapter's running header (i.e. the header showing the title of the current chapter at the top of page) to be shorter (or just different) to the actual chapter title.
-
-Do this by adding the latex command `\chaptermark{My shorter version}` after your chapter title.
-
-For example, this chapter's running header is simply 'Cites and cross-refs', because it begins like this:
-
-```markdown
-# Citations and cross-references {#cites-and-refs}
-\chaptermark{Cites and cross-refs}
-```

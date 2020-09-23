@@ -1,12 +1,9 @@
 ---
-#########################################
-# options for knitting a single chapter #
-#########################################
 output:
-  bookdown::html_document2: default
-  bookdown::word_document2: default
   bookdown::pdf_document2:
     template: templates/brief_template.tex
+  bookdown::word_document2: default
+  bookdown::html_document2: default
 documentclass: book
 bibliography: references.bib
 ---
@@ -25,7 +22,7 @@ ii) include=knitr::opts_knit$get('rmarkdown.pandoc.to') == 'latex' means that th
 iii) You can't use markdown syntax inside chunk options, so if you want to e.g. italicise a book name in the quote reference use a 'text reference': Create a named piece of text with '(ref:label-name) My text', then link to this in the chunk option with quote_author='(ref:label-name)'
 -->
 
-# R Markdown Basics: The Markdown syntax {#rmd-basics}
+# Binaural listening: interripted and alternated speech-in-noise in adults {#rmd-basics}
 \minitoc <!-- this will include a mini table of contents-->
 
 <!--
@@ -36,38 +33,39 @@ Here is a brief introduction to using *R Markdown*.
 *Markdown* is a simple formatting syntax for authoring HTML, PDF, and MS Word documents and much, much more. 
 *R Markdown* provides the flexibility of *Markdown* with the implementation of **R** input and output.  For more details on using *R Markdown* see <http://rmarkdown.rstudio.com>.
 
+<!-- place introduction here!!!!! SK -->
 Be careful with your spacing in *Markdown* documents. 
 While whitespace largely is ignored, it does at times give *Markdown* signals as to how to proceed. 
 As a habit, try to keep everything left aligned whenever possible, especially as you type a new paragraph. 
 In other words, there is no need to indent basic text in the Rmd document (in fact, it might cause your text to do funny things if you do).
 
-## Markdown basic syntax
-### Italics and bold
+## Influence of distractor type on IM
+### Introduction
 - *Italics* are done like \*this\* or \_this\_
 - **Bold** is done like \*\*this\*\* or \_\_this\_\_
 - **_Bold and italics_** is done like \*\*\*this\*\*\*, \_\_\_this\_\_\_, or (the most transparent solution, in my opinion) \*\*\_this\_\*\*
 
-### Inline code
+### Experiment I: speech vs. non-speech distractors
 - `Inline code` is created with backticks like `` `this` ``
 
-### Sub and superscript 
+#### Methods 
 Sub~2~ and super^2^ script is created like this\~2\~ and this\^2\^
 
-### Strikethrough
+#### Results
 - ~~Strikethrough~~ is done \~\~like this\~\~
 
-### 'Escaping' (aka "What if I need an actual asterisk?")
+#### Discussion
 - To include an actual \*, \_ or \\, add another \\ in front of them: \\\*, \\\_, \\\\
 
-### Endash (--), emdash (---)
+### Experiment II: speech distractors spoken in a familiar vs. unfamiliar language
 - -- and --- with \-\- and \-\-\-
 
-### Blockquotes
+#### Methods
 Do like this:
 
 > Put a \> in front of the line.
 
-### Headings
+#### Results
 - are done with \#'s of increasing number, i.e. 
   - \# First-level heading
   - \#\# Second-level heading
@@ -76,7 +74,7 @@ Do like this:
 In PDF output, a level-five heading will turn into a paragraph heading, i.e. `\paragraph{My level-five heading}`, which appears as bold text on the same line as the subsequent paragraph.
 
 
-### Lists
+#### Discussion
 Unordered list by starting a line with an \* or a \-:
 
 * Item 1
@@ -97,7 +95,7 @@ To create a sublist, indent the values a bit (at least four spaces or a tab):
     - Item 3a
     - Item 3b
 
-### Line breaks
+### General discussion and conclusion
 
 The official *Markdown* way to create line breaks is by ending a line with more than two spaces.
 
@@ -120,22 +118,22 @@ To create a new paragraph, you put a blank line.
 
 Therefore, this line starts its own paragraph.
 
-### Hyperlinks
+## Dichotic vs. monotic presentation and the influence of speech material
 - [This is a hyperlink](https://www.google.com) created by writing the text you want turned into a clickable link in `[square brackets followed by a](https://hyperlink-in-parentheses)`
 
-### Footnotes
+### Introduction
 - Are created^[my footnote text] by writing either \^[my footnote text] for supplying the footnote content inline, or something like `[^a-random-footnote-label]` and supplying the text elsewhere in the format shown below [^test-footnote]:
 
 `[^a-random-footnote-label]: This is a random test.`
 
 [^test-footnote]: This is a random test.
 
-### Comments
+### Methods
 To write comments within your text that won't actually be included in the output, use the same syntax as for writing comments in HTML. That is, \<!\-\- this will not be included in the output \-\->.
 
 <!-- It is super useful to use comments! -->
 
-### Math
+### Results
 The syntax for writing math is stolen from LaTeX. To write a math expression that will be shown **inline**, enclose it in dollar signs.
   - This: \$A = \\pi*r^{2}\$  Becomes: $A = \pi*r^{2}$
   
@@ -165,8 +163,10 @@ For more (e.g. how to theorems), see e.g. the documentation on [bookdown.org](ht
 
 
 
-## Additional resources
+### Discussion
 
 - *R Markdown: The Definitive Guide* - <https://bookdown.org/yihui/rmarkdown/>
 
 - *R for Data Science* - <https://r4ds.had.co.nz>
+
+### Conclusion

@@ -44,7 +44,7 @@
 \setlength{\abstractseparateparskip}{0pt plus 1pt}
 
 
-\newcommand{\submittedtext}{{A thesis submitted for the degree of}}
+\newcommand{\submittedtext}{{A thesis submitted in partial fulfilment of the requirements for the degree of Doctor of Philosophy at University College London}}
 \usepackage{varwidth}
 \newcommand{\originalitytext}{%
    \rule[-2mm]{1pt}{7mm}\hspace{-1pt}%
@@ -210,7 +210,7 @@
   \begin{center}
   \vspace*{-3ex}
     { \LARGE {\bfseries {\@title}} \par}
-{\large \vspace*{25mm} {\crest \par} \vspace*{20mm}}
+{\large \vspace*{25mm} { \par} \vspace*{20mm}}
     {{\Large Candidate no.\ \@candidateno} \par}
 {\large \vspace*{1ex}
     {Word count: {\@wordcount} \par}
@@ -225,13 +225,13 @@
   \end{center}
 \else
   \begin{center}
-    { \LARGE {\bfseries {\@title}} \par}
-{\large \vspace*{30mm} {\crest \par} \vspace*{25mm}}
+    { \vspace*{25mm} \LARGE {\bfseries {\@title}} \par}
+{\large \vspace*{5mm} { \par} \vspace*{5mm}}
     {{\Large \@author} \par}
 {\large \vspace*{1ex}
-    {{\@college} \par}
+    {{\@college} \par \vspace*{95mm}}
 \vspace*{1ex}
-    {University of Oxford \par}
+    { \par}
 \vspace*{20mm}
     {{\submittedtext} \par}
 \vspace*{1ex}
