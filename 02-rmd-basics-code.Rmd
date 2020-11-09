@@ -11,7 +11,7 @@ documentclass: book
 bibliography: references.bib
 ---
 
-# Spatial listening: development and normalisation of a children's spatialised speech-in-noise test {#code}
+# Spatial listening: development and normalisation of a children's spatialised speech-in-noise test {#Chpt2}
 \minitoc <!-- this will include a mini table of contents-->
 
 The magic of R Markdown is that we can add code within our document to make it dynamic.

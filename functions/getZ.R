@@ -1,4 +1,4 @@
-# [MyList] <- getZ(df)
+# [MyList] <- getZ(df,CutOff)
 # The function calculates z-scores based on a control group
 # following Ramus et al., (2003) Multiple case study approach
 # SK, August 2020
@@ -9,6 +9,7 @@
 # - group (TD/APD)
 # - CondCode
 # - uRevs
+# CutOff: the deviance cut-off for normal scores (e.g., 1.96 or 1.65)
 #
 # Output:
 # 'MyList': a list of data frames, e.g., MyList[[1]] = df_normed; MyList[[2]] = label_TD'.
@@ -19,7 +20,10 @@
 # 'zScores_Sum_TD'
 
 ### 1. Calculate z-residuals based on TD subjects only --------------------------------------------------- 
-getZ <- function(df){
+getZ <- function(df,CutOff){
+  
+  # set the (=/-) two-tailed cut-off value for TD trimming
+  CutOff <- CutOff
   
   # Quick fix for now! $$$$$$$$$$
   for (n in 1:length(colnames(df))) {
@@ -28,7 +32,7 @@ getZ <- function(df){
     colnames(df)[n] <- "Group"
   }
   }
-
+  
 for (nCond in 1:length(levels(df$CondCode))) {
   #print(paste0("Calculating z-scores for: ", levels(df$CondCode)[nCond],""))
   # get all subjects' scores in a single condition 
@@ -67,7 +71,7 @@ for (nCond in 1:length(levels(df$CondCode))) {
 
 for (nCond in 1:length(levels(df$CondCode))) {
   nCondData_TD <- df_normed[which(df_normed$CondCode == levels(df_normed$CondCode)[nCond] & df_normed$Group=="TD"),]
-  Data.TD_NoOutl <- subset(nCondData_TD, nCondData_TD$Group=="APD" | nCondData_TD$Group=="TD" & abs(nCondData_TD$zScores) < 1.65)
+    Data.TD_NoOutl <- subset(nCondData_TD, nCondData_TD$Group=="APD" | nCondData_TD$Group=="TD" & abs(nCondData_TD$zScores) < CutOff)
   
   # add all the data into a single data frame (ugly solution but works..) 
   if (nCond==1){
@@ -130,17 +134,29 @@ zScores_Sum_TD <- zScores_Sum %>% filter(Group=="TD") %>% droplevels()
 # ----------------------------------------------------------------
 
 # Find any outliers for kids with scores below or above the norms:
-# df_normed$Outlier <- ifelse(abs(df_normed$z_trim) > 1.65, 1,0)
-# df_normed$NoOutlier <- ifelse(abs(df_normed$z_trim) < 1.65, 1,0)
-  
-# Find scores outside the norm cut-off (z-score > + 1.65):
-# smaller z-scores -> better performance!
-df_normed$Outlier <- ifelse(df_normed$z_trim > 1.65, 1,0)
-df_normed$NoOutlier <- ifelse(df_normed$z_trim < 1.65, 1,0)
+# df_normed$Outlier <- ifelse(df_normed$z_trim > 1.65, 1,0)
+# df_normed$NoOutlier <- ifelse(df_normed$z_trim < 1.65, 1,0)
+
+for (i in 1:dim(df_normed)[1]){
+  if (df_normed$zDirection[i]<0){
+    df_normed$Outlier[i] <- ifelse(df_normed$z_trim[i] > CutOff, 1,0)
+    } else {
+      df_normed$Outlier[i] <- ifelse(df_normed$z_trim[i] < -CutOff, 1,0)
+      }
+}
+
+for (i in 1:dim(df_normed)[1]){
+  if (df_normed$zDirection[i]<0){
+    df_normed$NoOutlier[i] <- ifelse(df_normed$z_trim[i] < CutOff, 1,0)
+  } else {
+    df_normed$NoOutlier[i] <- ifelse(df_normed$z_trim[i] > -CutOff, 1,0)
+  }
+}
+
 # ----------------------------------------------------------------
 
 # get percentage
-df_normed_outlr <- ddply(df_normed,~CondCode*Group,summarise,nOutlier=sum(Outlier, na.rm=TRUE),prcntOutlier=round((sum(Outlier,na.rm=TRUE)/length(listener)*100),1))
+df_normed_outlr <- ddply(df_normed,~CondCode*Group,summarise,nConde= length(listener),nOutlier=sum(Outlier, na.rm=TRUE),prcntOutlier=round((sum(Outlier,na.rm=TRUE)/length(listener)*100),1))
 
 # prepare lables for the plots below
 df_normed_outlr$label <- sprintf("%s%%",df_normed_outlr$prcntOutlier)
