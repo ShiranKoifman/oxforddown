@@ -1081,18 +1081,19 @@ As a first step, the listeners adaptive track and psychometric functions (PF) we
 [*Regression lines + z-scores*]{.correction}
 <!-- For further analysis, listener-specific age-independent scores were estimated using a linear regression model. The model was fitted separately for each test version (ASL/CCRM) per test condition and was estimated from the TD data only with %-correct as the dependent variable and age as a predictor. Standard residuals were calculated for each listener, based on the model prediction, resulting in age-independent residuals that are comparable to z-scores for data with normal distribution, with a mean and SD of approximately 0 and 1, respectively. Since the main goal of the study was to find a measure that is able to well separate between the APD group and the typically developed control group, individual differences and group differences were explored using a deviance analysis procedure proposed by @Ramus2003. Abnormal scores were defined by a deviance cut-off of $\pm$ 1.65 SD from the TD group mean. Thus, circa 90\% of the normal population residuals are expected to be within the deviance range of $\pm$ 1.65. Occasional occurrence of abnormal scores in the normal population is not unusual in behavioural measures. Therefore, since the prediction of the residuals is based on the control data, such outliers may skew the TD group true mean or SD and thus may introduce an error in the model prediction. For this reason, the procedure included two steps: i. following the initial estimation of the listeners residuals, outliers in the TD group were identified and trimmed from the data set (outside mean $\pm$ 1.65); ii. next, the linear regression was reapplied for the 'trimmed' TD group and standardised residuals were recalculated for all the listeners, including the trimmed TD observations.   -->
 
-Age-independent scores were estimated using a linear regression model. The model was fitted condition-wise separately for each test version (ASL/CCRM) and was based on the control group data only with %-correct as the dependent variable and age as a predictor. A two-steps model comparison was performed to test the assumption that performance displays a monotonic linear relationship with age versus a non-monotonic (segmented) linear relationship. Extreme outliers were initially trimmed from the TD group to reduce noise in the data and to improve the models fit. In the first step, both models were computed and the best model was selected based on a model comparison using analysis of variance **anova()** test. Standard residuals were next calculated for each TD listener, based on the selected model prediction. The standardised residuals are age-independent and are comparable to z-scores for data with normal distribution, with a mean and SD of approximately 0 and 1, respectively. Since the main goal of the study was to find a measure that is able to well separate between the APD group and the typically developed control group, individual differences and group differences were explored using a deviance analysis procedure proposed by @Ramus2003. Abnormal scores were defined by a two-tailed deviance cut-off of $\pm$ 1.65 SD from the TD group mean. Thus, circa 90\% of the normal population residuals are expected to be within the deviance range of $\pm$ 1.65. Occasional occurrence of abnormal scores in the normal population is not unusual in behavioural measures. Therefore, since the prediction of the residuals is based on the control data, such outliers may skew the TD group true mean or SD and thus may introduce an error in the model prediction. Therefore, in the second step, TD outliers (with standardised residuals below/above TD mean $\pm$ 1.65) were trimmed from the data and the two models were re-fitte and compared again. Finally, the selected model with the best fit was used to calculate the standardised residuals for all the listeners, including the trimmed TD observations and the APD group.
+Age-independent scores were estimated using a linear regression model. The model was fitted condition-wise separately for each test version (ASL/CCRM) and was based on the control group data only with %-correct as the dependent variable and age as a predictor. A two-steps model comparison was performed to test the assumption that performance displays a monotonic linear relationship with age versus a non-monotonic (segmented) linear relationship. Extreme outliers were initially trimmed from the TD group to reduce noise in the data and to improve the models fit. In the first step, both models were computed and the best model was selected based on F-statistic model comparison using analysis of variance **anova()** test. Standard residuals were next calculated for each TD listener, based on the selected model prediction. The standardised residuals are age-independent and are comparable to z-scores for data with normal distribution, with a mean and SD of approximately 0 and 1, respectively. Since the main goal of the study was to find a measure that is able to well separate between the APD group and the typically developed control group, individual differences and group differences were explored using a deviance analysis procedure proposed by @Ramus2003. Abnormal scores were defined by a two-tailed deviance cut-off of $\pm$ 1.96 SD from the TD group mean. Thus, circa 95\% of the normal population residuals are expected to be within the deviance range of $\pm$ 1.96. Occasional occurrence of abnormal scores in the normal population is not unusual in behavioural measures. Therefore, since the prediction of the residuals is based on the control data, such outliers may skew the TD group true mean or SD and thus may introduce an error in the model prediction. Therefore, in the second step, additional TD outliers (with standardised residuals below/above TD mean $\pm$ 1.96) were trimmed from the data and the two models were re-fitte and compared again. Finally, the selected model with the best fit was used to calculate the standardised residuals for all the listeners, including the trimmed TD observations and the APD group.
 
-[*parametric data assumptions*]{.correction}
-Inspection of the data revealed that the assumption of normal distribution (Shapiro Wilk test) and the assumption of homogeneity of variance (Levene's test) were not met. Thus, the relationship between the listeners SRdTs and their age was analysed separately for each group per condition using Kendall's tau ($\tau$) which is a non-parametric correlation test (Kendall's $\tau$ and p values are displayed in Figure\ \@ref(fig:ST-Age)\ A-B). Similar to Spearman's rho coefficient, Kendall's $\tau$ ranges between +1 and -1, denoting an optimal correlation at both extremes. The test is recommended for small sample size and a large number of tied ranks (REF Andy fields book p181), which fits to the restricted range possible outcomes in the ST task due to the nature of the adaptive procedure. 
+[*parametric data assumptions*]{.correction}  
+  
+The effect of age was analysed using the trimmed TD group data only. This is because the control group is more heterogeneous, and thus we expect performance in the TD group to be less variable and than in the APD group. A repeated measures factorial design LMEM model was used with Condition, Material (ASL/CCRM) and Age as fixed factors, SRdT as dependent variable and a random intercept for subjects. A model without three-way interaction between the main effects was found to give the best fit (see Table ????). Inspection of the data revealed that the assumption of normal distribution (Shapiro Wilk test) was met met, whereas the assumption of homogeneity of variance (Levene's test) was marginal (*p=0.04*). 
 
 
 ADD HERE: Description about nParLD
 Rank-based ANOVA type statistic test (ATS) was used f2 ld f1 type test (between/within...)
 --> nparLD offers different test statistics, whereas due to the small sample-size the ANOVA-type test statistic was preferred (Noguchi al., 2012). 
 
-other tests were considered and delievered the same results!! 
-```{r, message=FALSE,warning=FALSE, echo=FALSE, results='hide'}
+other tests were considered and delivered the same results!! 
+```{r,label='ST-getData', message=FALSE,warning=FALSE, echo=FALSE, results='hide'}
 # remove(ASL)
 # remove(CCRM)
 
@@ -1131,36 +1132,9 @@ CCRM[is.na(CCRM$uRevs),] # APD12: Run 5
 # remove rows with missing data
 # CCRM <- drop_na(CCRM, uRevs) %>% droplevels()
 
-#########################################
-##   get z-scores by speech material   ##
-#########################################
-# source("functions/getZ.R")
-
-# 1. ASLN
-# get direction of the z-scores for the trimming of TD's abnormal scores
-# ASLN$zDirection <- -1
-# 
-# # get z-scores
-# Output <- getZ(ASLN,CutOff)
-# ASLN      <- Output[[1]]
-# ASLN.label_TD       <- Output[[2]]
-# ASLN.label_APD      <- Output[[3]]
-# # zScores_Sum    <- Output[[4]]
-# # zScores_Sum_TD <- Output[[5]]
-# 
-# # 2. CCRM
-# # get direction of the z-scores for the trimming of TD's abnormal scores
-# CCRM$zDirection <- -1
-# Output <- getZ(CCRM,CutOff)
-# CCRM      <- Output[[1]]
-# CCRM.label_TD       <- Output[[2]]
-# CCRM.label_APD      <- Output[[3]]
-# zScores_Sum    <- Output[[4]]
-# zScores_Sum_TD <- Output[[5]]
-
 ```
 
-```{r,fig.align='center', fig.width=6, fig.asp=1.5, out.width='100%', message=FALSE,warning=FALSE, echo=FALSE, results='hide'}
+```{r,label='ST-z-ASL',fig.align='center', fig.width=6, fig.asp=1.5, out.width='100%', message=FALSE,warning=FALSE, echo=FALSE, results='hide'}
 #########################################
 ##   get z-scores by speech material   ##
 #########################################
@@ -1207,6 +1181,7 @@ TempRemove_ASL <- c("TD11_T_Run3_Q-ASLN-NoAlt_none_0dB_16-Nov-2019_14-33_ASL.csv
                   "TD04_T_Run2_AMSSN-ASLN-Alt_0dB_02-Jun-2019_12-15_ASL.csv")
 ASLN$TempRmv <- ifelse((ASLN$fileName %in% TempRemove_ASL)==TRUE,1,0)
 
+
 ### Q-NoAlt ###
 df <- ASLN %>% filter(CondCode=="Q-ASLN-NoAlt" & Group=="TD" & TempRmv <1) %>% droplevels()
 slope1_temp <- mean(df$uRevs)
@@ -1216,35 +1191,28 @@ int1_temp <- mean(df$Age)
 #   geom_text(label=df$listener, size=3, colour="blue") +
 #   labs(title = levels(df$CondCode))
 
-
 Output <- getBestFit(ASLN,"Q-ASLN-NoAlt",CutOff,slope1_temp,int1_temp,8,05)
 df_1 <- Output[[1]]  # df_All
-TD_trimmed = Output[[11]]
+TD_trimmed_1 = Output[[11]]
 FinalM_1 <- if(Output[[8]]==1){FinalM_1=Output[[6]]}else{FinalM_1=Output[[7]]}
 L1<- sprintf("slope = %s, intcpt = %s",
              round(FinalM_1$m$getAllPars()[1],2),
              round(FinalM_1$m$getAllPars()[2],2))
-# -------------------
-# get kendall's tau:
-# with model prediction
-# cor_1 <- cor.test(x=df_1$Age[which(df_1$Group=="TD")],
-#                  y=df_1$predicted[which(df_1$Group=="TD")],method="kendall")
-# with only TD trimmed data
-cor_1 <- cor.test(x=TD_trimmed$Age,y=TD_trimmed$uRevs,method="kendall")
-# get label for the scatterplot
-cor_1 <- apa::cor_apa(cor_1,format ="text",print = FALSE)
-# -------------------
-    
-bootTau<-function(df,i) cor(df$Age[i], df$uRevs[i], use = "complete.obs", method = "kendall")
-library(boot)
-boot_kendall <- boot(TD_trimmed, bootTau, 2000) 
-boot_kendall
-boot.ci(boot_kendall)
+Slopes.ASLN <- NULL
+Slopes.ASLN["Q-ASLN-NoAlt"] <- FinalM_1$m$getPars()[1]
+# anova.ST <- NULL
+# anova.ST[["Q-ASLN-NoAlt"]] <- lm(FinalM_1$m$formula(),data=TD_trimmed_1) %>% summary() %>% coefficients(.) %>% data.frame() %>% slice_tail()
 
+LineStats <- lm(FinalM_1$m$formula(),data=TD_trimmed_1) %>% summary()
+Lstats_1 <- sprintf("R^2 = %s, p = %s",
+             round(LineStats$r.squared,3),
+             round(LineStats$coefficients[8],3))
 
-# summary(lm(FinalM_5,data=df_5))
-
-
+# get removed listeners:
+A <- df_1$listener[which(df_1$Group=="TD")]
+B <- TD_trimmed_1$listener
+Rmv <- setdiff(A,B)
+if (!is.null(Rmv)){df_1 %>% filter(listener %in% Rmv) %>% dplyr::select(., listener, Age, uRevs, z_trim)}
 
 ### Q-Alt ###
 df <- ASLN %>% filter(CondCode=="Q-ASLN-Alt" & Group=="TD" & TempRmv <1) %>% droplevels()
@@ -1255,108 +1223,104 @@ int1_temp <- mean(df$Age)
 #   geom_text(label=df$listener, size=3, colour="blue") +
 #   labs(title = levels(df$CondCode))
 
-
 Output <- getBestFit(ASLN,"Q-ASLN-Alt",CutOff,slope1_temp,int1_temp,10)
 df_2 <- Output[[1]]  # df_All
-TD_trimmed = Output[[11]]
+TD_trimmed_2 = Output[[11]]
 FinalM_2 <- if(Output[[8]]==1){FinalM_2=Output[[6]]}else{FinalM_2=Output[[7]]}
 L2<- sprintf("slope = %s, intcpt = %s",
              round(FinalM_2$m$getAllPars()[1],2),
              round(FinalM_2$m$getAllPars()[2],2))
-# -------------------
-# get kendall's tau:
-# with model prediction
-# cor_2 <- cor.test(x=df_2$Age[which(df_2$Group=="TD")],
-#                  y=df_2$predicted[which(df_2$Group=="TD")],method="kendall")
-# with only TD trimmed data
-cor_2 <- cor.test(x=TD_trimmed$Age,y=TD_trimmed$uRevs,method="kendall")
-# get label for the scatterplot
-cor_2 <- apa::cor_apa(cor_2,format ="text",print = FALSE)
-# -------------------
-boot_kendall <- boot(TD_trimmed, bootTau, 2000) 
-boot_kendall
-boot.ci(boot_kendall)
+Slopes.ASLN["Q-ASLN-Alt"] <- FinalM_2$m$getPars()[1]
+
+# anova.ST[["Q-ASLN-Alt"]] <- lm(FinalM_2$m$formula(),data=TD_trimmed_2) %>% summary() %>% coefficients(.) %>% data.frame() %>% slice_tail()
+
+LineStats <- lm(FinalM_2$m$formula(),data=TD_trimmed_2) %>% summary()
+Lstats_2 <- sprintf("R^2 = %s, p = %s",
+             round(LineStats$r.squared,3),
+             round(LineStats$coefficients[8],3))
+
+# get removed listeners:
+A <- df_2$listener[which(df_2$Group=="TD")]
+B <- TD_trimmed_2$listener
+Rmv <- setdiff(A,B)
+if (!is.null(Rmv)){df_2 %>% filter(listener %in% Rmv) %>% dplyr::select(., listener, Age, uRevs, z_trim)}
 
 ### AMSSN-Alt ###
 Output <- getBestFit(ASLN,"AMSSN-ASLN-Alt",CutOff)
 df_3 <- Output[[1]]  # df_All
-TD_trimmed = Output[[11]]
+TD_trimmed_3 = Output[[11]]
 FinalM_3<- if(Output[[8]]==1){FinalM_3=Output[[6]]}else{FinalM_3=Output[[7]]}
 L3<- sprintf("slope = %s, intcpt = %s",
              round(FinalM_3$m$getAllPars()[1],2),
              round(FinalM_3$m$getAllPars()[2],2))
-# -------------------
-# get kendall's tau:
-# with model prediction
-# cor_3 <-cor.test(x=df_3$Age[which(df_3$Group=="TD")],
-#                  y=df_3$predicted[which(df_3$Group=="TD")],method="kendall")
-# with only TD trimmed data
-cor_3 <- cor.test(x=TD_trimmed$Age,y=TD_trimmed$uRevs,method="kendall")
-# get label for the scatterplot
-cor_3 <- apa::cor_apa(cor_3,format ="text",print = FALSE)
-# -------------------
+Slopes.ASLN["AMSSN-ASLN-Alt"] <- FinalM_3$m$getPars()[1]
 
-boot_kendall <- boot(TD_trimmed, bootTau, 2000) 
-boot_kendall
-boot.ci(boot_kendall)
+# anova.ST[["AMSSN-ASLN-Alt"]] <- lm(FinalM_3$m$formula(),data=TD_trimmed_3) %>% summary() %>% coefficients(.) %>% data.frame() %>% slice_tail()
 
+LineStats <- lm(FinalM_3$m$formula(),data=TD_trimmed_3) %>% summary()
+Lstats_3 <- sprintf("R^2 = %s, p = %s",
+             round(LineStats$r.squared,3),
+             round(LineStats$coefficients[8],3))
+
+# get removed listeners:
+A <- df_3$listener[which(df_3$Group=="TD")]
+B <- TD_trimmed_3$listener
+Rmv <- setdiff(A,B)
+if (!is.null(Rmv)){df_3 %>% filter(listener %in% Rmv) %>% dplyr::select(., listener, Age, uRevs, z_trim)}
 
 ### MDR-Alt ###
 Output <- getBestFit(ASLN,"MDR_F-ASLN-Alt",CutOff)
 df_4 <- Output[[1]]  # df_All
-TD_trimmed = Output[[11]]
+TD_trimmed_4 = Output[[11]]
 FinalM_4 <- if(Output[[8]]==1){FinalM_4=Output[[6]]}else{FinalM_4=Output[[7]]}
+MDR.formula <- FinalM_4$m$formula()
 L4<- sprintf("slope = %s, intcpt = %s, brk = %s",
              round(FinalM_4$m$getAllPars()[1],2),
              round(FinalM_4$m$getAllPars()[2],2),
              round(FinalM_4$m$getAllPars()[3],2))
-# -------------------
-# get kendall's tau:
-# with model prediction
-# cor_4 <-cor.test(x=df_4$Age[which(df_4$Group=="TD")],
-#                  y=df_4$predicted[which(df_4$Group=="TD")],method="kendall")
-# with only TD trimmed data
-cor_4 <- cor.test(x=TD_trimmed$Age,y=TD_trimmed$uRevs,method="kendall")
-# get label for the scatterplot
-cor_4 <- apa::cor_apa(cor_4,format ="text",print = FALSE)
-# -------------------
+Slopes.ASLN["MDR_F-ASLN-Alt"] <- FinalM_4$m$getPars()[1]
+# anova.ST[["MDR_F-ASLN-Alt"]] <- lm(FinalM_4$m$formula(),data=TD_trimmed_4) %>% summary() %>% coefficients(.) %>% data.frame() %>% slice_tail()
 
-boot_kendall <- boot(TD_trimmed, bootTau, 2000) 
-boot_kendall
-boot.ci(boot_kendall)
+LineStats <- lm(FinalM_4$m$formula(),data=TD_trimmed_4) %>% summary()
+Lstats_4 <- sprintf("R^2 = %s, p = %s",
+             round(LineStats$r.squared,3),
+             round(LineStats$coefficients[8],3))
 
+# get removed listeners:
+A <- df_4$listener[which(df_4$Group=="TD")]
+B <- TD_trimmed_4$listener
+Rmv <- setdiff(A,B)
+if (!is.null(Rmv)){df_4 %>% filter(listener %in% Rmv) %>% dplyr::select(., listener, Age, uRevs, z_trim)}
 
 ### ENG-Alt ###
 Output <- getBestFit(ASLN,"ENG_F-ASLN-Alt",CutOff)
 df_5 <- Output[[1]]  # df_All
-TD_trimmed = Output[[11]]
+TD_trimmed_5 = Output[[11]]
 FinalM_5 <- if(Output[[8]]==1){FinalM_5=Output[[6]]}else{FinalM_5=Output[[7]]}
 L5<- cbind("slope"=FinalM_5$m$getAllPars()[1],"intcpt"=FinalM_5$m$getAllPars()[2])
 L5<- sprintf("slope = %s, intcpt = %s",
              round(FinalM_5$m$getAllPars()[1],2),
              round(FinalM_5$m$getAllPars()[2],2))
+Slopes.ASLN["ENG_F-ASLN-Alt"] <- FinalM_5$m$getPars()[1]
+# anova.ST[["ENG_F-ASLN-Alt"]] <- lm(FinalM_5$m$formula(),data=TD_trimmed_5) %>% summary() %>% coefficients(.) %>% data.frame() %>% slice_tail()
 
-# -------------------
-# get kendall's tau:
-# with model prediction
-cor_5 <-cor.test(x=df_5$Age[which(df_5$Group=="TD")],
-                 y=df_5$predicted[which(df_5$Group=="TD")],method="kendall")
-# with only TD trimmed data
-cor_5 <- cor.test(x=TD_trimmed$Age,y=TD_trimmed$uRevs,method="kendall")
-# get label for the scatterplot
-cor_5 <- apa::cor_apa(cor_5,format ="text",print = FALSE)
-# -------------------
+LineStats <- lm(FinalM_5$m$formula(),data=TD_trimmed_5) %>% summary()
+Lstats_5 <- sprintf("R^2 = %s, p = %s",
+             round(LineStats$r.squared,3),
+             round(LineStats$coefficients[8],3))
 
-boot_kendall <- boot(TD_trimmed, bootTau, 2000) 
-boot_kendall
-boot.ci(boot_kendall)
-
+# get removed listeners:
+A <- df_5$listener[which(df_5$Group=="TD")]
+B <- TD_trimmed_5$listener
+Rmv <- setdiff(A,B)
+if (!is.null(Rmv)){df_5 %>% filter(listener %in% Rmv) %>% dplyr::select(., listener, Age, uRevs, z_trim)}
 
 ## combine all conditions together
+FinalM.ASL <- list(FinalM_1,FinalM_2,FinalM_3,FinalM_4,FinalM_5)
 ASLN <- rbind(df_1,df_2,df_3,df_4,df_5)
-# FinalM.ASL <- list(FinalM_1,FinalM_2,FinalM_3,FinalM_4,FinalM_5)
 Lines.ASL <- rbind(L1,L2,L3,L4,L5)
-corAll.ASL <- rbind(cor_1,cor_2,cor_3,cor_4,cor_5)
+LStats.ASL <- rbind(Lstats_1,Lstats_2,Lstats_3,Lstats_4,Lstats_5)
+TD_trimmed.ASL <- rbind(TD_trimmed_1,TD_trimmed_2,TD_trimmed_3,TD_trimmed_4,TD_trimmed_5)
 
 # get outliers: 
 ASLN <- ASLN %>% group_by(CondCode) %>%
@@ -1365,7 +1329,7 @@ ASLN <- ASLN %>% group_by(CondCode) %>%
 ddply(ASLN,~CondCode*Group,summarise,nConde= length(listener),nOutlier=sum(Outlier, na.rm=TRUE),prcntOutlier=round((sum(Outlier,na.rm=TRUE)/length(listener)*100),1))
 ```
 
-```{r,fig.align='center', fig.width=6, fig.asp=1.5, out.width='100%', message=FALSE,warning=FALSE, echo=FALSE, results='hide'}
+```{r,label='ST-z-CCRM',fig.align='center', fig.width=6, fig.asp=1.5, out.width='100%', message=FALSE,warning=FALSE, echo=FALSE, results='hide'}
 #########################################
 ##   get z-scores by speech material   ##
 #########################################
@@ -1412,27 +1376,19 @@ CCRM$TempRmv <- ifelse((CCRM$fileName %in% TempRemove_CCRM)==TRUE,1,0)
 ### Q-NoAlt ###
 Output <- getBestFit(CCRM,"Q-CCRM-NoAlt",CutOff)
 df_1 <- Output[[1]]  # df_All
-TD_trimmed = Output[[11]]
+TD_trimmed_1 = Output[[11]]
 FinalM_1 <- if(Output[[8]]==1){FinalM_1=Output[[6]]}else{FinalM_1=Output[[7]]}
 L1<- sprintf("slope = %s, intcpt = %s",
              round(FinalM_1$m$getAllPars()[1],2),
              round(FinalM_1$m$getAllPars()[2],2))
+Slopes.CCRM <- NULL
+Slopes.CCRM["Q-CCRM-NoAlt"] <- FinalM_1$m$getPars()[1]
+# anova.ST[["Q-CCRM-NoAlt"]] <- lm(FinalM_1$m$formula(),data=TD_trimmed_1) %>% summary() %>% coefficients(.) %>% data.frame() %>% slice_tail()
 
-# -------------------
-# get kendall's tau:
-# with model prediction
-# cor_1 <-cor.test(x=df_1$Age[which(df_1$Group=="TD")],
-#                  y=df_1$predicted[which(df_1$Group=="TD")],method="kendall")
-# with only TD trimmed data
-cor_1 <- cor.test(x=TD_trimmed$Age,y=TD_trimmed$uRevs,method="kendall")
-# get label for the scatterplot
-cor_1 <- apa::cor_apa(cor_1,format ="text",print = FALSE)
-# -------------------
-
-boot_kendall <- boot(TD_trimmed, bootTau, 2000) 
-boot_kendall
-boot.ci(boot_kendall)
-
+LineStats <- lm(FinalM_1$m$formula(),data=TD_trimmed_1) %>% summary()
+Lstats_1 <- sprintf("R^2 = %s, p = %s",
+             round(LineStats$r.squared,3),
+             round(LineStats$coefficients[8],3))
 
 ### Q-Alt ###
 df <- CCRM %>% filter(CondCode=="Q-CCRM-Alt" & Group=="TD") %>% droplevels()
@@ -1445,27 +1401,18 @@ int1_temp <- mean(df$Age)
 
 Output <- getBestFit(CCRM,"Q-CCRM-Alt",CutOff,-slope1_temp,int1_temp,8)
 df_2 <- Output[[1]]  # df_All
-TD_trimmed = Output[[11]]
+TD_trimmed_2 = Output[[11]]
 FinalM_2 <- if(Output[[8]]==1){FinalM_2=Output[[6]]}else{FinalM_2=Output[[7]]}
 L2<- sprintf("slope = %s, intcpt = %s",
              round(FinalM_2$m$getAllPars()[1],2),
              round(FinalM_2$m$getAllPars()[2],2))
+Slopes.CCRM["Q-CCRM-Alt"] <- FinalM_2$m$getPars()[1]
+# anova.ST[["Q-CCRM-Alt"]] <- lm(FinalM_2$m$formula(),data=TD_trimmed_2) %>% summary() %>% coefficients(.) %>% data.frame() %>% slice_tail()
 
-# -------------------
-# get kendall's tau:
-# with model prediction
-# cor_2 <-cor.test(x=df_2$Age[which(df_2$Group=="TD")],
-#                  y=df_2$predicted[which(df_2$Group=="TD")],method="kendall")
-# with only TD trimmed data
-cor_2 <- cor.test(x=TD_trimmed$Age,y=TD_trimmed$uRevs,method="kendall")
-# get label for the scatterplot
-cor_2 <- apa::cor_apa(cor_2,format ="text",print = FALSE)
-# -------------------
-
-boot_kendall <- boot(TD_trimmed, bootTau, 2000) 
-boot_kendall
-boot.ci(boot_kendall)
-
+LineStats <- lm(FinalM_2$m$formula(),data=TD_trimmed_2) %>% summary()
+Lstats_2 <- sprintf("R^2 = %s, p = %s",
+             round(LineStats$r.squared,3),
+             round(LineStats$coefficients[8],3))
 
 ### AMSSN ###
 df <- CCRM %>% filter(CondCode=="AMSSN-CCRM-Alt" & Group=="TD") %>% droplevels()
@@ -1478,27 +1425,18 @@ int1_temp <- mean(df$Age)
 
 Output <- getBestFit(CCRM,"AMSSN-CCRM-Alt",CutOff,-slope1_temp,int1_temp,8.5)
 df_3 <- Output[[1]]  # df_All
-TD_trimmed = Output[[11]]
+TD_trimmed_3 = Output[[11]]
 FinalM_3 <- if(Output[[8]]==1){FinalM_3=Output[[6]]}else{FinalM_3=Output[[7]]}
 L3<- sprintf("slope = %s, intcpt = %s",
              round(FinalM_3$m$getAllPars()[1],2),
              round(FinalM_3$m$getAllPars()[2],2))
+Slopes.CCRM["AMSSN-CCRM-Alt"] <- FinalM_3$m$getPars()[1]
+# anova.ST[["AMSSN-CCRM-Alt"]] <- lm(FinalM_3$m$formula(),data=TD_trimmed_3) %>% summary() %>% coefficients(.) %>% data.frame() %>% slice_tail()
 
-# -------------------
-# get kendall's tau:
-# with model prediction
-# cor_3 <-cor.test(x=df_3$Age[which(df_3$Group=="TD")],
-#                  y=df_3$predicted[which(df_3$Group=="TD")],method="kendall")
-# with only TD trimmed data
-cor_3 <- cor.test(x=TD_trimmed$Age,y=TD_trimmed$uRevs,method="kendall")
-# get label for the scatterplot
-cor_3 <- apa::cor_apa(cor_3,format ="text",print = FALSE)
-# -------------------
-
-boot_kendall <- boot(TD_trimmed, bootTau, 2000) 
-boot_kendall
-boot.ci(boot_kendall)
-
+LineStats <- lm(FinalM_3$m$formula(),data=TD_trimmed_3) %>% summary()
+Lstats_3 <- sprintf("R^2 = %s, p = %s",
+             round(LineStats$r.squared,3),
+             round(LineStats$coefficients[8],3))
 
 ### MDR_F ###
 df <- CCRM %>% filter(CondCode=="MDR_F-CCRM-Alt" & Group=="TD") %>% droplevels()
@@ -1512,27 +1450,18 @@ int1_temp <- mean(df$Age)
 # Output <- getBestFit(CCRM,"MDR_F-CCRM-Alt",CutOff,slope1_temp,int1_temp,11.5,0.078)
 Output <- getBestFit(CCRM,"MDR_F-CCRM-Alt",CutOff,slope1_temp,int1_temp,10,0.5)
 df_4 <- Output[[1]]  # df_All
-TD_trimmed = Output[[11]]
+TD_trimmed_4 = Output[[11]]
 FinalM_4 <- if(Output[[8]]==1){FinalM_4=Output[[6]]}else{FinalM_4=Output[[7]]}
 L4<- sprintf("slope = %s, intcpt = %s",
              round(FinalM_4$m$getAllPars()[1],2),
              round(FinalM_4$m$getAllPars()[2],2))
+Slopes.CCRM["MDR_F-CCRM-Alt"] <- FinalM_4$m$getPars()[1]
+# anova.ST[["MDR_F-CCRM-Alt"]] <- lm(FinalM_4$m$formula(),data=TD_trimmed_4) %>% summary() %>% coefficients(.) %>% data.frame() %>% slice_tail()
 
-# -------------------
-# get kendall's tau:
-# with model prediction
-# cor_4 <-cor.test(x=df_4$Age[which(df_4$Group=="TD")],
-#                  y=df_4$predicted[which(df_4$Group=="TD")],method="kendall")
-# with only TD trimmed data
-cor_4 <- cor.test(x=TD_trimmed$Age,y=TD_trimmed$uRevs,method="kendall")
-# get label for the scatterplot
-cor_4 <- apa::cor_apa(cor_4,format ="text",print = FALSE)
-# -------------------
-
-boot_kendall <- boot(TD_trimmed, bootTau, 2000) 
-boot_kendall
-boot.ci(boot_kendall)
-
+LineStats <- lm(FinalM_4$m$formula(),data=TD_trimmed_4) %>% summary()
+Lstats_4 <- sprintf("R^2 = %s, p = %s",
+             round(LineStats$r.squared,3),
+             round(LineStats$coefficients[8],3))
 
 ### ENG_F ###
 df <- CCRM %>% filter(CondCode=="ENG_F-CCRM-Alt" & Group=="TD" & TempRmv<1) %>% droplevels()
@@ -1545,27 +1474,18 @@ int1_temp <- mean(df$Age)
 
 Output <- getBestFit(CCRM,"ENG_F-CCRM-Alt",CutOff,slope1_temp,int1_temp,8,0.5)
 df_5 <- Output[[1]]  # df_All
-TD_trimmed = Output[[11]]
+TD_trimmed_5 = Output[[11]]
 FinalM_5 <- if(Output[[8]]==1){FinalM_5=Output[[6]]}else{FinalM_5=Output[[7]]}
 L5<- sprintf("slope = %s, intcpt = %s",
              round(FinalM_5$m$getAllPars()[1],2),
              round(FinalM_5$m$getAllPars()[2],2))
+Slopes.CCRM["ENG_F-CCRM-Alt"] <- FinalM_5$m$getPars()[1]
+# anova.ST[["ENG_F-CCRM-Alt"]] <- lm(FinalM_5$m$formula(),data=TD_trimmed_5) %>% summary() %>% coefficients(.) %>% data.frame() %>% slice_tail()
 
-# -------------------
-# get kendall's tau:
-# with model prediction
-# cor_5 <-cor.test(x=df_5$Age[which(df_5$Group=="TD")],
-#                  y=df_5$predicted[which(df_5$Group=="TD")],method="kendall")
-# with only TD trimmed data
-cor_5 <- cor.test(x=TD_trimmed$Age,y=TD_trimmed$uRevs,method="kendall")
-# get label for the scatterplot
-cor_5 <- apa::cor_apa(cor_5,format ="text",print = FALSE)
-# -------------------
-
-boot_kendall <- boot(TD_trimmed, bootTau, 2000) 
-boot_kendall
-boot.ci(boot_kendall)
-
+LineStats <- lm(FinalM_5$m$formula(),data=TD_trimmed_5) %>% summary()
+Lstats_5 <- sprintf("R^2 = %s, p = %s",
+             round(LineStats$r.squared,3),
+             round(LineStats$coefficients[8],3))
 
 ### CCRM_F ###
 df <- CCRM %>% filter(CondCode=="CCRM_F-CCRM-Alt" & Group=="TD") %>% droplevels()
@@ -1578,38 +1498,298 @@ int1_temp <- mean(df$Age)
 
 Output <- getBestFit(CCRM,"CCRM_F-CCRM-Alt",CutOff,-0.1173,1.7272,8.8838)
 df_6 <- Output[[1]]  # df_All
-TD_trimmed = Output[[11]]
+TD_trimmed_6 = Output[[11]]
 FinalM_6 <- if(Output[[8]]==1){FinalM_6=Output[[6]]}else{FinalM_6=Output[[7]]}
 L6<- sprintf("slope = %s, intcpt = %s",
              round(FinalM_6$m$getAllPars()[1],2),
              round(FinalM_6$m$getAllPars()[2],2))
+Slope_CCRM_F <- FinalM_6$m$getPars()[1]
+# anova.ST[["CCRM_F-CCRM-Alt"]] <- lm(FinalM_6$m$formula(),data=TD_trimmed_6) %>% summary() %>% coefficients(.) %>% data.frame() %>% slice_tail()
 
-# -------------------
-# get kendall's tau:
-# with model prediction
-# cor_6 <-cor.test(x=df_6$Age[which(df_6$Group=="TD")],
-#                  y=df_6$predicted[which(df_6$Group=="TD")],method="kendall")
-# with only TD trimmed data
-cor_6 <- cor.test(x=TD_trimmed$Age,y=TD_trimmed$uRevs,method="kendall")
-# get label for the scatterplot
-cor_6 <- apa::cor_apa(cor_6,format ="text",print = FALSE)
-# -------------------
-
-boot_kendall <- boot(TD_trimmed, bootTau, 2000) 
-boot_kendall
-boot.ci(boot_kendall)
+LineStats <- lm(FinalM_6$m$formula(),data=TD_trimmed_6) %>% summary()
+Lstats_6 <- sprintf("R^2 = %s, p = %s",
+             round(LineStats$r.squared,3),
+             round(LineStats$coefficients[8],3))
 
 ## combine all conditions together
+# corAll.CCRM <- rbind(cor_1,cor_2,cor_3,cor_4,cor_5,cor_6)
+FinalM.CCRM <- list(FinalM_1,FinalM_2,FinalM_3,FinalM_4,FinalM_5,FinalM_6)
 CCRM <- rbind(df_1,df_2,df_3,df_4,df_5,df_6)
-# FinalM.CCRM <- list(FinalM_1,FinalM_2,FinalM_3,FinalM_4,FinalM_5,FinalM_6)
 Lines.CCRM <- rbind(L1,L2,L3,L4,L5,L6)
-corAll.CCRM <- rbind(cor_1,cor_2,cor_3,cor_4,cor_5,cor_6)
+LStats.CCRM <- rbind(Lstats_1,Lstats_2,Lstats_3,Lstats_4,Lstats_5,Lstats_6)
+TD_trimmed.CCRM <- rbind(TD_trimmed_1,TD_trimmed_2,TD_trimmed_3,TD_trimmed_4,TD_trimmed_5,TD_trimmed_6)
 
 # get outliers: 
 CCRM <- CCRM %>% group_by(CondCode) %>%
   mutate(Outlier = ifelse(z_trim > CutOff,1,0))
 
 ddply(CCRM,~CondCode*Group,summarise,nConde= length(listener),nOutlier=sum(Outlier, na.rm=TRUE),prcntOutlier=round((sum(Outlier,na.rm=TRUE)/length(listener)*100),1))
+```
+
+```{r,label='ST-AgeEffect', echo=FALSE,results='hide',message=FALSE,warning=FALSE, include=FALSE}
+##### Age effect? ################################################################# 
+
+TD_trimmed.CCRM_s <- TD_trimmed.CCRM %>% filter(CondCode!="CCRM_F-CCRM-Alt" & Group=="TD") %>% 
+  dplyr::select(., listener, Age,Group, material, CondCode, uRevs) %>% droplevels()
+
+# remove material affiliation in conditions name
+TD_trimmed.CCRM_s$CondCode <- revalue(TD_trimmed.CCRM_s$CondCode, c("Q-CCRM-NoAlt"="Q-NoAlt","Q-CCRM-Alt"="Q-Alt",
+                                              "AMSSN-CCRM-Alt"="AMSSN-Alt","MDR_F-CCRM-Alt"="MDR_F-Alt",
+                                              "ENG_F-CCRM-Alt"="ENG_F-Alt"))
+TD_trimmed.CCRM_s <- data.frame(TD_trimmed.CCRM_s)
+TD_trimmed.ASL_s <- ASLN %>% filter(Group=="TD") %>% dplyr::select(., listener, Age,Group, material, CondCode, uRevs) %>% droplevels()
+TD_trimmed.ASL_s$CondCode <- revalue(TD_trimmed.ASL_s$CondCode, c("Q-ASLN-NoAlt"="Q-NoAlt","Q-ASLN-Alt"="Q-Alt",
+                                              "AMSSN-ASLN-Alt"="AMSSN-Alt","MDR_F-ASLN-Alt"="MDR_F-Alt",
+                                              "ENG_F-ASLN-Alt"="ENG_F-Alt"))
+TD_trimmed.ASL_s <- data.frame(TD_trimmed.ASL_s)
+
+ST_trimmed <- rbind(TD_trimmed.ASL_s,TD_trimmed.CCRM_s)
+ST_trimmed <- data.frame(ST_trimmed)
+
+######## lmer model ##########################################
+## Find Best fit 
+# start with a saturated model (3-way interaction with age)
+model1 <- lmer(uRevs~CondCode*material*Age+(1|listener), ST_trimmed, REML=FALSE)
+summary(model1)
+
+(model2<-update(model1,  ~ . - CondCode:material:Age))
+anova(model1,model2)
+summary(model2)
+# model2: uRevs ~ CondCode + material + Age + (1 | listener) + CondCode:material + 
+# model2:     CondCode:Age + material:Age
+# model1: uRevs ~ CondCode * material * Age + (1 | listener)
+#        npar     AIC     BIC logLik deviance  Chisq Df Pr(>Chisq)
+# model2   18 -412.75 -351.34 224.37  -448.75                     
+# model1   22 -409.33 -334.27 226.66  -453.33 4.5795  4     0.3332
+
+(model3<-update(model2,  ~ . - material:Age))
+anova(model2,model3)
+summary(model3)
+# model3: uRevs ~ CondCode + material + Age + (1 | listener) + CondCode:material + 
+# model3:     CondCode:Age
+# model2: uRevs ~ CondCode + material + Age + (1 | listener) + CondCode:material + 
+# model2:     CondCode:Age + material:Age
+#        npar     AIC     BIC logLik deviance  Chisq Df Pr(>Chisq)  
+# model3   17 -410.96 -352.96 222.48  -444.96                       
+# model2   18 -412.75 -351.34 224.37  -448.75 3.7857  1    0.05169 .
+
+(model4<-update(model2,  ~ . - CondCode:material))
+anova(model2,model4)
+summary(model4)
+# model4: uRevs ~ CondCode + material + Age + (1 | listener) + CondCode:Age
+# model3: uRevs ~ CondCode + material + Age + (1 | listener) + CondCode:material + 
+# model3:     CondCode:Age
+#        npar     AIC     BIC logLik deviance  Chisq Df Pr(>Chisq)  
+# model4   13 -409.89 -365.54 217.94  -435.89                       
+# model3   17 -410.96 -352.96 222.48  -444.96 9.0698  4    0.05938 .
+
+(model5<-update(model4,  ~ . - CondCode:Age))
+anova(model4,model5)
+summary(model5)
+# model5: uRevs ~ CondCode + material + Age + (1 | listener)
+# model4: uRevs ~ CondCode + material + Age + (1 | listener) + CondCode:Age
+#        npar     AIC     BIC logLik deviance  Chisq Df Pr(>Chisq)   
+# model5    9 -403.73 -373.02 210.87  -421.73                        
+# model4   13 -409.89 -365.54 217.94  -435.89 14.161  4     0.0068 **
+
+# best mode --> model 2: uRevs ~ CondCode + material + Age + 
+#                                CondCode:material + CondCode:Age + material:Age + (1 | listener) 
+tab_model(model2)
+
+# ---------------------------------------------------------------------------------
+# test main effects:
+rstatix::Anova(model2,type="II",test.statistic="Chisq")
+
+BestModel <- model2
+
+# CondCode:Age
+(BestModel.1 <- update(BestModel,  . ~ . -CondCode:Age))
+CondAge.LMEM <- anova(BestModel,BestModel.1)
+summary(BestModel.1)
+# BestModel.1: uRevs ~ CondCode + material + Age + (1 | listener) + CondCode:material + 
+# BestModel.1:     material:Age
+# BestModel: uRevs ~ CondCode + material + Age + (1 | listener) + CondCode:material + 
+# BestModel:     CondCode:Age + material:Age
+#             npar     AIC     BIC logLik deviance  Chisq Df Pr(>Chisq)   
+# BestModel.1   14 -405.83 -358.06 216.91  -433.83                        
+# BestModel     18 -412.75 -351.34 224.37  -448.75 14.919  4   0.004871 **
+
+# material:Age
+(BestModel.2 <- update(BestModel,  . ~ . -material:Age))
+MatAge.LMEM <- anova(BestModel,BestModel.2)
+summary(BestModel.2)
+# BestModel.2: uRevs ~ CondCode + material + Age + (1 | listener) + CondCode:material + 
+# BestModel.2:     CondCode:Age
+# BestModel: uRevs ~ CondCode + material + Age + (1 | listener) + CondCode:material + 
+# BestModel:     CondCode:Age + material:Age
+#             npar     AIC     BIC logLik deviance  Chisq Df Pr(>Chisq)  
+# BestModel.2   17 -410.96 -352.96 222.48  -444.96                       
+# BestModel     18 -412.75 -351.34 224.37  -448.75 3.7857  1    0.05169 .
+
+# CondCode:material
+(BestModel.3 <- update(BestModel,  . ~ . - CondCode:material))
+CondMat.LMEM <- anova(BestModel,BestModel.3)
+summary(BestModel.3)
+# BestModel.3: uRevs ~ CondCode + material + Age + (1 | listener) + CondCode:Age + 
+# BestModel.3:     material:Age
+# BestModel: uRevs ~ CondCode + material + Age + (1 | listener) + CondCode:material + 
+# BestModel:     CondCode:Age + material:Age
+#             npar     AIC     BIC logLik deviance  Chisq Df Pr(>Chisq)  
+# BestModel.3   14 -411.36 -363.60 219.68  -439.36                       
+# BestModel     18 -412.75 -351.34 224.37  -448.75 9.3848  4    0.05217 .
+
+
+# ------------------------------------------------------------------------------
+# Post hoc -> individual lm's by condition.
+# Since there is no material x condition interaction, observations from 
+# the two speech materials were combined.
+# --> use nls model used to for z-scores. This should be better method, especially for MDR_F-ASL 
+# data where segmented line is needed.
+
+# # get post-hoc test for single regression models (shown in the figure)
+# anova.ST2 <- data.table::rbindlist(anova.ST) %>% data.frame(.) %>% round(.,3)
+# colnames(anova.ST2)[2:4] <- c("SE","t-value","p-value")
+# anova.ST2$`p-value` = ifelse(anova.ST2$`p-value`<.05,sprintf("\\textbf{%0.3f}",anova.ST2$`p-value`),anova.ST2$`p-value`)
+# anova.ST2 <- cbind("Condition"=c("Quiet-NoAlt","Quiet-Alt","AMSSN-Alt","MDR\\_F-Alt","ENG\\_F-Alt","CCRM\\_F"),
+#               rbind(anova.ST2[1:5,],c("","","","")),
+#               anova.ST2[6:11,])
+
+
+# -----------------------------------------------------------------------------------------------------
+# Post-hoc paired comparison
+# -----------------------------------------------------------------------------------------------------
+# Material x Age:
+(ref1 <- emmeans::lsmeans(BestModel,~ material*Age))
+comps <- emmeans::contrast(ref1,alpha=0.05,method="pairwise",adjust=NULL) #,adjust=NULL) adjust="bonferroni"
+summary(comps)
+
+# Condition x Material:
+(ref1 <- emmeans::lsmeans(BestModel,~ CondCode*material))
+comps <- emmeans::contrast(ref1,alpha=0.05,method="pairwise",adjust=NULL) #,adjust=NULL) adjust="bonferroni"
+summary(comps)
+# contrast                            estimate     SE  df t.ratio p.value
+# (Q-NoAlt ASLN) - (Q-NoAlt CCRM)      0.19389 0.0254 216   7.621 <.0001 
+# (Q-Alt ASLN) - (Q-Alt CCRM)          0.20112 0.0251 216   8.012 <.0001
+# (AMSSN-Alt ASLN) - (AMSSN-Alt CCRM)  0.18495 0.0251 216   7.366 <.0001 
+# (MDR_F-Alt ASLN) - (MDR_F-Alt CCRM)  0.24260 0.0251 216   9.662 <.0001 
+# (ENG_F-Alt ASLN) - (ENG_F-Alt CCRM)  0.27378 0.0251 216  10.904 <.0001 
+
+# -------------------------------------------------------------------------
+# get table
+# -------------------------------------------------------------------------
+ST_AgeTab <- data.frame(rbind(
+   c("Condition:Material",CondMat.LMEM$Df[2],CondMat.LMEM$Chisq[2],sprintf("\\textbf{%0.3f}",CondMat.LMEM$`Pr(>Chisq)`[2])),
+  c("Condition:Age",CondAge.LMEM$Df[2],CondAge.LMEM$Chisq[2],sprintf("\\textbf{%0.3f}",CondAge.LMEM$`Pr(>Chisq)`[2])),
+  c("Material:Age",MatAge.LMEM$Df[2],MatAge.LMEM$Chisq[2],sprintf("\\textbf{%0.3f}",MatAge.LMEM$`Pr(>Chisq)`[2]))))
+
+ST_AgeTab[,c(2:3)]= apply(ST_AgeTab[,c(2:3)], 2, function(x) as.numeric(as.character(x)))
+
+colnames(ST_AgeTab)[1:4] <- c("Main effects","Df",sprintf("$\\chi^{2}$"),"p")
+# -------------------------------------------------------------------------
+```
+
+```{r,label='ST-AgeLMEM',echo=FALSE,warning=FALSE, message=FALSE}
+kbl(ST_AgeTab, booktabs = T,escape = F,caption = "Add caption here.",
+    align = c("lccc"),format = "latex",digits = 3) %>% 
+  add_header_above(c("SRdT ~ Condition + Material + Age + \n CondCode:material + CondCode:Age + material:Age + (1 | Subjects)" = 4)) %>%
+  add_footnote(c("significance level = 0.05"), notation = "symbol") %>%
+  column_spec(4, italic = T) 
+```
+
+```{r eval=FALSE, message=FALSE, include=FALSE}
+
+# kbl(anova.ST2,booktabs = T, escape = F,caption = "Add caption here",
+#     align = c("lccc"),format = "latex",digits = 3, row.names = F) %>%
+#   add_footnote(c("significance level = 0.05"), notation = "symbol") %>%
+#   kable_styling(latex_options = c("scale_down")) %>%
+#   add_header_above(c(" "=1, "ASL" = 4, "CCRM" = 4)) %>%
+#   column_spec(c(6),border_left = T) %>%
+#   column_spec(c(5,9), italic = T)
+
+# use this if you want to fore latex to print the table in an exact location!
+# latex_options = c("hold_position")
+```
+
+```{r, label='ST-AgeSlopes', fig.cap="Add caption here.", fig.align='center', fig.width=6, fig.asp=0.7, out.width='80%',echo=FALSE, message=FALSE, warning=FALSE}
+
+# fig.pos='h'
+## Get slope plot --------------------------------------------------------------
+Slopes.ASLN <- data.frame(Slopes.ASLN)
+Slopes.CCRM <- data.frame(Slopes.CCRM)
+SlopePlot <- cbind(CondCode=levels(ST_trimmed$CondCode),Slopes.ASLN,Slopes.CCRM)
+
+SlopePlot <- data.frame(SlopePlot)
+SlopePlot$CondCode <- factor(SlopePlot$CondCode,levels=levels(ST_trimmed$CondCode))
+
+t1 <- ggplot(SlopePlot, aes(x=Slopes.CCRM, y=Slopes.ASLN)) +
+  geom_abline(intercept = 0, slope = 1) +
+  geom_point(size=3, aes(shape=CondCode)) +
+  labs(x = "CCRM", y = "ASL") +
+  scale_y_continuous(limits = c(-0.14,0,0.02),breaks=seq(-0.14,0,0.02)) +
+  scale_x_continuous(limits = c(-0.14,0,0.02),breaks=seq(-0.14,0,0.02)) +
+  theme_bw() +
+  theme(axis.text = element_text(size = 10, face="bold",colour = "black"),
+        axis.title.x = element_text(size=11, face="bold"),
+        axis.title.y = element_text(size=11, face="bold"),
+        legend.title = element_text(size=11, face="bold"),
+        legend.text  = element_text(size=10, face="bold"),
+        legend.position=c(0.15, 0.75),
+        legend.direction = "vertical",
+        legend.background = element_blank(),
+        legend.box.background = element_rect(colour = "black"))
+
+t1$labels$shape ="Condition"
+t1
+```
+
+```{r,label='ST-TDtrimmedAssumptions', echo=FALSE,results='hide',message=FALSE,warning=FALSE, include=FALSE}
+################################ Assumptions testing ################################ 
+
+# ---------------- uRevs ------------------------------------------------------------
+
+#### For the combined data, based on the lmer model (BestModel) ####
+
+#### normality (shapiro-wilk) ###########
+# linearity is met if p>.05
+# Option 1:
+shapiro.test(residuals(BestModel))
+# W = 0.99757, p-value = 0.983 --> normaly distr.
+
+#### Homogeneity of variance (Levene's test) ###########
+# homogeneity is met if p>.05
+
+# Option 1: Is the lmer model fully covered here?
+leveneTest(residuals(BestModel) ~ CondCode*material,data = ST_trimmed)
+
+# Option 2: calculate Levene's test by hand, using the model.
+# Based on: https://ademos.people.uic.edu/Chapter18.html [see 6.2]
+
+ST_trimmed$BestModel.Res<- residuals(BestModel) #extracts the residuals and places them in a new column in our original data table
+ST_trimmed$Abs.BestModel.Res <-abs(ST_trimmed$Model.F.Res) #creates a new column with the absolute value of the residuals
+ST_trimmed$BestModel.Res2 <- ST_trimmed$Abs.BestModel.Res^2 #squares the absolute values of the residuals to provide the more robust estimate
+Levene.BestModel <- lm(BestModel.Res2 ~ listener, data=ST_trimmed) #ANOVA of the squared residuals
+anova(Levene.BestModel) #displays the results --> homogeneity of variance is marginally significant (p=0.04), i.e., homogeneity is not met..
+
+boxplot(residuals(BestModel) ~ CondCode*material,data = ST_trimmed)
+
+plot(BestModel)
+
+t1 <- ggplot(ST_trimmed, aes(x=interaction(CondCode,material), y=BestModel.Res, color=material)) +
+  geom_point(size=2,alpha=1) +
+  # geom_text(label=ASLN$listener, size=3)+
+  # labs(y = "SRdTs (proportion of duty cycle)",x = "Age (in years)") + 
+  # scale_y_continuous(limits = c(-0.05,1.05),breaks=seq(0,1,0.1)) +
+  # scale_x_continuous(breaks=seq(7,14,1),labels=c("7","8","9","10","11","12","13","18-35"))+
+  theme_bw() +
+  theme(axis.text = element_text(size = 10, face="bold",colour = "black"),
+        axis.title.x = element_text(size=11, face="bold"),
+        axis.title.y = element_text(size=11, face="bold"),
+        legend.title = element_text(size=11, face="bold"),
+        legend.text  = element_text(size=10, face="bold"),
+        legend.position = "bottom",
+        legend.direction = "horizontal",
+        legend.background = element_blank(),
+        legend.box.background = element_rect(colour = "black"))
 ```
 
 ```{r,label='ST-Assumptions', echo=FALSE,results='hide',message=FALSE,warning=FALSE, include=FALSE}
@@ -1797,7 +1977,7 @@ VarTest <- CCRM %>%
 
 ```
 
-```{r, echo=FALSE,message=FALSE, warning=FALSE,results='hide'}
+```{r,label='ST-getAdultData', echo=FALSE,message=FALSE, warning=FALSE,results='hide'}
 # get adults data for for the boxplots: 
 d_study2 <- read.csv(file.path(FileDir,'Files','StudyII_AdultData.csv'),header=T) 
 
@@ -1836,73 +2016,7 @@ ASLN_adults <- d_adults %>% filter(Material=="ASL") %>% droplevels() # Only ASL
 CCRM_adults <- d_adults %>% filter(Material=="CCRM") %>% droplevels() # Only CCRM
 ```
 
-```{r eval=FALSE, include=FALSE}
-# --------------------------------------------------------------------------------------------------
-# Wilcox test / Mann-Whitney U test for non-parametric data 
-# (when normality assumption is violated) for independent two samples
-# library(rstatix)
-
-# ## ASL #####
-# Wilcox_ASL <- ASLN %>%
-#   group_by(CondCode) %>%
-#   rstatix::wilcox_test(data =., z_trim ~ Group, paired=FALSE, detailed=TRUE) %>%
-#   adjust_pvalue(method = "bonferroni") %>%
-#   add_significance("p.adj")
-# Wilcox_ASL$CI <- sprintf("%.02f - %.02f",round(Wilcox_ASL$conf.low,2),round(Wilcox_ASL$conf.high,2))
-# 
-# Wilcox_ASL_effectSize <- ASLN %>%
-#   group_by(CondCode) %>%
-#   wilcox_effsize(data =., z_trim ~ Group, paired=FALSE, detailed=TRUE)
-# 
-# ## CCRM #####
-# Wilcox_CCRM <- CCRM %>%
-#   group_by(CondCode) %>%
-#   rstatix::wilcox_test(data =., z_trim ~ Group, paired=FALSE, detailed=TRUE) %>%
-#   adjust_pvalue(method = "bonferroni") %>%
-#   add_significance("p.adj")
-# Wilcox_CCRM$CI <- sprintf("%.02f - %.02f",round(Wilcox_CCRM$conf.low,2),round(Wilcox_CCRM$conf.high,2))
-# 
-# Wilcox_CCRM_effectSize <- CCRM %>%
-#   group_by(CondCode) %>%
-#   wilcox_effsize(data =., z_trim ~ Group, paired=FALSE, detailed=TRUE)
-# 
-# # --------------------------------------------------------------------------------------------------
-# # get table for z- scores and stats:
-# 
-# # For ASL
-# ASL_tab <- ASLN %>% ddply(.,~CondCode*Group,summarise,N=length(z_trim),median=round(median(z_trim,na.rm=TRUE),2),sd=round(sd(z_trim,na.rm=TRUE),2), min=round(min(z_trim,na.rm=TRUE),2),max=round(max(z_trim,na.rm=TRUE),2)) %>% 
-#   arrange(., group_by = Group)
-# ASL_tab <- ASL_tab[,-grep("Group",colnames(ASL_tab))]
-# # APD first then TD
-# ASL_tab <- cbind(ASL_tab[1:5,1:ncol(ASL_tab)],ASL_tab[6:nrow(ASL_tab),2:ncol(ASL_tab)])
-# ASL_tab$CondCode <- c("Quiet-NoAlt","Quiet-Alt","AMSSN-Alt","MDR\\_F-Alt","ENG\\_F-Alt")
-# 
-# # For CCRM
-# CCRM_tab <- CCRM %>% ddply(.,~CondCode*Group,summarise,N=length(z_trim),median=round(median(z_trim,na.rm=TRUE),2),sd=round(sd(z_trim,na.rm=TRUE),2), min=round(min(z_trim,na.rm=TRUE),2),max=round(max(z_trim,na.rm=TRUE),2)) %>% 
-#   arrange(., group_by = Group)
-# CCRM_tab <- CCRM_tab[,-grep("Group",colnames(CCRM_tab))]
-# # APD first then TD
-# CCRM_tab <- cbind(CCRM_tab[1:6,1:ncol(CCRM_tab)],CCRM_tab[7:nrow(CCRM_tab),2:ncol(CCRM_tab)])
-# CCRM_tab$CondCode <- c("Quiet-NoAlt","Quiet-Alt","AMSSN-Alt","MDR\\_F-Alt","ENG\\_F-Alt","CCRM\\_F-Alt")
-# # --------------------------------------------------------------------------------------------------
-# # combine table
-# ASL_tab <- cbind(ASL_tab,
-#                  "CI"=Wilcox_ASL$CI,"p"=round(Wilcox_ASL$p,2),
-#                  "effect size (r)"=round(Wilcox_ASL_effectSize$effsize,2),
-#                  "magnitude"=Wilcox_ASL_effectSize$magnitude)
-# colnames(ASL_tab)[1] = ""
-# 
-# CCRM_tab <- cbind(CCRM_tab,
-#                  "CI"=Wilcox_CCRM$CI,"p"=round(Wilcox_CCRM$p,2),
-#                  "effect size (r)"=round(Wilcox_CCRM_effectSize$effsize,2),
-#                  "magnitude"=Wilcox_CCRM_effectSize$magnitude)
-# colnames(CCRM_tab)[1] = ""
-# 
-# ST_tab <- rbind(ASL_tab,CCRM_tab)
-
-```
-
-```{r message=FALSE, warning=FALSE, include=FALSE, results='hide'}
+```{r,label='ST-nparLD', message=FALSE, warning=FALSE, include=FALSE, results='hide'}
 # remove CCRM_F condition
 CCRM_s <- CCRM %>% filter(CondCode!="CCRM_F-CCRM-Alt") %>% 
   dplyr::select(., listener, Group, material, CondCode, z_trim) %>% droplevels()
@@ -1932,34 +2046,6 @@ CCRM.nparLD <- nparLD(z_trim ~ CondCode * Group, data = CCRM, subject = "listene
 
 CCRM.nparLD <- data.frame(CCRM.nparLD$ANOVA.test)
 
-
-##### uRevs
-ANOVA.ASL <- aov(uRevs~CondCode * Group * Age, data = ASLN)
-summary(ANOVA.ASL)
-
-ANOVA.CCRM <- aov(uRevs~CondCode * Group * Age, data = CCRM)
-summary(ANOVA.CCRM)
-
-############################ ARCHIVE ############################
-
-# install.packages("nparLD")
-# Does not work because of missing obs (n=2!). The package info says it can deal with several missing values if they are declered as 'NA'. I tried it and it didn't work as well.
-# library("nparLD")
-# ASLN <- data.frame(ASLN)
-# ASL.f1.ld.f1 <- nparLD(z_trim ~ CondCode * Group, data = ASLN, subject = "listener", description = FALSE, plot.CI=FALSE)
-# # ASL.f1.ld.f1$ANOVA.test
-# 
-# CCRM <- data.frame(CCRM)
-# CCRM.f1.ld.f1 <- nparLD(z_trim ~ CondCode * Group, data = CCRM, subject = "listener", description = FALSE,plot.CI=FALSE)
-# # CCRM.f1.ld.f1$ANOVA.test
-# 
-# ST_ANOVA_tab <- cbind(round(ASL.f1.ld.f1$ANOVA.test,2),
-#                       round(CCRM.f1.ld.f1$ANOVA.test,2))
-# rownames(ST_ANOVA_tab) = c("Group","Condition","Group:Condition")
-# ST_ANOVA_tab <- data.frame(ST_ANOVA_tab)
-# # mark all the significant p's
-# ST_ANOVA_tab$p.value = ifelse(ST_ANOVA_tab$p.value<.05,sprintf("\\textbf{%.02f}",ST_ANOVA_tab$p.value),ST_ANOVA_tab$p.value)
-# ST_ANOVA_tab$p.value.1 = ifelse(ST_ANOVA_tab$p.value.1<.05,sprintf("\\textbf{%.02f}",ST_ANOVA_tab$p.value.1),ST_ANOVA_tab$p.value.1)
 ```
 
 ```{r, label='ST-ANOVAtab', echo=FALSE}
@@ -2002,65 +2088,19 @@ colnames(ASL_tab)[1] = ""
 colnames(CCRM_tab)[1] = ""
 
 ST_tab <- rbind(ASL_tab,CCRM_tab)
-
-######################### ARCHIVE ######################### 
-
-# --------------------------------------------------------------------------------------------------
-# ##  non-parametric Wilcoxon Rank-Sum Test Mann-Whitney U test for independent 2 samples
-# # (when normality assumption is violated)  ** With permutation **
-# # [approximate (random-sampling/Monte Carlo)]
-# # see: https://mac-theobio.github.io/QMEE/permutation_examples.html
-# source("Functions/getPermWilcoxInd.R")
-# 
-# ASLN <- data.frame(ASLN)
-# Output <- getPermWilcoxInd(ASLN,"z_trim","Group","CondCode")
-# Wilcox_ASL <- Output[[2]]
-# Wilcox_ASL <- Wilcox_ASL[,-c(1,4)]
-# 
-# CCRM <- data.frame(CCRM)
-# Output <- getPermWilcoxInd(CCRM,"z_trim","Group","CondCode")
-# Wilcox_CCRM <- Output[[2]]
-# Wilcox_CCRM <- Wilcox_CCRM[,-c(1,4)]
-# # --------------------------------------------------------------------------------------------------
-# # get table for z- scores and stats:
-# 
-# # For ASL
-# ASL_tab <- ASLN %>% ddply(.,~CondCode*Group,summarise,N=length(z_trim),median=round(median(z_trim,na.rm=TRUE),2),sd=round(sd(z_trim,na.rm=TRUE),2), min=round(min(z_trim,na.rm=TRUE),2),max=round(max(z_trim,na.rm=TRUE),2)) %>% 
-#   arrange(., group_by = Group)
-# ASL_tab <- ASL_tab[,-grep("Group",colnames(ASL_tab))]
-# # APD first then TD
-# ASL_tab <- cbind(ASL_tab[1:5,1:ncol(ASL_tab)],ASL_tab[6:nrow(ASL_tab),2:ncol(ASL_tab)])
-# ASL_tab$CondCode <- c("Quiet-NoAlt","Quiet-Alt","AMSSN-Alt","MDR\\_F-Alt","ENG\\_F-Alt")
-# 
-# # For CCRM
-# CCRM_tab <- CCRM %>% ddply(.,~CondCode*Group,summarise,N=length(z_trim),median=round(median(z_trim,na.rm=TRUE),2),sd=round(sd(z_trim,na.rm=TRUE),2), min=round(min(z_trim,na.rm=TRUE),2),max=round(max(z_trim,na.rm=TRUE),2)) %>% 
-#   arrange(., group_by = Group)
-# CCRM_tab <- CCRM_tab[,-grep("Group",colnames(CCRM_tab))]
-# # APD first then TD
-# CCRM_tab <- cbind(CCRM_tab[1:6,1:ncol(CCRM_tab)],CCRM_tab[7:nrow(CCRM_tab),2:ncol(CCRM_tab)])
-# CCRM_tab$CondCode <- c("Quiet-NoAlt","Quiet-Alt","AMSSN-Alt","MDR\\_F-Alt","ENG\\_F-Alt","CCRM\\_F-Alt")
-# # --------------------------------------------------------------------------------------------------
-# # combine table
-# ASL_tab <- cbind(ASL_tab,Wilcox_ASL)
-# colnames(ASL_tab)[1] = ""
-# 
-# CCRM_tab <- cbind(CCRM_tab,Wilcox_CCRM)
-# colnames(CCRM_tab)[1] = ""
-# 
-# ST_tab <- rbind(ASL_tab,CCRM_tab)
 ```
 
 ```{r, label='ST-Age', fig.cap="Scatterplot and linear regression lines for the listeners SRdTs measured with the switching task with the ASL (A) and CCRM speech corpus (B) as a function of age. Red indicates data from the APD group and green indicates data from the TD control group. The grey area represents the regression line 95\\% confidence interval. Reference data for normal hearing adults taken from Chapter 2 is given in the boxplots.", fig.align='center', fig.width=14, fig.asp=0.8, out.width='100%',echo=FALSE, message=FALSE, warning=FALSE,fig.pos='h'}
 
 dat_text.ASL <- data.frame(
-  label = c(Lines.ASL[1],Lines.ASL[2],Lines.ASL[3],Lines.ASL[4],Lines.ASL[5]),
-  label2 = c(corAll.ASL[1],corAll.ASL[2],corAll.ASL[3],corAll.ASL[4],corAll.ASL[5]),
+  label = Lines.ASL,
+  label2 = matrix(LStats.ASL),
   CondCode   = levels(ASLN$CondCode),
   Group = "TD")
 
 dat_text.CCRM <- data.frame(
-  label = c(Lines.CCRM[1],Lines.CCRM[2],Lines.CCRM[3],Lines.CCRM[4],Lines.CCRM[5],Lines.CCRM[6]),
-  label2 = c(corAll.CCRM[1],corAll.CCRM[2],corAll.CCRM[3],corAll.CCRM[4],corAll.CCRM[5],corAll.CCRM[6]),
+  label = Lines.CCRM,
+  label2 = matrix(LStats.CCRM),
   CondCode   = levels(CCRM$CondCode),
   Group = "TD")
 
@@ -2139,91 +2179,34 @@ t2 <- t2 + facet_grid(. ~ CondCode, scales = "free", switch = "y",
         legend.background = element_blank(),
         legend.box.background = element_rect(colour = "black"),
         plot.tag = element_text(face = 'bold'))
-
-############################################# ARCHIVE #############################################
-
-# ###### ASL ##############
-# t1 <- ggplot(ASLN, aes(x=Age, y=uRevs, color=Group)) +
-#   geom_hline(yintercept=0.97, linetype="dashed",color = "black", size=0.5)+
-#   geom_hline(yintercept=0.05, linetype="dashed",color = "black", size=0.5)+
-#   geom_point(size=2) +
-#   geom_smooth(aes(group=Group,colour=Group),method="lm" , fill="#69b3a2", se=TRUE) +
-#   stat_cor(method = "kendall", cor.coef.name = "tau", aes(color = Group), label.x = 7.5, label.y = c(1.05,1), 
-# na.rm = TRUE) +
-#   stat_regline_equation(label.x = 7.5,label.y = c(0.015,-0.05))+
-#   geom_boxplot(ASLN_adults,mapping = aes(x = 14 , y = uRevs),color="black") +
-#   labs(y = "SRdTs (proportion of duty cycle)",x = "Age (in years)") + 
-#   scale_y_continuous(limits = c(-0.05,1.05),breaks=seq(0,1,0.1)) +
-#   scale_x_continuous(breaks=seq(7,14,1),labels=c("7","8","9","10","11","12","13","18-35"))+
-#   theme_bw() +
-#   theme(axis.text = element_text(size = 10, face="bold",colour = "black"),
-#         axis.title.x = element_text(size=11, face="bold"),
-#         axis.title.y = element_text(size=11, face="bold"),
-#         legend.title = element_text(size=11, face="bold"),
-#         legend.text  = element_text(size=10, face="bold"),
-#         legend.position = "bottom",
-#         legend.direction = "horizontal",
-#         legend.background = element_blank(),
-#         legend.box.background = element_rect(colour = "black"))
-# 
-# t1 <- t1 + facet_grid(. ~ CondCode, scales = "free", switch = "y",
-#                 labeller = labeller(CondCode = c("Q-ASLN-NoAlt" ="Quiet-NoAlt","Q-ASLN-Alt"="Quiet-Alt",
-#                             "AMSSN-ASLN-Alt"="AMSSN-Alt","MDR_F-ASLN-Alt"="MDR_F-Alt","ENG_F-ASLN-Alt"="ENG_F-Alt"))) +
-#     theme(panel.spacing.x = unit(0,"line"),
-#           strip.background = element_rect(fill="white", color="white"),
-#           strip.text = element_text(face = "bold", size = 11))
-# 
-# ###### CCRM ##############
-# t2 <- ggplot(CCRM, aes(x=Age, y=uRevs, color=Group)) +
-#   geom_hline(yintercept=0.97, linetype="dashed",color = "black", size=0.5)+
-#   geom_hline(yintercept=0.05, linetype="dashed",color = "black", size=0.5)+
-#   geom_point(size=2, alpha=1) +
-#   # geom_text(label=CCRM$listener, size=3)+
-#   geom_smooth(aes(group=Group,colour=Group),method="lm" , fill="#69b3a2", se=TRUE) +
-#   stat_cor(method = "kendall", cor.coef.name = "tau", aes(color = Group), label.x = 7.5, label.y = c(1.05,1), 
-# na.rm = TRUE) +
-#   stat_regline_equation(label.x = 7.5,label.y = c(0.015,-0.05))+
-#   geom_boxplot(CCRM_adults,mapping = aes(x = 14 , y = uRevs),color="black") +
-#   labs(y = "SRdTs (proportion of duty cycle)",x = "Age (in years)") + 
-#   scale_y_continuous(limits = c(-0.05,1.05),breaks=seq(0,1,0.1)) +
-#   scale_x_continuous(breaks=seq(7,14,1),labels=c("7","8","9","10","11","12","13","18-35"))+
-#   theme_bw() +
-#   theme(axis.text = element_text(size = 10, face="bold",colour = "black"),
-#         axis.title.x = element_text(size=11, face="bold"),
-#         axis.title.y = element_text(size=11, face="bold"),
-#         legend.title = element_text(size=11, face="bold"),
-#         legend.text  = element_text(size=10, face="bold"),
-#         legend.position = "bottom",
-#         legend.direction = "horizontal",
-#         legend.background = element_blank(),
-#         legend.box.background = element_rect(colour = "black"))
-# 
-# t2 <- t2 + facet_grid(. ~ CondCode, scales = "free", switch = "y",
-#                 labeller = labeller(CondCode = c("Q-CCRM-NoAlt" ="Quiet-NoAlt","Q-CCRM-Alt"="Quiet-Alt",
-#                             "AMSSN-CCRM-Alt"="AMSSN-Alt","MDR_F-CCRM-Alt"="MDR_F-Alt",
-#                             "ENG_F-CCRM-Alt"="ENG_F-Alt","CCRM_F-CCRM-Alt"="CCRM_F-Alt"))) +
-#     theme(panel.spacing.x = unit(0,"line"),
-#           strip.background = element_rect(fill="white", color="white"),
-#           strip.text = element_text(face = "bold", size = 11))
-# 
-# (t1 + t2) + plot_layout(ncol = 1, nrow = 2, heights = c(1, 1), widths = c(1.5,.5)) + plot_annotation(tag_levels = 'A') + plot_layout(guides='collect') &
-#   theme(legend.position='bottom',        
-#         legend.direction = "horizontal",
-#         legend.background = element_blank(),
-#         legend.box.background = element_rect(colour = "black"),
-#         plot.tag = element_text(face = 'bold'))
 ```
 
 #### SRdTs by age {.unnumbered}
-Since the age of the TD/APD children that participated in the present study spanned between circa 7 to 13 years, a developmental age effect was expected, where performance was expected to improve with an increasing age. To inspect this effect across the different test conditions and speech material (ASL/CCRM), scatterplots and linear regression lines for the listeners SRdTs as a function of age are shown in Figure\ \@ref(fig:ST-Age)\ A-B. The effect of age was tested against the TD group only since the variability in scores in the TD group is expected to be relatively smaller than in the clinical APD group. Therefore, any interpretation based on the APD regression lines should be carried out cautiously. The TD regression lines were determined based on model comparison and outliers trimming procedure to improve the model's fit (see section ??). Regular regression lines were found to be the most parsimonious in describing the relationship between the TD children performance and their age. This was the case in all test conditions but the MDR_F distractor in the ASL material, where a segmented line was found to give the best fit. Based on the segmented line, DC improved with age by circa 0.1 per year until reaching a plateau at the age of 9.5 years. Inspection of the regression lines revealed a clear developmental effect in both speech material, where SRdTs improved with age (smaller SRdT $\rightarrow$ better performance), with a larger improvement in performance when additional distractor is presented. While the trend in performance was similar in both speech materials, as expected, CCRM sentences were more intelligible, with performance for the CCRM corpus shifted towards lower (i.e., more difficult) DC relative to performance for the ASL corpus. This is due to the more simple speech material and the restricted alternative responses of the CCRM matrix-based sentences.
+Since the age of the TD/APD children that participated in the present study spanned between circa 7 to 13 years, a developmental age effect was expected, where performance was expected to improve with an increasing age. To inspect this effect across the different test conditions and speech material (ASL/CCRM), scatterplots and linear regression lines for the listeners SRdTs as a function of age are shown in Figure\ \@ref(fig:ST-Age)\ A-B. The effect of age was tested against the TD group only since the variability in scores in the TD group is expected to be relatively smaller than in the clinical APD group. Therefore, any interpretation based on the APD regression lines should be carried out cautiously. The TD regression lines were determined based on model comparison and outliers trimming procedure to improve the model's fit (see section ??). Regular regression lines were found to be the most parsimonious in describing the relationship between the TD children performance and their age. This was the case in all test conditions but the MDR_F distractor in the ASL material, where a segmented line was found to give the best fit. MDR_F segmented line indicated that DC improved with age by circa 0.1 per year until reaching a plateau at the age of 9.5 years. 
+
+Overall, Figure \@ref(fig:ST-Age)\ A-B shows a similar trend in performance in the two speech materials, where children in both groups showed larger decrement in performance for speech distractors (smaller SRdT $\rightarrow$ better performance). The regression lines indicates that the improvement in performance by age was more prominent for speech distractors, with relatively steeper slopes (almost twice as steep) than for the non-speech distractor (AMSSN) or for conditions without a distractor. Furthermore, as expected, CCRM sentences were more intelligible, with performance shifted towards lower DC range (i.e., more difficult) relative to performance for the ASL speech material. This is due to the more simple speech material and the restricted alternative responses of the CCRM matrix-based sentences.
+
+A closer look at the linear lines shows several interesting trends. The non-speech AMSSN distractor showed to have little-to-no effect on performance, at least in the TD group, where performance was fairly similar to performance in the Quiet conditions. When comparing the regression lines, there appears to be a relatively larger separation between the groups for data measured with the CCRM speech material, especially for AMSSN, but also for the speech distractors. However, it is possible that the APD regression lines do not reflect the true population  due to the large spread in performance and the small sample size and thus any interpretation should be taken with a pinch of salt. Another interesting observation is that the children showed little-to-no *masking-release* for speech spoken in an unfamiliar language (MDR_F) when compared with a distractor spoken in English (ENG_F). This is in agreement with findings in the adults study in Chapter\ \@ref(Chpt2). Lastly, it is apparent from the figure that performance for CCRM_F distractor was near-to-ceiling for some children, mostly among the APD group.
+
+An exploratory comparison between between the children's data measured in the present study with data measured across young NH adults collected in Chapter\ \@ref(Chpt2) further highlight the strong developmental trend, with SRdTs still not entirely "adult-like" even at the age of 13 years, especially for speech distractos (see boxplots in Figure\ \@ref(fig:ST-Age)\ A-B). The children in both groups seems to be markedly susceptible to competing CCRM sentences or familiar/unfamiliar speech presented with ASL sentences, with performance at the age of 12 years still largely differing from those obtained by the adults. On the other hand, by the age of 12 years, the TD children reached near to "adult-like" performance when CCRM target sentences were presented with with ENG_F speech distractor or when ASL sentences were presented with AMSSN distractor.
+
+Next, age effect was evaluated using a LMEM test (lmer, REF), with Condition, Material (ASL/CCRM) and Age as fixed factors, SRdT as dependent variable and a random intercept for subjects. A model without three-way interaction between the main effects was found to give the best fit (see Table ????). Model comparison procedure was performed on best fit model, comparing it with a reduced model where a single term was removed, revealing a highly significant 2-way interaction between Condition\ x\ Age (p<0.001) as well as a marginal 2-way interaction between Condition\ x\ Material and Material\ x\ Age (p=0.052). These results further supports the trends seen in the figures. Material\ x\ Age interaction indicates that the developmental trend is different between the two speech materials, with larger age effect (i.e., steeper slopes) for CCRM??? than ASL material. Furthermore, Condition\ x\ Material interaction imply that performance in the different test conditions differed between the two speech materials. A post-hoc t-test comparison based on the fitted model (lsmeans(), REF), revealed a highly significant difference in performance between the materials across all five test conditions (all p's <\ 0.001). Hence, the CCRM speech material was significantly more intelligible than the ASL material, across all test conditions.
+
+Lastly, as observed in the figure, the Condition\ x\ Age interaction suggests that the size of the age effect was different across the test conditions.  Tested using single lm models per conditions and speech material. low statistical power...
+
+
+First, the suggesting that the effect of age differed across the test conditions
+
+
   
-<!-- Inspection of the data revealed that the assumption of normal distribution (Shapiro Wilk test) and the assumption of homogeneity of variance (Levene's test) were not met. Thus, the relationship between the listeners SRdTs and their age was analysed separately for each group per condition using Kendall's tau ($\tau$) which is a non-parametric correlation test (Kendall's $\tau$ and p values are displayed in Figure\ \@ref(fig:ST-Age)\ A-B). Similar to Spearman's rho coefficient, Kendall's $\tau$ ranges between +1 and -1, denoting an optimal correlation at both extremes. The test is recommended for small sample size and a large number of tied ranks (REF Andy fields book p181), which fits to the restricted range possible outcomes in the ST task due to the nature of the adaptive procedure.  -->
+
 
 The effect of age on performance of the trimmed TD group was analysed using Kendall's $\tau$ non-parametric correlation test, with Kendall's $\tau$ and p-values displayed in Figure\ \@ref(fig:ST-Age)\ A-B, split by speech material and condition. The test results showed a mixed developmental trend across conditions and test material. There was a significant correlation (moderate effect size) between age and SRdTs for the test conditions Quiet-NoAlt, MDR_F, and ENG_F when measured with the ASL material, and for ENG_F and CCRM_F for the CCRM speech material, whereas no significant correlation was found for the remaining conditions (*all p's\ >\ 0.05*).
 
-A closer look at the linear lines shows several interesting trends. Firstly, the improvement in performance by age was more prominent for speech distractors, with relatively steeper slopes than for the non-speech distractor (AMSSN) or for conditions without a distractor. Furthermore, alternation on it's own had only a small impact on performance when comparing performance for the target sentences in quiet with and without alternations. Moreover, only speech distractors resulted noticeable decrement in performance (i.e., increased SRdTs), whereas performance for AMSSN was fairly similar to the Quiet conditions. Interestingly, when comparing the regression lines, there appears to be a relatively larger separation between the groups for data measured with the CCRM speech material, especially for AMSSN, but also for the speech distractors. However, it is possible that the APD reggression lines do not reflect the true population due to due to the large spread in performance and the small sample size and thus any interpertation should be taken with a pinch of salt. Another interesting observation is that the children showed little-to-no *masking-release* for speech spoken in an unfamiliar language (MDR_F) when compared with a distractor spoken in English (ENG_F). This is in agreement with findings in the adults study in Chapter\ \@ref(Chpt2). Lastly, it is apparent from the figure that performance for CCRM_F distractor was near-to-ceiling for some children, mostly among the APD group.
 
-An exploratory comparison between between the children's data measured in the present study with data measured across young NH adults collected in Chapter\ \@ref(Chpt2) further highlight the strong developmental trend, with SRdTs still not entirely "adult-like" even at the age of 13 years, especially for speech distractos (see boxplots in Figure\ \@ref(fig:ST-Age)\ A-B). The children in both groups seems to be markedly susceptible to competing CCRM sentences or familiar/unfamiliar speech presented with ASL sentences, with performance at the age of 12 years still largely differing from those obtained by the adults. On the other hand, by the age of 12 years the TD children reached near to "adult-like" performance when CCRM target sentences were presented with with ENG_F speech distractor or when ASL sentences were presented with AMSSN distractor.
+
+
+
 
 <!-- For Discussion:
 - Different age distribution btw the groups.
@@ -2703,21 +2686,24 @@ int1_temp <- mean(df$Age)
 
 Output <- getBestFit(LiSNS,"SSN",CutOff,slope1_temp,int1_temp,9.5)
 df_1 <- Output[[1]]  # df_All
-TD_trimmed = Output[[11]]
+TD_trimmed_1 = Output[[11]]
 FinalM_1 <- if(Output[[8]]==1){FinalM_1=Output[[6]]}else{FinalM_1=Output[[7]]}
 L1<- sprintf("slope = %s, intcpt = %s",
              round(FinalM_1$m$getAllPars()[1],2),
              round(FinalM_1$m$getAllPars()[2],2))
-# -------------------
-# get kendall's tau:
-# with model prediction
-# cor_1 <- cor.test(x=df_1$Age[which(df_1$Group=="TD")],
-#                  y=df_1$predicted[which(df_1$Group=="TD")],method="kendall")
-# with only TD trimmed data
-cor_1 <- cor.test(x=TD_trimmed$Age,y=TD_trimmed$uRevs,method="pearson")
-# get label for the scatterplot
-cor_1 <- apa::cor_apa(cor_1,format ="text",print = FALSE)
-# -------------------
+# anova.LiSNS <- NULL
+# anova.LiSNS[["SSN"]] <- lm(FinalM_1$m$formula(),data=TD_trimmed_1) %>% summary() %>% coefficients(.) %>% data.frame() %>% slice_tail()
+
+LineStats <- lm(FinalM_1$m$formula(),data=TD_trimmed_1) %>% summary()
+Lstats_1 <- sprintf("R^2 = %s, p = %s",
+             round(LineStats$r.squared,3),
+             round(LineStats$coefficients[8],3))
+
+# get removed listeners:
+A <- df_1$listener[which(df_1$Group=="TD")]
+B <- TD_trimmed_1$listener
+Rmv <- setdiff(A,B)
+if (!is.null(Rmv)){df_1 %>% filter(listener %in% Rmv) %>% dplyr::select(., listener, Age, uRevs, z_trim)}
 
 
 ### S0N0 ###
@@ -2730,23 +2716,26 @@ int1_temp <- mean(df$Age)
 #   labs(title = levels(df$CondCode))
 
 Output <- getBestFit(LiSNS,"S0N0",CutOff,slope1_temp,10,8.5,4)
+# Output <- getBestFit(LiSNS,"S0N0",CutOff,-1,int1_temp,8,2)
 df_2 <- Output[[1]]  # df_All
-TD_trimmed = Output[[11]]
+TD_trimmed_2 = Output[[11]]
 FinalM_2 <- if(Output[[8]]==1){FinalM_2=Output[[6]]}else{FinalM_2=Output[[7]]}
 L2<- sprintf("slope = %s, intcpt = %s",
              round(FinalM_2$m$getAllPars()[1],2),
              round(FinalM_2$m$getAllPars()[2],2))
 
-# -------------------
-# get kendall's tau:
-# with model prediction
-# cor_2 <- cor.test(x=df_2$Age[which(df_2$Group=="TD")],
-#                  y=df_2$predicted[which(df_2$Group=="TD")],method="kendall")
-# with only TD trimmed data
-cor_2 <- cor.test(x=TD_trimmed$Age,y=TD_trimmed$uRevs,method="pearson")
-# get label for the scatterplot
-cor_2 <- apa::cor_apa(cor_2,format ="text",print = FALSE)
-# -------------------
+# anova.LiSNS[["S0N0"]] <- lm(FinalM_2$m$formula(),data=TD_trimmed_2) %>% summary() %>% coefficients(.) %>% data.frame() %>% slice_tail()
+
+LineStats <- lm(FinalM_2$m$formula(),data=TD_trimmed_2) %>% summary()
+Lstats_2 <- sprintf("R^2 = %s, p = %s",
+             round(LineStats$r.squared,3),
+             round(LineStats$coefficients[8],3))
+
+# get removed listeners:
+A <- df_2$listener[which(df_2$Group=="TD")]
+B <- TD_trimmed_2$listener
+Rmv <- setdiff(A,B)
+if (!is.null(Rmv)){df_2 %>% filter(listener %in% Rmv) %>% dplyr::select(., listener, Age, uRevs, z_trim)}
 
 
 ### S0N90 ###
@@ -2761,23 +2750,24 @@ int1_temp <- mean(df$Age)
 # Output <- getBestFit(LiSNS,"S0N90",CutOff,-1.2,2,11.7,12.1)
 Output <- getBestFit(LiSNS,"S0N90",CutOff,slope1_temp,int1_temp,11.7,2)
 df_3 <- Output[[1]]  # df_All
-TD_trimmed = Output[[11]]
+TD_trimmed_3 = Output[[11]]
 FinalM_3 <- if(Output[[8]]==1){FinalM_3=Output[[6]]}else{FinalM_3=Output[[7]]}
 L3<- sprintf("slope = %s, intcpt = %s",
              round(FinalM_3$m$getAllPars()[1],2),
              round(FinalM_3$m$getAllPars()[2],2))
 
-# -------------------
-# get kendall's tau:
-# with model prediction
-# cor_3 <- cor.test(x=df_3$Age[which(df_3$Group=="TD")],
-#                  y=df_3$predicted[which(df_3$Group=="TD")],method="kendall")
-# with only TD trimmed data
-cor_3 <- cor.test(x=TD_trimmed$Age,y=TD_trimmed$uRevs,method="pearson")
-# get label for the scatterplot
-cor_3 <- apa::cor_apa(cor_3,format ="text",print = FALSE)
-# -------------------
+# anova.LiSNS[["S0N90"]] <- lm(FinalM_3$m$formula(),data=TD_trimmed_3) %>% summary() %>% coefficients(.) %>% data.frame() %>% slice_tail()
 
+LineStats <- lm(FinalM_3$m$formula(),data=TD_trimmed_3) %>% summary()
+Lstats_3 <- sprintf("R^2 = %s, p = %s",
+             round(LineStats$r.squared,3),
+             round(LineStats$coefficients[8],3))
+
+# get removed listeners:
+A <- df_3$listener[which(df_3$Group=="TD")]
+B <- TD_trimmed_3$listener
+Rmv <- setdiff(A,B)
+if (!is.null(Rmv)){df_3 %>% filter(listener %in% Rmv) %>% dplyr::select(., listener, Age, uRevs, z_trim)}
 
 ### SRM ###
 df <- LiSNS %>% filter(CondCode=="SRM" & Group=="TD") %>% droplevels()
@@ -2790,28 +2780,31 @@ int1_temp <- mean(df$Age)
 
 Output <- getBestFit(LiSNS,"SRM",CutOff,0.18,5.7,8.7)
 df_4 <- Output[[1]]  # df_All
-TD_trimmed = Output[[11]]
+TD_trimmed_4 = Output[[11]]
 FinalM_4 <- if(Output[[8]]==1){FinalM_4=Output[[6]]}else{FinalM_4=Output[[7]]}
 L4<- sprintf("slope = %s, intcpt = %s",
              round(FinalM_4$m$getAllPars()[1],2),
              round(FinalM_4$m$getAllPars()[2],2))
 
-# -------------------
-# get kendall's tau:
-# with model prediction
-# cor_4 <- cor.test(x=df_4$Age[which(df_4$Group=="TD")],
-#                  y=df_4$predicted[which(df_4$Group=="TD")],method="kendall")
-# with only TD trimmed data
-cor_4 <- cor.test(x=TD_trimmed$Age,y=TD_trimmed$uRevs,method="pearson")
-# get label for the scatterplot
-cor_4 <- apa::cor_apa(cor_4,format ="text",print = FALSE)
-# -------------------
+# anova.LiSNS[["SRM"]] <- lm(FinalM_4$m$formula(),data=TD_trimmed_4) %>% summary() %>% coefficients(.) %>% data.frame() %>% slice_tail()
+
+LineStats <- lm(FinalM_4$m$formula(),data=TD_trimmed_4) %>% summary()
+Lstats_4 <- sprintf("R^2 = %s, p = %s",
+             round(LineStats$r.squared,3),
+             round(LineStats$coefficients[8],3))
+
+# get removed listeners:
+A <- df_4$listener[which(df_4$Group=="TD")]
+B <- TD_trimmed_4$listener
+Rmv <- setdiff(A,B)
+if (!is.null(Rmv)){df_4 %>% filter(listener %in% Rmv) %>% dplyr::select(., listener, Age, uRevs, z_trim)}
 
 # combine all conditions together
-LiSNS <- data.frame(rbind(df_1,df_2,df_3,df_4))
 # FinalM.LiSNS <- list(FinalM_1,FinalM_2,FinalM_3,FinalM_4)
+LiSNS <- data.frame(rbind(df_1,df_2,df_3,df_4))
 Lines.LiSNS <- rbind(L1,L2,L3,L4)
-corAll.LiSNS <- rbind(cor_1,cor_2,cor_3,cor_4)
+Lstats.LiSNS <- rbind(Lstats_1,Lstats_2,Lstats_3,Lstats_4)
+
 
 # Convert data from Lond2Wide to include SRM zscores
 LiSNS_w <- LiSNS %>% 
@@ -2854,7 +2847,7 @@ LiSNS <- LiSNS %>% group_by(CondCode) %>%
 
 ddply(LiSNS,~CondCode*Group,summarise,nConde= length(listener),nOutlier=sum(Outlier, na.rm=TRUE),prcntOutlier=round((sum(Outlier,na.rm=TRUE)/length(listener)*100),1))
 
-# Some stats and plots--------------------------------------------------------------------------------------------
+# Some stats --------------------------------------------------------------------------------------------
 
 # summarise condition across listeners 
 # uRevs
@@ -2862,69 +2855,8 @@ ddply(LiSNS,~CondCode*Group,summarise,N=length(uRevs),mean=mean(uRevs,na.rm=TRUE
 # z-trim
 ddply(LiSNS,~CondCode*Group,summarise,N=length(z_trim),mean=mean(z_trim,na.rm=TRUE),sd=sd(z_trim,na.rm=TRUE), min=min(z_trim,na.rm=TRUE),max=max(z_trim,na.rm=TRUE)) 
 
-################################ ARCHIVE ################################
-## get z-scores by speech material
-# source("functions/getZ.R")
-
-# # get direction of the z-scores for the trimming of TD's abnormal scores
-# zNegative <- c("SSN","S0N0","S0N90")
-# d_LiSNS_L$zDirection <- ifelse((d_LiSNS_L$CondCode %in% zNegative)==TRUE,-1,1)
-# 
-# # get z-scores
-# Output <- getZ(d_LiSNS_L,CutOff)
-# 
-# df_normed        <- Output[[1]]
-# # label_TD       <- Output[[2]]
-# # label_APD      <- Output[[3]]
-# # zScores_Sum    <- Output[[4]]
-# # zScores_Sum_TD <- Output[[5]]
-# 
-# LiSNS <- df_normed
-# 
-# # change conditions order for the plot
-# LiSNS$CondCode <- factor(LiSNS$CondCode,levels=c("SSN", "S0N0", "S0N90", "SRM"))
-# LiSNS$Group <- factor(LiSNS$Group,levels=c("APD", "TD"))
-# 
-# # Convert data from Lond2Wide to include SRM z-scores
-# LiSNS_w <- LiSNS %>% 
-#   pivot_wider(
-#     id_cols = c("listener","Group","Age"),
-#     names_from = "CondCode",
-#     values_from = c("uRevs","z_trim")) %>%
-#   ungroup()
-# 
-# # get SRM by listener
-# # zScores
-# LiSNS_w$z_trim_SRM <-  LiSNS_w$z_trim_S0N0 - LiSNS_w$z_trim_S0N90
-# 
-# # change again to long format
-# LiSNS_z <- LiSNS_w %>%
-#   pivot_longer(
-#     cols = c("z_trim_SSN","z_trim_S0N0","z_trim_S0N90","z_trim_SRM"), 
-#     names_to = "CondCode", 
-#     names_ptypes = list(CondCode = factor()),
-#     values_to = "z_trim") %>%
-#   ungroup()
-# 
-# LiSNS_z <- data.frame(LiSNS_z)
-# LiSNS_z <- LiSNS_z %>%
-# transform(CondCode=str_replace(CondCode,"z_trim_",""))
-# # change conditions order for the plot
-# LiSNS_z$CondCode <- factor(LiSNS_z$CondCode,levels=c("SSN", "S0N0", "S0N90", "SRM"))
-# #levels(LiSNS$group)
-# LiSNS_z$Group <- factor(LiSNS_z$Group,levels=c("APD", "TD"))
-# 
-# # merge dataframes with uRevs and z-scores together
-# LiSNS <- d_LiSNS_L %>%
-#   dplyr::select(listener,CondCode, uRevs) %>%
-#   left_join(LiSNS_z, ToAdd, by = c("listener","CondCode"))
-# 
-# LiSNS  <- drop_na(LiSNS, uRevs) %>% droplevels()
-# 
-# LiSNS$Group <- factor(LiSNS$Group,levels=c("APD", "TD"))
-
-########################################################################
 ```
+
 
 ```{r,label='LiSNS-Assumptions', echo=FALSE,results='hide',message=FALSE,warning=FALSE,include=FALSE}
 ################################ Assumptions testing ################################ 
@@ -3033,73 +2965,6 @@ colnames(LiSNS_z_tab)[1] = ""
 kbl(LiSNS_z_tab, escape = F, booktabs = T, caption = "LiSNS standard residuals (z-scores) descriptives by group.",
     align = c("lccccccccc"),format = "latex") %>% 
   add_header_above(c(" ", "TD" = 5, "APD" = 5))
-
-######################################## ARCHIVE ######################################## 
-
-# Some stats and plots--------------------------------------------------------------------------------------------
-# summarise condition across listeners 
-# z-scores
-# LiSNS_z_tab_TD <- LiSNS %>% filter(Group=="TD") %>% ddply(.,~CondCode,summarise,N=length(z_trim),median=round(median(z_trim,na.rm=TRUE),2),sd=round(sd(z_trim,na.rm=TRUE),2), min=round(min(z_trim,na.rm=TRUE),2),max=round(max(z_trim,na.rm=TRUE),2)) 
-# colnames(LiSNS_z_tab_TD)[1] = ""
-# 
-# LiSNS_z_tab_APD <- LiSNS %>% filter(Group=="APD") %>% ddply(.,~CondCode,summarise,N=length(z_trim),median=round(median(z_trim,na.rm=TRUE),2),sd=round(sd(z_trim,na.rm=TRUE),2), min=round(min(z_trim,na.rm=TRUE),2),max=round(max(z_trim,na.rm=TRUE),2)) 
-
-# --------------------------------------------------------------------------------------------------
-# Compare differences between Groups by Condition
-# --------------------------------------------------------------------------------------------------
-# Wilcoxon rank sum test / Mann-Whitney U test (for 2 independent UNPAIRED samples 
-# --> two types of measurements) when data is non-parametric (data (when) 
-# normality and/or homogeneity of variance is violated
-# --------------------------------------------------------------------------------------------------
-# 
-# Wilk_LiSNS <- LiSNS %>%
-#   group_by(CondCode) %>%
-#   rstatix::wilcox_test(data =., z_trim ~ Group, paired=FALSE, detailed=TRUE) %>%
-#   adjust_pvalue(method = "bonferroni") %>%
-#   add_significance("p.adj")
-# Wilk_LiSNS$CI <- sprintf("%.02f - %.02f",round(Wilk_LiSNS$conf.low,2),round(Wilk_LiSNS$conf.high,2))
-# 
-# Wilk_LiSNS_effectSize <- LiSNS %>%
-#   group_by(CondCode) %>%
-#   wilcox_effsize(data =., z_trim ~ Group, paired=FALSE, detailed=TRUE)
-# Wilk_LiSNS_effectSize$effsize <- round(Wilk_LiSNS_effectSize$effsize,3)
-
-# ----- $$$$$
-# p-values with permutations (using coin package) are very similar to test without (using rstatix package).
-# Because the coin package requieres messy looping, I decided to use the cleaner/easier alternative.
-
-# results_p <- numeric(length(levels(LiSNS$CondCode))) 
-# effectSize <- data.frame()
-# for (nCond in 1:length(levels(LiSNS$CondCode))) {
-#   # get all subjects' scores in a single condition 
-#   nCondData <- LiSNS[which(LiSNS$CondCode == levels(LiSNS$CondCode)[nCond]),]
-#   results_p[nCond] <- pvalue(coin::wilcox_test(z_trim~ Group, data = nCondData,
-#                                          p.adjust.method ="bonferroni",na.rm=TRUE, paired = FALSE,
-#                                          distribution=approximate(nresample=999999)))[1]
-#   # optional: get effect size (r):
-#   effectSize[nCond,1:7] <- rstatix::wilcox_effsize(z_trim~ Group, data = nCondData, paired = FALSE)
-#   }
-# 
-# effectSize$effsize <- round(effectSize$effsize,3)
-# colnames(effectSize)[4] = "effect-size (r)"
-# --------------------------------------------------------------------------------------------------
-# get table
-# LiSNS_z_tab <- cbind(LiSNS_z_tab_TD,LiSNS_z_tab_APD[2:6],
-#                  "CI"=Wilk_LiSNS$CI,"p"=round(Wilk_LiSNS$p,2),
-#                  "effect size (r)"=round(Wilk_LiSNS_effectSize$effsize,2),
-#                  "magnitude"=Wilk_LiSNS_effectSize$magnitude)
-# colnames(LiSNS_z_tab)[1] = ""
-# 
-# # mark all the significant p's
-# LiSNS_z_tab$p = ifelse(LiSNS_z_tab$p<.05,sprintf("\\textbf{%.02f}",LiSNS_z_tab$p),LiSNS_z_tab$p)
-# 
-# # prepare table using kbl()
-# # for more options see: https://cran.r-project.org/web/packages/kableExtra/vignettes/awesome_table_in_pdf.pdf
-# kbl(LiSNS_z_tab, escape = F, booktabs = T, caption = "LiSNS standard residuals (z-scores) descriptive statistics and group difference analysis by test measures.",
-#     align = c("lccccccccc"),format = "latex") %>% 
-#   kable_styling(latex_options = c("scale_down")) %>%
-#   add_header_above(c(" ", "TD" = 5, "APD" = 5,"Wilcoxon rank-sum test" = 4)) %>%
-#   column_spec(12,border_left = T) %>% column_spec(13:14, italic = T)
 ```
 
 ```{r, label='LiSNS-Age', fig.cap="Scatterplot and linear regression lines for the LiSN-S UK and SPIN SRTs (A) and the derived measure SRM (B) as a function of the listeners age. Red indicates data from the APD group and green indicates data from the TD control group. The grey area represents the regression line 95\ \\% confidence interval.", fig.align='center', fig.width=12, fig.asp=0.5, out.width='100%',echo=FALSE, message=FALSE, warning=FALSE}
@@ -3119,7 +2984,7 @@ LiSNS_SSN  <- drop_na(LiSNS_SSN, uRevs) %>% droplevels()
 # LiSNS by age (SSN, S0N0 & S0N90)
 dat_text.LiSNS <- data.frame(
   label = c(Lines.LiSNS[1],Lines.LiSNS[2],Lines.LiSNS[3]),
-  label2 = c(corAll.LiSNS[1],corAll.LiSNS[2],corAll.LiSNS[3]),
+  label2 = c(Lstats.LiSNS[1],Lstats.LiSNS[2],Lstats.LiSNS[3]),
   CondCode   = levels(LiSNS_NoSRM$CondCode),
   Group = "TD")
 
@@ -3150,7 +3015,7 @@ t1 <- t1 + facet_grid(. ~ CondCode, scales = "free", switch = "y") +
 # LiSNS by age (SRM)
 dat_text.LiSNS2 <- data.frame(
   label = c(Lines.LiSNS[4]),
-  label2 = c(corAll.LiSNS[4]),
+  label2 = c(Lstats.LiSNS[4]),
   CondCode   = levels(LiSNS_SRM$CondCode),
   Group = "TD")
 
@@ -3186,242 +3051,88 @@ library(patchwork)
         plot.tag = element_text(face = 'bold'))
 ```
 
-```{r, message=FALSE, warning=FALSE, include=FALSE}
-##### Test Age effect (uRevs) #####
 
-# for lmer() analysis see: https://verbingnouns.github.io/notebooks/prose_statistics.nb.html 
-# or: https://ourcodingclub.github.io/tutorials/mixed-models/#fixedstr
-# May be useful too: https://exeter-data-analytics.github.io/StatModelling/mixed-effects-models.html#model-checking-with-mixed-models
-# RMEL vs. ML: https://web.stanford.edu/class/psych252/section/Mixed_models_tutorial.html
+```{r, message=FALSE, warning=FALSE, include=FALSE, echo=FALSE,results='hide'}
+# Test for age effect -----------------------------------------------------------------------------------
 
-# keep only S0N0 & S0N90:
-LiSNS_2 <- LiSNS %>% filter(CondCode!="SSN" & CondCode!="SRM") %>% droplevels() 
-LiSNS_2 <- drop_na(LiSNS_2, uRevs)
+# get TD trimmed data only for SSN, S0N0 & S0N90
+TD_trimmed.LiSNS <- rbind(TD_trimmed_1,TD_trimmed_2,TD_trimmed_3)
 
-## --------------------
-# [From: https://ourcodingclub.github.io/tutorials/mixed-models/#fixedstr]
-# The model selection process recommended by Zuur et al. (2009) is a top-down strategy and goes as follows:
-# 
-# 1. fit a full model (he even recommends “beyond optimal” i.e. more complex than you’d expect or want it to be)
-# 2. sort out the random effects structure (use REML likelihoods or REML AIC or BIC)
-# 3. sort out fixed effects structure (either use REML the F-statistic or the t-statistic or 
-#    compare nested ML models - keep your random effects constant)
-# 4. once you arrive at the final model present it using REML estimation
-## --------------------
+######## lmer model ##########################################
+## Find Best fit 
+# start with a saturated model (3-way interaction with age)
 
-##### Select model with the best fit"
-
-# Saturated model including 2-way interaction and lower level fixed effects:
-model1 <- lmer(uRevs~CondCode*Group*Age+(1|listener), LiSNS_2, REML=FALSE)
+model1 <- lmer(uRevs~CondCode*Age+(1|listener), data=TD_trimmed.LiSNS, REML=FALSE)
 summary(model1)
-tab_model(model1)
-# visreg::visreg(model1)
 
-# -----------------------------------------------------------------------------------------------------
-# Chose model with the best fit (top-down stepwise method)
-# test for best fit by comparing the reduced full model with a simpler model until p is significant  (<.05):
-# -----------------------------------------------------------------------------------------------------
-(model2<-update(model1,  ~ . - CondCode:Group:Age))
+(model2<-update(model1,  ~ . - CondCode:Age))
 anova(model1,model2)
 summary(model2)
-# model2: uRevs ~ CondCode + Group + Age + (1 | listener) + CondCode:Group + 
-# model2:     CondCode:Age + Group:Age
-# model1: uRevs ~ CondCode * Group * Age + (1 | listener)
+# Data: TD_trimmed.LiSNS
+# Models:
+# model2: uRevs ~ CondCode + Age + (1 | listener)
+# model1: uRevs ~ CondCode * Age + (1 | listener)
 #        npar    AIC    BIC  logLik deviance  Chisq Df Pr(>Chisq)
-# model2    9 352.88 374.76 -167.44   334.88                     
-# model1   10 354.84 379.15 -167.42   334.84 0.0384  1     0.8447
+# model2    6 259.12 272.35 -123.56   247.12                     
+# model1    8 261.66 279.30 -122.83   245.66 1.4607  2     0.4817
 
-(model3<-update(model2,  ~ . - Group:Age))
+(model3<-update(model2,  ~ . - Age))
 anova(model2,model3)
 summary(model3)
-# model3: uRevs ~ CondCode + Group + Age + (1 | listener) + CondCode:Group + 
-# model3:     CondCode:Age
-# model2: uRevs ~ CondCode + Group + Age + (1 | listener) + CondCode:Group + 
-# model2:     CondCode:Age + Group:Age
-#        npar    AIC    BIC  logLik deviance  Chisq Df Pr(>Chisq)
-# model3    8 351.06 370.50 -167.53   335.06                     
-# model2    9 352.88 374.76 -167.44   334.88 0.1761  1     0.6748
-
-(model4<-update(model3,  ~ . - CondCode:Age))
-anova(model3,model4)
-summary(model4)
-# model4: uRevs ~ CondCode + Group + Age + (1 | listener) + CondCode:Group
-# model3: uRevs ~ CondCode + Group + Age + (1 | listener) + CondCode:Group + 
-# model3:     CondCode:Age
-#        npar    AIC    BIC  logLik deviance  Chisq Df Pr(>Chisq)
-# model4    7 350.42 367.43 -168.21   336.42                     
-# model3    8 351.06 370.50 -167.53   335.06 1.3595  1     0.2436
-
-(model5<-update(model4,  ~ . - CondCode:Group))
-anova(model4,model5)
-summary(model5)
-# model5: uRevs ~ CondCode + Group + Age + (1 | listener)
-# model4: uRevs ~ CondCode + Group + Age + (1 | listener) + CondCode:Group
-#        npar    AIC    BIC  logLik deviance  Chisq Df Pr(>Chisq)
-# model5    6 348.43 363.02 -168.22   336.43                     
-# model4    7 350.42 367.43 -168.21   336.42 0.0143  1      0.905
-
-(model6<-update(model5,  ~ . - Age))
-anova(model5,model6)
-summary(model6)
-# model6: uRevs ~ CondCode + Group + (1 | listener)
-# model5: uRevs ~ CondCode + Group + Age + (1 | listener)
+# model3: uRevs ~ CondCode + (1 | listener)
+# model2: uRevs ~ CondCode + Age + (1 | listener)
 #        npar    AIC    BIC  logLik deviance  Chisq Df Pr(>Chisq)    
-# model6    5 357.90 370.05 -173.95   347.90                         
-# model5    6 348.43 363.02 -168.22   336.43 11.469  1  0.0007077 ***
+# model3    5 270.49 281.51 -130.24   260.49                         
+# model2    6 259.12 272.35 -123.56   247.12 13.364  1  0.0002565 ***
 
-# --> **model5 gives the best fit!** 
+# best mode --> model 2: uRevs ~ CondCode + Age + (1 | listener)
+tab_model(model2)
 
-# uRevs ~ CondCode + Group + Age + (1 | listener)
+# ---------------------------------------------------------------------------------
+# test main effects:
 
-# BestModel (model10):
-BestModel <- lmer(uRevs ~ CondCode + Group + Age + (1 | listener), LiSNS_2, REML=FALSE)
-tab_model(BestModel, 
-          show.se =TRUE,
-          show.stat = TRUE,
-          show.icc = FALSE,
-          show.ngroups = TRUE,
-          show.obs = TRUE)
+BestModel <- model2
 
-##### Test main effects:
-# -----------------------------------------------------------------------------------------------------
-# test main effects by comparing the FULL model to a simplified model without the predictor/interaction term.
-# e.g., anova(m1,m2), anova(m1,m3), anova(m1,m4),...
-# -----------------------------------------------------------------------------------------------------
-# How to deal with main efect testing when there is a significant interaction: see https://stats.stackexchange.com/questions/378652/testing-the-significance-of-a-main-effect-using-model-comparison-when-an-intera
-
-# OPTION 1: (something is strange with Chisq..)
-MainEffects1.m1 <- afex::mixed(uRevs ~ CondCode + Group + Age + (1 | listener), data = LiSNS_2, method = "LRT",REML=FALSE)
-# returned the following warning: $$$$
-# Contrasts set to contr.sum for the following variables: CondCode, Group, listener
-# Numerical variables NOT centered on 0: Age
-# If in interactions, interpretation of lower order (e.g., main) effects difficult.
-
-# lme4 reported (at least) the following warnings for 'CondCode':
-#   * boundary (singular) fit: see ?isSingularMixed Model Anova Table (Type 3 tests, LRT-method)
-# 
-# Model: uRevs ~ CondCode + Group + Age + (1 | listener)
-# Data: LiSNS_2
-# Df full model: 6
-#     Effect df      Chisq p.value
-# 1 CondCode  1 140.37 ***   <.001
-# 2    Group  1     2.76 +    .097
-# 3      Age  1  11.69 ***   <.001
-# ---
-# Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘+’ 0.1 ‘ ’ 1
-
-
-# OPTION 2: (Looks very similar to results "by-hand"!!)
-# with Wald "Chisq" test
-MainEffects2.m1 <- rstatix::Anova(BestModel,type="II",test.statistic="Chisq")
-MainEffects2.m1
-# Analysis of Deviance Table (Type II Wald chisquare tests)
-# 
-# Response: uRevs
-#             Chisq Df Pr(>Chisq)    
-# CondCode 639.7145  1  < 2.2e-16 ***
-# Group      2.6452  1   0.103864    
-# Age       12.5134  1   0.000404 ***
-# ---
-# Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
-
-
-# OPTION 3:
-# Age
 (BestModel.1 <- update(BestModel,  . ~ . -Age))
-Age.Anova <- anova(BestModel,BestModel.1)
+Age.LMEM <- anova(BestModel,BestModel.1)
 summary(BestModel.1)
-# BestModel.1: uRevs ~ CondCode + Group + (1 | listener)
-# BestModel: uRevs ~ CondCode + Group + Age + (1 | listener)
+# BestModel.1: uRevs ~ CondCode + (1 | listener)
+# BestModel: uRevs ~ CondCode + Age + (1 | listener)
 #             npar    AIC    BIC  logLik deviance  Chisq Df Pr(>Chisq)    
-# BestModel.1    5 357.90 370.05 -173.95   347.90                         
-# BestModel      6 348.21 362.80 -168.11   336.21 11.688  1  0.0006291 ***
+# BestModel.1    5 270.49 281.51 -130.24   260.49                         
+# BestModel      6 259.12 272.35 -123.56   247.12 13.364  1  0.0002565 ***
 
-# Group
-(BestModel.2<-update(BestModel, . ~ . - Group))
-Group.Anova <- anova(BestModel,BestModel.2)
+(BestModel.2 <- update(BestModel,  . ~ . -CondCode))
+CondCode.LMEM <-anova(BestModel,BestModel.2)
 summary(BestModel.2)
-# BestModel.2: uRevs ~ CondCode + Age + (1 | listener)
-# BestModel: uRevs ~ CondCode + Group + Age + (1 | listener)
-#             npar    AIC    BIC  logLik deviance  Chisq Df Pr(>Chisq)  
-# BestModel.2    5 348.97 361.12 -169.48   338.97                       
-# BestModel      6 348.21 362.80 -168.11   336.21 2.7562  1    0.09688 .
-
-# CondCode
-(BestModel.3<-update(BestModel, . ~ . - CondCode))
-CondCode.Anova <- anova(BestModel,BestModel.3)
-summary(BestModel.3)
-# BestModel.3: uRevs ~ Group + Age + (1 | listener)
-# BestModel: uRevs ~ CondCode + Group + Age + (1 | listener)
+# BestModel.2: uRevs ~ Age + (1 | listener)
+# BestModel: uRevs ~ CondCode + Age + (1 | listener)
 #             npar    AIC    BIC  logLik deviance  Chisq Df Pr(>Chisq)    
-# BestModel.3    5 486.59 498.74 -238.29   476.59                         
-# BestModel      6 348.21 362.80 -168.11   336.21 140.37  1  < 2.2e-16 ***
+# BestModel.2    4 355.48 364.30 -173.74   347.48                         
+# BestModel      6 259.12 272.35 -123.56   247.12 100.36  2  < 2.2e-16 ***
+
+# ------------------------------------------------------------------------------
+# Post hoc -> individual lm's by condition. (models R^2 and p's are shown in the figure)
+# The model suggest that there is a significant age effect and that is the same in 
+# all three conditions (since there is no Condition x Age interaction).
 
 # -------------------------------------------------------------------------
 # get table
 # -------------------------------------------------------------------------
 LiSNS_AgeTab <- data.frame(rbind(
-  c("Condition",CondCode.Anova$Df[2],CondCode.Anova$Chisq[2],sprintf("\\textbf{<0.001}")),
-  c("Group",Group.Anova$Df[2],Group.Anova$Chisq[2],sprintf("\\textbf{%0.3f}",Group.Anova$`Pr(>Chisq)`[2])),
-  c("Age",Age.Anova$Df[2],Age.Anova$Chisq[2], sprintf("\\textbf{<0.001}"))))
+  c("Condition",CondCode.LMEM$Df[2],CondCode.LMEM$Chisq[2],sprintf("\\textbf{<0.001}")),
+  c("Age",Age.LMEM$Df[2],Age.LMEM$Chisq[2], sprintf("\\textbf{<0.001}"))))
 
 LiSNS_AgeTab[,c(2:3)]= apply(LiSNS_AgeTab[,c(2:3)], 2, function(x) as.numeric(as.character(x)))
 
 colnames(LiSNS_AgeTab)[1:4] <- c("Main effects","Df",sprintf("$\\chi^{2}$"),"p")
-# -------------------------------------------------------------------------
+# # -------------------------------------------------------------------------
+
 ```
 
-```{r, message=FALSE, warning=FALSE, include=FALSE}
-# Test for age effect -----------------------------------------------------------------------------------
-
-# # Simple ANOVA -------------------------------------------
-# # S0N0 & S0N90:
-# ANOVA1.m1 <- aov(uRevs~CondCode * Group * Age, data = LiSNS_Col_Sep)
-# summary(ANOVA1.m1)
-# # SRM only:
-# ANOVA2.m1 <- aov(uRevs~Group * Age, data = LiSNS_SRM)
-# summary(ANOVA2.m1)
-# # SSN only:
-# ANOVA3.m1 <- aov(uRevs~ Group * Age, data = LiSNS_SSN)
-# summary(ANOVA3.m1)
-# 
-# # LMEM (collocated vs. separated) ------------------------
-# # S0N0 & S0N90:
-# model1 <- lmer(uRevs~CondCode + Group + Age +
-#                  CondCode:Group +
-#                  CondCode:Age +
-#                  Group:Age +
-#                  CondCode:Group:Age +
-#                  (1|listener), LiSNS_Col_Sep, REML=FALSE)
-# 
-# model2 <- lmer(uRevs~CondCode + Group + Age +
-#                  CondCode:Group +
-#                  CondCode:Age +
-#                  Group:Age +
-#                  (1|listener), LiSNS_Col_Sep, REML=FALSE)
-# anova(model1,model2)
-# model3 <- lmer(uRevs~CondCode + Group + Age +
-#                  CondCode:Group +
-#                  CondCode:Age +
-#                  (1|listener), LiSNS_Col_Sep, REML=FALSE)
-# anova(model2,model3)
-# model4 <- lmer(uRevs~CondCode + Group + Age +
-#                  CondCode:Group +
-#                  (1|listener), LiSNS_Col_Sep, REML=FALSE)
-# anova(model3,model4)
-# model5 <- lmer(uRevs~CondCode + Group + Age +
-#                  (1|listener), LiSNS_Col_Sep, REML=FALSE)
-# model6 <- lmer(uRevs~CondCode + Group +
-#                  (1|listener), LiSNS_Col_Sep, REML=FALSE)
-# anova(model5,model6)
-# summary(model5)
-# tab_model(model5)
-# 
-# Anova(model5,type="II",test.statistic="Chisq")
-```
-
-```{r, message=FALSE, warning=FALSE, include=FALSE}
+```{r, message=FALSE, warning=FALSE, include=FALSE, echo=FALSE,results='hide'}
 ##### Test z_trim #####
+LiSNS_3 <- LiSNS %>% filter(CondCode!="SRM") %>% droplevels()
 
 # for lmer() analysis see: https://verbingnouns.github.io/notebooks/prose_statistics.nb.html 
 # or: https://ourcodingclub.github.io/tutorials/mixed-models/#fixedstr
@@ -3441,10 +3152,9 @@ colnames(LiSNS_AgeTab)[1:4] <- c("Main effects","Df",sprintf("$\\chi^{2}$"),"p")
 ##### Select model with the best fit
 
 # Saturated model including 2-way interaction and lower level fixed effects:
-model1 <- lmer(z_trim~CondCode*Group+(1|listener), LiSNS_2, REML=FALSE)
+model1 <- lmer(z_trim~CondCode*Group+(1|listener), LiSNS_3, REML=FALSE)
 summary(model1)
 tab_model(model1)
-# visreg::visreg(model1)
 
 # -----------------------------------------------------------------------------------------------------
 # Chose model with the best fit (top-down stepwise method)
@@ -3456,24 +3166,24 @@ summary(model2)
 # model2: z_trim ~ CondCode + Group + (1 | listener)
 # model1: z_trim ~ CondCode * Group + (1 | listener)
 #        npar    AIC    BIC  logLik deviance  Chisq Df Pr(>Chisq)
-# model2    5 252.58 264.74 -121.29   242.58                     
-# model1    6 254.06 268.64 -121.03   242.06 0.5299  1     0.4666
+# model2    6 379.56 396.58 -183.78   367.56                     
+# model1    8 381.78 404.47 -182.89   365.78 1.7777  2     0.4111
 
 (model3<-update(model2,  ~ . - Group))
 anova(model2,model3)
 summary(model3)
 # model3: z_trim ~ CondCode + (1 | listener)
 # model2: z_trim ~ CondCode + Group + (1 | listener)
-#        npar    AIC    BIC  logLik deviance  Chisq Df Pr(>Chisq)  
-# model3    4 255.11 264.83 -123.55   247.11                       
-# model2    5 252.58 264.74 -121.29   242.58 4.5222  1    0.03346 *
+#        npar    AIC    BIC  logLik deviance  Chisq Df Pr(>Chisq)   
+# model3    5 386.23 400.41 -188.12   376.23                        
+# model2    6 379.56 396.58 -183.78   367.56 8.6725  1    0.00323 **
 
 # ***** ---> Best model: model2!
 
 # z_trim ~ CondCode + Group + (1 | listener)
 
 # BestModel (model10):
-BestModel <- lmer(z_trim ~ CondCode + Group + (1 | listener), LiSNS_2, REML=FALSE)
+BestModel <- lmer(z_trim ~ CondCode + Group + (1 | listener), data=LiSNS_3, REML=FALSE)
 tab_model(BestModel, 
           show.se =TRUE,
           show.stat = TRUE,
@@ -3494,9 +3204,9 @@ Group.Anova <- anova(BestModel,BestModel.1)
 summary(BestModel.1)
 # BestModel.1: z_trim ~ CondCode + (1 | listener)
 # BestModel: z_trim ~ CondCode + Group + (1 | listener)
-#             npar    AIC    BIC  logLik deviance  Chisq Df Pr(>Chisq)  
-# BestModel.1    4 255.65 265.38 -123.83   247.65                       
-# BestModel      5 253.13 265.29 -121.57   243.13 4.5179  1    0.03354 *
+#             npar    AIC    BIC  logLik deviance  Chisq Df Pr(>Chisq)   
+# BestModel.1    5 386.23 400.41 -188.12   376.23                        
+# BestModel      6 379.56 396.58 -183.78   367.56 8.6725  1    0.00323 **
 
 # CondCode
 (BestModel.2<-update(BestModel, . ~ . - CondCode))
@@ -3504,9 +3214,9 @@ CondCode.Anova <- anova(BestModel,BestModel.2)
 summary(BestModel.2)
 # BestModel.2: z_trim ~ Group + (1 | listener)
 # BestModel: z_trim ~ CondCode + Group + (1 | listener)
-#             npar    AIC    BIC  logLik deviance  Chisq Df Pr(>Chisq)  
-# BestModel.2    4 256.27 265.99 -124.14   248.27                       
-# BestModel      5 253.13 265.29 -121.57   243.13 5.1345  1    0.02346 *
+#             npar    AIC    BIC  logLik deviance  Chisq Df Pr(>Chisq)
+# BestModel.2    4 379.37 390.71 -185.68   371.37                     
+# BestModel      6 379.56 396.58 -183.78   367.56 3.8087  2     0.1489
 
 # -------------------------------------------------------------------------
 # get table
@@ -3519,9 +3229,9 @@ LiSNS_zTab[,c(2:4)]= apply(LiSNS_zTab[,c(2:4)], 2, function(x) as.numeric(as.cha
 
 colnames(LiSNS_zTab)[1:4] <- c("Main effects","Df",sprintf("$\\chi^{2}$"),"p")
 # mark all the significant p's
-LiSNS_zTab$p = ifelse(LiSNS_zTab$p<.05,sprintf("\\textbf{%0.3f}",LiSNS_zTab$p),LiSNS_zTab$p)
-
-
+LiSNS_zTab$p = ifelse(LiSNS_zTab$p<.05,
+                      sprintf("\\textbf{%0.3f}",LiSNS_zTab$p),
+                      sprintf("%0.3f",LiSNS_zTab$p))
 # -------------------------------------------------------------------------
 ```
 
@@ -4405,7 +4115,7 @@ t2 <- ggplot(SumScores, aes(x=Group,y=GCC,fill=Group))+
   labs(y = "sum of scaled scores (sub-scales A-H)",x = "")+
   guides(fill=guide_legend(title="Group"))+
   geom_quasirandom(aes(x=Group),data=filter(SumScores,Abnormal=="0"),dodge.width=0.8,colour="blue", shape=1, show.legend = FALSE)+
-  geom_quasirandom(aes(x=Group),data=filter(SumScores,Abnormal=="1"),dodge.width=0.8,shape=21, show.legend = FALSE)+
+  geom_quasirandom(aes(x=Group),data=filter(SumScores,Abnormal=="1"),dodge.width=0.8,shape=8, show.legend = FALSE)+
   scale_y_continuous(limits = c(0,110),breaks=seq(0,110,20))+
   theme(strip.background = element_blank())+
   theme_bw()+
