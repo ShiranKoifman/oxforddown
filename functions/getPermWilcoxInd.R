@@ -14,7 +14,8 @@ getPermWilcoxInd <- function(df,dv,btw,wtn){
   # out_list : data for all the tests
   # Out_tab  : table with p's
  # ---------------------- # 
-
+  
+# browser()
   library(coin)
   out_list <- vector(mode = "list", length = 5) 
   p <- numeric(length(levels(df[,wtn]))) 
@@ -25,9 +26,10 @@ getPermWilcoxInd <- function(df,dv,btw,wtn){
   for (i in 1:length(levels(df[,wtn]))) {
     # get all subjects' scores in a single condition 
     ndf <- df[which(df[,wtn] == levels(df[,wtn])[i]),]
+    ndf$Group <- as.factor(ndf$Group)
     
-    fun <- as.formula(paste(dv, btw, sep = "~"))
-    x <- coin::wilcox_test(fun, data = ndf, detailed=TRUE,
+    MyFormula <- as.formula(paste(dv, btw, sep = "~"))
+    x <- coin::wilcox_test(MyFormula, data = ndf, detailed=TRUE,
                            conf.int = TRUE,
                            na.rm=TRUE, paired = FALSE,
                            distribution=approximate(nresample=999999)) 

@@ -40,7 +40,7 @@ getBestFit <- function(df,CondCodeName,CutOff,slope1,int1,brk,slope2){
   ##########################################################################
   ## Declare some functions ------------------------------------------------
   ##########################################################################
-  
+
   # broken stick regression
   TwoLinesFCT <- function(x, slope1, slope2, int1, brk) {
     (x<=brk)*(slope1 * x + int1) + (x>brk)*(slope2 * x + brk*(slope1-slope2)+int1) 
@@ -70,24 +70,51 @@ getBestFit <- function(df,CondCodeName,CutOff,slope1,int1,brk,slope2){
   ## 1. Fit broken lines and single linear models --------------------------
   ##########################################################################
   
-  # broken stick regression: ---------------------------------------------
-  # Sinle slope (slope2=0)
+  # broken stick regression: ------------------------------------------
+  # Single slope (slope2=0)
   if (slope2==0){
-  m1.TwoLines <- nls(uRevs ~ TwoLinesFCT(Age, slope1, 0, int1, brk),
-                    start=list(slope1=slope1, int1=int1, brk=brk),
-                    data=df_TD,
-                    upper = max(df_TD$Age),
-                    trace = FALSE,
-                    algorithm = "port")
-  # add a second slope if needed:
+    m1.TwoLines <- tryCatch({
+      nls(uRevs ~ TwoLinesFCT(Age, slope1, 0, int1, brk),
+          start=list(slope1=slope1, int1=int1, brk=brk),
+          data=df_TD,
+          upper = max(df_TD$Age),
+          trace = FALSE,
+          algorithm = "port")}, 
+      error=function(e){
+        cat("ERROR : m1.TwoLines: ",conditionMessage(e), "\n")
+      })
+    # add a second slope if needed:
   } else {
-  m1.TwoLines <- nls(uRevs ~ TwoLinesFCT(Age, slope1, slope2, int1, brk),
-                    start=list(slope1=slope1,slope2=slope2, int1=int1, brk=brk),
-                    data=df_TD,
-                    upper = max(df_TD$Age),
-                    trace = FALSE,
-                    algorithm = "port")
+    m1.TwoLines <- tryCatch({
+      m1.TwoLines <- nls(uRevs ~ TwoLinesFCT(Age, slope1, slope2, int1, brk),
+                         start=list(slope1=slope1,slope2=slope2, int1=int1, brk=brk),
+                         data=df_TD,
+                         upper = max(df_TD$Age),
+                         trace = FALSE,
+                         algorithm = "port")}, 
+      error=function(e){
+        cat("ERROR : m1.TwoLines: ",conditionMessage(e), "\n")
+      })
   }
+  
+  # SK 22/12/2020 $$$$$$
+  # # Sinle slope (slope2=0)
+  # if (slope2==0){
+  # m1.TwoLines <- nls(uRevs ~ TwoLinesFCT(Age, slope1, 0, int1, brk),
+  #                   start=list(slope1=slope1, int1=int1, brk=brk),
+  #                   data=df_TD,
+  #                   upper = max(df_TD$Age),
+  #                   trace = FALSE,
+  #                   algorithm = "port")
+  # # add a second slope if needed:
+  # } else {
+  # m1.TwoLines <- nls(uRevs ~ TwoLinesFCT(Age, slope1, slope2, int1, brk),
+  #                   start=list(slope1=slope1,slope2=slope2, int1=int1, brk=brk),
+  #                   data=df_TD,
+  #                   upper = max(df_TD$Age),
+  #                   trace = FALSE,
+  #                   algorithm = "port")
+  # }
   
   # Linear regression: ----------------------------------------------------
   m1.linear <- nls(uRevs ~ linearFCT(Age, slope1, int1),
@@ -98,8 +125,15 @@ getBestFit <- function(df,CondCodeName,CutOff,slope1,int1,brk,slope2){
   ##########################################################################
   ## 2. Compare models with and without a breakpoint -----------------------
   ##########################################################################
+  # SK 22/12/2020 $$$$$$
+  # ComprMdls1 <- anova(m1.linear,m1.TwoLines)
   
-  ComprMdls1 <- anova(m1.linear,m1.TwoLines)
+  ComprMdls1 <- c()
+  if(is.null(m1.TwoLines)==FALSE){
+    ComprMdls1 <- anova(m1.linear,m1.TwoLines)
+  } else {
+    ComprMdls1$`Pr(>F)` <- c(1,1)
+  }
   
   ##########################################################################
   ## 3. Find best model (segmented/linear) ---------------------------------
@@ -142,7 +176,7 @@ getBestFit <- function(df,CondCodeName,CutOff,slope1,int1,brk,slope2){
   # run if nRows2Rmv is NOT empty, otherwise don't trim
   if (identical(nRows2Rmv, integer(0))==FALSE){
     df_TD_trimmed <- df_TD[- which(abs(df_TD$z) >CutOff),]
-    RmvdSubj <- df_TD$listener[which(abs(df_TD$z) >CutOff)] %>% droplevels()
+    RmvdSubj <- df_TD$listener[which(abs(df_TD$z) >CutOff)] #%>% droplevels()
   } else {
     df_TD_trimmed <- df_TD
     RmvdSubj <- "none"

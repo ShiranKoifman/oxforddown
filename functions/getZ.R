@@ -137,6 +137,7 @@ zScores_Sum_TD <- zScores_Sum %>% filter(Group=="TD") %>% droplevels()
 # df_normed$Outlier <- ifelse(df_normed$z_trim > 1.65, 1,0)
 # df_normed$NoOutlier <- ifelse(df_normed$z_trim < 1.65, 1,0)
 
+
 for (i in 1:dim(df_normed)[1]){
   if (df_normed$zDirection[i]<0){
     df_normed$Outlier[i] <- ifelse(df_normed$z_trim[i] > CutOff, 1,0)
