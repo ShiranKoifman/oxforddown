@@ -20,5 +20,9 @@ This first appendix includes an R chunk that was hidden in the document (using `
 ```
 
 
+# The Second Appendix
 
-# The Second Appendix, for Fun
+
+# The Third Appendix
+```{r ref.label='PCALang-fig2', eval=FALSE, echo = TRUE}
+```
