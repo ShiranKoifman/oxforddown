@@ -5,6 +5,9 @@ output:
   bookdown::pdf_document2:
     template: templates/brief_template.tex
     latex_engine: xelatex
+  header-includes:
+    - \usepackage{float}
+    - \floatplacement{figure}{H} 
 documentclass: book
 bibliography: references.bib
 ---
@@ -205,9 +208,9 @@ Age.t_test <- MKinfer::boot.t.test(Age~ Group, data=d, paired = FALSE,conf.level
 
 `r  Hmisc::capitalize(as.character(as.english(sum(TD_Age$n,APD_Age$n),english.UK = TRUE)))` primary school children native British English speakers with normal hearing acuity participated in the study. Amongst them `r as.english(sum(APD_Age$n)-1,english.UK = TRUE)` belonged to the APD clinical group (`r SexFreq_APD[1,2]` females) with an average age of `r round(Clean.APD_Age$mean,2)` $\pm$ `r round(Clean.APD_Age$sd,2)` years (range: `r round(Clean.APD_Age$min,2)` - `r round(Clean.APD_Age$max,2)` years). The remaining 23 (12 females) comprised of typically developing control children (TD) with no reported concerns or diagnosis of an auditory, language or other cognitive developmental disorders. The TD group average age was 9.47 ± 1.58 years and ranged between 7 to 12.1 years. To maximise the number of TD children taking part in the study, 8 out of 23 children (35\%) had APD siblings which took part in a parallel study on the same testing day. All the children who participated in the study were requiered to have normal hearing acuity, defined as thresholds $\leq$ 25 dB HL at the octave frequency bands between 0.25 to 8 kHz and their eardrum had to be visible, healthy and intact in both ears following otoscopic inspection. One APD participant was excluded from the analysis due to raised thresholds predominantly in the right ear, ranging between 30 to 45 dB HL (PTA$_{Right}$ = 36.25 dB HL; PTA$_{Left}$ = 13.75 dB HL). Otoscopic inspection of the child's ear canal revealed a large accumulation of cerumen in both ears with occluded right ear. Two additional children (one APD and one control) had slightly raised thresholds at 8 kHz in one ear of 35 and 30 dB HL, respectively. However, since thresholds at all other frequency bands were well within the $\leq$ 25 dB HL criteria they were not excluded.\
 
-APD children were recruited in two ways. Children diagnosed with APD at Great Ormond Street Hospital (GOSH) or at the London Hearing and Balance Centre (LHBC), London, UK, were identified based on their clinical records and were contacted by a clinical team member. The caregivers were provided with information about the study and means of contact to express interest in participation. Others, including the TD group were recruited by advertisements in social networks (e.g., APD Support UK Facebook group), science event, local information boards and UCL staff newsletter email, where parents were requested to fill-out an online interest form with short screening questions to ensure the child meets the participation requirements. Most of the children in the APD group (85%, 17/20) were reported to undergo an APD assessment at GOSH, about a third were directly recruited from the clinic. The remaining three were reported to be assessed at LHBC, at the University of Southampton Auditory Implant Service and Chime Audiology Royal Devon & Exeter Hospital (screening only).\
+APD children were recruited in two ways. Children diagnosed with APD at Great Ormond Street Hospital (GOSH) or at the London Hearing and Balance Centre (LHBC), London, UK, were identified based on their clinical records and were contacted by a clinical team member. The caregivers were provided with information about the study and means of contact to express interest in participation. Others, including the TD group were recruited by advertisements in social networks (e.g., APD Support UK Facebook group), science event, local information boards and UCL staff newsletter email, where parents were requested to fill-out an online interest form with short screening questions to ensure the child meets the participation requirements. Most of the children in the APD group (85\%, 17/20) were reported to undergo an APD assessment at GOSH, about a third were directly recruited from the clinic. The remaining three were reported to be assessed at LHBC, at the University of Southampton Auditory Implant Service and Chime Audiology Royal Devon & Exeter Hospital (screening only).\
 
-Our initial aim was to take a conservative stance on inclusion criteria by including only those who met a clinical APD criteria (2 SD below the norms on two or more tests during the assessment). Moreover, being aware of the high prevalence of other developmental disorders amongst APD children (PERCENTAGE + REF), we strived to recruit children who display a "pure" form of APD with reported diagnosis or concerns for additional developmental disorders. However, only few APD children met these strict criteria, only 75% (15/20) met the clinical criteria of APD, out of which 60% (9/15) where diagnosed with spatial processing disorder (SPD) due to abnormal SRM in the LiSN-S task (see Table \@ref(fig:Background-Tab) for descriptives of the APD group). Of the remaining children in the APD group, four did not meet the diagnosis criteria for various reasons (e.g., young age, lack of psychological educational evaluation report and the need to exclude other deficits), however their assessment report acknowledged some "auditory processing difficulties", whereas the fifth child awaited an APD assessment following an APD screening. Furthermore, half of the APD group (10/20) were reported for being diagnosed with one or more secondary developmental disorder(s) (x6 Dyslexia, x3 HF-ASD, x3 DLD, x1 ADHD, x1 ADD, x1 Dyspraxia, x1 visual stress, x1 sensory integration disorder, and x1 poor short-term WM). Nonetheless, several caregivers reported that their motivation for seeking additional diagnosis to get more help from the school, rather than a real concern, after feeling that their support for their child's APD was lacking.\
+Our initial aim was to take a conservative stance on inclusion criteria by including only those who met a clinical APD criteria (2 SD below the norms on two or more tests during the assessment). Moreover, being aware of the high prevalence of other developmental disorders amongst APD children (PERCENTAGE + REF), we strived to recruit children who display a "pure" form of APD with reported diagnosis or concerns for additional developmental disorders. However, only few APD children met these strict criteria, only 75\% (15/20) met the clinical criteria of APD, out of which 60\% (9/15) where diagnosed with spatial processing disorder (SPD) due to abnormal SRM in the LiSN-S task (see Table \@ref(tab:Background-Tab) for descriptives of the APD group). Of the remaining children in the APD group, four did not meet the diagnosis criteria for various reasons (e.g., young age, lack of psychological educational evaluation report and the need to exclude other deficits), however their assessment report acknowledged some "auditory processing difficulties", whereas the fifth child awaited an APD assessment following an APD screening. Furthermore, half of the APD group (10/20) were reported for being diagnosed with one or more secondary developmental disorder(s) (x6 Dyslexia, x3 HF-ASD, x3 DLD, x1 ADHD, x1 ADD, x1 Dyspraxia, x1 visual stress, x1 sensory integration disorder, and x1 poor short-term WM). Nonetheless, several caregivers reported that their motivation for seeking additional diagnosis to get more help from the school, rather than a real concern, after feeling that their support for their child's APD was lacking.\
 
 ```{r,label='Background-Tab', echo=FALSE, message=FALSE}
 BackgroundTab <- read.csv(file.path(FileDir,'Files','BackgroundStats.csv'),header=F) 
@@ -310,7 +313,7 @@ The ECLiPS questionnaire [@Barry2014] comprises of 38 items where the users are 
 
 #### The Children's Communication Checklist 2$^{nd}$ edition (CCC-2) {.unnumbered}
 
-Communication abilities were assessed using the Children's Communication Checklist second edition questionnaire [CCC-2; @Bishop2003] was completed by the child's parent/guardian. The CCC-2 was designed to screen communication problems in children aged 4 to 16 years and comprises of 70 checklist items each comprising of a behaviour statement like "Mixes up words of similar meaning". The respondents are asked to judge how often the behaviours occur using a four-point Likert rating scale: 0. *less than once a week (or never)*, 1. *at least once a week, but not every day*, 2. *once or twice a day*, 3. *several times (more than twice) a day (or always)*. The items are grouped into ten sub-scales of behaviours tapping into different skills (A. Speech, B. Syntax, C. Semantics, D. Coherence, E. Inappropriate initiation, F. Stereotyped language, G. Use of context, H. Non-verbal communication, I. Social relations, J. Interests). Taking the sum of scores for the sub-scales A to H are used to derive the General Communication Composite (GCC) which is used to identify clinically abnormal communication competence. A GCC score \< 55 was found by @Norbury2005 to well separate between control and clinical groups, identifying children with scores at the bottom 10%. Another composite (Social-Interaction Deviance Composite, SIDC) was taken by taking the difference in sum of scales E, H, I, and J from the sum of scales of A to D. Abnormal GCC (\< 55) combined with a negative SIDC score has been shown to be indicative of an autistic spectrum disorder profile [@Bishop2003]. The CCC-2 scaled and composite scores were computed using the test scorer. Data from one TD child out of forty four was excluded from the analysis due to inconsistent reports flagged by the test scorer.
+Communication abilities were assessed using the Children's Communication Checklist second edition questionnaire [CCC-2; @Bishop2003] was completed by the child's parent/guardian. The CCC-2 was designed to screen communication problems in children aged 4 to 16 years and comprises of 70 checklist items each comprising of a behaviour statement like "Mixes up words of similar meaning". The respondents are asked to judge how often the behaviours occur using a four-point Likert rating scale: 0. *less than once a week (or never)*, 1. *at least once a week, but not every day*, 2. *once or twice a day*, 3. *several times (more than twice) a day (or always)*. The items are grouped into ten sub-scales of behaviours tapping into different skills (A. Speech, B. Syntax, C. Semantics, D. Coherence, E. Inappropriate initiation, F. Stereotyped language, G. Use of context, H. Non-verbal communication, I. Social relations, J. Interests). Taking the sum of scores for the sub-scales A to H are used to derive the General Communication Composite (GCC) which is used to identify clinically abnormal communication competence. A GCC score \< 55 was found by @Norbury2005 to well separate between control and clinical groups, identifying children with scores at the bottom 10\%. Another composite (Social-Interaction Deviance Composite, SIDC) was taken by taking the difference in sum of scales E, H, I, and J from the sum of scales of A to D. Abnormal GCC (\< 55) combined with a negative SIDC score has been shown to be indicative of an autistic spectrum disorder profile [@Bishop2003]. The CCC-2 scaled and composite scores were computed using the test scorer. Data from one TD child out of forty four was excluded from the analysis due to inconsistent reports flagged by the test scorer.
 
 ### Data Analysis
 
@@ -1253,7 +1256,8 @@ kbl(EHF_tab, booktabs = T,escape = F, linesep = "", caption = "EHF audiometry: D
   column_spec(c(8),border_left = T) %>% 
   kable_styling() %>%
   pack_rows("Octave frequency bands", 1, 6) %>%
-  pack_rows("PTAs and better-ear", 7, 10)
+  pack_rows("PTAs and better-ear", 7, 10) %>%
+  add_footnote(c("PTA: average detection threshold at 8, 11, \\& 16 kHz.","BE: PTA at the better ear."), notation = "none")
 
 ```
 
@@ -2621,7 +2625,7 @@ ST_tab <- rbind(ASL_tab,CCRM_tab)
 ```
 
 #### SRdTs by age {.unnumbered}
-Since the present study sample comprised of young children from different age groups from circa 7 to 13 years, developmental age effect was expected, whereby performance was expected to improve with an increasing age due to different maturity effects. This is illustrated by the scatterplots and linear regression lines plotted in Figure \@ref(fig:ST-Age) A-B split by groups for the listeners SRdTs obtained across the different test conditions and speech material (ASL / CCRM) as a function of age. Note that smaller SRdT indicate better performance. Age effect was tested against the TD group alone because this group is more heterogeneous and thus expected do display smaller variability than the APD group. Nonetheless, despite the larger spread in the APD group, the group showed similar trend in performance, albeit shifted towards higher SRdTs (i.e., poorer performance). The TD regression lines were determined based on a model comparison and outliers trimming procedure described in Section\ \@ref(z-score) to improve model prediction. Regular regression lines were found to be the most suitable in describing the relationship between the TD children performance and age in all test conditions but the MDR_F condition for the ASL material, where a segmented line was found to give the best fit. MDR_F segmented line indicated that DC improved with age by circa 0.1 per year until reaching a plateau at the age of 9.5 years.\
+Since the present study sample comprised of young children from different age groups from circa 7 to 13 years, developmental age effect was expected, whereby performance was expected to improve with an increasing age due to different maturity effects. This is illustrated by the scatterplots and linear regression lines plotted in Figure \@ref(fig:ST-Age) A-B split by groups for the listeners SRdTs obtained across the different test conditions and speech material (ASL / CCRM) as a function of age. Note that smaller SRdT indicate better performance. Age effect was tested against the TD group alone because this group is more heterogeneous and thus expected do display smaller variability than the APD group. Nonetheless, despite the larger spread in the APD group, the group showed similar trend in performance, albeit shifted towards higher SRdTs (i.e., poorer performance). The TD regression lines were determined based on a model comparison and outliers trimming procedure described in Section\ \@ref(z-scores) to improve model prediction. Regular regression lines were found to be the most suitable in describing the relationship between the TD children performance and age in all test conditions but the MDR_F condition for the ASL material, where a segmented line was found to give the best fit. MDR_F segmented line indicated that DC improved with age by circa 0.1 per year until reaching a plateau at the age of 9.5 years.\
 
 ```{r, label='ST-Age', fig.cap="ST: Scatterplot and linear regression lines for the listeners SRdTs measured with the ASL (A) and CCRM speech material (B) as a function of age. Corresponding regression coefficients and statistics is provided for TD group only. Red indicates data from the APD group and cyan indicates data from the TD control group. Data for normal hearing adults taken from Chapter 2 is shown in the boxplots as a reference.", fig.align='center', fig.width=14, fig.asp=0.8, out.width='100%',echo=FALSE, message=FALSE, warning=FALSE,fig.pos='h'}
 
@@ -2816,9 +2820,10 @@ t1
 ```
 
 #### Age-independent z-scores {.unnumbered}
-Age-independent standardised residuals (z-scores) were calculated based on a model prediction for the TD group data using a multiple-case study approach (@Ramus2003; see section\ \@ref(z-score) for more details). Descriptive statistics for the listeners z-scores is giving in Table \@ref(tab:ST-Tab). Additional boxplots are shown in Figure \@ref(fig:ST-z) A-B, for the ASL and CCRM speech material respectively. Scores were calculated separately for each test condition, with better performance indicated by lower z-score. The grey area marks the two-tailed 1.96 deviance cut-off for abnormal score from the control group mean (z $\approx$ 0), where only about 5\% of the normal population is expected to score below and above it. Overall, APD children performance was noticeably poorer in both test material, with higher median z-scores than compared with the TD children. The next paragraphs will cover the examination and statistical analysis of the individuals and group differences separately for each speech material.\
+Age-independent standardised residuals (z-scores) were calculated based on a model prediction for the TD group data using a multiple-case study approach (@Ramus2003; see section\ \@ref(z-scores) for more details). Descriptive statistics for the listeners z-scores is giving in Table \@ref(tab:ST-Tab). Additional boxplots are shown in Figure \@ref(fig:ST-z) A-B, for the ASL and CCRM speech material respectively. Scores were calculated separately for each test condition, with better performance indicated by lower z-score. The grey area marks the two-tailed 1.96 deviance cut-off for abnormal score from the control group mean (z $\approx$ 0), where only about 5\% of the normal population is expected to score below and above it. Overall, APD children performance was noticeably poorer in both test material, with higher median z-scores than compared with the TD children. The next paragraphs will cover the examination and statistical analysis of the individuals and group differences separately for each speech material.\
 
-```{r, label='ST-z', fig.cap="ST: Boxplots of the listeners age-independent standardised residuals for data measured with the ASL (A) and the CCRM speech material (B). Residuals were calculated seperately for each condition and are based on a model predicton for TD group only. The grey area represents the deviance cut-off for abnormal score (SD $\\pm$\ 1.96 below/above the TD mean), where about 95\\% of the normal population is e expected to lay within. The dashed line represents the theorethical TD group mean (z = 0). Individual scores are indicated by circles. The boxes show the data interquartile range (25th-75th percentile) and the horizontal line indicate the median (i.e., 50th percentile). Values that fall within 1.5 times the interquartile range are indicated by the wiskers.", fig.align='center', fig.width=10, fig.asp=.9, out.width='100%',echo=FALSE, message=FALSE, warning=FALSE, results='hide'}
+
+```{r, label='ST-z', fig.cap="ST: Boxplots of the listeners age-independent standardised residuals for data measured with the ASL (A) and the CCRM speech material (B). Residuals were calculated separately for each condition and are based on a model prediction for TD group only. The grey area represents the deviance cut-off for abnormal score (SD $\\pm$\ 1.96 below and above the TD mean), where about 95\\% of the normal population is e expected to lay within. The dashed line represents the theoretical TD group mean (z = 0). Individual scores are indicated by circles. The boxes show the data interquartile range (25th-75th percentile) and the horizontal line indicate the median (i.e., 50th percentile). Values that fall within 1.5 times the interquartile range are indicated by the whiskers.", fig.align='center', fig.width=10, fig.asp=.9, out.width='100%',echo=FALSE, message=FALSE, warning=FALSE, results='hide'}
 
 # ASL_Outlier <- ASLN[which(ASLN$z_trim>1.65),] %>% droplevels()
 # ggplot(ASL_Outlier, aes(x=listener, fill = Group)) + geom_histogram(alpha = .5, bins=25, position = "identity",stat="count") + theme_classic()
@@ -3154,7 +3159,7 @@ CCRM_L_z <- CCRM_w %>%
   ungroup()
 ```
 
-```{r, label='ST-CorASL', fig.cap="Add caption here.", fig.align='center', fig.width=8, fig.asp=.8, out.width='100%',echo=FALSE, message=FALSE, warning=FALSE, results='hide',eval=FALSE,show=FALSE}
+```{r, label='ST-CorASL', fig.cap="Add caption here.", fig.align='center', fig.width=8, fig.asp=.8, out.width='100%',echo=FALSE, message=FALSE, warning=FALSE, results='hide',eval=FALSE, show=FALSE}
 
 ############ ASL ############
 ASLN_w$Group <- factor(ASLN_w$Group,levels=c("APD","TD"))
@@ -3320,7 +3325,7 @@ plot_grid(t1,t2,t3,t4,t5, ncol=2, nrow = 3)
 
 ### LiSNS-UK
 
-```{r, echo=FALSE,results='hide',message=FALSE,warning=FALSE}
+```{r, label='get-LiSNS', echo=FALSE,results='hide',message=FALSE,warning=FALSE}
 
 # Load LiSNS data ---------------------------------------------------------------------------------------------------
 d_LiSNS <- read.csv(file.path(FileDir,'Files','LiSNS_2020-08-19.csv'),header=T) 
@@ -3359,7 +3364,7 @@ LiSNS <- d_LiSNS_w %>%
 
 ```
 
-```{r, label='LiSNS', message=FALSE,warning=FALSE, echo=FALSE, results='hide'}
+```{r, label='LiSNS-z', message=FALSE,warning=FALSE, echo=FALSE, results='hide'}
 
 source("functions/getBestFit.R")
 
@@ -3596,47 +3601,6 @@ LiSNS <- LiSNS %>%
 
 ```
 
-```{r, eval=FALSE, include=FALSE}
-# Check z-scores..
-require(GGally)
-
-ggpairs(LiSNS_w[c(3,9:11)],lower = list(continuous = "smooth"),mapping = aes(color = LiSNS_w$Group),title="z-scores")
-
-ggpairs(LiSNS_w[c(3,9:11)],lower = list(continuous = "smooth"),upper = list(continuous = "smooth"), mapping = aes(color = LiSNS_w$Group)) + ggtitle("z-scores")
-
-ggpairs(LiSNS_w[c(3,5:7)],lower = list(continuous = "smooth"),mapping = aes(color = LiSNS_w$Group),title="dB")
-
-ggpairs(LiSNS_w[c(3,5:7)],lower = list(continuous = "smooth"),upper = list(continuous = "smooth"), mapping = aes(color = LiSNS_w$Group)) + ggtitle("dB")
-
-LiSNS_w2 <- LiSNS_w
-
-# LiSNS_w2$z_trim_SRM <- ifelse(LiSNS_w2$listener=="TD23",NA,LiSNS_w2$z_trim_SRM)
-# LiSNS_w2$z_trim_SRM <- ifelse(LiSNS_w2$listener=="APD20",NA,LiSNS_w2$z_trim_SRM)
-# LiSNS_w2$z_trim_SRM <- ifelse(LiSNS_w2$listener=="APD02",NA,LiSNS_w2$z_trim_SRM)
-# LiSNS_w2$z_trim_SRM <- ifelse(LiSNS_w2$listener=="APD17",NA,LiSNS_w2$z_trim_SRM)
-# LiSNS_w2$z_trim_SRM <- ifelse(LiSNS_w2$listener=="APD16",NA,LiSNS_w2$z_trim_SRM)
-# LiSNS_w2$z_trim_SRM <- ifelse(LiSNS_w2$listener=="APD05",NA,LiSNS_w2$z_trim_SRM)
-# LiSNS_w2$z_trim_SRM <- ifelse(LiSNS_w2$listener=="APD09",NA,LiSNS_w2$z_trim_SRM)
-
-my_fn <- function(data, mapping, ...){
-  ggplot(data = data, mapping = mapping, ...) + 
-    geom_text(label=LiSNS_w$listener, colour="black",size=2) +
-    geom_point(size=0.5,na.rm=TRUE) + 
-    geom_smooth(method=lm, fill="#69b3a2", se=FALSE, na.rm=TRUE) +
-    stat_cor(method = "pearson", na.rm = TRUE, size=3)
-}
-
-graph_corr <- ggpairs(LiSNS_w[c(3,9:11)],
-                      upper = list(continuous= my_fn),
-                      lower = list(continuous= my_fn),
-                      aes(color = LiSNS_w$Group),legend=1) +
-  theme(legend.position = "bottom",
-        legend.direction = "horizontal")
-#aes(color = ST_w$Group, alpha=.9),legend=1) 
-graph_corr
-
-```
-
 ```{r,label='LiSNS-AgeAssumptions', echo=FALSE,results='hide',message=FALSE,warning=FALSE,include=FALSE}
 ################################ Assumptions testing ################################ 
 
@@ -3725,44 +3689,10 @@ VarTest <- LiSNS %>%
 
 ```
 
-```{r, label='LiSNS-ztab', echo=FALSE}
-
-# Some stats and plots--------------------------------------------------------------------------------------------
-# summarise condition across listeners 
-# z-scores
-LiSNS_z_tab_APD <- LiSNS %>% filter(Group=="APD") %>% ddply(.,~CondCode,summarise,N=length(z_trim),median=round(median(z_trim,na.rm=TRUE),2),sd=round(sd(z_trim,na.rm=TRUE),2), min=round(min(z_trim,na.rm=TRUE),2),max=round(max(z_trim,na.rm=TRUE),2),
-abnormal=paste0(sprintf("%0.2f",(sum(Outlier,na.rm=TRUE)/length(listener)*100)),"\\%")) 
-colnames(LiSNS_z_tab_APD)[1] = ""
-
-LiSNS_z_tab_TD <- LiSNS %>% filter(Group=="TD") %>% ddply(.,~CondCode,summarise,N=length(z_trim),median=round(median(z_trim,na.rm=TRUE),2),sd=round(sd(z_trim,na.rm=TRUE),2), min=round(min(z_trim,na.rm=TRUE),2),max=round(max(z_trim,na.rm=TRUE),2),
-abnormal=paste0(sprintf("%0.2f",(sum(Outlier,na.rm=TRUE)/length(listener)*100)),"\\%"))  
-
-# accounting for trimmed TD children????
-LiSNS_z_tab_TD$abnormal <- sprintf("%s %s",LiSNS_z_tab_TD$abnormal,c("(0.00\\%)","(0.00\\%)","(0.00\\%)","(0.00\\%)"))
-
-# get table
-LiSNS_z_tab <- cbind(LiSNS_z_tab_APD,LiSNS_z_tab_TD[2:7])
-colnames(LiSNS_z_tab)[1] = ""
-
-# prepare table using kbl()
-# for more options see: https://cran.r-project.org/web/packages/kableExtra/vignettes/awesome_table_in_pdf.pdf
-kbl(LiSNS_z_tab, escape = F, booktabs = T, linesep = "", caption = "LiSNS-UK standard residuals (z-scores) descriptives by group. abnormal: the percentage of abnormal score, defined as: z-score > 1.96 (SSN, S0N0, \\& S0N90) and  z-score < 1.96 (SRM). Percentage in brackets were accounted for observations that were trimmed in the z-score calculation procedure.",
-    align = c("lcccccccccl"),format = "latex") %>% 
-  add_header_above(c(" ", "APD" = 6, "TD" = 6)) %>%
-  kable_styling(latex_options = c("scale_down")) %>%
-  column_spec(c(8),border_left = T)
-```
-
-```{r,echo=FALSE, eval=FALSE}
-LiSNS %>% filter(Group=="APD") %>% ddply(.,~CondCode,summarise,N=length(z_trim),median=round(median(z_trim,na.rm=TRUE),2),sd=round(sd(z_trim,na.rm=TRUE),2), min=round(min(z_trim,na.rm=TRUE),2),max=round(max(z_trim,na.rm=TRUE),2), var=round(var(z_trim,na.rm=TRUE),2))
-
-LiSNS %>% filter(Group=="TD") %>% ddply(.,~CondCode,summarise,N=length(z_trim),median=round(median(z_trim,na.rm=TRUE),2),sd=round(sd(z_trim,na.rm=TRUE),2), min=round(min(z_trim,na.rm=TRUE),2),max=round(max(z_trim,na.rm=TRUE),2), var=round(var(z_trim,na.rm=TRUE),2))
-```
-
 #### SRTs by age {.unnumbered}
-The distribution of the listeners SRTs and their corresponding regression lines split by group is shown in Figure \@ref(fig:LiSNS-Age) A for the spatially- collocated (S0N0) and separated condition (S0N90), as well as the non-spatialised condition where the ASL sentences were presented with a speech-shaped-noise (SSN). The listeners binaural advantage, calculated as the difference between the collocated and separated spatial conditions (SRM = S0N0 - S0N90) is shown in Figure \@ref(fig:LiSNS-Age) B. As for ST, age effect was tested against the TD group only, where the regression lines for the TD group were estimated based on model comparison and outliers trimming procedure to improve the model's fit (model coefficients and statistic is given at the bottom of Figure A and B).\
+The distribution of the listeners SRTs and their corresponding regression lines split by group is shown in Figure \@ref(fig:LiSNS-Age) A for the spatially- collocated (S0N0) and separated condition (S0N90), as well as for the non-spatialised condition where the ASL sentences were presented with a speech-shaped-noise (SSN). The listeners binaural advantage, calculated as the difference between the collocated and separated spatial conditions (SRM = S0N0 - S0N90) is shown in Figure \@ref(fig:LiSNS-Age) B. As in the switching task, age effect was tested against the TD group only, where the regression lines for the TD group were estimated based on a model comparison and outliers trimming procedure to improve the model's fit (model coefficients and statistic are given at the bottom of the figures).\
 
-```{r, label='LiSNS-Age', fig.cap="LiSNS-UK: Age-effect - scatterplot and linear regression lines for SRTs obtained for SSN and the spatialised conditions S0N0 (collocated) and S0N90 (separated) (A) and the derived measure SRM (B) as a function of the listeners age. Corresponding regression coefficients and statistics is provided for TD group only. Red indicates data from the APD group and green indicates data from the TD control group.", fig.align='center', fig.width=12, fig.asp=0.5, out.width='100%',echo=FALSE, message=FALSE, warning=FALSE}
+```{r, label='LiSNS-Age', fig.cap="LiSNS-UK: Age-effect - scatterplot and linear regression lines for SRTs obtained for SSN and the spatialised conditions S0N0 (collocated) and S0N90 (separated) (A) and the derived measure SRM (B) as a function of the listeners age. Corresponding regression coefficients and statistics is provided for TD group only. Red indicates data from the APD group and cyan indicates data from the TD control group.", fig.align='center', fig.width=12, fig.asp=0.5, out.width='100%',echo=FALSE, message=FALSE, warning=FALSE}
 # get some sub dataframes: 
 LiSNS_Col_Sep <- LiSNS %>% filter(CondCode!="SRM" & CondCode!="SSN") %>% droplevels()
 LiSNS_Col_Sep  <- drop_na(LiSNS_Col_Sep, uRevs) %>% droplevels()
@@ -3849,9 +3779,9 @@ library(patchwork)
         plot.tag = element_text(face = 'bold'))
 ```
 
-As previously reported by other researchers that used similar test paradigm in children in similar age group [e.g., @Cameron2007; @Murphy2019], the scatterplots shows a clear developmental trend, with an overall improvement in performance with an increase in age. S0N90 and S0N0 conditions showed the largest age effect, with near to 1 dB improvement in performance per 1 year increase (TD slope = -0.82 \& -0.69, respectively). The regression lines slope for SSN conditions was shallower, with roughly half a dB improvement in performance per 1 year increase, with a TD slope of -0.52. Difference in performance with age for the SRM was negligible, with a predicted improvement of circa 1 dB between the age of 7 to 13 years. There was a significant effect of age in all three test conditions (moderate effect size), with the largest effect for S0N0, accounting for circa 40\% of variability in performance, followed by SSN with 34\% and about 26\% for S0N90. The linear regression fit for SRM showed no significant age effect for SRM (R$^{2}$ = 0.075, p = 0.219).\
+As previously reported by other researchers that used similar test paradigm in children from similar age group [e.g., @Cameron2007; @Murphy2019], the scatterplots shows a clear developmental trend, with an overall improvement in performance with an increase in age. S0N90 and S0N0 conditions showed the largest age effect, with near to 1 dB improvement in performance per 1 year increase (TD slope: -0.82 \& -0.69, respectively). The regression lines slope for SSN conditions was shallower, with roughly half a dB improvement in performance per 1 year increase, with a TD slope of -0.52. Difference in performance with age for the SRM was negligible, with a predicted improvement of circa 1 dB between the age of 7 to 13 years. There was a significant effect of age in all three test conditions (moderate effect size), with the largest effect for S0N0, accounting for circa 40\% of variability in performance, followed by SSN with 34\% and about 26\% for S0N90. The linear regression fit for SRM showed no significant age effect for SRM (R$^{2}$ = 0.075, p = 0.219).\
 
-A two-way factorial design model with repeated measures was used to test the main effects for Condition (SSN, SON0, \& S0N90) and Age with TD group SRTs as a dependent variable. Interaction terms were included as well as a random intercept for subjects. Note that also here the model included only data for the control group. Assumptions of normal distribution and homogeneity were met, and thus a parametric approach was selected using LMEM. The model with the best fit and main effects are given in Table \@ref(tab:LiSNS-AgeLMEM). As before, a model with a random intercept for TD children with APD siblings did not converge and was thus dropped. The final model did not include interaction terms and thus indicating that age affected performance in a similar way in the three test conditions. The model revealed a highly significant main effect of Age and Condition (p \< 0.001).
+A two-way factorial design model with repeated measures was used to test the main effects for Condition (SSN, SON0, \& S0N90) and Age with TD group SRTs as a dependent variable. Interaction terms were included as well as a random intercept for subjects. Note that also here the model included only data for the control group. Assumptions of normal distribution and homogeneity were met, and thus a parametric approach was chosen using LMEM. The model with the best fit and main effects are given in Table \@ref(tab:LiSNS-AgeLMEMTab). As before, a model with a random intercept for TD children with APD siblings did not converge and was thus dropped out. The final model did not include interaction terms and thus indicating that age affected performance in a similar way in the three test conditions. The model revealed a highly significant main effect of Age and Condition (p \< 0.001).
 
 ```{r,label='LiSNS-AgeLMEM', message=FALSE, warning=FALSE, include=FALSE, echo=FALSE,results='hide'}
 # Test for age effect -----------------------------------------------------------------------------------
@@ -3933,7 +3863,7 @@ colnames(LiSNS_AgeTab)[1:4] <- c("Main effects","Df",sprintf("$\\chi^{2}$"),"p")
 ```
 
 ```{r,label='LiSNS-AgeLMEMTab',echo=FALSE,warning=FALSE, message=FALSE}
-kbl(LiSNS_AgeTab, booktabs = T,escape = F, linesep = "",caption = "LiSNS-UK - age effect: LMEM model for SRT with condition (reference level: SSN) and age as fixed factors and a random intercept for subjects. Note: only data measured with the control group following outliers trimming was included.",
+kbl(LiSNS_AgeTab, booktabs = T,escape = F, linesep = "",caption = "LiSNS-UK: Age effect - LMEM model for SRT with condition (reference level: SSN) and age as fixed factors and a random intercept for subjects. Note: only data measured with the control group following outliers trimming was included.",
     align = c("lccc"),format = "latex",digits = 3) %>% 
   add_header_above(c("SRT ~ Condition + Age + (1 | Subjects)" = 4)) %>%
   add_footnote(c("significant p-values (p < 0.05) are shown in bold."), notation = "symbol") %>%
@@ -3941,11 +3871,11 @@ kbl(LiSNS_AgeTab, booktabs = T,escape = F, linesep = "",caption = "LiSNS-UK - ag
 ```
 
 #### Age-independent z-scores {.unnumbered}
-Boxplots of the listeners age-independent standardised residuals z-scores (blue circles) collapsed across the different test conditions are shown in Figure \@ref(fig:LiSNS-zfig), separately for the APD group (red) and TD group (cyan). The z-scores were calculated in the exact same way as for ST. Again, the dashed line indicate the TD group mean ($\sim$ 0), and the grey area indicates the lower and upper limit of normal population (TD mean $\pm$ 1.96). Descriptive statistics collapsed by group and test conditions are given in Table \@ref(tab:LiSNS-ztab). Overall, when compared with the control group, the APD children exhibited poorer performance (i.e., higher z-score) across all three test conditions as well as for the derived SRM measure.
+Boxplots of the listeners age-independent standardised residuals z-scores (blue circles) collapsed across the different test conditions are shown in Figure \@ref(fig:LiSNS-zfig), separately for the APD group (red) and TD group (cyan). The z-scores were calculated in the exact same way as for ST. Again, the dashed line indicate the theoretical TD group mean of zero, and the grey area indicates the lower and upper limit of the normal population (TD mean $\pm$ 1.96). Descriptive statistics collapsed by group and test conditions are given in Table \@ref(tab:LiSNS-ztab). Overall, when compared with the control group, the APD children exhibited poorer performance across all three test conditions (i.e., higher z-score) as well as for the derived SRM measure (i.e., lower z-score).
 
-S0N0 and SRM yielded the largest separation between the groups, however the spread in scores was relatively large and the percentage of abnormal performance in the APD group was rather small, with only circa 26% (5/19). Whereas only about 16% (3/19) and 10% (2/19) of the APD children had abnormal score for SSN and S0N90, respectively. No abnormal performance was obtained in the TD group for SSN and S0N90, while two TD children (\~9%) had abnormal score for S0N0 condition and one child for SRM. Nonetheless, when excluding the TD outliers that were trimmed during the z-score calculation procedure, all the TD observations were within the norms.
+S0N0 and SRM yielded the largest separation between the groups, however the spread in scores was relatively large and the percentage of abnormal performance in the APD group was rather small, with only circa 26\% (5/19) in each condition. Whereas only about 16\% (3/19) and 10\% (2/19) of the APD children had abnormal score for SSN and S0N90, respectively. No abnormal performance was obtained in the TD group for SSN and S0N90, while two TD children (\~9\%) had abnormal score for S0N0 condition and one child for SRM. Nonetheless, when excluding the TD outliers that were trimmed during the z-score calculation procedure, all the TD observations were within the norms.\
 
-```{r, label='LiSNS-zfig', fig.cap="Individual scores are indicated by circles. The boxes show the data interquartile range (25th-75th percentile) and the horizontal line indicate the median (i.e., 50th percentile). Values that fall within 1.5 times the interquartile range are indicated by the wiskers..", fig.align='center', fig.width=12, fig.asp=0.5, out.width='100%',echo=FALSE, message=FALSE, warning=FALSE}
+```{r, label='LiSNS-zfig', fig.cap="LiSNS-UK: Boxplots of the listeners age-independent standardised residuals (open circles) for data measured with LiSNS-UK task (A) and the derived measure SRM (B). Residuals were calculated separately for each condition and are based on a model prediction for TD group only. The grey area represents the deviance cut-off for abnormal score (SD $\\pm$\ 1.96 below and above the TD mean), where about 95\\% of the normal population is expected to lay within. The dashed line represents the theoretical TD group mean (z = 0).The boxes show the data interquartile range (25th-75th percentile) and the horizontal line indicate the median (i.e., 50th percentile). Values that fall within 1.5 times the interquartile range are indicated by the whiskers.", fig.align='center', fig.width=12, fig.asp=0.5, out.width='100%',echo=FALSE, message=FALSE, warning=FALSE}
 
 t1 <- ggplot(LiSNS_NoSRM, aes(x=CondCode,y=z_trim,fill=Group))+ 
   geom_rect(aes(xmin=-Inf, xmax=Inf, ymin=-CutOff, ymax=CutOff),fill="lightgray", alpha=0.05)+
@@ -3998,7 +3928,41 @@ t2 <- ggplot(LiSNS_SRM, aes(x=CondCode,y=z_trim,fill=Group))+
         plot.tag = element_text(face = 'bold'))
 ```
 
-```{r, message=FALSE, warning=FALSE, include=FALSE, echo=FALSE,results='hide'}
+```{r, label='LiSNS-ztab', echo=FALSE}
+
+# Some stats and plots--------------------------------------------------------------------------------------------
+# summarise condition across listeners 
+# z-scores
+LiSNS_z_tab_APD <- LiSNS %>% filter(Group=="APD") %>% ddply(.,~CondCode,summarise,N=length(z_trim),median=round(median(z_trim,na.rm=TRUE),2),sd=round(sd(z_trim,na.rm=TRUE),2), min=round(min(z_trim,na.rm=TRUE),2),max=round(max(z_trim,na.rm=TRUE),2),
+abnormal=paste0(sprintf("%0.2f",(sum(Outlier,na.rm=TRUE)/length(listener)*100)),"\\%")) 
+colnames(LiSNS_z_tab_APD)[1] = ""
+
+LiSNS_z_tab_TD <- LiSNS %>% filter(Group=="TD") %>% ddply(.,~CondCode,summarise,N=length(z_trim),median=round(median(z_trim,na.rm=TRUE),2),sd=round(sd(z_trim,na.rm=TRUE),2), min=round(min(z_trim,na.rm=TRUE),2),max=round(max(z_trim,na.rm=TRUE),2),
+abnormal=paste0(sprintf("%0.2f",(sum(Outlier,na.rm=TRUE)/length(listener)*100)),"\\%"))  
+
+# accounting for trimmed TD children????
+LiSNS_z_tab_TD$abnormal <- sprintf("%s %s",LiSNS_z_tab_TD$abnormal,c("(0.00\\%)","(0.00\\%)","(0.00\\%)","(0.00\\%)"))
+
+# get table
+LiSNS_z_tab <- cbind(LiSNS_z_tab_APD,LiSNS_z_tab_TD[2:7])
+colnames(LiSNS_z_tab)[1] = ""
+
+# prepare table using kbl()
+# for more options see: https://cran.r-project.org/web/packages/kableExtra/vignettes/awesome_table_in_pdf.pdf
+kbl(LiSNS_z_tab, escape = F, booktabs = T, linesep = "", caption = "LiSNS-UK standard residuals (z-scores) descriptives by group. abnormal: the percentage of abnormal score, defined as: z-score $>$ 1.96 (SSN, S0N0, \\& S0N90) and  z-score $<$ 1.96 (SRM). Percentage in brackets were accounted for observations that were trimmed in the z-score calculation procedure.",
+    align = c("lcccccccccl"),format = "latex") %>% 
+  add_header_above(c(" ", "APD" = 6, "TD" = 6)) %>%
+  kable_styling(latex_options = c("scale_down")) %>%
+  column_spec(c(8),border_left = T)
+```
+
+```{r,echo=FALSE, eval=FALSE}
+LiSNS %>% filter(Group=="APD") %>% ddply(.,~CondCode,summarise,N=length(z_trim),median=round(median(z_trim,na.rm=TRUE),2),sd=round(sd(z_trim,na.rm=TRUE),2), min=round(min(z_trim,na.rm=TRUE),2),max=round(max(z_trim,na.rm=TRUE),2), var=round(var(z_trim,na.rm=TRUE),2))
+
+LiSNS %>% filter(Group=="TD") %>% ddply(.,~CondCode,summarise,N=length(z_trim),median=round(median(z_trim,na.rm=TRUE),2),sd=round(sd(z_trim,na.rm=TRUE),2), min=round(min(z_trim,na.rm=TRUE),2),max=round(max(z_trim,na.rm=TRUE),2), var=round(var(z_trim,na.rm=TRUE),2))
+```
+
+```{r,label='LiSNS-zLMEM', message=FALSE, warning=FALSE, include=FALSE, echo=FALSE,results='hide'}
 ##### Test z_trim #####
 LiSNS_3 <- LiSNS %>% filter(CondCode!="SRM") %>% droplevels()
 
@@ -4104,21 +4068,76 @@ LiSNS_zTab$p = ifelse(LiSNS_zTab$p<.05,
 # -------------------------------------------------------------------------
 ```
 
-[*LMEM model*]{.correction}
+Group differences for the SSN and the spatialised conditions S0N0 and S0N90 were tested with a 3 x 2 factorial design LMEM model with z-score as a dependent variable and random intercept for subjects (reference levels: Condition = SSN, Group = APD). Model assumptions for normal distribution and homogeneity of variance were verified. The model that was found to give the best fit did not include a two-way interaction term between the main effects Group and Condition, thus suggesting again that the two groups behaved in a similar way in the three test conditions (see Table \@ref(tab:LiSNS-zLMEMTab)). Comparison of the full model with a simplified model without the term of interest revealed a significant effect of Group (p \< 0.05), while no significant difference in performance between the three conditions was found (p = 0.149).\
 
-Differences between the groups for SSN and the spatialised conditions S0N0 and S0N90 were tested with a 3 x 2 factorial design LMEM model with z-score as a dependent variable and random intercept for subjects. Model assumptions for normal distribution and homogeneity of variance was verified. The model that was found to give the best fit did not include a two-way interaction term between the main effects Group and Condition, thus suggesting again that the two groups behaved in a similar way in the three test conditions (see Table \@ref(tab:LiSNS-zLMEM). Comparison of the full model with a simplified model without the predictor(s) of interest revealed a significant effect of Group (p \< 0.05), while no significant difference in performance between the three conditions was found (p = 0.149).
-
-```{r,label='LiSNS-zLMEM',echo=FALSE,warning=FALSE, message=FALSE}
-kbl(LiSNS_zTab, booktabs = T,escape = F, linesep = "",caption = "LiSNS-UK - group difference: LMEM model for age-independent z-scores with condition and group as fixed factors (reference levels: Condition = SSN, Group = APD) and a random intercept for subjects.",
+```{r,label='LiSNS-zLMEMTab',echo=FALSE,warning=FALSE, message=FALSE}
+kbl(LiSNS_zTab, booktabs = T,escape = F, linesep = "",caption = "LiSNS-UK: Group difference - LMEM model for age-independent z-scores with condition and group as fixed factors (reference levels: Condition = SSN, Group = APD) and a random intercept for subjects.",
     align = c("lccc"),format = "latex",digits = 3) %>% 
   add_header_above(c("z ~ Condition + Group + (1 | Subjects)" = 4)) %>%
   add_footnote(c("significant p-values (p < 0.05) are shown in bold."), notation = "symbol") %>%
   column_spec(4, italic = T) 
 ```
 
-[*Correlation between conditions (z-score)*]{.correction}
 
-```{r, label='LiSNS-cor', fig.cap="Add caption here.", fig.align='center', fig.asp=0.5, fig.width=12, out.width='100%', ,echo=FALSE, message=FALSE, warning=FALSE, results='hide'}
+```{r, message=FALSE, warning=FALSE, echo=FALSE, results='hide'}
+# Check z-scores..
+require(GGally)
+# make a copy before changing names
+LiSNS_corr <- LiSNS_w
+
+for ( col in 1:ncol(LiSNS_corr)){
+  colnames(LiSNS_corr)[col] <-  sub("trim_", "", colnames(LiSNS_corr)[col])
+  colnames(LiSNS_corr)[col] <-  sub("uRevs_", "db_", colnames(LiSNS_corr)[col])
+}
+
+# ggpairs(LiSNS_corr[c(3,9:11)],lower = list(continuous = "smooth"),upper = list(continuous = "smooth"), mapping = aes(color = LiSNS_corr$Group)) + ggtitle("z-scores")
+# 
+# ggpairs(LiSNS_corr[c(3,5:7)],lower = list(continuous = "smooth"),upper = list(continuous = "smooth"), mapping = aes(color = LiSNS_corr$Group)) + ggtitle("dB")
+# 
+# LiSNS_w2 <- LiSNS_w
+
+# LiSNS_corr$z_trim_SRM <- ifelse(LiSNS_corr$listener=="TD23",NA,LiSNS_corr$z_trim_SRM)
+# LiSNS_corr$z_trim_SRM <- ifelse(LiSNS_corr$listener=="APD20",NA,LiSNS_corr$z_trim_SRM)
+# LiSNS_corr$z_trim_SRM <- ifelse(LiSNS_corr$listener=="APD02",NA,LiSNS_corr$z_trim_SRM)
+# LiSNS_corr$z_trim_SRM <- ifelse(LiSNS_corr$listener=="APD17",NA,LiSNS_corr$z_trim_SRM)
+# LiSNS_corr$z_trim_SRM <- ifelse(LiSNS_corr$listener=="APD16",NA,LiSNS_corr$z_trim_SRM)
+# LiSNS_corr$z_trim_SRM <- ifelse(LiSNS_corr$listener=="APD05",NA,LiSNS_corr$z_trim_SRM)
+# LiSNS_corr$z_trim_SRM <- ifelse(LiSNS_corr$listener=="APD09",NA,LiSNS_corr$z_trim_SRM)
+
+# my_fn <- function(data, mapping, ...){
+#   ggplot(data = data, mapping = mapping, ...) + 
+#     # geom_text(label=LiSNS_corr$listener, colour="black",size=2) +
+#     geom_point(size=0.5,na.rm=TRUE) + 
+#     geom_smooth(method=lm, fill="#69b3a2", se=FALSE, na.rm=TRUE) +
+#     stat_cor(method = "pearson", na.rm = TRUE, size=3)
+# }
+# 
+# graph_corr <- ggpairs(LiSNS_corr[c(3,9:11,2)],
+#                       upper = list(continuous= my_fn),
+#                       lower = list(continuous= my_fn),
+#                       aes(color = LiSNS_corr$Group),legend=1) +
+#   theme(legend.position = "bottom",
+#         legend.direction = "horizontal")
+# #aes(color = ST_w$Group, alpha=.9),legend=1) 
+# graph_corr
+
+```
+
+```{r, label='LiSNS-SRTcorr', dev='png', fig.align='center', fig.width=14, fig.asp=0.5, out.width='90%', message=FALSE, warning=FALSE, echo=FALSE, fig.show='hide'}
+
+ggpairs(LiSNS_corr[c(3,5:7,2)],
+        lower = list(continuous = "smooth"),
+        mapping = aes(color = LiSNS_corr$Group),title="LiSNS-UK: SRT (dB)")
+```
+
+```{r, label='LiSNS-zCorr', dev='png', fig.align='center', fig.width=14, fig.asp=0.5, out.width='90%', message=FALSE, warning=FALSE, echo=FALSE, fig.show='hide'}
+
+ggpairs(LiSNS_corr[c(3,9:11,2)],
+        lower = list(continuous = "smooth"),
+        mapping = aes(color = LiSNS_corr$Group),title="LiSNS-UK: z-scores")
+```
+
+```{r, label='LiSNS-cor', fig.cap="Add caption here.", fig.align='center', fig.asp=0.5, fig.width=12, out.width='100%', ,echo=FALSE, message=FALSE, warning=FALSE, results='hide', eval=FALSE}
 
 library(ggExtra)
 
@@ -4143,7 +4162,7 @@ t2 <- ggplot(LiSNS_w, aes(x=z_trim_SRM, y=z_trim_S0N0, color=Group)) +
   geom_point(size=2) +
   geom_smooth(aes(group=Group,colour=Group),method=lm, se=TRUE, alpha=0.2,show.legend = FALSE) +
   stat_cor(method = "pearson", aes(color = LiSNS_w$Group), label.x = -3) +
-   stat_regline_equation(label.y = c(2,1.7),label.x = -3)+
+  stat_regline_equation(label.y = c(2,1.7),label.x = -3)+
   labs(x = str_remove("z_trim_SRM", "z_trim_"), y = str_remove("z_trim_S0N0", "z_trim_"))+
   scale_y_continuous(limits = c(-2,4),breaks=seq(-2,4,1)) +
   scale_x_continuous(limits = c(-3,4),breaks=seq(-3,4,1)) +
@@ -4160,9 +4179,9 @@ t3 <- ggplot(LiSNS_w, aes(x=z_trim_SRM, y=z_trim_S0N90, color=Group)) +
   geom_point(size=2) +
   geom_smooth(aes(group=Group,colour=Group),method=lm, se=TRUE, alpha=0.2,show.legend = FALSE) +
   stat_cor(method = "pearson", aes(color = LiSNS_w$Group), label.x = -3) +
-   stat_regline_equation(label.y = c(2,1.7),label.x = -3)+
+  stat_regline_equation(label.y = c(2,1.7),label.x = -3)+
   labs(x = str_remove("z_trim_SRM", "z_trim_"), y = str_remove("z_trim_S0N90", "z_trim_"))+
-    scale_y_continuous(limits = c(-2,4),breaks=seq(-2,4,1)) +
+  scale_y_continuous(limits = c(-2,4),breaks=seq(-2,4,1)) +
   scale_x_continuous(limits = c(-3,4),breaks=seq(-3,4,1)) +
   theme_bw()+
   theme(axis.text = element_text(size = 12, face="bold",colour = "black"),
@@ -4177,9 +4196,9 @@ t4 <- ggplot(LiSNS_w, aes(x=z_trim_SSN, y=z_trim_S0N0, color=Group)) +
   geom_point(size=2) +
   geom_smooth(aes(group=Group,colour=Group),method=lm, se=TRUE, alpha=0.2,show.legend = FALSE) +
   stat_cor(method = "pearson", aes(color = LiSNS_w$Group), label.x = -3) +
-   stat_regline_equation(label.y = c(2,1.7),label.x = -3)+
+  stat_regline_equation(label.y = c(2,1.7),label.x = -3)+
   labs(x = str_remove("z_trim_SSN", "z_trim_"), y = str_remove("z_trim_S0N0", "z_trim_"))+
-    scale_y_continuous(limits = c(-2,4),breaks=seq(-2,4,1)) +
+  scale_y_continuous(limits = c(-2,4),breaks=seq(-2,4,1)) +
   scale_x_continuous(limits = c(-3,4),breaks=seq(-3,4,1)) +
   theme_bw()+
   theme(axis.text = element_text(size = 12, face="bold",colour = "black"),
@@ -4194,9 +4213,9 @@ t5 <- ggplot(LiSNS_w, aes(x=z_trim_SSN, y=z_trim_S0N90, color=Group)) +
   geom_point(size=2) +
   geom_smooth(aes(group=Group,colour=Group),method=lm, se=TRUE, alpha=0.2,show.legend = FALSE) +
   stat_cor(method = "pearson", aes(color = LiSNS_w$Group), label.x = -3) +
-   stat_regline_equation(label.y = c(2,1.7),label.x = -3)+
-labs(x = str_remove("z_trim_SSN", "z_trim_"), y = str_remove("z_trim_S0N90", "z_trim_"))+
-    scale_y_continuous(limits = c(-2,4),breaks=seq(-2,4,1)) +
+  stat_regline_equation(label.y = c(2,1.7),label.x = -3)+
+  labs(x = str_remove("z_trim_SSN", "z_trim_"), y = str_remove("z_trim_S0N90", "z_trim_"))+
+  scale_y_continuous(limits = c(-2,4),breaks=seq(-2,4,1)) +
   scale_x_continuous(limits = c(-3,4),breaks=seq(-3,4,1)) +
   theme_bw()+
   theme(axis.text = element_text(size = 12, face="bold",colour = "black"),
@@ -4209,6 +4228,10 @@ t5 <- ggMarginal(t5, type="boxplot",groupFill = TRUE)
 
 cowplot::plot_grid(t1,t2,t3,t4,t5, ncol=3, nrow = 2)
 
+```
+
+```{block type='correction'}
+*Compare results to the norming data (combined scores from SK and KZ experiments) from the norming chapter?*
 ```
 
 ### ENVASA
@@ -4378,7 +4401,7 @@ d_ENVASA_L_Total  <- d_ENVASA_L_sd[ d_ENVASA_L_sd$CondCode %in%
 d_ENVASA_L_Total <- rbind(d_ENVASA_L_Total,d_ENVASA_L_c_Total)
 ```
 
-Due to technical problems, data for six listeners is missing (TD: 2; APD: 4), resulting in a total sample-size of 21 and 17 for the TD and APD group, respectively. Initial inspection of the individuals performance was performed to ensure that the task instructions were followed and well understood. Performance for the reference condition (single incongruent background at a high SNR), which is expected to least impact performance, was compared with a cut-off criterion of `r CutOff_TD2`%, calculated as 2 SD from the TD group mean (`r mean_TD`% $\pm$ `r SD_TD`%). Individuals with performance bellow the cut-off criterion were excluded from the analysis. One TD listener aged 7 years old scored 45 % was thus excluded, resulting in a total of 20 listeners in the TD group.
+Due to technical problems, observations for six listeners are missing (TD: 2; APD: 4), resulting in a total sample-size of 21 and 17 for the TD and APD group, respectively. Initial inspection of the individuals performance was performed to ensure that the task instructions were followed and well understood. Performance for the reference condition (single incongruent background at a high SNR), which is expected to least impact performance, was compared with a cut-off criterion of `r CutOff_TD2`%, calculated as 2 SD from the TD group mean (`r mean_TD`% $\pm$ `r SD_TD`%). Individuals with performance bellow the cut-off criterion were excluded from the analysis. One TD listener aged 7 years old scored 45 % was thus excluded, resulting in a total of 20 listeners in the TD group.
 
 ```{r, label='ENVASA-getZ',echo=FALSE,results='hide',message=FALSE,warning=FALSE}
 ## -------------------------------------------------------------------------------------------------------
@@ -4640,11 +4663,11 @@ colnames(ENVASA_AgeTab)[1:4] <- c("Main effects","Df",sprintf("$\\chi^{2}$"),"p"
 
 #### %-correct by age {.unnumbered}
 
-Measurements of the ENVASA task in the current study followed the same factorial design as used by @Leech2009, with 2 background types (single-/dual) x 4 SNRs (low: -6, -3 dB; high: 0 +3 dB), resulting in a total of 92 responses (%-correct, PC) per listener or between 10 to 11 test items per background/SNR combination. Because of the small number test items per condition, responses were averaged into three measures: 1) *single background*, 2) *dual backgrounds*, and 3) *combined background* which reflects the overall performance across the two background types.
+The ENVASA measurements followed the same factorial design as used by @Leech2009, with 2 background types (single/dual) x 4 SNRs (low: -6, -3 dB; high: 0 \+3 dB), resulting in a total of 92 responses (\%-correct, PC) per listener or between 10 to 11 test items per background-SNR combination. Because of the small number test items per condition, responses were averaged into three measures: 1) *single background*, 2) *dual backgrounds*, and 3) *combined background* which reflects the overall performance across the two background types.\
 
-The relationship between performance and age was inspected in the same way as carried out for the other auditory tasks, with the listeners average response plotted as a function age, with linear regression lines, model coefficients and statistics for the trimmed TD group (see Figure \@ref(fig:ENVASA-Age)). The regression lines revealed a noticeable developmental trend in all three measures, where performance improved with increased age. A regular linear regression line with a monotonic linear increase in performance by age was found to best fit performance for a single background, with an increase of circa 3.5% in PC per year. Performance for dual backgrounds and the combined score on the other hand were best described using segmented linear regression models, with an increase of PC by circa 12% per year until the age of 9 years old where PC plateaued thereafter. Age was statistically tested using an LMEM model with three background measures and Age as fixed factors and PC as dependent variable and a random intercept for subjects (reference level: single-background). A model without an interaction term was found to give the best fit (see Table \@ref(tab:ENVASA-AgeLMEMTab). Model comparison revealed a highly significant main effect of age and condition (p \< 0.001). This is in agreement with @Krishnan2013 study where they found a strong developmental effect across normal-hearing typically developing children in a similar age range to those measured in the present study.
+The relationship between performance and age was inspected in the same way as carried out for the other auditory tasks, with the listeners average response plotted as a function age, with linear regression lines, model coefficients and statistics for the trimmed TD group (see Figure \@ref(fig:ENVASA-Age)). The regression lines revealed a noticeable developmental trend in all three measures, where performance improved with increasing age. A single linear regression line with a monotonic increase in performance by age was found to best fit performance for a single background, with an increase of circa 3.5\% in PC per year. Performance for dual backgrounds and the combined score on the other hand were best described using segmented linear regression models, with an increase of PC by circa 12\% per year until the age of 9 years, where PC plateaued thereafter. Age was statistically tested using an LMEM model with the three background measures and Age as fixed factors and PC as dependent variable and a random intercept for subjects (reference level: single-background). A model without an interaction term was found to give the best fit (see Table \@ref(tab:ENVASA-AgeLMEMTab). Model comparison revealed a highly significant main effect of age and condition (p \< 0.001). This is in agreement with @Krishnan2013 study where they found a strong developmental effect across normal-hearing typically developing children in a similar age range to those measured in the present study.
 
-```{r,label='ENVASA-Age', fig.cap="Scatterplot and linear regression lines for the ENVASA task \\%-correct as a function of age for single background, dual backgrounds and the combined measure. Red indicates data from the APD group and cyan indicates data from the TD control group.", fig.align='center', fig.width=11, fig.asp=0.5, out.width='100%',echo=FALSE, message=FALSE, warning=FALSE}
+```{r,label='ENVASA-Age', fig.cap="ENVASA: Scatterplot and linear regression lines for the listeners' PC (\\%-correct) as a function of age for single background, dual backgrounds and the combined measure. Red indicates data from the APD group and cyan indicates data from the TD control group.", fig.align='center', fig.width=12, fig.asp=0.5, out.width='100%',echo=FALSE, message=FALSE, warning=FALSE}
 # Total PC scores by age
 
 dat_text.ENVASA <- data.frame(
@@ -4678,7 +4701,7 @@ t1 <- ggplot(ENVASA_Total, aes(x=Age, y=PC, color=Group)) +
             hjust = -0.05, vjust = -3,size = 4.5)+
   geom_text(data = dat_text.ENVASA, mapping = aes(x = -Inf, y = -Inf, label = label2),
             hjust = -0.06, vjust = -1, size = 4.5)+
-  labs(y = "% correct",x = "Age") + 
+  labs(y = "PC (% correct)",x = "Age") + 
   scale_y_continuous(limits = c(30,100),breaks=seq(30,100,10))+
   scale_x_continuous(breaks=seq(7,13,1),labels=c("7","8","9","10","11","12","13"),limits=c(7, 13))+
   theme_bw() +
@@ -4693,17 +4716,18 @@ t1 <- ggplot(ENVASA_Total, aes(x=Age, y=PC, color=Group)) +
         legend.box.background = element_rect(colour = "black"))
 
 t1 <- t1 + facet_grid(. ~ reorder(CondCode,CondCode), scales = "free", switch = "y",
-                      labeller = labeller(CondCode = c("Total_s" ="Single \n background",
+                      labeller = as_labeller(c("Total_s" ="Single \n background",
                                                        "Total_d"="Dual \n backgrounds",
                                                        "Total"="Combined"))) +
   theme(panel.spacing.x = unit(0,"line"),
         strip.background = element_rect(fill="white", color="white"),
         strip.text = element_text(face = "bold", size = 11))
 t1
+
 ```
 
 ```{r,label='ENVASA-AgeLMEMTab',echo=FALSE,warning=FALSE, message=FALSE}
-kbl(ENVASA_AgeTab, booktabs = T,escape = F, linesep = "",caption = "ENVASA - age effect: LMEM model for \\%-correct (PC) in the three background measures single-, dual-, and combind background(s) (reference level: single-background) and age as fixed factors and random intercept for subjects. Note: only data measured with the control group following outliers trimming was included.",
+kbl(ENVASA_AgeTab, booktabs = T,escape = F, linesep = "",caption = "ENVASA: Age effect - LMEM model for PC (\\%-correct) in the three background measures single, dual, \\& combind background/s (reference level: single-background), and age as fixed factors and random intercept for subjects. Note: only data measured with the control group following outliers trimming was included.",
     align = c("lccc"),format = "latex",digits = 3) %>% 
   add_header_above(c("PC ~ Background + Age + (1 | Subjects)" = 4)) %>%
   add_footnote(c("significant p-values (p < 0.05) are shown in bold."), notation = "symbol") %>%
@@ -4742,11 +4766,11 @@ car::leveneTest(z_trim~ CondCode*Group, data=ENVASA_Total)
 
 #### Age-independent z-scores {.unnumbered}
 
-For further analysis, age was controlled for using the same multiple-case approach method described in ????. Boxplots of the age-independent z-scores for the three ENVASA measures are shown in Figure \@ref(fig:ENVASA-zPlot), with larger z-score indicating better performance. The grey area indicate the upper and lower cut-off (z = $\pm$ 1.96) for normal score, where about 95 % of the normal population scores are expected to lay within. Surprisingly, the less demanding condition with single competing background yielded the largest separation between the group with a median z-score of roughly -1, while the median performance for dual backgrounds and the combined score was relatively similar to those in the control group, albeit with larger spread. The percentage of abnormal APD scores was relatively low, with circa 29% (5/17) for the combined score, 24% (4/17) for single background and 18% (3/17) for dual backgrounds condition. There was only one case of abnormal score in the TD group for single background (5%, 1/20) when trimmed TD outliers are included.
+For further analysis, age was controlled for using the same multiple-case approach method described in Section\ \@ref(z-scores). Boxplots of the age-independent z-scores for the three ENVASA measures are shown in Figure \@ref(fig:ENVASA-zPlot), with larger z-score indicating better performance. The grey area indicate the upper and lower cut-off (z = $\pm$ 1.96) for normal score, where scores of about 95\% of the normal population are expected to lay within. Surprisingly, the less demanding condition with single competing background yielded the largest separation between the group with a median z-score of roughly -1, while the median performance for dual backgrounds and the combined score was relatively similar to those in the control group, albeit with larger spread. The percentage of abnormal APD scores was relatively low, with circa 29\% (5/17) for the combined score, 24\% (4/17) for single background and 18\% (3/17) for dual backgrounds condition. There was only one case of abnormal score in the TD group for single background (5\%, 1/20) when trimmed TD outliers are included.\
 
-A two-way interaction between Group and Condition (2 x 3 factorial design data with repeated measures) was tested with a non-parametric robust aligned rank test using *npIntFactRep* package [@npIntFactRepPackageR]. Mauchly's test indicated that the assumption of sphericity for the two-way interaction term had been violated (p\<0.001), therefore the degrees of freedom were corrected using Greenhouse-Geisser estimate of sphericity ($\varepsilon$ = 0.55). The test showed a significant two-way interaction between Group and Condition [F(1.64,57.57) = 10.82, p \< 0.001]. Difference between the groups were examined using unpaired two samples Wilcoxon rank-sum test with permutation (N=999999) which is a t-test equivalent for non-parametric data ('coin::wilcox_test()'; REF). Groups descriptives collapsed by the three test measures as well as p statistics and effect size r are given in Table \@ref(tab:ENVASA-zTab). APD children performance was significantly poorer than of the TD children in the single background condition (p = 0.02, moderate effect), whereas there was no significant difference between the groups in the dual backgrounds or the combined background measure (p \> 0.05).
+A two-way interaction between Group and Condition (2 x 3 factorial design data with repeated measures) was tested with a non-parametric robust aligned rank test using *npIntFactRep* package [@npIntFactRepPackageR]. Mauchly's test indicated that the assumption of sphericity for the two-way interaction term had been violated (p \< 0.001), therefore the degrees of freedom was corrected using Greenhouse-Geisser estimate of sphericity ($\varepsilon$ = 0.55). The test showed a significant two-way interaction between Group and Condition [F(1.64,57.57) = 10.82, p \< 0.001]. Difference between the groups were examined using unpaired two samples Wilcoxon rank-sum test with permutation (N=999999) which is a t-test equivalent for non-parametric data [*coin::wilcox_test()*; @CoinPackageR]. Groups descriptives collapsed by the three test measures as well as p statistics and effect size r are given in Table \@ref(tab:ENVASA-zTab). Performance of the APD children was significantly poorer than of the TD children in the single background condition (p \< 0.05, moderate effect), whereas there was no significant difference between the groups in the dual backgrounds or the combined background measure (both p's \> 0.05).\
 
-```{r, label='ENVASA-zPlot', fig.cap="ENVASA age-independent standardised residuals for the \\%-correct in single background, dual backgrounds and the combined measure. Residuals were calculated seperately for each condition and are based on a model predicton for TD group only. The grey area represents the deviance cut-off for abnormal score (SD $\\pm$\ 1.96 below/above the TD mean), where about 95\\% of the normal population is e expected to lay within. The dashed line represents the theorethical TD group mean (z = 0).", fig.align='center', fig.width=6, fig.asp=.8, out.width='80%',echo=FALSE, message=FALSE, warning=FALSE, results='hide'}
+```{r, label='ENVASA-zPlot', fig.cap="ENVASA: Listeners' age-independent standardised residuals for single background, dual backgrounds \\& the combined measure. Residuals were calculated seperately for each condition and are based on a model predicton for TD group only. The grey area represents the deviance cut-off for abnormal score (SD $\\pm$\ 1.96 below and above the TD mean), where about 95\\% of the normal population is e expected to lay within. The dashed line represents the theorethical TD group mean (z = 0).", fig.align='center', fig.width=6, fig.asp=.8, out.width='80%',echo=FALSE, message=FALSE, warning=FALSE, results='hide'}
 
 # ENVASA_Total_Outlier <- ENVASA_Total[which(ENVASA_Total$z_trim< -CutOff),] %>% droplevels()
 # ggplot(ENVASA_Total_Outlier, aes(x=listener, fill = Group)) + geom_histogram(alpha = .5, bins=25, position = "identity",stat="count") + theme_classic()
@@ -4774,7 +4798,7 @@ scale_y_continuous(limits = c(-7,2),breaks=seq(-7,2,1))+
 t1
 ```
 
-```{r,label='ENVASA-npIntFactRep', message=FALSE, warning=FALSE, results='hide'}
+```{r,label='ENVASA-npIntFactRep', message=FALSE, warning=FALSE, results='hide',echo=FALSE}
 # 2-way factorial design:
 ENVASA_Total <- data.frame(ENVASA_Total)
 
@@ -4848,7 +4872,6 @@ kbl(ENVASA_tab, booktabs = T,escape = F, linesep = "",caption = "ENVASA: Descrip
 ```
 
 ### CELF-RS
-
 ```{r, label='CELF-getData', echo=FALSE,warning=FALSE,message=FALSE,results='hide'}
 
 d_RS<- read.csv(file.path(FileDir,'Files','CELF_RS_13032020.csv'),header=T)
@@ -4914,8 +4937,7 @@ ddply(.,~Group,summarise,N=length(ScaledScore),median=round(median(ScaledScore,n
 # RS_tab <- cbind(RS_tab_TD[2:6],RS_tab_APD[2:6],p=round(results_p,3),effectSize[c(4,7)])
 RS_tab <- cbind(RS_tab_TD[2:6],RS_tab_APD[2:6])
 ```
-
-Boxplots of children's age-corrected scaled scores split into groups for the CELF-5 UK Recalling Sentences subtest are given in Figure \@ref(fig:CELF). The grey area indicate the upper and lower norms limit among the normal population ($\pm$ 1 SD). On average, performance was within the norms range in both the APD group (median = `r RS_tab_APD$median`) and the TD group, albeit laying within the upper norms limit (median = `r RS_tab_TD$median`). Thus, although the majority of the APD children expressive language skills were within the norms, the figure shows a clear difference in performance between the group, where the TD children expressive language skills are noticeably better than for children in the APD group. Almost half of the TD children obtained a scaled score above the average and none exhibited abnormal scores. On the other hand, only three APD children performed above the average and performance of two children was considered to be abnormal (scaled score =  6). An independent-samples t-test with bootstrapping (n=9999) was computed using *boot.t.test()* function [MKinfer package; @MKinferPackageR] to compare the listeners scaled scores in the two groups (parametric data assumptions were met). There was a highly significant difference in scaled scores between the APD (M = 9.5, SD = 2.7) and TD group (M = 13.6, SD = 3.1) [t(`r round(RS_ttest$parameter,2)`) = `r round(RS_ttest$statistic,2)`, p \< 0.001].
+The children's raw scores were converted into age-corrected scaled scores using the CELF-5 UK Recalling Sentences subtest standardised norms (M = 10, SD = 3). Boxplots of the children's scaled scores split by groups are given in Figure \@ref(fig:CELF). The grey area indicate the upper and lower limit among the normal population ($\pm$ 1 SD). On average, performance was within the norms range in both the APD group (Mdn = `r RS_tab_APD$median`) and the TD group, albeit laying within the upper limit (Mdn = `r RS_tab_TD$median`). Thus, although the majority of the APD children expressive language skills were within the norms, the figure shows a clear difference in performance between the group, where the TD children expressive language skills are noticeably better. Almost half of the TD children obtained a scaled score above the average and none exhibited abnormal scores. On the other hand, only three APD children performed above the average and performance of two children was considered abnormal (scaled score \< 7). An independent-samples t-test with bootstrapping (n=9999) was computed using *boot.t.test()* function [MKinfer package; @MKinferPackageR] to compare the listeners scaled scores in the two groups (parametric data assumptions were met). There was a highly significant difference in scaled scores between the APD (Mdn = 9.0, SD = 2.7) and TD group (Mdn = 13.0, SD = 3.1) [t(`r round(RS_ttest$parameter,2)`) = `r round(RS_ttest$statistic,2)`, p \< 0.001].\
 
 ```{r, label='CELF', fig.cap="CELF-RS: Boxplots for CELF-5 UK Recall Sentences subtest scaled scores by groups. The dashed line represents the norms mean and the grey area indicate the upper and lower limit average performance in the normal population ($\\pm$\ 1\ SD).", fig.align='center', fig.width=3, fig.asp=1, out.width='50%', ,echo=FALSE,warning=FALSE, message=FALSE}
 # get plot
@@ -4940,12 +4962,7 @@ ggplot(d_RS, aes(x=Group,y=ScaledScore,fill=Group))+
 
 ### Questionnaires
 
-#### Background history
-
-Inspect association with the auditory measures in the APD group
-
 #### CCC-2
-
 ```{r, label='CCC2-getData', echo=FALSE,warning=FALSE,message=FALSE,results='hide'}
 
 d_CCC2<- read.csv(file.path(FileDir,'Files','CCC2_13032020.csv'),header=T)
@@ -5029,10 +5046,9 @@ Sig_listeners<-levels(SigLowScore_CCC2$listener)
 length(Sig_listeners)
 # listeners has sig low scores: APD=18; TD=1
 ```
+Data for one TD listener was flagged as inconsistent using the test scorer and was thus removed from the analysis. The groups descriptives for the parental reports in the different sub-scales as well as the GCC and SIDC composites are given in Table \@ref(tab:CCC-Tab). GCC stands for general communication composite, calculated by taking the sum for scaled scores A to H. It is used to clinically identify abnormal communication skills, defined by a GCC \< 55 (10$^{th}$ percentile). The SIDC stands for social-interaction deviance composite [sum(E+H+I+J)-sum(A+B+C+D)], where in combination with abnormal GCC score, the SIDC can be used to identify the child's primary difficulty, whereby, a positive SIDC is indicative of a predominantly structural language deficit (referred here as DLD), and a negative SIDC reflects social communication problems and is indicative of autistic spectrum disorder (ASD) traits [@Norbury2014; @Bishop2003].\
 
-Data for one TD listener was flagged as inconsistent and was thus removed from the analysis. The groups descriptives for the parental reports in the different sub-scales as well as the GCC and SIDC composites are given in Table \@ref(tab:CCC-Tab). GCC stands for general communication composite, calculated by taking the sum for scaled scores A to H. It is used to clinically identify abnormal communication skills, defined by a GCC \< 55 (10$^{th}$ percentile). The SIDC stands for social-interaction deviance composite [sum(E+H+I+J)-sum(A+B+C+D)], where in combination with abnormal GCC score, the SIDC can be used to identify the child's primary difficulty, whereby, a positive SIDC is indicative of a predominantly structural language deficit (referred here as DLD), and a negative SIDC reflects social communication problems and is indicative of autistic spectrum disorder (ASD) traits [@Norbury2014; @Bishop2003].
-
-Boxplots of the groups scaled scores in the ten sub-scales and a scatterplot depicting the relationship between GCC and SIDC are shown in Figure \@ref(fig:CCC-plot) A-B, respectively. A striking 90% of the APD children (18/20) obtained a scaled score below the 5th percentile two or more times, which has been found to indicate clinically significant communication problems [@Bishop 2003],whereas, only one such case was found in the TD group. The GCC cut-off was found to well separate between the two groups, where again 90% of the APD children (18/20) had abnormal score, whereas only one TD child (out of 22) had abnormal communication skills (see Figure \@ref(fig:CCC-plot) B). Half of the APD children with abnormal GCC score (45%, 9/20) exhibited a score pattern that is indicative of DLD, whereas the other half exhibited a negative SIDC, indicating social communication deficits as the primary difficulty. Interestingly, out of the nine APD children who fell within the later category, three were reported by their parents to have HF-ASD diagnosis, and additional two children were undergoing an ASD assessment at the time of testing (see scores marked with open circles and rectangles in Figure \@ref(fig:CCC-plot) B). Difference in GCC between the two groups was tested using an independent-samples t-test with bootstrapping [*MKinfer::boot.t.test()*, n=9999; @MKinferPackageR]. There was a highly significant difference in GCC between the APD (Mdn = 42.0, SD = 16.4) and TD group [Mdn = 88.5, SD = 17.4; t(39.80) = -9.42, p \< 0.001].
+Boxplots of the groups scaled scores in the ten sub-scales and a scatterplot depicting the relationship between GCC and SIDC are shown in Figure \@ref(fig:CCC2-plot) A-B, respectively. A striking 90\% of the APD children (18/20) obtained a scaled score below the 5th percentile two or more times, which has been found to indicate clinically significant communication problems [@Bishop2003], whereas, only one such case (out of 22) was found in the TD group. The single-value GCC composite showed the exact same proportion of abnormal scores in both groups when a cut-off value of 55 was used, where only one TD child had abnormal communication skills ((see Figure \@ref(fig:CCC2-plot) B). Half of the APD children with abnormal GCC score (45\%, 9/20) exhibited a score pattern that is indicative of DLD, whereas the other half exhibited a negative SIDC, indicating social communication deficits as the primary difficulty. Interestingly, out of the nine APD children who fell within the later category, three were reported by their parents to have HF-ASD diagnosis, and additional two children were undergoing an ASD assessment at the time of testing (see scores marked with open circles and rectangles in Figure \@ref(fig:CCC2-plot) B). Difference in GCC between the two groups was tested using an independent-samples t-test with bootstrapping [*MKinfer::boot.t.test()*, n=9999; @MKinferPackageR]. There was a highly significant difference in GCC between the APD (Mdn = 42.0, SD = 16.4) and TD group [Mdn = 88.5, SD = 17.4; t(39.80) = -9.42, p \< 0.001].\
 
 ```{r, label='CCC2-plot', fig.cap="CCC-2 parental reports for the APD (red) and TD group (cyan). (A) Boxplots for scaled scores in the ten sub-scales. (B) Scatterplot for General Communication Composite (GCC) as a function of Social-Interaction Deviance Composite, (SIDC). APD children with diagnosed high-functioning Autism (HF-ASD) are denoted with open circles. APD children with undergoing ASD assessment on the day of testing are marked with open rectangles. The lines indicates the GCC cut-off criteria for typically developing children (TD) SIDC scores indicative of predominantly structural developmental language disorder (DLD) and more social communication deficits (cf. Norbury, 2013).", fig.align='center', fig.width=16, fig.asp=.5, out.width='100%',echo=FALSE, message=FALSE, warning=FALSE, results='hide'}
 
@@ -5064,6 +5080,7 @@ t1 <- ggplot(d_CCC2_L, aes(x=Measure,y=ScaledScore,fill=Group))+
 # plot GCC and mark subjects with a combination of negative SPC in red (indicative of ASD)
 SumScores <- subset(d_CCC2_L, Measure=="A.speech") %>% droplevels() 
 SumScores$Abnormal <- ifelse(SumScores$SPC<0 & SumScores$GCC<55,1,0)
+# describeBy(GCC~Group, data=SumScores, mat=TRUE, digits=3)
 
 t2 <- ggplot(SumScores, aes(x=GCC,y=SPC,color=Group))+
   # geom_rect(aes(xmin=-Inf, xmax=55, ymin=9, ymax=Inf),colour="lightgray",fill="lightgray", alpha=0.05)+
@@ -5191,7 +5208,6 @@ CCC2_ttest <- MKinfer::boot.t.test(GCC~ Group, data = SumScores, paired = FALSE,
 ```
 
 #### ECLIPS
-
 ```{r, label='ECLIPS-getData', echo=FALSE,warning=FALSE,message=FALSE,results='hide'}
 require(plyr)
 
@@ -5233,10 +5249,9 @@ if (APDsubTypCtrl==1){d_E_L <- d_E_L[ ! d_E_L$DPD %in% rmvAPDType, ] %>% droplev
 ## ------------------------------------------------------------------------------------------------------------------
 
 ```
+Descriptives of the ECLiPS parental report scaled scores for the different subscales and composite measures split by groups is given in Table \@ref(tab:ECLIPS-Tab) and depicted in Figure \@ref(fig:ECLIPS-plot). A score below the 10$^{th}$ percentile (corresponding to a scale score of circa 6) is generally considered as clinically significant listening and processing difficulties [@Barry2014]. Overall, the ECLiPS was able to well separate between the two groups across all the different sub-scales. All APD children exhibited abnormal Total score, whereas only two TD children (out of 22) obtained abnormal Total score.\
 
-Descriptives of the ECLiPS parental report scaled scores split by groups is given in Table \@ref(tab:ECLIPS-Tab) and shown in Figure \@ref(fig:ECLIPS-plot). A score below the 10$^{th}$ percentile (corresponding to a scale score of circa 6) is generally considered as clinically significant listening and processing difficulties [@Barry2014]. Overall, the ECLiPS was able to well separate between the two groups across all the different sub-scales. All APD children exhibited abnormal Total score, whereas only two TD children (out of 22) obtained abnormal Total score.
-
-A closer look at Figure \@ref(fig:ECLIPS-plot) reveals a clear difference in the distribution of the scaled scores across the two groups, with relatively larger spread for the TD group. Inspection of the groups Total score revealed that the APD group don't follow a normal distribution and that the assumption of homoscedasticity was violated (p \< 0.001). Thus, group difference for the Total score was examined using a non-parametric independent two samples Wilcoxon rank-sum test with permutation [N=999999, *coin::wilcox_test()*; @CoinPackageR]. There was a highly significant difference between the groups with a large effect-size (p \< 0.001, r =  0.86).
+A closer look at the boxplots in Figure \@ref(fig:ECLIPS-plot) reveals a clear difference in the distribution of the scaled scores across the two groups, with relatively larger spread for the TD group. Inspection of the groups Total score revealed that data for APD group did not follow a normal distribution and that the assumption of homoscedasticity was violated (p \< 0.001). Thus, group difference for the listeners Total score was examined using a non-parametric independent two samples Wilcoxon rank-sum test with permutation [N=999999, *coin::wilcox_test()*; @CoinPackageR], showing a highly significant difference between the groups with a large effect-size (p \< 0.001, r =  0.86).\
 
 ```{r, label='ECLIPS-Tab',echo=FALSE,warning=FALSE,message=FALSE}
 # get table
@@ -5339,10 +5354,9 @@ colnames(ECLiPS_Wilcox)[1] <- sprintf("95\\%%-CI")
 ```
 
 ## Overall performance
+An overview of the children performance split by group is given in Figure \@ref(fig:MatrixPlot) providing an overlook at individuals that performed outside the norm in one or more tasks (filled black cells). Abnormally poor performance for the listeners age-independent scores was defined using standardised norms for the CELF-RS, ECLiPS and the CCC-2 data or was defined as a one-tailed cut-off of $\pm$ 1.96 (where circa 97.5% of the normal population is expected to lay within) for the rest of the tasks.\
 
-An overview of the children performance split by group is given in Figure \@ref(fig:MatrixPlot) providing an overlook at individuals that performed outside the norm (filled black cells) in one or more tasks. Abnormally poor performance for the listeners age-independent scores was defined using standardised norms for the CELF-RS, ECLiPS and the CCC-2 data or was defined as a z-score outside a one-tailed cut-off $\pm$ 1.96 (where circa 97.5% of the normal population is expected to lay within) for the rest of the tasks.
-
-As seen in the figure, the proportion of abnormal score of the APD group is substantially higher than of the TD group. The majority of the APD children (16/20) performed abnormally in at least two test conditions from the ST or the LiSNS-UK task, whereas this was the case only in three (out of twenty-one) TD children. The proportion of abnormal scores by measure or task split by group is shown in Figure ???. Both the ECLiPS total score and the CCC-2 GCC sum score resulted in the largest separation between the groups. Out of the auditory tasks the tests conditions that resulted in the highest proportion of abnormal scores in the APD group are AMSSN (ASL: 50%, CCRM: 40%), Quiet-ASL-NoAlt (45%) and MDR_F-ASL (40%), whereas only 26% of the APD children had abnormal SRM score
+As seen in the figure, the proportion of abnormal score across the APD group is substantially higher than in the TD group. The majority of the APD children (80\%, 16/20) performed abnormally in at least two test conditions either in the ST or LiSNS-UK task, whereas there were only three cases (13\%, 3/23) TD children. The proportion of abnormal scores by measure or task split by group is shown in Figure\ \@ref(fig:Abnormal-perTestPlot). Both the ECLiPS total score and the CCC-2 GCC sum score resulted in the largest separation between the groups. Out of the auditory tasks, the tests conditions that resulted in the highest proportion of abnormal scores in the APD group were AMSSN (ASL: 50\%, CCRM: 40/%), Quiet-ASL-NoAlt (45\%) and MDR_F-ASL (40\%), whereas only 26\% of the APD children had abnormal SRM score.\
 
 ```{r,label='get-Matrix', message=FALSE, warning=FALSE, include=FALSE, echo=FALSE}
 library(tidyr)
@@ -5450,7 +5464,7 @@ t2 <- t2 + labs(x = "", y = "",title = "TD") +
         plot.title = element_text(hjust = 0.5,face="bold",size=16))
 ```
 
-```{r,label='MatrixPlot', fig.align='center', fig.asp=0.5, fig.cap="Abnormal (black cells) and normal (empty cells) performance in the present study test battery of individuals from the APD group (n=20) and the TD group (n=23). Missing data is marked by the grey cells.", fig.width=12, out.width='100%', message=FALSE, warning=FALSE, echo=FALSE}
+```{r,label='MatrixPlot', fig.align='center', fig.asp=0.5, fig.cap="Overall perfromance: Abnormal (black cells) and normal (empty cells) performance in the present study test battery of individuals from the APD group (n=20) and the TD group (n=23). Missing data is marked by the grey cells.", fig.width=12, out.width='100%', message=FALSE, warning=FALSE, echo=FALSE}
 
 (t1 + t2) + plot_layout(ncol = 2, nrow = 1, heights = c(1, 1), widths = c(1,1)) + plot_layout(guides='collect') &
   theme(legend.position='bottom',        
@@ -5460,17 +5474,17 @@ t2 <- t2 + labs(x = "", y = "",title = "TD") +
         plot.tag = element_text(face = 'bold'))
 ```
 
-```{r,label='Abnormal-perTestPlot', fig.align='center', fig.asp=0.5, fig.cap="Porportion of abnormal score per measure or task split by groups.", fig.width=14, out.width='100%', echo=FALSE}
+```{r,label='Abnormal-perTestPlot', fig.align='center', fig.asp=0.5, fig.cap="Overall perfromance: Proportion of abnormal score per measure or task split by groups.", fig.width=14, out.width='100%', echo=FALSE}
 
 # FullData_w <- read.csv(file.path(FileDir,'Files','AbnormalScore_w.csv'),header=T)
 
 # library(tidyr)
 
-# FullData_L <- FullData_w %>% 
+# FullData_L <- FullData_w %>%
 #   select(listener:SRM) %>%
 #   pivot_longer(
-#     cols = c(RS:SRM), 
-#     names_to = "CondCode", 
+#     cols = c(RS:SRM),
+#     names_to = "CondCode",
 #     names_ptypes = list(CondCode = factor()),
 #     values_to = "score") %>%
 #   ungroup()
@@ -5519,7 +5533,10 @@ ggplot(SumAbnormal, aes(x=freq,y=CondCode,fill=Group)) +
         axis.title.x = element_text(size=11, face="bold"),
         axis.title.y = element_text(size=11, face="bold"),
         legend.title = element_text(size=11, face="bold"),
-        legend.text  = element_text(size=11, face="bold"))
+        legend.text  = element_text(size=11, face="bold"),
+        legend.position='bottom',        
+        legend.direction = "horizontal",
+        legend.box.background = element_rect(colour = "black", fill = "transparent"))
 ```
 
 ### Unsupervised machine learning (UML)
@@ -5527,16 +5544,10 @@ ggplot(SumAbnormal, aes(x=freq,y=CondCode,fill=Group)) +
 see Bradshaw paper..
 
 ### Interaction between measures
-
-The present study involved a large number of test conditions and various measures assessing different skills. For example, the ST data alone comprises of 11 different conditions (5 for the ASL and 6 for the CCRM speech material). Another set of measures consisting of the CELF-RS, ECLiPS and the CCC-2 taps into language and communication related skills, whereby the later two consists of a sum of 15 different sub-scales and have been shown to strongly correlate with one another [@Barry2014]. Therefore, examining the extent to which the groups performance is explained by such a large number of measures will result in a very conservative significance level in order to minimise Type-I error (false positive), and could increase Type II error rate (false negative) [@McDonald2014]. Since the measures within the ST and within the language dataset are expected to strongly correlate, it was decided to use exploratory data analysis technique using Principal Components Analysis (PCA). PCA is a technique used to reduce a large number of correlated parameters into a smaller set of components that together explain a considerable amount of the variability in the large dataset. Whereby, each of the PCA components is composed of a linear combination of the input parameters [@JamesGareth2013]. PCA was performed separately to the ST and language data set using FactoMineR package [@Le2008] with scaled units and will be discussed separately below.
+The present study involved a large number of test conditions and various measures assessing different skills. For example, the ST data alone comprises of 11 different conditions (x5 ASL, x6 CCRM speech material). Another set of measures consisting of the CELF-RS, ECLiPS and the CCC-2 taps into language and communication related skills, whereby the later two consists of a sum of 15 different sub-scales and have been shown to strongly correlate with one another [@Barry2014]. Examining the extent to which the groups performance is explained by such a large number of measures will result in a very conservative significance level in order to minimise Type-I error (false positive), and could increase Type II error rate (false negative) [@McDonald2014]. Since the measures within the ST and within the language dataset are expected to strongly correlate, it was decided to use exploratory data analysis technique using Principal Components Analysis (PCA). PCA is a technique used to reduce a large number of correlated parameters into a smaller set of components that together explain a considerable amount of the variability in the large dataset. Whereby, each of the PCA components is composed of a linear combination of the input parameters [@JamesGareth2013]. PCA was performed separately for the ST and language data set using FactoMineR package [@Le2008] with scaled units and will be discussed separately below.
 
 #### ST
-
-PCA for the ST data (z-scores) comprised of 11 variables and a sample size of 43. Sample size adequacy for PCA was verified using Kaiser-Meyer-Olkin test [psych::KMO; @psychPackageR], with an overall KMO of 0.76 ['good'; @Field2012Chpt17], and a KMO range between 0.66 to 0.85 across the conditions. Bartlett's sphericity test was significant [$\chi^2$(55) = 190.36, p \< 0.001], indicating that the correlations between the different items were large enough for a PCA. Table \@ref(tab:PCAST-Tab) shows the variables loadings (no rotation was applied), their eigenvalues and percentage of variance explained. Loadings are indicators of substantive importance of a given variable to a given component [@Field2012Chpt17]. The first three components were used, yielding eigenvalues \> 1 (Kaiser's criterion), explaining together circa 67% of the variance in the data. The first component (PC.ST) accounted for the largest portion of spread in the data of 40.6% and was interpreted as an overall measure for performance in the switching task with relatively high loadings across all input variables. The remaining components explained each circa 16% and 11% of the variance (ascending order). Figure \@ref(fig:PCAST-fig) illustrates the different dimensions in the data captured by the three PCA components. Clustering in the second component (PC2.Material) reflected differences in performance across the two speech materials (ASL & CCRM). The third component (PC3.Nz) reflected the degree of distractability introduced by speech distractors (MDR_F, ENG_F, CCRM_F) irrespective of the speech material used, resulting in decrement in performance when compared with non-speech distractors or target-only conditions (Quiet and AMSSN).
-
-Figure \@ref(fig:PCAST-fig2) illustrates the relationship between the three PCA components (PC1.ST, PC2.Material and PC3.Nz) and three calculated composites composed from the row z-scores that reflect the interpretation stated above, with *ST* denoted the listeners' aggregated overall score across all ST conditions, and the two calculated discrepancy composites were denoted as *Material* and *Nz*. The Material composite was calculated by subtracting the mean score of all CCRM conditions ($\overline{CCRM}$) from the mean score of all ASL conditions ($\overline{ASL}$), i.e., Material = $\overline{ASL}$ - $\overline{CCRM}$. The remaining composite Nz was calculated by subtracting the listeners performance averaged across conditions with speech distractors ($\overline{Spch}$) from the average performance taken across the nonspeech and quiet conditions ($\overline{NoSpch}$), i.e., Nz = $\overline{NoSpch}$ - $\overline{Spch}$. All the three PCA components highly correlated with the respective calculated composites (PC1.ST - ST, PC2.Material - Material, PC3.Nz - Nz), whereas none of which correlated with other composite, indicating that the components are independent from one another and that each describe different dimensions within the data.
-
-Boxplots of the listeners weighted scores for the PCA components split by group is shown in Figure \@ref(fig:PCAST-fig3). PC1.ST shows to separate very well between the two groups, with very little overlap in scores between the TD group and the majority of the APD children. Whereas separation between the two groups in the remaining components are noticeably smaller.
+PCA for the ST z-scores comprised of 11 input variables and a sample size of 43. Sample size adequacy for PCA was verified using Kaiser-Meyer-Olkin test [psych::KMO; @psychPackageR], with an overall KMO of 0.76 ['good'; @Field2012Chpt17], and a KMO range between 0.66 to 0.85 across the conditions. Bartlett's sphericity test was significant [$\chi^2$(55) = 190.36, p \< 0.001], indicating that the correlations between the different items were large enough for a PCA. Table \@ref(tab:PCAST-Tab) shows the variables loadings (no rotation was applied), their eigenvalues and percentage of variance explained. Loadings are indicators of substantive importance of a given variable to a given component [@Field2012Chpt17]. The first three components were used, yielding eigenvalues \> 1 (Kaiser's criterion), explaining together circa 67\% of the variance in the data. The first component (PC.ST) accounted for the largest portion of spread in the data of 40.6\% and was interpreted as an overall measure for performance in the switching task with relatively high loadings across all input variables. The remaining components explained each circa 16\% and 11\% of the variance (ascending order). Figure \@ref(fig:PCAST-fig) illustrates the different dimensions in the data captured by the three PCA components. Clustering in the second component (PC2.Material) reflected differences in performance across the two speech materials (ASL & CCRM). The third component (PC3.Nz) reflected the degree of distractability introduced by speech distractors (MDR_F, ENG_F, CCRM_F) irrespective of the speech material used, resulting in decrement in performance when compared with non-speech distractors or target-only conditions (Quiet and AMSSN). Boxplots of the listeners weighted scores for the PCA components split by group is shown in Figure \@ref(fig:PCAST-fig2). PC1.ST shows to separate very well between the two groups, with very little overlap in scores between the TD group and the majority of the APD children. Whereas separation between the two groups in the remaining components are noticeably smaller.\
 
 ```{r, label='PCA-ST', include=FALSE}
 library(magrittr)
@@ -5632,7 +5643,7 @@ kbl(PCA_tab, booktabs = T,escape = F, linesep = "", caption = "Switching task PC
   add_footnote(c("|loading| >0.3 are highlighted in bold."), notation = "none")
 ```
 
-```{r, label='PCAST-fig', fig.cap="Switching task PCA: Input variables as a function of PCA components: PC1.ST vs. PC2.Material (A), PC1.ST vs. PC3.Nz (B). ASL conditions are marked in circles and CCRM data in rectangles. Filled shapes denotes conditions with speech distractors and non-filled shaps denotes nonspeech conditions.", fig.align='center', fig.width=8, fig.asp=0.5, out.width='100%',echo=FALSE, message=FALSE, warning=FALSE}
+```{r, label='PCAST-fig', fig.cap="Switching task PCA: Scatterplot for the input variables as a function of PCA components: PC1.ST vs. PC2.Material (A), PC1.ST vs. PC3.Nz (B). Loadings for ASL conditions are indicated by circles and loadings for CCRM conditions are indicated by rectangles. Filled shapes denotes conditions with speech distractors (Spch) and non-filled shaps denotes nonspeech conditions (No-Spch).", fig.align='center', fig.width=8, fig.asp=0.5, out.width='100%',echo=FALSE, message=FALSE, warning=FALSE}
 Loadings <- as.data.frame(PCA.ST$var$coord)
 colnames(Loadings)[1:3] <- c("PC1.ST","PC2.Material","PC3.Nz")
 # arrange variables into groups
@@ -5677,13 +5688,38 @@ library(patchwork)
         plot.tag = element_text(face = 'bold'))
 ```
 
-```{r, label='PCAST-fig2', fig.cap="Switching task PCA: Comparison between PCA weighted scores and calculated measures: 1) ST = mean score across all ST data, 2) Material = $\\overline{ASL}$ - $\\overline{CCRM}$, 3) Nz = $\\overline{NoSpch}$ - $\\overline{Spch}$.", fig.align='center', fig.width=11, fig.asp=0.8, out.width='100%',echo=FALSE, message=FALSE, warning=FALSE}
+```{r, label='PCAST-fig2', fig.cap="Switching task PCA: Listeners weighted scores split by components and group.", fig.align='center', fig.width=5, fig.asp=0.6, out.width='85%',echo=FALSE, message=FALSE, warning=FALSE}
+
 # PCA individual scores (res$ind$coord)
 ST_w <- merge(ST_w,PCA.ST$ind$coord,by=0)
 ST_w <- plyr::rename(ST_w, c("Dim.1"="PC1.ST", "Dim.2"="PC2.Material","Dim.3"="PC3.Nz"))
 
-# Calculate combined measures:
+ST_L <- ST_w %>%
+  pivot_longer(
+    cols = c("PC1.ST","PC2.Material","PC3.Nz"), 
+    names_to = "Dimension", 
+    names_ptypes = list(Dimension = factor()),
+    values_to = "Loadings") %>% 
+  ungroup()
 
+t1 <- ggplot(ST_L, aes(x=Dimension,y=Loadings,fill=Group)) +
+    geom_boxplot(position=position_dodge(width=0.8),outlier.shape=NA) + 
+  geom_quasirandom(dodge.width=0.8,shape=1,colour="blue")+ 
+  labs(y = "individuals' weighted scores" ,x = "PCA components") + 
+  theme_bw()+
+  theme(axis.text = element_text(size = 11, face="bold",colour = "black"),
+        axis.title.x = element_text(size=11, face="bold"),
+        axis.title.y = element_text(size=11, face="bold"),
+        legend.title = element_text(size=11, face="bold"),
+        legend.text  = element_text(size=11, face="bold"))
+t1
+```
+
+Figure \@ref(fig:PCAST-fig3) illustrates the relationship between the listeners weighted scores based on the three PCA components (PC1.ST, PC2.Material and PC3.Nz) and three calculated composites composed from the listeners z-scores based on the interpretation stated above; with *ST* denoted the listeners' aggregated overall score across all ST conditions, and the two calculated discrepancy composites denoted as *Material* and *Nz*. The Material composite was calculated by subtracting the mean score of all CCRM conditions ($\overline{CCRM}$) from the mean score of all ASL conditions ($\overline{ASL}$), i.e., Material = $\overline{ASL}$ - $\overline{CCRM}$. The remaining composite, Nz, was calculated by subtracting the listeners performance averaged across conditions with speech distractors ($\overline{Spch}$) from the average performance taken across the nonspeech and quiet conditions ($\overline{NoSpch}$), i.e., Nz = $\overline{NoSpch}$ - $\overline{Spch}$. As can be seen in the figure, the PCA components highly correlated with the respective calculated composites (PC1.ST - ST, PC2.Material - Material, PC3.Nz - Nz), whereas none of which correlated with other composite, thus indicating that the components are independent from one another and that each describe different dimensions within the data.\
+
+```{r, label='PCAST-fig3', fig.cap="Switching task PCA: Comparison between PCA weighted scores and calculated measures: (1) ST = mean score across all ST data, (2) Material = $\\overline{ASL}$ - $\\overline{CCRM}$, (3) Nz = $\\overline{NoSpch}$ - $\\overline{Spch}$.", fig.align='center', fig.width=11, fig.asp=0.8, out.width='100%',echo=FALSE, message=FALSE, warning=FALSE}
+
+# Calculate combined measures:
 ST_w$ST <- (ST_w$Q.ASLN.NoAlt + ST_w$Q.ASLN.Alt + ST_w$AMSSN.ASLN.Alt + ST_w$MDR_F.ASLN.Alt +
                 ST_w$ENG_F.ASLN.Alt +
                 ST_w$Q.CCRM.NoAlt + ST_w$Q.CCRM.Alt + ST_w$AMSSN.CCRM.Alt +
@@ -5710,15 +5746,16 @@ require(GGally)
 my_fn <- function(data, mapping, ...){
   ggplot(data = data, mapping = mapping, ...) +
     geom_point(size=0.5,na.rm=TRUE) + 
-    geom_smooth(method=lm,fill="#69b3a2", se=FALSE, na.rm=TRUE) +
-    stat_cor(method = "pearson", na.rm = TRUE, size=3,label.y.npc = "top") +
+    geom_smooth(method="lm",fill="#69b3a2", se=FALSE, na.rm=TRUE) +
+    # stat_cor(method = "spearman", na.rm = TRUE, size=3,label.y.npc = "top") +
+    # stat_cor(data = data, aes(colour = FALSE), method = "spearman", na.rm = TRUE, size=3,label.y.npc = "bottom", color="black") +
     guides(fill=guide_legend(title="Group")) +
     theme(legend.position = "bottom",
           legend.direction = "horizontal")
 }
 
 graph_corr <- ggpairs(ST_w[c("ST","Material","Nz","PC1.ST","PC2.Material","PC3.Nz")],
-                      upper = list(continuous= my_fn),
+                      # upper = list(continuous= my_fn),
                       lower = list(continuous= my_fn),
                       diag = list(continuous = wrap("densityDiag", alpha=0.7)),
                       aes(colour = ST_w$Group),legend=1) +
@@ -5730,40 +5767,9 @@ graph_corr <- ggpairs(ST_w[c("ST","Material","Nz","PC1.ST","PC2.Material","PC3.N
 graph_corr
 ```
 
-```{r, label='PCAST-fig3', fig.cap="Switching task PCA: Listeners weighted scores split by components.", fig.align='center', fig.width=5, fig.asp=0.6, out.width='85%',echo=FALSE, message=FALSE, warning=FALSE}
-# PCA individual scores (res$ind$coord)
-
-ST_L <- ST_w %>%
-  pivot_longer(
-    cols = c("PC1.ST","PC2.Material","PC3.Nz"), 
-    names_to = "Dimension", 
-    names_ptypes = list(Dimension = factor()),
-    values_to = "Loadings") %>% 
-  ungroup()
-
-t1 <- ggplot(ST_L, aes(x=Dimension,y=Loadings,fill=Group)) +
-    geom_boxplot(position=position_dodge(width=0.8),outlier.shape=NA) + 
-  geom_quasirandom(dodge.width=0.8,shape=1,colour="blue")+ 
-  labs(y = "individuals' weighted scores" ,x = "PCA components") + 
-  theme_bw()+
-  theme(axis.text = element_text(size = 11, face="bold",colour = "black"),
-        axis.title.x = element_text(size=11, face="bold"),
-        axis.title.y = element_text(size=11, face="bold"),
-        legend.title = element_text(size=11, face="bold"),
-        legend.text  = element_text(size=11, face="bold"))
-t1
-```
-
 <!-- resulting in a ratio of approximately 4:1 observations per variable. There is lack of agreement in how the optimal sample size for a given number of variables should be estimated, nonetheless, there is no doubt that the sample size in the present study is rather low and any generalisation of the results should be made with cautious.  -->
 
 #### Language measures
-
-PCA with three components was computed for the language measures data (scaled scores) which comprised of 16 input variables (CELF-RS=1, ECLiPS=5, CCC-2=10) with a sample size of 42. Data for one TD child was excluded from the analysis due to inconsistent CCC-2 responses. Kaiser-Meyer-Olkin test for sample-size adequacy was 'superb' with an overall KMO of 0.93 (range: 0.86 - 0.97) and the assumption of sphericity was verified using Bartlett's sphericity test [$\chi^2$(120) = 787.52, p \< 0.0001]. The PCA variables loadings, eigenvalues and percentage of variance explained split by components is given in Table \@ref(tab:PCALang-Tab). The first component (PC1.Lang) yielded eigenvalue \> 1, explained circa 73% of the variance, reflecting an overall performance averaged across all the language measures. The remaining components had eigenvalue of just under 1 (0.95 & 0.85, respectively), each explaining circa 6% and 5% of the variance. The second component reflected discrepancy between expressive language skills, measured by the CELF-RS and listening and communication skills measured by the ECLiPS subscales. Interestingly, the third component reflected once again a discrepancy, clustering together variables that taps onto pragmatic language and social interaction skills such as the ECLiPS subscale PSS (pragmatic & social skills) and the CCC-2 subscales E, H, I & J, separating them from other variables that assesses more structural language skills such as the CELF-RS and the CCC-2 subscales speech (A) and Syntax (B). Despite the small proportion of variance explained by the later two principal components, they yet capture other aspects of language and communication skills that may be relevant in explaining the individual and group differences in the auditory tasks and were therefore included in the analysis. Nonetheless, interpretation of the relationship between these components with performance in the auditory tasks should be taken with a pinch of salt. Inspection of the individuals' scaled scores split by groups for loadings in PC1.Lang as a function of loadings in PC2.Lang and PC3.Lang (see Appendix Figure \@ref(fig:PCALang-fig2)) revealed a linear relationship between PC1.Lang and PC2.Lang (APD group) and between PC1.Lang and PC3.Lang (TD group), thus indicating that they are not entirely independent from one another. The partial lack of independence my be in part explained by the large polarity in scores between the groups across the different input variables.
-
-<!-- The second component (PC2.Lang) had an eigenvalue just under 1 and reflected differences between ECLiPS and CCC-2 and CELF-RS, however it only explained a marginal percentage of the variance (6\%) not explained by the first component. Figure\ @ref(fig:PCALang-fig) shows the individuals' scaled scores split by groups for loadings in PC1.Lang as a function of loadings in PC2.Lang. The scatterplot further illustrates that PC1.Lang alone explains a large proportion of the variance, separating very well between the two group. The linear trend seen for the APD group suggests indicates that the two PCA components are not entirely independent from one another. This high correlation is possibly due to the large separation between the groups throughout the different subscales. Since rotation of the loadings did not improved the PCA interpretation and due to the small contribution of PC2.Lang, only PC1.Lang was used for further analysis. -->
-
-*Discussion?* All the measures showed strong correlation with PC1.Lang, whereas the CCC-2 GCC score showed the largest correlation ($\rho$ = 0.98, p \<.0001). This was true not only for the data aggregated across groups, but also when correlations were examined for each group separately which resulted in similar results for CCC-2. Therefore, taking into account the short administration time and simplicity, the CCC-2 alone provides a good screening tool for children's language and communication skills with high levels of sensitivity and specificity. Nonetheless, children in the present study knowingly consented to take part in the study either as part of the clinical APD group or the control group, which may introduced bias in the reporters responses, and may resulted in a larger separation between the two groups than one would expect within the two populations.
-
 ```{r, label='PCALang', error=FALSE, fig.align="center",message=FALSE, cache=FALSE, results='hide',echo=FALSE}
 # get Language data --------------------------------------------------------------------------------------------
 LangAll <- read.csv(file.path(FileDir,'Files','Lang_w.csv'),header=T) 
@@ -5839,6 +5845,7 @@ PCA_tab$Item <- as.factor(c("CELF-RS","ECLIPS.SAP","ECLIPS.LLL","ECLIPS.M.A",
 LangAll_s <- merge(LangAll_s,PCA.Lang$ind$coord,by=0)
 LangAll_s <- plyr::rename(LangAll_s, c("Dim.1"="PC1.Lang", "Dim.2"="PC2.Lang","Dim.3"="PC3.Lang"))
 ```
+PCA with three components was computed for the listeners scaled scores obtained in the different language measures, comprising of 16 input variables (x1 CELF-RS, x5 ECLiPS, x10 CCC-2) with a sample size of 42. Data for one TD child was excluded from the analysis due to inconsistent CCC-2 responses. Kaiser-Meyer-Olkin test for sample-size adequacy was 'superb' [@Field2012Chpt17] with an overall KMO of 0.93 (range: 0.86 - 0.97) and the assumption of sphericity was verified using Bartlett's sphericity test [$\chi^2$(120) = 787.52, p \< 0.0001]. The PCA variables loadings, eigenvalues and percentage of variance explained split by components is given in Table \@ref(tab:PCALang-Tab). The first component (PC1.Lang) yielded eigenvalue \> 1, explaining circa 73\% of the variance, reflecting an overall performance averaged across all the language measures. The remaining components had eigenvalue of just under 1 (0.95 & 0.85, respectively), each explaining circa 6\% and 5\% of the variance. The second component (PC2.Lang) reflected discrepancy between expressive language skills, measured by the CELF-RS and listening and communication skills measured by the ECLiPS subscales. Interestingly, the third component (PC3.Lang) reflected once again a discrepancy, clustering together variables that taps onto pragmatic language and social interaction skills such as the ECLiPS subscale PSS (pragmatic \& social skills) and the CCC-2 subscales E, H, I \& J, separating them from other variables that assesses more structural language skills such as the CELF-RS and the CCC-2 subscales speech (A) and Syntax (B). Boxplots of the listeners weighted scores for the PCA components split by group is shown in Figure \@ref(fig:PCALang-fig1). As seen in the ST data, the first component (PC1.Lang) best separated between the two groups, whereas separation between the two groups in the remaining components were noticeably smaller.\
 
 ```{r, label='PCALang-Tab',echo=FALSE,warning=FALSE,message=FALSE}
 # prepare table using kbl()
@@ -5849,84 +5856,7 @@ kbl(PCA_tab, booktabs = T,escape = F, linesep = "", caption = "Language measures
   add_footnote(c("|loading| >0.3 are highlighted in bold."), notation = "none")
 ```
 
-```{r, fig.align='center', fig.asp=0.5, fig.cap="Language measures PCA: Individual scores for loadings in PC1.Lang and PC2.Lang split by groups.", fig.width=7, message=FALSE, warning=FALSE, include=FALSE, label='PCALang-fig', out.width='100%'}
-p1 <- ggplot(LangAll_s, aes(PC1.Lang, PC2.Lang)) + geom_point(aes(colour = Group), size = 2) +
-  scale_y_continuous(limits = c(-3,2),breaks=seq(-3,2,1)) +
-  scale_x_continuous(limits = c(-7,6),breaks=seq(-7,6,1)) +
-  # geom_vline(xintercept=0, linetype="dashed",color = "black", size=0.5)+
-  theme_bw()+
-  theme(axis.text = element_text(size = 11, face="bold",colour = "black"),
-        axis.title.x = element_text(size=11, face="bold"),
-        axis.title.y = element_text(size=11, face="bold"),
-        legend.title = element_text(size=11, face="bold"),
-        legend.text  = element_text(size=11, face="bold"))
-
-p2 <- ggplot(LangAll_s, aes(PC1.Lang, PC3.Lang)) + geom_point(aes(colour = Group), size = 2) +
-  scale_y_continuous(limits = c(-3,2),breaks=seq(-3,2,1)) +
-  scale_x_continuous(limits = c(-7,6),breaks=seq(-7,6,1)) +
-  # geom_vline(xintercept=0, linetype="dashed",color = "black", size=0.5)+
-  theme_bw()+
-  theme(axis.text = element_text(size = 11, face="bold",colour = "black"),
-        axis.title.x = element_text(size=11, face="bold"),
-        axis.title.y = element_text(size=11, face="bold"),
-        legend.title = element_text(size=11, face="bold"),
-        legend.text  = element_text(size=11, face="bold"))
-
-library(patchwork)
-(p1 + p2) + plot_layout(ncol = 2, nrow = 1, heights = c(1, 1), widths = c(1,1)) + plot_annotation(tag_levels = 'A') + plot_layout(guides='collect') &
-  theme(legend.position='bottom',        
-        legend.direction = "horizontal",
-        legend.background = element_blank(),
-        legend.box.background = element_rect(colour = "black"),
-        plot.tag = element_text(face = 'bold'))
-```
-
-```{r eval=FALSE, fig.asp=0.5, fig.cap="Switching task input variables as a function of PCA components: A) PC1.ST vs. PC2.Material, fig.width=8, message=FALSE, warning=FALSE, B) PC1.ST vs. PC3.Nz. ASL conditions are marked in circles and CCRM data in rectangles. Filled shapes denotes conditions with speech distractors and non-filled shaps denotes nonspeech conditions.", fig.align='center',label='PCALang-fig2', out.width='100%',echo=FALSE, results='hide', message=FALSE}
-Loadings <- as.data.frame(PCA.Lang$var$coord)
-colnames(Loadings)[1:3] <- c("PC1.Lang","PC2.Lang","PC3.Lang")
-# arrange variables into groups
-Loadings$CondCode <- rownames(Loadings)
-Loadings$Variables <- factor(c("CELF-RS","ECLIPS","ECLIPS","ECLIPS","ECLIPS","ECLIPS",
-                               "CCC2","CCC2","CCC2","CCC2","CCC2","CCC2","CCC2","CCC2",
-                               "CCC2","CCC2"),levels=c("CELF-RS","ECLIPS","CCC2"))
-
-
-t1 <- ggplot(Loadings, aes(PC1.Lang, PC2.Lang)) + 
-  geom_hline(yintercept=0,color = "black", size=0.5)+
-  geom_point(aes(shape = Variables,fill=Variables), size = 3) + 
-  # geom_text(label=Loadings$CondCode, size=2) +
-  scale_fill_manual(values=c("white","darkgrey","white","darkgrey")) +
-  scale_shape_manual(values=c(0,1,2)) +
-  theme_bw()+
-  theme(axis.text = element_text(size = 11, face="bold",colour = "black"),
-        axis.title.x = element_text(size=11, face="bold"),
-        axis.title.y = element_text(size=11, face="bold"),
-        legend.title = element_text(size=11, face="bold"),
-        legend.text  = element_text(size=11, face="bold"))
-
-t2 <- ggplot(Loadings, aes(PC1.Lang, PC3.Lang)) + 
-  geom_hline(yintercept=0,color = "black", size=0.5)+
-  geom_point(aes(color=CondCode), size = 3) + 
-  geom_text(label=Loadings$CondCode) +
-  # scale_fill_manual(values=c("white","darkgrey","white","darkgrey")) +
-  # scale_shape_manual(values=c(1,2,3)) +
-  theme_bw()+
-  theme(axis.text = element_text(size = 11, face="bold",colour = "black"),
-        axis.title.x = element_text(size=11, face="bold"),
-        axis.title.y = element_text(size=11, face="bold"),
-        legend.title = element_text(size=11, face="bold"),
-        legend.text  = element_text(size=11, face="bold"))
-
-library(patchwork)
-(t1 + t2) + plot_layout(ncol = 2, nrow = 1, heights = c(1, 1), widths = c(1,1)) + plot_annotation(tag_levels = 'A') + plot_layout(guides='collect') &
-  theme(legend.position='bottom',        
-        legend.direction = "horizontal",
-        legend.background = element_blank(),
-        legend.box.background = element_rect(colour = "black"),
-        plot.tag = element_text(face = 'bold'))
-```
-
-```{r, label='PCALang-fig1', fig.cap="To keep????????", fig.align='center', fig.width=5, fig.asp=0.6, out.width='85%',echo=FALSE, message=FALSE, warning=FALSE}
+```{r, label='PCALang-fig1', fig.cap="Language measures PCA: Listeners weighted scores split by components and group", fig.align='center', fig.width=5, fig.asp=0.6, out.width='85%',echo=FALSE, message=FALSE, warning=FALSE}
 # PCA individual scores (res$ind$coord)
 
 LangAll_s_L <- LangAll_s %>%
@@ -5949,6 +5879,95 @@ t1 <- ggplot(LangAll_s_L, aes(x=Dimension,y=Loadings,fill=Group)) +
         legend.text  = element_text(size=11, face="bold"))
 
 t1
+```
+
+Despite the small proportion of variance explained by the later two principal components, they yet capture other aspects of language and communication skills that may be relevant in explaining the individual and group differences in the auditory tasks and were therefore included in the analysis. Nonetheless, interpretation of the relationship between these components with performance in the auditory tasks should be taken with a pinch of salt. Inspection of the individuals' scaled scores split by groups for loadings in PC1.Lang as a function of loadings in PC2.Lang and PC3.Lang shown in Figure \@ref(fig:PCALang-fig) A-B revealed a linear relationship between PC1.Lang and PC2.Lang (APD group) and between PC1.Lang and PC3.Lang (TD group), thus indicating that they are not entirely independent from one another. The partial lack of independence my be in part explained by the large polarity in scores between the groups across the different input variables.\
+
+```{r,label='PCALang-fig', fig.align='center', fig.asp=0.5, out.width='100%', fig.cap="Language measures PCA: Individual scores split by groups for loadings in PC1.Lang as a function of scores for PC2.Lang (A), and PC3.Lang (B).", fig.width=8, message=FALSE, warning=FALSE,echo=FALSE}
+
+p1 <- ggplot(LangAll_s, aes(PC1.Lang, PC2.Lang)) + geom_point(aes(colour = Group), size = 2) +
+  scale_y_continuous(limits = c(-3,2),breaks=seq(-3,2,1)) +
+  scale_x_continuous(limits = c(-7,6),breaks=seq(-7,6,1)) +
+  geom_smooth(data=filter(LangAll_s,Group=="APD"),method="lm" , aes(group=Group, color=Group), se=FALSE) +
+  # geom_vline(xintercept=0, linetype="dashed",color = "black", size=0.5)+
+  theme_bw()+
+  theme(axis.text = element_text(size = 11, face="bold",colour = "black"),
+        axis.title.x = element_text(size=11, face="bold"),
+        axis.title.y = element_text(size=11, face="bold"),
+        legend.title = element_text(size=11, face="bold"),
+        legend.text  = element_text(size=11, face="bold"))
+
+p2 <- ggplot(LangAll_s, aes(PC1.Lang, PC3.Lang)) + geom_point(aes(colour = Group), size = 2) +
+  scale_y_continuous(limits = c(-3,2),breaks=seq(-3,2,1)) +
+  scale_x_continuous(limits = c(-7,6),breaks=seq(-7,6,1)) +
+  geom_smooth(data=filter(LangAll_s,Group=="TD" & PC1.Lang >0),method="lm" , aes(group=Group, color=Group), se=FALSE) +
+  # geom_vline(xintercept=0, linetype="dashed",color = "black", size=0.5)+
+  theme_bw()+
+  theme(axis.text = element_text(size = 11, face="bold",colour = "black"),
+        axis.title.x = element_text(size=11, face="bold"),
+        axis.title.y = element_text(size=11, face="bold"),
+        legend.title = element_text(size=11, face="bold"),
+        legend.text  = element_text(size=11, face="bold"))
+
+library(patchwork)
+(p1 + p2) + plot_layout(ncol = 2, nrow = 1, heights = c(1, 1), widths = c(1,1)) + plot_annotation(tag_levels = 'A') + plot_layout(guides='collect') &
+  theme(legend.position='bottom',        
+        legend.direction = "horizontal",
+        legend.background = element_blank(),
+        legend.box.background = element_rect(colour = "black"),
+        plot.tag = element_text(face = 'bold'))
+```
+
+Again, the relationship between the PCA components (PC1.Lang, PC2.Lang and PC3.Lang) and the three calculated composites that reflects the components interpretations is illustrated in Figure\ \@ref(fig:PCALang-ggpairs). The calculated components were based on the listeners scaled scores, where *Lang1* represents the overall performance aggregated across all the language scores, *Lang2* represents discrepancy between expressive language skills (CELF-RS) and listening and communication skills (all ECLiPS subscales), and lastly, *Lang3* stands for discrepancy between structural and pragmatic \& social skills. As seen in the figure, correlations were high between each PCA component and the corresponding calculated composites (range: 1 to 0.58).\
+```{r, label='PCALang-ggpairs', fig.cap="Language measures PCA: Comparison between the listeners wighted scores by components, PC1.Lang - PC3.Lang (A), and calculated measures, Lang1 - Lang3 (B).", fig.align='center', fig.width=11, fig.asp=0.8, out.width='100%', message=FALSE, warning=FALSE, echo=FALSE, results='hide'}
+
+# require(GGally)
+# ggpairs(LangAll_s[c(4,8:26,7)],
+#         lower = list(continuous = "smooth"),
+#         mapping = aes(color = LangAll_s$Group),title="Language measures")
+
+# Calculate combined measures:
+
+# Overall measure
+LangAll_s$Lang1 <- rowMeans(LangAll_s[,c(8:23)], na.rm=TRUE)
+
+# CELF (Expressive language) - ECLIPS (listening and communication skills)
+LangAll_s$Lang2 <-  LangAll_s[,c(8)] - rowMeans(LangAll_s[,c(9:13)], na.rm=TRUE)
+
+# Structual - pragmatic
+LangAll_s$Lang3 <- rowMeans(LangAll_s[,c(8,14:15)], na.rm=TRUE) - rowMeans(LangAll_s[,c(12,18:13)], na.rm=TRUE)
+
+# ggpairs plots: ---------------------------------------------------------
+require(GGally)
+
+my_fn <- function(data, mapping, ...){
+  ggplot(data = data, mapping = mapping, ...) +
+    geom_point(size=0.5,na.rm=TRUE) + 
+    geom_smooth(method="lm",fill="#69b3a2", se=FALSE, na.rm=TRUE) +
+    # stat_cor(method = "spearman", na.rm = TRUE, size=3,label.y.npc = "top") +
+    # stat_cor(data = data, aes(colour = FALSE), method = "spearman", na.rm = TRUE, size=3,label.y.npc = "bottom", color="black") +
+    guides(fill=guide_legend(title="Group")) +
+    theme(legend.position = "bottom",
+          legend.direction = "horizontal")
+}
+
+graph_corr <- ggpairs(LangAll_s[c(24:29)],
+                      # upper = list(continuous= my_fn),
+                      lower = list(continuous= my_fn),
+                      diag = list(continuous = wrap("densityDiag", alpha=0.7)),
+                      aes(colour = LangAll_s$Group),legend=1) +
+  labs(fill = "Group") +
+  theme_bw() +
+  theme(legend.position = "bottom",
+        legend.direction = "horizontal")
+
+graph_corr
+```
+
+```{block type='correction'}
+*Discussion(?): Which measures were best described by the PCA?*  
+  
+All the measures showed strong correlation with PC1.Lang, whereas the CCC-2 GCC score showed the largest correlation ($\rho$ = 0.98, p \<.0001). This was true not only for the data aggregated across groups, but also when correlations were examined separately in each group. Therefore, taking into account the short administration time and simplicity, the CCC-2 alone provides a good screening tool for children's language and communication skills with high levels of sensitivity and specificity. Nonetheless, children in the present study knowingly consented to take part in the study either as part of the clinical APD group or the control group, which may introduced bias in the reporters response, and may resulted in a larger separation between the two groups than one would expect across the true population.
 ```
 
 ```{r, label='PCALang-Corr',echo=FALSE,warning=FALSE,message=FALSE, results='hide'}
@@ -6033,15 +6052,60 @@ CorrAll_s <- corstars(LangCorr[,3:8], result="none", method="spearman",p.adj = "
 #   kable_styling(latex_options = c("scale_down"))
 ```
 
+<!-- DELETE? -->
+```{r, label='PCALang-fig2', fig.cap="Switching task input variables as a function of PCA components: (A) PC1.ST vs. PC2.Material, and (B) PC1.ST vs. PC3.Nz. ASL conditions are marked in circles and CCRM data in rectangles. Filled shapes denotes conditions with speech distractors and non-filled shaps denotes nonspeech conditions.", fig.align='center', fig.width=8, fig.asp=0.5, out.width='100%', message=FALSE, warning=FALSE, echo=FALSE, results='hide', eval=FALSE}
+Loadings <- as.data.frame(PCA.Lang$var$coord)
+colnames(Loadings)[1:3] <- c("PC1.Lang","PC2.Lang","PC3.Lang")
+# arrange variables into groups
+Loadings$CondCode <- rownames(Loadings)
+Loadings$CondCode <- ifelse(str_detect(Loadings$CondCode, "CCC2.")==TRUE,sprintf("%.06s",Loadings$CondCode),Loadings$CondCode)
+Loadings$Variables <- factor(c("CELF-RS","ECLIPS","ECLIPS","ECLIPS","ECLIPS","ECLIPS",
+                               "CCC2","CCC2","CCC2","CCC2","CCC2","CCC2","CCC2","CCC2",
+                               "CCC2","CCC2"),levels=c("CELF-RS","ECLIPS","CCC2"))
+pragmatic <- c("ECLIPS.PSS","CCC2.E","CCC2.H","CCC2.I","CCC2.J")
+Loadings$Variables2 <- ifelse(Loadings$CondCode %in% pragmatic,"pragmatic","structual")
+
+
+t1 <- ggplot(Loadings, aes(PC1.Lang, PC2.Lang)) + 
+  geom_hline(yintercept=0,color = "black", size=0.5)+
+  geom_point(aes(shape = Variables,fill=Variables), size = 3) + 
+  # geom_text(label=Loadings$CondCode, size=2) +
+  scale_fill_manual(values=c("white","darkgrey","white","darkgrey")) +
+  scale_shape_manual(values=c(0,1,2)) +
+  theme_bw()+
+  theme(axis.text = element_text(size = 11, face="bold",colour = "black"),
+        axis.title.x = element_text(size=11, face="bold"),
+        axis.title.y = element_text(size=11, face="bold"),
+        legend.title = element_text(size=11, face="bold"),
+        legend.text  = element_text(size=11, face="bold"))
+
+t2 <- ggplot(Loadings, aes(PC1.Lang, PC3.Lang)) + 
+  geom_hline(yintercept=0,color = "black", size=0.5)+
+   geom_point(aes(shape = Variables2,fill=Variables2), size = 3) + 
+  # geom_point(aes(color=CondCode), size = 3) + 
+  geom_text(label=Loadings$CondCode,size=3) +
+  scale_fill_manual(values=c("white","darkgrey")) +
+  scale_shape_manual(values=c(1,21)) +
+  # scale_fill_manual(values=c("white","darkgrey","white","darkgrey")) +
+  # scale_shape_manual(values=c(1,2,3)) +
+  theme_bw()+
+  theme(axis.text = element_text(size = 11, face="bold",colour = "black"),
+        axis.title.x = element_text(size=11, face="bold"),
+        axis.title.y = element_text(size=11, face="bold"),
+        legend.title = element_text(size=11, face="bold"),
+        legend.text  = element_text(size=11, face="bold"))
+
+library(patchwork)
+(t1 + t2) + plot_layout(ncol = 2, nrow = 1, heights = c(1, 1), widths = c(1,1)) + plot_annotation(tag_levels = 'A') + plot_layout(guides='collect') &
+  theme(legend.position='bottom',        
+        legend.direction = "horizontal",
+        legend.background = element_blank(),
+        legend.box.background = element_rect(colour = "black"),
+        plot.tag = element_text(face = 'bold'))
+```
+
 #### Correlations
-
-Next, the extent to which individual differences in speech perception could be explained by other measures was examined for the aggregated data across the two groups with multiple Spearman's rho correlations using *rcorr* function [Hmisc R package; @HmiscPackageR] between SSN scores, LiSNS-UK scores for the spatialised conditions and the derived score for spatial release from masking (S0N0, S0N90 & SRM), the principal components for the switching task PC1.ST, PC2.Material and PC3.NZ, and for the language measures PC1.Lang, PC2.Lang and PC3.Lang, average PTA at standard audiometry frequency bands (0.5-4 kHz), average PTA at high-frequency bands ($PTA_{EHF}$, 11 and 16 kHz), and ENVASA total score as a measure for sustained and selective-attention skills. Age effect was accounted for either by using standardised norms when available or by a regression model based z-score transformation. The correlation matrix outcomes are given in Table \@ref(tab:CorrAll-Tab).
-
-There was significant correlation between the listeners overall performance in the switching task (PC1.ST) and their language skills (PC1.Lang; $\rho$ = -0.55, p \< 0.001), PTA ($\rho$ = 0.46, p \< 0.01), speech perception in noise (SSN; $\rho$ = 0.46, p \< 0.01), and the spatialised LiSNS-UK test conditions S0N0 ($\rho$ = 0.35, p \< 0.05) and S0N90 ($\rho$ = 0.45, p \< 0.01). The second ST principal component PC2.Material significantly correlated with S0N0 ($\rho$ = 0.33, p \< 0.05) and SRM ($\rho$ = 0.33, p \< 0.05), whereas no relationship was found between the third ST PCA component (PC3.Nz) and any of the measures used. Finally, as expected, the three ST PCA components were found to be independent from one another with no significant correlations between them.
-
-Performance in the LiSNS-UK exhibited the highest correlation coefficients, with highly significant positive correlation between S0N0 and S0N90, where better performance in one condition was highly associated with better performance in the other ($\rho$ = 0.64, p \< 0.0001), and between S0N90 and SRM ($\rho$ = -0.67, p \< 0.0001), where better SRM was predicted by better performance for S0N90, whereas correlation between S0N0 and SRM was not significant ($\rho$ = 0.08, p = 0.62). Note that lower z-score in the spatialised conditions denotes better performance, whereas the opposite holds for SRM with higher z-scores marking better performance, which explains the negative correlation. A separate group-wise analysis gave similar results for correlation between S0N90 and SRM, whereas correlations in the APD group between S0N0 and S0N90, and between S0N0 and SRM were smaller and not significant ($\rho$: 0.35 and 0.30, respectively).
-
-SSN score was found to be related to performance in the two spatialised LiSNS-UK test conditions with correlation coefficients of 0.30 (S0N90) and 0.39 (S0N0), however only correlation for S0N0 was significant (p \< 0.05), while S0N90 p-value was just above the significance level (p = 0.055). The listeners S0N90 score significantly correlated with hearing sensitivity thresholds measured at both standard (PTA; $\rho$ = 0.45, p \< 0.01) and extended frequency bands ($PTA_{EHF}$; $\rho$ = 0.34, p \< 0.05). Moreover, none of the LiSNS-UK measures significantly correlated with the language principle components PC1.Lang - PC3.Lang or the attention measure ENVASA. Additional significant correlations were found between PC1.Lang and SSN ($\rho$ = -0.51, p \< 0.0001) and between PC1.Lang and the ENVASA task ($\rho$ = 0.46, p \< 0.001). No p-value Bonferroni correction for multiple comparisons was applied.
+Next, the extent to which individual differences in speech perception could be explained by other measures was examined for the aggregated data across the two groups with multiple Spearman's rho correlations using *rcorr* function [Hmisc R package; @HmiscPackageR] between SSN scores, LiSNS-UK scores for the spatialised conditions and the derived score for spatial release from masking (S0N0, S0N90 & SRM), the principal components for the switching task PC1.ST, PC2.Material and PC3.NZ, and for the language measures PC1.Lang, PC2.Lang and PC3.Lang, average PTA at standard audiometry frequency bands (0.5-4 kHz), average PTA at high-frequency bands ($PTA_{EHF}$, at 8, 11 and 16 kHz), and ENVASA total score as a measure for sustained and selective-attention skills. Age effect was accounted for either by using standardised norms when available or by a regression model based z-score transformation. The correlation matrix outcomes are given in Table \@ref(tab:CorrAll-Tab).\
 
 ```{r, label='CorrAll',echo=FALSE,warning=FALSE,message=FALSE, results='hide'}
 d_Corr <- read.csv(file.path(FileDir,'Files','corrData.csv'),header=T) 
@@ -6085,15 +6149,27 @@ CorrByGroups_s <- lapply(split(d_Corr, d_Corr$Group), function(x) {
 
 ```
 
-```{r, label='CorrAll-Tab',echo=FALSE,warning=FALSE,message=FALSE}
+```{r, label='CorrAll-Tab',echo=FALSE,warning=FALSE,message=FALSE,fig.pos='h'}
 colnames(CorrAll_s)[2] <- "PTA$_{EHF}$"
 rownames(CorrAll_s)[2] <- "PTA$_{EHF}$"
 
 kbl(CorrAll_s, booktabs = T, escape = F, linesep = "", caption = "Correlation matrix (Spearman) between the study test measures for aggregated data across the two groups.",
   align = c("lcccccccccccc"), format = "latex",digits = 3) %>%
-  kable_styling(latex_options = c("scale_down")) %>%
+  kable_styling(latex_options = c("scale_down","hold_position")) %>%
   add_footnote(c("significant p-values: **** p < .0001, *** p < .001, ** p < .01, * p < .05"), notation = "none")
+#  kable_styling(latex_options = "hold_position")
+
 ```
+
+There was a significant correlation between the listeners overall performance in the switching task (PC1.ST) and their language skills (PC1.Lang; $\rho$ = -0.55, p \< 0.001), PTA ($\rho$ = 0.46, p \< 0.01), speech perception in noise (SSN; $\rho$ = 0.46, p \< 0.01), and the spatialised LiSNS-UK test conditions S0N0 ($\rho$ = 0.35, p \< 0.05) and S0N90 ($\rho$ = 0.45, p \< 0.01). The second ST principal component, PC2.Material, significantly correlated with S0N0 ($\rho$ = 0.33, p \< 0.05) and SRM ($\rho$ = 0.33, p \< 0.05), whereas no relationship was found between the third PC3.Nz and any of the study measures.\
+<!-- Finally, as expected, the three ST PCA components were found to be independent from one another with no significant correlations between them. -->
+
+Performance in the LiSNS-UK exhibited the highest correlation coefficients, with highly significant correlation between S0N0 and S0N90, where better performance in one condition was highly associated with better performance in the other ($\rho$ = 0.64, p \< 0.0001), and between S0N90 and SRM ($\rho$ = -0.67, p \< 0.0001), where better SRM was predicted by better performance for S0N90, whereas correlation between S0N0 and SRM was not significant ($\rho$ = 0.08, p = 0.62). Note that lower z-score in the spatialised conditions denotes better performance, whereas the opposite holds for SRM with higher z-scores marking better performance, which explains the negative correlation between SRM and S0N90. A separate group-wise analysis gave similar results for correlation between S0N90 and SRM, whereas correlations in the APD group between S0N0 and S0N90, and between S0N0 and SRM were smaller and not significant ($\rho$: 0.35 and 0.30, respectively). The non-significant correlation between SRM and S0N0 stands in contrasts to our expectations, which are supported by the norming study in Chapter ???, for a positive correlation, where listeners with poorer (i.e., higher) S0N0 score were expected to have a larger (i.e., better) SRM. The insignificant correlation as well as the reduced correlation in the APD group is likely due to sampling error and the small sample size in the present study (correlation between the LiSNS-UK condition for the listeners SRT and z-scores are given in appendices in Figures\ \@ref(fig:LiSNS-SRTcorr) and \@ref(fig:LiSNS-zCorr)).\
+
+<!-- SRM vs S0N0: positive correlation, i.e., better SRM is predicted by poorer (higher) S0N0 score. -->
+<!-- SRM vs. S0N90: negative correlation, i.e., better SRM is predicted by better (lower) S0N90 score. -->
+
+SSN score was found to be related to performance in the two spatialised LiSNS-UK test conditions with correlation coefficients of 0.30 (S0N90) and 0.39 (S0N0), however only correlation for S0N0 was significant (p \< 0.05), while p-value for correlation with S0N90 was just above the significance level (p = 0.055). The listeners S0N90 score significantly correlated with hearing sensitivity thresholds measured at both standard (PTA; $\rho$ = 0.45, p \< 0.01) and extended frequency bands ($PTA_{EHF}$; $\rho$ = 0.34, p \< 0.05). Moreover, none of the LiSNS-UK measures significantly correlated with the language principle components PC1.Lang - PC3.Lang or the attention measure ENVASA. Additional significant correlations were found between PC1.Lang and SSN ($\rho$ = -0.51, p \< 0.0001) and between PC1.Lang and the ENVASA task ($\rho$ = 0.46, p \< 0.001). No p-value Bonferroni correction for multiple comparisons was applied.
 
 #### Exploratory predictors in the APD group
 

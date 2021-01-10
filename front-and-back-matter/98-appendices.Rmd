@@ -4,6 +4,8 @@
 
 <!-- If you feel it necessary to include an appendix, it goes here. The first appendix should include the commands above. -->
 
+<!-- https://bookdown.org/yihui/rmarkdown-cookbook/fig-chunk.html -->
+<!-- https://sebastiansauer.github.io/figure_sizing_knitr/ -->
 
 # The First Appendix
 
@@ -26,3 +28,17 @@ This first appendix includes an R chunk that was hidden in the document (using `
 # The Third Appendix
 ```{r ref.label='PCALang-fig2', eval=FALSE, echo = TRUE}
 ```
+
+```{r, ref.label='LiSNS-SRTcorr', fig.cap="LiSNS-UK: Correlations for listeners SRTs (dB SNR).", out.width='90%', fig.align='center', echo=FALSE}
+
+knitr::include_graphics("_main_files/figure-latex/LiSNS-SRTcorr-1.png")
+```
+
+```{r, ref.label='LiSNS-zCorr', fig.cap="LiSNS-UK: Correlations for listeners age-independent z-scores.", out.width='90%', fig.align='center', echo=FALSE}
+
+# knitr::fig_chunk('LiSNS-zCorr', 'png')
+
+knitr::include_graphics("_main_files/figure-latex/LiSNS-zCorr-1.png")
+```
+
+<!-- ![A nice plot.](`r knitr::fig_chunk('LiSNS-zCorr', 'png')`) -->
