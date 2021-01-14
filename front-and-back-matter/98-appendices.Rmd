@@ -29,16 +29,18 @@ This first appendix includes an R chunk that was hidden in the document (using `
 ```{r ref.label='PCALang-fig2', eval=FALSE, echo = TRUE}
 ```
 
-```{r, ref.label='LiSNS-SRTcorr', fig.cap="LiSNS-UK: Correlations for listeners SRTs (dB SNR).", out.width='90%', fig.align='center', echo=FALSE}
 
-knitr::include_graphics("_main_files/figure-latex/LiSNS-SRTcorr-1.png")
-```
+<!-- ![(#fig:LiSNS-SRTcorr) LiSNS-UK: Correlations for listeners SRTs (dB SNR).](`r knitr::fig_chunk('LiSNS-SRTcorr', 'png')`){width=80%} -->
 
-```{r, ref.label='LiSNS-zCorr', fig.cap="LiSNS-UK: Correlations for listeners age-independent z-scores.", out.width='90%', fig.align='center', echo=FALSE}
+![(#fig:LiSNS-SRTcorr) LiSNS-UK: Correlations for listeners SRTs (dB SNR).](_main_files/figure-latex/LiSNS-SRTcorr-1.png){width=100% height=50%}
 
-# knitr::fig_chunk('LiSNS-zCorr', 'png')
+![(#fig:LiSNS-zcorr) LiSNS-UK: Correlations for listeners age-independent z-scores.](_main_files/figure-latex/LiSNS-zCorr-1.png){width=100% height=50%}
 
-knitr::include_graphics("_main_files/figure-latex/LiSNS-zCorr-1.png")
-```
+<!-- # ```{r, ref.label='LiSNS-zCorr', fig.cap="LiSNS-UK: Correlations for listeners age-independent z-scores.", out.width='90%', fig.align='center', echo=FALSE} -->
+<!-- #  -->
+<!-- # # knitr::fig_chunk('LiSNS-zCorr', 'png') -->
+<!-- #  -->
+<!-- # knitr::include_graphics("_main_files/figure-latex/LiSNS-zCorr-1.png") -->
+<!-- # ``` -->
 
 <!-- ![A nice plot.](`r knitr::fig_chunk('LiSNS-zCorr', 'png')`) -->
