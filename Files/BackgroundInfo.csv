@@ -1,28 +1,28 @@
 listener,Group,DOB,TestingDay,Age,Sex,SchoolType,ExpEval,Clinic,Diagnosis,DiagnosisComments,SPD, NrmlSpchUnderstanding,SLT,SLTNrSessions,FMuse,AuditoryTraining,AuditoryTrainingType,AdditonalDisorder,UndergoingAssessment,EarProblems,EarProblemsDur,Grommets,MusicalTraining,MusicalTrainingYears,SRM_Clinic,S0N0_Clinic,S0N90_Clinic
-APD01,APD,25/05/2006,23/04/2019,12,M,Mainstream,Good,GOSH,APD,,0,1,1,NA,1,0,,Dyslexia; poor short-term memory,,1,>1,0,1,4,,,
-APD02,APD,26/01/2007,18/04/2019,12,F,Mainstream,Good,GOSH,APD,,1,1,0,,1,0,,0,,1,>1,0,0,,2.71,0.65,-6.06
-APD03,APD,28/06/2008,27/04/2019,10,M,Mainstream,Good,GOSH,APD,,1,0,1,6 session,1,0,,Visual stress,,1,>1,1,0,,8.92,-0.2,-10.29
-APD04,APD,21/12/2007,12/05/2019,11,M,Mainstream,Good,GOSH,APD,,1,0,0,,0,1,LiSN & Learn,0,,1,>1,0,0,,8.23,1.71,-10.84
+APD01,APD,25/05/2006,23/04/2019,12,M,Mainstream,Good,GOSH,APD,,0,1,1,NA,1,0,,Dyslexia; poor short-term memory,,1,>2,0,1,4,,,
+APD02,APD,26/01/2007,18/04/2019,12,F,Mainstream,Good,GOSH,APD,,1,1,0,,1,0,,0,,1,>2,0,0,,2.71,0.65,-6.06
+APD03,APD,28/06/2008,27/04/2019,10,M,Mainstream,Good,GOSH,APD,,1,0,1,6 session,1,0,,Visual stress,,1,>2,1,0,,8.92,-0.2,-10.29
+APD04,APD,21/12/2007,12/05/2019,11,M,Mainstream,Good,GOSH,APD,,1,0,0,,0,1,LiSN & Learn,0,,1,>2,0,0,,8.23,1.71,-10.84
 APD05,APD,23/09/2006,27/05/2019,12,F,Mainstream,Good,GOSH,APD,,1,1,0,OT x 12 month programm,1,1,LiSN & Learn,mild Dyslexia,,0,0,0,0,,4.6,0.9,-8.4
 APD06,APD,17/04/2007,30/05/2019,12,F,Mainstream,Good,GOSH,APD,,1,0,0,,0,0,,0,ASD,0,0,0,0,,4.82,-0.18,-7.22
 APD07,APD,05/11/2007,30/05/2019,11,M,Mainstream,Good,GOSH,LiD,Diagnosis could not be established due to missing tests (LiSN-S),0,1,0,,0,0,,0,ADHD,0,0,0,0,,NA,NA,NA
-APD08,APD,23/05/2007,20/06/2019,12,M,Mainstream,Good,GOSH,APD,,1,0,1,3 sessions,1,0,,0,,1,>1,0,0,,3.2,-1.24,-6.6
-APD09,APD,14/09/2007,30/08/2019,10,M,Mainstream,Good,GOSH,APD,,0,0,0,,0,0,,0,SLT; HF-ASD,1,>1,0,1,1.5,11.61,1.11,-12.4
-APD10,APD,25/03/2009,11/10/2019,10,M,Mainstream,Good,GOSH,APD,,0,0,1,12 sessions,0,0,,,,1,>1,1,0,,10.29,2.89,-11.67
-APD11,APD,07/05/2009,16/10/2019,10,M,Mainstream,Good,GOSH,LiD,"Did not have Psych Ed. Report on the day of assessment. Although showed APD tendencies, a clear diagnosis was refrained because of unknown WM and cognition function",0,0,0,,1,0,,0,,1,>1,1,1,2,7.43,1.47,-8.7
+APD08,APD,23/05/2007,20/06/2019,12,M,Mainstream,Good,GOSH,APD,,1,0,1,3 sessions,1,0,,0,,1,>2,0,0,,3.2,-1.24,-6.6
+APD09,APD,14/09/2007,30/08/2019,10,M,Mainstream,Good,GOSH,APD,,0,0,0,,0,0,,0,SLT; HF-ASD,1,>2,0,1,1.5,11.61,1.11,-12.4
+APD10,APD,25/03/2009,11/10/2019,10,M,Mainstream,Good,GOSH,APD,,0,0,1,12 sessions,0,0,,,,1,>2,1,0,,10.29,2.89,-11.67
+APD11,APD,07/05/2009,16/10/2019,10,M,Mainstream,Good,GOSH,LiD,"Did not have Psych Ed. Report on the day of assessment. Although showed APD tendencies, a clear diagnosis was refrained because of unknown WM and cognition function",0,0,0,,1,0,,0,,1,>2,1,1,2,7.43,1.47,-8.7
 APD12,APD,14/04/2011,21/10/2019,8,M,Mainstream,Good,GOSH,LiD,,0,0,1,6 session,0,0,,"sig learning, language and literacy problems; sus attention difficulties",Attention & literacy,0,0,0,0,,NA,NA,NA
 APD13,APD,20/01/2012,24/10/2019,7,M,Mainstream (private),Good,South Hampton,APD,Awaiting APD report,0,0,1,3.5 years (2 x weekly),1,1,SoundStorm,suspected Phonological Disorder,,0,0,0,0,,,,
 APD14,APD,14/06/2011,26/10/2019,8,M,Mainstream (private),Bad,LHBC,LiD,"Multilingual background [fluent in English (sister), Italian (mother), Swedish (father)]",0,0,1,x1 per week,0,0,,mild Dyslexia; possible ADD,,0,0,0,0,,NA,NA,NA
-APD15,APD,22/11/2009,29/10/2019,9,F,Mainstream,Good,LHBC,APD,,0,1,0,,1,1,SoundStorm,0,,1,>1,1,0,,NA,NA,NA
+APD15,APD,22/11/2009,29/10/2019,9,F,Mainstream,Good,LHBC,APD,,0,1,0,,1,1,SoundStorm,0,,1,>2,1,0,,NA,NA,NA
 APD16,APD,24/09/2007,09/11/2019,12,M,Special,Good,GOSH,APD,Awaiting APD report,0,0,1,age 6-8: weekely; age 11: x2 per week; present: x1 per week,0,1,Earobics,"ADHD, HF ASD, DLD",,0,0,0,1,4.5,,,
-APD17,APD,30/08/2008,04/12/2019,11,M,Special,Maybe,GOSH,LiD,"no clear diagnosis was given (Failed: AFG; Borderline abnormal: gap in noise, LiSN-S)",0,1,1,NA,1,0,,"Dyslexia, Language difficulties and potentially literacy problems",,1,>1,1,1,1,8.27,-0.41,-10.7
-APD18,APD,07/01/2011,07/12/2019,8,F,Mainstream,Maybe, CHIME (Royal Devon & Exeter Hospital),LiD,,0,1,0,,0,0,,0,ASD,1,>1,0,0,,,,
+APD17,APD,30/08/2008,04/12/2019,11,M,Special,Maybe,GOSH,LiD,"no clear diagnosis was given (Failed: AFG; Borderline abnormal: gap in noise, LiSN-S)",0,1,1,NA,1,0,,"Dyslexia, Language difficulties and potentially literacy problems",,1,>2,1,1,1,8.27,-0.41,-10.7
+APD18,APD,07/01/2011,07/12/2019,8,F,Mainstream,Maybe, CHIME (Royal Devon & Exeter Hospital),LiD,,0,1,0,,0,0,,0,ASD,1,>2,0,0,,,,
 APD19,APD,21/07/2008,16/12/2019,11,M,Mainstream (private),Good,GOSH,APD,1st assessment - SPD; 2nd assessment - normal spatial advantage,1,1,1,NA,1,1,LiSN & Learn,Dyslexia (mother says the reason for diagnosis was prim. for school help),,0,0,0,0,,14.35,-0.53,-14.04
-APD20,APD,27/08/2007,02/01/2020,12,M,Mainstream (ASD unit),Good,GOSH,APD,,1,1,1,2x week since Y7 (termtime only),0,0,,HF-ASD; ADD,,1,>1,0,1,4,,,
-APD21,APD,24/05/2008,11/01/2020,11.7,M,Special,Maybe,GOSH,APD,,1,1,1,NA,1,1,LiSN & Learn,Dyslexia; HF-ASD (Aspergers); Sensory Integration Dosorder; Dyspraxia,,1,0,0,1,NA,,,
-TD01,TD,02/06/2007,16/04/2019,11.1,M,Mainstream,Good,,TD,,,1,0,,,,,0,0,1,<1,0,0,,,,
+APD20,APD,27/08/2007,02/01/2020,12,M,Mainstream (ASD unit),Good,GOSH,APD,,1,1,1,2x week since Y7 (termtime only),0,0,,HF-ASD; ADD,,1,>2,0,1,4,,,
+APD21,APD,24/05/2008,11/01/2020,11.7,M,Special,Maybe,GOSH,APD,,1,1,1,NA,1,1,LiSN & Learn,Dyslexia; HF-ASD (Aspergers); Sensory Integration Dosorder; Dyspraxia,,1,>2,0,1,NA,,,
+TD01,TD,02/06/2007,16/04/2019,11.1,M,Mainstream,Good,,TD,,,1,0,,,,,0,0,1,<2,0,0,,,,
 TD02,TD,03/09/2008,20/04/2019,10.7,M,Mainstream,Good,,TD,,,1,0,,,,,0,0,0,0,0,1,1,,,
-TD03,TD,03/05/2007,31/05/2019,12,M,Mainstream,Good,,TD,,,0,1,10 sessions,,,,0,ADD,1,<1,0,0,,,,
+TD03,TD,03/05/2007,31/05/2019,12,M,Mainstream,Good,,TD,,,0,1,10 sessions,,,,0,ADD,1,<2,0,0,,,,
 TD04,TD,03/11/2008,02/06/2019,10.6,M,Mainstream,Good,,TD,,,1,0,,,,,0,0,0,0,0,0,,,,
 TD05,TD,24/11/2011,22/09/2019,7.9,M,Mainstream,Bad,,TD,,,1,0,,,,,0,ASD,0,0,0,1,1,,,
 TD06,TD,19/02/2009,23/09/2019,10.7,F,Mainstream,Good,,TD,,,1,0,,,,,0,0,0,0,0,1,4,,,
@@ -30,16 +30,16 @@ TD07,TD,14/04/2011,21/10/2019,8.6,M,Mainstream,Good,,TD,,,1,0,,,,,0,0,0,0,0,0,,,
 TD08,TD,22/02/2009,24/10/2019,10.8,F,Mainstream (private),Good,,TD,,,1,0,,,,,0,0,0,0,0,0,,,,
 TD09,TD,22/08/2011,25/10/2019,8.2,M,Mainstream (private),Good,,TD,,,1,0,,,,,0,0,0,0,0,0,,,,
 TD10,TD,20/02/2012,28/10/2019,7.8,F,Mainstream,Good,,TD,,,1,0,,,,,0,0,0,0,0,1,1,,,
-TD11,TD,14/07/2012,16/11/2019,7.4,F,Mainstream,Maybe,,TD,,,1,0,,,,,0,0,1,<1,0,1,2,,,
+TD11,TD,14/07/2012,16/11/2019,7.4,F,Mainstream,Maybe,,TD,,,1,0,,,,,0,0,1,<2,0,1,2,,,
 TD12,TD,26/05/2011,25/11/2019,8.5,F,Mainstream,Good,,TD,,,1,0,,,,,0,0,0,0,0,0,,,,
 TD13,TD,05/07/2012,30/11/2019,7,F,Mainstream,Good,,TD,,,1,0,,,,,0,0,0,0,0,1,0.6,,,
 TD14,TD,03/01/2012,30/11/2019,7,F,Mainstream,Good,,TD,,,1,0,,,,,0,0,0,0,0,1,2,,,
 TD15,TD,30/11/2012,07/12/2019,7,M,Mainstream,Good,,TD,,,1,0,,,,,0,0,0,0,0,0,,,,
 TD16,TD,19/01/2010,11/01/2020,9.11,M,Mainstream,Good,,TD,,,1,0,,,,,0,0,0,0,0,0,,,,
-TD17,TD,06/02/2008,12/01/2020,11.11,F,Mainstream,Good,,TD,,,1,0,,,,,0,0,1,<1,0,1,3,,,
+TD17,TD,06/02/2008,12/01/2020,11.11,F,Mainstream,Good,,TD,,,1,0,,,,,0,0,1,<2,0,1,3,,,
 TD18,TD,12/11/2010,18/01/2020,9.2,F,Mainstream,Good,,TD,,,1,0,,,,,0,0,0,0,0,1,0.6,,,
-TD19,TD,03/12/2009,19/01/2020,10.1,F,Mainstream,Good,,TD,,,1,0,,,,,0,0,1,<1,0,0,,,,
+TD19,TD,03/12/2009,19/01/2020,10.1,F,Mainstream,Good,,TD,,,1,0,,,,,0,0,1,<2,0,0,,,,
 TD20,TD,14/06/2010,22/02/2020,9.8,M,Mainstream,Good,,TD,,,1,1,,,,,0,0,0,0,0,1,2,,,
 TD21,TD,06/03/2010,28/02/2020,9.8,M,HomeSchooled,Maybe,,TD,,,1,0,,,,,0,0,0,0,0,0,,,,
-TD22,TD,20/03/2011,29/02/2020,8.11,M,Mainstream,Maybe,,TD,,,1,0,,,,,0,0,1,<1,0,1,1,,,
+TD22,TD,20/03/2011,29/02/2020,8.11,M,Mainstream,Maybe,,TD,,,1,0,,,,,0,0,1,<2,0,1,1,,,
 TD23,TD,21/02/2009,12/03/2020,11,F,HomeSchooled,Maybe,,TD,,,1,0,,,,,0,0,0,0,0,1,4,,,

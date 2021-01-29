@@ -52,7 +52,6 @@ Individuals may have a combination of both.
 ## Methods
 
 ### Participants
-
 ```{r, include=FALSE}
 if(!require(ggplot2)){install.packages("ggplot2")}
 if(!require(plyr)){install.packages("plyr")}
@@ -206,12 +205,13 @@ Age.t_test <- MKinfer::boot.t.test(Age~ Group, data=d, paired = FALSE,conf.level
 
 
 ```
+<!-- `r as.english(sum(APD_Age$n),english.UK = TRUE)` -->
 
-`r  Hmisc::capitalize(as.character(as.english(sum(TD_Age$n,APD_Age$n),english.UK = TRUE)))` primary school children who are native British English speakers with normal hearing acuity participated in the study. Amongst them `r as.english(sum(APD_Age$n),english.UK = TRUE)` belonged to the APD clinical group (`r SexFreq_APD[1,2]` females) with an average age of `r round(Clean.APD_Age$mean,2)` $\pm$ `r round(Clean.APD_Age$sd,2)` years (range: `r round(Clean.APD_Age$min,2)` - `r round(Clean.APD_Age$max,2)` years). The remaining 23 (12 females) comprised of typically developing control children (TD) with no reported concerns or diagnosis of an auditory, language or other cognitive developmental disorder. The TD group average age was 9.47 ± 1.58 years and ranged between 7 to 12.1 years. Since not all the measurement equipment was easily portable and in order to maintain the same environment during the assessment across the complete sample, the children and their caregivers were required to travel to central London for the testing. In order to maximise the number of children taking part in the study, 8 out of the 23 TD children (35\%) had APD siblings which took part in a parallel study on the same day of testing. All the children who participated in the study were required to have normal hearing acuity, defined as thresholds $\leq$ 25 dB HL at the octave frequency bands between 0.25 to 8 kHz and their eardrum had to be visible, healthy and intact in both ears following otoscopic inspection. One APD participant was excluded from the analysis due to raised thresholds predominantly in the right ear, ranging between 30 to 45 dB HL (PTA$_{Right}$ = 36.25 dB HL; PTA$_{Left}$ = 13.75 dB HL), thus resulting in a final APD group size of twenty. Otoscopic inspection of the child's ear canal revealed a large accumulation of cerumen in both ears with an occluded right ear. Two additional children (x1 APD, x1 TD) had slightly raised thresholds at 8 kHz in one ear of 35 and 30 dB HL, respectively. However, since thresholds at all other frequency bands were well within the $\leq$ 25 dB HL criteria they were not excluded.\
+`r  Hmisc::capitalize(as.character(as.english(sum(TD_Age$n,APD_Age$n),english.UK = TRUE)))` primary school children who are native British English speakers with normal hearing acuity participated in the study. Amongst them twenty-one  belonged to the APD clinical group (`r SexFreq_APD[1,2]` females) with an average age of `r round(Clean.APD_Age$mean,2)` $\pm$ `r round(Clean.APD_Age$sd,2)` years (range: `r round(Clean.APD_Age$min,2)` - `r round(Clean.APD_Age$max,2)` years). The remaining twenty-three (12 females) comprised of typically developing control children (TD) with no reported concerns or diagnosis of an auditory, language or other cognitive developmental disorder. The TD group average age was 9.47 ± 1.58 years and ranged between 7 to 12.1 years. Since not all the measurement equipment was easily portable and in order to maintain the same environment during the assessment across the complete sample, the children and their caregivers were required to travel to central London for the testing. In order to maximise the number of children taking part in the study, 8 out of the 23 TD children (35\%) had APD siblings which took part in a parallel study on the same day of testing. All the children who participated in the study were required to have normal hearing acuity, defined as thresholds $\leq$ 25 dB HL at the octave frequency bands between 0.25 to 8 kHz and their eardrum had to be visible, healthy and intact in both ears following otoscopic inspection. One APD participant was excluded from the analysis due to raised thresholds predominantly in the right ear, ranging between 30 to 45 dB HL (PTA$_{Right}$ = 36.25 dB HL; PTA$_{Left}$ = 13.75 dB HL), thus resulting in a final APD group size of twenty. Otoscopic inspection of the child's ear canal revealed a large accumulation of cerumen in both ears with an occluded right ear. Two additional children (x1 APD, x1 TD) had slightly raised thresholds at 8 kHz in one ear of 35 and 30 dB HL, respectively. However, since thresholds at all other frequency bands were well within the $\leq$ 25 dB HL criteria they were not excluded.\
 
 APD children were recruited in two ways. Children diagnosed with APD at Great Ormond Street Hospital (GOSH) or at the London Hearing and Balance Centre (LHBC), London, UK, were identified based on their clinical records and were contacted by a clinical team member. The caregivers were provided with information about the study and means of contact to express interest in participation. Others, including the TD group were recruited by advertisements on social networks (e.g., APD Support UK Facebook group), science events, local information boards and UCL staff newsletter email, where parents were requested to fill-out an online interest form with short screening questions to ensure that the child met the participation requirements. Most of the children in the APD group (85\%, 17/20) were reported to undergo an APD assessment at GOSH, about a third were directly recruited from the clinic. The remaining three were reported to be assessed at LHBC, at the University of Southampton Auditory Implant Service and Chime Audiology Royal Devon & Exeter Hospital (screening only).\
 
-Our initial aim was to take a conservative stance on inclusion criteria by including only those who met a clinical APD criteria (2 SD below the norms on two or more tests during the assessment). Moreover, being aware of the high morbidity with other developmental disorders (PERCENTAGE + REF), we strived to recruit children who display a "pure" form of APD without reported diagnosis or concerns for additional developmental disorder/s. However, very few APD children met these strict criteria, only 75\% (15/20) met the clinical criteria of APD, out of which 60\% (9/15) where diagnosed with spatial processing disorder (SPD) due to abnormal SRM in the LiSN-S task (see Table \@ref(tab:Background-Tab) for descriptives of the APD group). Of the remaining children in the APD group, four did not meet the diagnosis criteria for various reasons (e.g., young age, lack of psychological educational evaluation report and the need to exclude other deficits), however their assessment report acknowledged some "auditory processing difficulties", whereas the fifth child awaited an APD assessment following an APD screening. Furthermore, half of the APD group (10/20) were reported for being diagnosed with one or more secondary developmental disorder/s (x6 Dyslexia, x3 HF-ASD, x3 DLD, x1 ADHD, x1 ADD, x1 Dyspraxia, x1 visual stress, x1 sensory integration disorder, and x1 poor short-term WM). Nonetheless, several caregivers reported that their motivation for seeking additional diagnosis was to get more help from the school, rather than a real concern, after feeling that their support for their child's APD was lacking.\
+Our initial aim was to take a conservative stance on inclusion criteria by including only those who met a clinical APD criteria (2 SD below the norms on two or more tests during the assessment). Moreover, being aware of the high prevalence of APD children with additional co-occurring developmental disorders, we strived to recruit children who display a "pure" form of APD without reported diagnosis or concerns for additional developmental disorder/s. However, very few APD children met these strict criteria, only 75\% (15/20) met the clinical criteria of APD, out of which 60\% (9/15) where diagnosed with spatial processing disorder (SPD) due to abnormal SRM in the LiSN-S task (see Table \@ref(tab:Background-Tab) for descriptives of the APD group). Of the remaining children in the APD group, four did not meet the diagnosis criteria for various reasons (e.g., young age, lack of psychological educational evaluation report and the need to exclude other deficits), however their assessment report acknowledged some "auditory processing difficulties", whereas the fifth child awaited an APD assessment following an APD screening. Due to the small sample-size these children were included in the APD group for the analysis, nevertheless, they were subdivided as children with Listening Difficulties (LiD) and differences in performance LiD and APD children were later examined. Furthermore, half of the APD group (10/20) were reported for being diagnosed with one or more secondary developmental disorder/s (x6 Dyslexia, x3 HF-ASD, x3 DLD, x1 ADHD, x1 ADD, x1 Dyspraxia, x1 visual stress, x1 sensory integration disorder, and x1 poor short-term WM). Nonetheless, several caregivers reported that their motivation for seeking additional diagnosis was to get more help from the school, rather than a real concern, after feeling that their support for their child's APD was lacking.\
 
 ```{r,label='Background-Tab', echo=FALSE, message=FALSE}
 BackgroundTab <- read.csv(file.path(FileDir,'Files','BackgroundStats.csv'),header=F) 
@@ -226,7 +226,7 @@ kbl(BackgroundTab, booktabs = T,escape = F, linesep = "",caption = "APD group de
 
 ```
 
-Caregivers from both groups completed a comprehensive background questionnaire, similar to the one that is typically given prior to an APD assessment, concerning the guardian/s educational level, child and family history of hearing, listening problems and developmental disorders, child history of otitis media, grommets, pregnancy-related questions (e.g., complications, prematurity, etc.), APD-related (e.g., date of diagnosis, location, use of FM device and auditory training), any diagnosis or concerns regarding the child's speech, language, educational and/or cognitive skills, speech and language therapy, medication taken, musical training and the type of school the child attends.\
+Caregivers from both groups completed a comprehensive background questionnaire, similar to the one that is typically given prior to an APD assessment, concerning the caregiver/s educational level, child and family history of hearing, listening problems and developmental disorders, child history of otitis media with effusion (OME), pressure-equalisation tubes (PET / grommets), pregnancy-related questions (e.g., complications, prematurity, etc.), APD-related (e.g., date of diagnosis, location, use of FM device and auditory training), any diagnosis or concerns regarding the child's speech, language, educational and/or cognitive skills, speech and language therapy, medication taken, musical training and the type of school the child attends.\
 
 Children in the APD group were on average 1.5 years older than children in the TD group. Difference in age between the two groups was tested using t-test with Welch degrees of freedom correction for uneven sample-size [independent-samples with bootstrapping n=9999; MKinfer package; @MKinferPackageR], showing a significant difference in age between the groups [t(`r round(Age.t_test$parameter,2)`) = `r  round(Age.t_test$statistic,2)`, p = `r round(Age.t_test$p.value,3)`]. Nonetheless, since age is often reported as a strong indicator for performance in other similar behavioural studies, analysis of the results obtained in the current study was conducted for age-independent scaled scores and should not affect the comparison between the two groups. The project was approved by the UCL Research Ethics Committee (Project ID Number 0544/006) and the NHS Health Research Authority (REC reference: 18/LO/0250). The testing commenced once an informed consent was given by both the caregiver and the child.
 
@@ -252,25 +252,25 @@ kbl(MethodsTab, booktabs = T,escape = F, linesep = "",caption = "Summary of the 
 \
 Otoscopic inspection was performed prior to the audiometric test to ensure the ear was clear from cerumen and to avoid harming the eardrum when inserting the ear probe. Both standard and extended high-frequency (EHF) audiometry thresholds were measured using the Hughson-Westlake manual procedure, starting from 1\ kHz. Standard air conduction pure-tone audiometry was carried out at six octave frequency bands ranging between 0.25 to 8 kHz using ???? audiometer and ??? headphones.\
 
-Extended high-frequency pure-tone detection thresholds were measured at four octave frequency bands 8, 11, 16, \& 20 kHz using locally written MATLAB based software which generated the stimulus and collected the data. Target tones were pulsed (3 repetitions) with a duration time of 700 ms and 50 ms rise/fall time. EHF measurements took place in a designated sound attenuated chamber with the child sitting in the centre of the chamber while the examiner was situated outside. Communication during the testing was carried out via a video-audio intercom system. The child was instructed to raise his/hers hand each time s/he heard a tone. The MATLAB script was executed using a Windows PC which which was connected via USB to an RME ???? sound card (Audio AG, Haimhausen Germany) and an ER10X Extended-Bandwidth Acoustic Probe System (Etym$\bar{o}$tic Research, Elk Grove Village, IL). Stimulus was presented via an otoacoustic emission probe with silicon tips in variable sizes (10, 12 or 13 mm????), depending on the size of the child's ear.\
+Extended high-frequency pure-tone detection thresholds were measured at four octave frequency bands 8, 11, 16, \& 20 kHz using locally written MATLAB based software which generated the stimulus and collected the data. Target tones were pulsed (3 repetitions) with a duration time of 700 ms and 50 ms rise/fall time. EHF measurements took place in a designated sound attenuated chamber with the child sitting in the centre of the chamber while the examiner was situated outside. Communication during the testing was carried out via a video-audio intercom system. The child was instructed to raise his/hers hand each time s/he heard a tone. The MATLAB script was executed using a Windows PC which which was connected via USB to an RME ???? sound card (Audio AG, Haimhausen Germany) and an ER10X Extended-Bandwidth Acoustic Probe System (Etym$\bar{o}$tic Research, Elk Grove Village, IL). Stimulus was presented via an otoacoustic emission probe with silicon tips in variable sizes (between 10 to 13 mm), depending on the size of the child's ear.\
 
 Standing waves in the ear canal produces spatially non-uniform sound pressure at frequencies above 2-3 kHz, introducing calibration errors when estimating the sound pressure level arriving at the eardrum [@Siegel1994; @Richmond2011; @Lee2012]. Together with other factors such as individual variations in the ear canal length and differences in depth in which the ear probe is inserted into the ear canal, these factors can introduce up to 20 dB calibration error [@Siegel1994]. To account for that, a sound pressure level calibration procedure was used (chirp noise) using a similar technique as described by @Lee2012. For each frequency, the first half-wave resonance of the ear canal was measured, estimating the distance between the ear probe and the eardrum. The target stimulus was then scaled to the desired output level that corresponds to 0 dB HL using the in-situ calibration forward-pressure level data (FPL) and EHF-specific weighting thresholds (in dB SPL) measured across 84 NH listeners aged 10 to 21 years [see Table 1 in @Lee2012]. 
 
 ##### Switching task (ST)
 \
-Estimating the effect of IM while minimising peripheral EM on speech perception was measured using the switching task (ST) which is believed to assess the listeners ability to switch attention and integration of binaural information. The exact same test procedure and equipment was used as described in Chapter ????. Listeners were presented with both test versions using the ASL and the CCRM speech material. As for the stimuli, the ASL target sentences, spoken by a single male talker, were taken from the final sentences selected following the normalisation study. In addition, a level correction was applied to each sentence using the sentence-specific weighing factors estimated in the normalisation study (see Chapter ???). The first five test lists out of the eight phonetically-balanced normalised test lists ($\grave{a}$ 25 sentences each) were used, whereby their order was quasi-randomised to account for order, masker combinations, and fatigue effect. The target CCRM sentences were the same as described in Chapter ???, spoken by three different male talkers, were selected at random every trial and always began with the priming animal 'dog'. The target speech material was presented either without a distractor (Quiet) with and without switching (NoAlt / Alt) or with a distractor. A selection of four distractors were used (see Chapter ??? for detailed description): English (ENG_F) and Mandarin (MDR_F) unrelated connected-speech, each spoken by ten different female talkers, and a non-speech amplitude-modulated speech-spectrum-noise (AMSSN) with the envelope of a single talker out of 40 talkers (20 females). The fourth distractor was presented only with the CCRM speech material and comprised of CCRM target-like sentences (CCRM_F) with a different priming animal, colour and digit, spoken by ten different female talkers. Each participant was presented with a total of 11 runs, one for each test condition, with 5 conditions for the ASL (Quiet-NoAlt,Quiet-Alt, MDR_F-Alt, ENG_F-Alt), and 6 for the CCRM (with the additional CCRM_F-Alt condition). Testing started following a practice phase, where four trials of each of the eleven test conditions were presented. Practice runs started at an easy-to-moderate DC rate of 0.8 in order to expose the listeners to the adaptive procedure. In addition, every test run started with two practice sentences (DC start = 0.97) to orient the listeners to the test condition that is about to be presented.\
+Estimating the effect of IM while minimising peripheral EM on speech perception was measured using the switching task (ST) which is believed to assess the listeners ability to switch attention and integration of binaural information. The exact same test procedure and equipment was used as described in Chapter\ \@ref(Chpt1). Listeners were presented with both test versions using the ASL and the CCRM speech material. As for the stimuli, the ASL target sentences, spoken by a single male talker, were taken from the final sentences selected following the normalisation study. In addition, a level correction was applied to each sentence using the sentence-specific weighing factors estimated in the normalisation study (see Chapter\ \@ref(Chpt2)). The first five test lists out of the eight phonetically-balanced normalised test lists ($\grave{a}$ 25 sentences each) were used, whereby their order was quasi-randomised to account for order, masker combinations, and fatigue effect. The target CCRM sentences were the same as described in Chapter\ \@ref(Chpt1), spoken by three different male talkers, were selected at random every trial and always began with the priming animal 'dog'. The target speech material was presented either without a distractor (Quiet) with and without switching (NoAlt / Alt) or with a distractor. A selection of four distractors were used (see Chapter\ \@ref(Chpt1) for detailed description): English (ENG_F) and Mandarin (MDR_F) unrelated connected-speech, each spoken by ten different female talkers, and a non-speech amplitude-modulated speech-spectrum-noise (AMSSN) with the envelope of a single talker out of 40 talkers (20 females). The fourth distractor was presented only with the CCRM speech material and comprised of CCRM target-like sentences (CCRM_F) with a different priming animal, colour and digit, spoken by ten different female talkers. Each participant was presented with a total of 11 runs, one for each test condition, with 5 conditions for the ASL (Quiet-NoAlt,Quiet-Alt, MDR_F-Alt, ENG_F-Alt), and 6 for the CCRM (with the additional CCRM_F-Alt condition). Testing started following a practice phase, where four trials of each of the eleven test conditions were presented. Practice runs started at an easy-to-moderate DC rate of 0.8 in order to expose the listeners to the adaptive procedure. In addition, every test run started with two practice sentences (initial DC = 0.97) to orient the listeners to the test condition that is about to be presented.\
 <!-- *repetative? refer to Chapter to instead and list only the stimuli that is used?* -->
 <!-- The switching task (ST) is a novel speech-on-speech listening task that involves perception of interrupted and periodically segmented speech that is switched between the two ears out-of-phase with an interrupted distractor. Since segments of the target and of the distractor are never presented in the same ear at the same time, it enables to eliminate peripheral (EM) masking, while maintaining high IM for speech distractors. The task assesses the ability to switch attention and integration of binaural information. -->
 
 ##### Listening in Spatialised Noise Sentences UK (LiSNS-UK)  
 \
-The locally developed Listening in Spatialised Noise Sentences UK (LiSNS-UK) assesses the ability to use binaural cues in speech-on-speech listening conditions. The test development, speech material normalisation, and norms standardisation followed @Cameron2007 development steps and are described in detail in Chapter ???. The test uses virtualisation techniques to create spatial distribution of sound sources in space for headphones presentation where target sentences [ASL; @MacLeod1990] are presented in two simultaneous speech distractors (unrelated children's stories spoken by the target talker). The LiSNS-UK comprises of two main listening conditions, differing in their availability of spatial cues. The target sentences are configured to always appear in front of the listener's head, at 0$^{\circ}$ azimuth on the horizontal plane, with the two streams of speech distractors either collocated in space with the target (S0N0), resulting in relatively poor speech perception, or offset in space, with one distractor to either side of the target at $\pm$ 90$^{\circ}$. The spatial separation in the later condition results in an improvement in speech perception of circa 13 dB [@Cameron2011], typically termed as spatial release from masking (SRM). This SRM advantage is calculated by taking the difference between performance in the collocated and the separated condition.\
+The locally developed Listening in Spatialised Noise Sentences UK (LiSNS-UK) assesses the ability to use binaural cues in speech-on-speech listening conditions. The test development, speech material normalisation, and norms standardisation followed @Cameron2007 development steps and are described in detail in Chapter\ \@ref(Chpt2). The test uses virtualisation techniques to create spatial distribution of sound sources in space for headphones presentation where target sentences [ASL; @MacLeod1990] are presented in two simultaneous speech distractors (unrelated children's stories spoken by the target talker). The LiSNS-UK comprises of two main listening conditions, differing in their availability of spatial cues. The target sentences are configured to always appear in front of the listener's head, at 0$^{\circ}$ azimuth on the horizontal plane, with the two streams of speech distractors either collocated in space with the target (S0N0), resulting in relatively poor speech perception, or offset in space, with one distractor to either side of the target at $\pm$ 90$^{\circ}$. The spatial separation in the later condition results in an improvement in speech perception of circa 13 dB [@Cameron2011], typically termed as spatial release from masking (SRM). This SRM advantage is calculated by taking the difference between performance in the collocated and the separated condition.\
 
 Speech distractors were presented continuously throughout a run at a fixed 65 dB SPL output level and comprised of a combination of two out of three available passages. A 1-up/1-down adaptive procedure was used, varying the level of the target talker relative to the distractors depending on the listener's response to measure their speech reception threshold (SRT), i.e., the signal-to-noise-ratio (SNR) yielding 50\% speech intelligibility. A 2 ms long reference cue (1 kHz pure-tone) was presented 500 ms before the target sentence onset at 65 dB SPL. The initial target output level was 75 dB SPL for the collocated condition and 70\ dB\ SPL for the separated condition with an initial step-size of 4 dB SNR. The step-size was reduced after every reversal, reaching a minimum step-size of 2 dB SNR after three practice reversals. The adaptive procedure ended once all 25 test trials were presented and stopped in case a maximal output level of 89\ dB\ SPL was reached more than three times. Nonetheless, such event did not occur in the present study. Since each listener was only presented once with each condition, it was decided not to introduce any other stopping rules that could have expedited the testing time but may as well introduced an estimation error for the SRTs in some cases. The SRT was calculated by averaging the test reversals SNRs, whereby test reversals were defined as any reversals following three practice reversals.\
 
-The order of the listening condition, test lists, sentences within a run, and distractors combinations was fixed across all the participants and started with the collocated condition. Each test list consisted of 25 sentences taken from the 8-phonetically-balanced ASL test lists which were constructed following the normalisation study and a sentence-specific level correction was applied (see Chapter. ???). Spatialisation was applied by convolving each stimuli with head-related transfer functions (HRTFs) at the corresponding azimuthal direction separately for the left and the right channel. The HRTFs were measured with a Knowles Electronics Manikin for Acoustic Research (KEMAR) with a small pinnae taken from the CIPIC HRTF database[^rmd-basics-cites-and-refs-1] [see @Algazi2001, "special" HRTF data]. A post-equalisation step was applied in order to flatten the magnitude of the headphones frequency response. Headphone-to-ear Transfer Functions (HpTFs) measured with KEMAR manikin for HD-25 supraaural headphones were extracted from @Wierstorf2011 HRTF database. The final mixed stimulus was filtered with the inverse HpTFs separately for the left and the right channel before being combined together as a final step. Every participant was presented with two runs, one for each listening condition (collocated / separated). Testing started following a practice phase of two runs, one for each of the test conditions with five BKB sentences each [@Bench1979]. Listeners were instructed to verbally repeat the target sentences to the experimenter who was situated alongside in a sound treated chamber. The experimenter scored the response by selecting the correctly repeated keywords on the screen. Listeners were encouraged to guess if unsure while no feedback was given at any time. A loose keyword scoring method was used, whereby errors of case or declension were considered as correct responses, e.g., a repetition of the keywords '$<$clown**s**$>$ $<$funny$>$ $<$face**s**$>$' to the stimulus 'The $<$clown$>$ had a $<$funny$>$ $<$face$>$'.
+The order of the listening condition, test lists, sentences within a run, and distractors combinations was fixed across all the participants and started with the collocated condition. Each test list consisted of 25 sentences taken from the 8-phonetically-balanced ASL test lists which were constructed following the normalisation study and a sentence-specific level correction was applied (see Chapter\ \@ref(Chpt2)). Spatialisation was applied by convolving each stimuli with head-related transfer functions (HRTFs) at the corresponding azimuthal direction separately for the left and the right channel. The HRTFs were measured with a Knowles Electronics Manikin for Acoustic Research (KEMAR) with a small pinnae taken from the CIPIC HRTF database[^Chapt3-1] [see @Algazi2001, "special" HRTF data]. A post-equalisation step was applied in order to flatten the magnitude of the headphones frequency response. Headphone-to-ear Transfer Functions (HpTFs) measured with KEMAR manikin for HD-25 supraaural headphones were extracted from @Wierstorf2011 HRTF database. The final mixed stimulus was filtered with the inverse HpTFs separately for the left and the right channel before being combined together as a final step. Every participant was presented with two runs, one for each listening condition (collocated / separated). Testing started following a practice phase of two runs, one for each of the test conditions with five BKB sentences each [@Bench1979]. Listeners were instructed to verbally repeat the target sentences to the experimenter who was situated alongside in a sound treated chamber. The experimenter scored the response by selecting the correctly repeated keywords on the screen. Listeners were encouraged to guess if unsure while no feedback was given at any time. A loose keyword scoring method was used, whereby errors of case or declension were considered as correct responses, e.g., a repetition of the keywords '$<$clown**s**$>$ $<$funny$>$ $<$face**s**$>$' to the stimulus 'The $<$clown$>$ had a $<$funny$>$ $<$face$>$'.
 
-[^rmd-basics-cites-and-refs-1]: The database is available online in: <https://www.ece.ucdavis.edu/cipic/spatial-sound/hrtf-data/>
+[^Chapt3-1]: The database is available online in: <https://www.ece.ucdavis.edu/cipic/spatial-sound/hrtf-data/>
 
 ##### Speech-shaped-noise (SSN)  
 \
@@ -293,7 +293,7 @@ knitr::include_graphics("figures/ENVASAparadigm.png")
 
 ##### CELF-RS  
 \
-The Recalling Sentences (RS) sub-test of the Clinical Evaluation of Language Fundamentals UK fifth edition [CELF-5-UK @HWiig2017] was administered to assess the listeners expressive language skills, measuring the ability to repeat in verbatim sentences with varying length and complexity. Standardised norms are available for children aged 5 to 16 years. The CELF-RS is simple and quick to administrate and has been shown to be a good psycholinguistic marker for children with Developmental Language Disorder (DLD) and to provide high levels of sensitivity and specificity [@Conti-Ramsden2001], thus making it a good screening tool. Scoring were marked by hand by the examiner as instructed by the test manual. The sentences were presented using a local MATLAB program via headphones using the same experimental equipment as listed above at a comfortable output level of 70 dB HL. The sentences were spoken by a female speaker with a standard southern British English accent and were recorded in a sound-treated recording booth at the Speech, Hearing and Phonetics Sciences (SHaPS) UCL laboratory, London. The task began with two practice sentences while the number of test items varied depending on the child's age and performance. No repetitions or feedback was given during the testing and the test was discontinued in case the child failed to score any points for four consecutive items. Age-scaled score were calculated based on the test norms with a mean score of 10 and SD of 3. Scaled scores within $\pm$ 1 SD from the norms mean (between 8 to 12) are classified as average scores, whereas performance beyond $\pm$ 1 SD are classified as above / below the average score, with scaled-scores \<\ 7 considered as abnormally poor.\
+The Recalling Sentences (RS) sub-test of the Clinical Evaluation of Language Fundamentals UK fifth edition [CELF-5-UK; @HWiig2017] was administered to assess the listeners expressive language skills, measuring the ability to repeat in verbatim sentences with varying length and complexity. Standardised norms are available for children aged 5 to 16 years. The CELF-RS is simple and quick to administrate and has been shown to be a good psycholinguistic marker for children with Developmental Language Disorder (DLD) and to provide high levels of sensitivity and specificity [@Conti-Ramsden2001], thus making it a good screening tool. Scoring were marked by hand by the examiner as instructed by the test manual. The sentences were presented using a local MATLAB program via headphones using the same experimental equipment as listed above at a comfortable output level of 70 dB HL. The sentences were spoken by a female speaker with a standard southern British English accent and were recorded in a sound-treated recording booth at the Speech, Hearing and Phonetics Sciences (SHaPS), UCL laboratory, London. The task began with two practice sentences while the number of test items varied depending on the child's age and performance. No repetitions or feedback was given during the testing and the test was discontinued in case the child failed to score any points for four consecutive items. Age-scaled score were calculated based on the test norms with a mean score of 10 and SD of 3. Scaled scores within $\pm$ 1 SD from the norms mean (between 8 to 12) are classified as average scores, whereas performance beyond $\pm$ 1 SD are classified as above / below the average score, with scaled-scores \<\ 7 considered as abnormally poor.\
 
 #### Questionnaires
 
@@ -364,8 +364,8 @@ for (j in 1:2){
   plot(frqs,xlim=c(frqs[1],max(frqs)),type="n",axes=FALSE,ann=FALSE,ylim=rev(range(c(min,max))),log = "x")
   box()
   
-  mtext(outer=T,side=1,line=3,text="frequency (kHz)",cex=1.5)		
-  mtext(outer=T,side=2,line=3,text="threshold (dB HL)",cex=1.5)	
+  mtext(outer=T,side=1,line=3,text="Frequency (kHz)",cex=1.5)		
+  mtext(outer=T,side=2,line=3,text="Hearing threshold (dB HL)",cex=1.5)	
   
   if (j<=1){
     axis(2,col="black",cex.axis=1.5)
@@ -526,7 +526,7 @@ t1 <- ggplot(d_L, aes(x=Freq,y=dBHL,fill=Group))+
   scale_y_reverse(limits = c(40,-10),breaks=seq(40,-10,-5))+
   #geom_text(label=d_HF_Cmpr_L$listener)+
     scale_x_discrete(labels=c("250"="0.25","500"="0.5","1000"="1","2000"="2","4000"="4","8000"="8"))+
-  labs(y = "dB HL",x = "Frequency in kHz")+ 
+  labs(y = "Hearing thresholds (dB HL)",x = "Frequency (kHz)")+ 
   theme_bw()+
   theme(axis.text = element_text(size = 11, face="bold",colour = "black"),
         axis.title.x = element_text(size=11, face="bold"),
@@ -1051,7 +1051,7 @@ d_HF_PTA_L$Group <- factor(d_HF_PTA_L$Group,levels=c("APD","TD"))
 
 d_HF_PTA_L <- data.frame(d_HF_PTA_L)
 ```
-The listeners pure-tone detection thresholds measured at the octave frequency bands 8, 11 and 16 kHz are plotted in Figure \@ref(fig:EHF) separately for the left and the right ear. Again, the thin black lines represents individuals' thresholds in the APD group and the group mean is marked by the bold black line. The shaded grey area represents the TD group thresholds range and the white line represents their mean at each frequency. It is worth noting that in many children from both groups it was not possible to recored a reliable response for thresholds measured at 20\ kHz, resulting in a large portion of missing data points. Therefore, thresholds measured at 20\ kHz were not included in the analysis. A comparison of the group means reveals relatively small differences in thresholds between the groups, with a relatively larger difference in the left ear, where APD thresholds at 11 and 16 kHz were on average 5\ dB higher (i.e., poorer).\
+The listeners pure-tone detection thresholds measured at the octave frequency bands 8, 11 and 16 kHz are plotted in Figure \@ref(fig:EHF) separately for the left and the right ear. Again, the thin black lines represents individuals' thresholds in the APD group and the group mean is marked by the bold black line. The shaded grey area represents the TD group thresholds range and the white line represents their mean at each frequency. It is worth noting that in many children from both groups it was not possible to recored a reliable response for thresholds measured at 20\ kHz, resulting in a large portion of missing data points. Therefore, thresholds measured at 20\ kHz were not included in the analysis. A comparison of the group means reveals relatively small differences in thresholds between the groups, with a relatively larger difference in the left ear, where APD thresholds at 11 and 16 kHz were on average 5\ dB higher (i.e., poorer). Boxplots of the listeners thresholds by frequency and ear as well as their calculated PTA's and BE are shown in Figure \@ref(fig:EHF-Boxplot) A-B. Descriptives of the groups detection thresholds is given in Table \@ref(tab:EHF-tab).\
 
 ```{r, label='EHF', fig.cap="EHF audiometry: Pure-tone detection thresholds for extended high-frequency bands measured in the left and the right ear. The thin black lines represents the individual thresholds in the APD group and the group mean is marked by the bold black line. The shaded grey area represents the TD group threshold range and the white line represents the TD group mean at each frequency.", echo=FALSE, fig.align='center', figures-side, out.width='85%',fig.width=12, fig.height=6, message=FALSE, error=FALSE}
 
@@ -1082,8 +1082,8 @@ for (j in 1:2){
   plot(frqs,xlim=c(frqs[1],max(frqs)),type="n",axes=FALSE,ann=FALSE,ylim=rev(range(c(min,max))),log = "x")
   box()
   
-  mtext(outer=T,side=1,line=3,text="frequency (kHz)",cex=1.5)		
-  mtext(outer=T,side=2,line=3,text="threshold (dB HL)",cex=1.5)	
+  mtext(outer=T,side=1,line=3,text="Frequency (kHz)",cex=1.5)		
+  mtext(outer=T,side=2,line=3,text="Hearing thresholds (dB HL)",cex=1.5)	
   
   if (j<=1){
     axis(2,col="black",cex.axis=1.5)
@@ -1163,8 +1163,6 @@ for (j in 1:2){
 
 ```
   
-Boxplots of the listeners thresholds by frequency and ear as well as their calculated PTA's and BE are shown in Figure \@ref(fig:EHF-Boxplot) A-B. Descriptives of the groups detection thresholds is given in Table \@ref(tab:EHF-tab).\
-
 ```{r,label='EHF-Boxplot', echo=FALSE, error=FALSE, fig.align='center', fig.asp=0.5, fig.cap="EHF audiometry: Boxplots for pure-tone detection thresholds measured at the extended high-frequency bands split by ear and groups (A). Boxplots of the groups averaged PTAs and better-ear BE thresholds are depicted in figure B. Individual scores are indicated by circles. The boxes show the data interquartile range (25th-75th percentile) and the horizontal line indicate the median (i.e., 50th percentile). Values that fall within 1.5 times the interquartile range are indicated by the wiskers.", fig.width=10, message=FALSE, warning=TRUE, out.width='100%'}
 ### Frequencies ###
 
@@ -1180,7 +1178,7 @@ t1 <- ggplot(drop_na(d_HF_L, dBHL), aes(x=Freq,y=dBHL,fill=Group),show.legend=FA
   scale_y_reverse(limits = c(45,-5),breaks=seq(45,-5,-5))+
   #geom_text(label=d_HF_Cmpr_L$listener)+
   scale_x_discrete(labels=c("8000"="8","11000"="11","16000"="16"))+
-  labs(y = "dB HL",x = "Frequency in kHz")+ 
+  labs(y = "Hearing thresholds (dB HL)",x = "Frequency (kHz)")+ 
   theme_bw()+
   theme(axis.text = element_text(size = 11, face="bold",colour = "black"),
         axis.title.x = element_text(size=11, face="bold"),
@@ -1408,7 +1406,7 @@ kbl(EHF_PTA.nparLD,booktabs = T, escape = F, linesep = "",caption = "EHF audiome
 ### ST
 
 #### Outliers & missing data {.unnumbered}
-As a first step, the listeners adaptive track and psychometric functions were manually inspected for abnormalities. The proportion of correct keywords within the final test trials (LevsPC) was calculated as a measure describing the success of the adaptive procedure. Since the adaptive procedure was set to yield 50\%-correct, a successful procedure is expected to have a LevsPC at approximately 50\% range. A binomial statistical test was applied to identify observations that significantly differ from 50\%. Observations with LevsPC $\leq$ 35\% were flagged as possible outliers and were further inspected (see Figure \@ref(fig:ST-FigLevsPC)). Interestingly, most of the flagged outliers belonged to the CCRM material with 29 observations out of 258 (6 conditions x 43 listeners), whereas only 3 observations out of 215 (5 conditions x 43 listeners) were flagged for data measured with the ASL speech material.\
+As a first step, the listeners adaptive track and psychometric functions were manually inspected for abnormalities. The proportion of correct keywords within the final test trials (LevsPC) was calculated as a measure describing the success of the adaptive procedure. Since the adaptive procedure was set to yield 50\%-correct of key words in sentences, a successful procedure is expected to have a LevsPC at approximately 50\% range. A binomial statistical test was applied to identify observations that significantly differ from 50\%. Observations with LevsPC $\leq$ 35\% were flagged as possible outliers and were further inspected (see Figure \@ref(fig:ST-FigLevsPC)). Interestingly, most of the flagged outliers belonged to the CCRM material with 29 observations out of 258 (6 conditions x 43 listeners), whereas only 3 observations out of 215 (5 conditions x 43 listeners) were flagged for data measured with the ASL speech material.\
 
 As expected, most of the identified cases in both materials were for observations measured with the more demanding conditions with speech distractors. In five cases (2 ASL; 3 CCRM) we were able to confidently determine that the listener's true score was near to ceiling, and thus these observations were set to the maximal DC in the task (0.97). In other cases it was not possible to confidently determine the true SRdT, either because the procedure ended after reaching the maximum number of trials before a minimum number of test reversals was obtained (x1 CCRM, x2 ASL), or due to aberrant adaptive tracks (x5 CCRM). Since all these cases belonged to more challenging test conditions with speech distractors, it is very likely that the children's true score is at or beyond the upper DC limit (i.e., at celling). Thus, to account for that, rather than removing these observations, which will consequently reduce the statistical power and may not represent the true performance in the group, they were set to a DC of 1, which is above the task's upper DC limit of 0.97.\
 
@@ -1740,6 +1738,7 @@ ASLN <- ASLN %>% group_by(CondCode) %>%
   mutate(Outlier = ifelse(z_trim > CutOff,1,0))
 
 ddply(ASLN,~CondCode*Group,summarise,nConde= length(listener),nOutlier=sum(Outlier, na.rm=TRUE),prcntOutlier=round((sum(Outlier,na.rm=TRUE)/length(listener)*100),1))
+
 ```
 
 ```{r,label='ST-z-CCRM',fig.align='center', fig.width=6, fig.asp=1.5, out.width='100%', message=FALSE,warning=FALSE, echo=FALSE, results='hide'}
@@ -2046,6 +2045,7 @@ summary(model5)
 # best mode --> model 2: uRevs ~ CondCode + material + Age + 
 #                                CondCode:material + CondCode:Age + material:Age + (1 | listener) 
 tab_model(model2)
+Final_ST.m2 <- model2
 
 # Does 'APDsibling' as a random intercept helps model prediction? -> nope..
 # model_a <- lmer(uRevs~CondCode+material+Age+(1|listener)+(1|APDsibling), ST_trimmed, REML=FALSE)
@@ -2176,6 +2176,8 @@ ST_AgeTab[,c(2:3)]= apply(ST_AgeTab[,c(2:3)], 2, function(x) as.numeric(as.chara
 
 colnames(ST_AgeTab)[1:4] <- c("Main effects","Df",sprintf("$\\chi^{2}$"),"p")
 # -------------------------------------------------------------------------
+
+Final_ST.Tab1 <- ST_AgeTab
 ```
 
 ```{r,label='ST-AgeEffectNEW', echo=FALSE,results='hide',message=FALSE,warning=FALSE, include=FALSE,eval=FALSE}
@@ -2198,6 +2200,8 @@ TD_trimmed.ASL_s <- data.frame(TD_trimmed.ASL_s)
 ST_trimmed <- rbind(TD_trimmed.ASL_s,TD_trimmed.CCRM_s)
 ST_trimmed <- data.frame(ST_trimmed)
 ST_trimmed$APDsibling <- factor(ST_trimmed$APDsibling, levels = c("1","0"))
+ST_trimmed$listener <- factor(ST_trimmed$listener)
+ST_trimmed$material <- factor(ST_trimmed$material, levels = c("ASLN","CCRM"))
 
 ######## lmer model ##########################################
 
@@ -2305,17 +2309,22 @@ summary(model8)
 # model7   24 -408.79 -326.91 228.40  -456.79 4.9273  1    0.02643 *
 
 
-# best mode --> model 2: uRevs ~ CondCode + material + Age + 
-#                                CondCode:material + CondCode:Age + material:Age + (1 | listener) 
+# best mode --> model 7: uRevs ~ CondCode + material + Age + APDsibling +  
+                        # CondCode:material + CondCode:Age + material:Age + 
+                        # CondCode:APDsibling + material:APDsibling + (1 | listener)
 tab_model(model7)
 # visreg::visreg(model7)
+# visreg::visreg(model7,"APDsibling","CondCode")
+visreg::visreg(model7,"APDsibling","material")
 
+Final_ST.m1 <- model7
+tab_model(Final_ST.m1,Final_ST.m2)
 # ---------------------------------------------------------------------------------
 # test main effects:
 rstatix::Anova(model7,type="II",test.statistic="Chisq")
 
 BestModel <- model7
-report::report(model7)
+# report::report(model7)
 
 # Material:APDsibling
 (BestModel.1 <- update(BestModel,  . ~ . -material:APDsibling))
@@ -2467,6 +2476,277 @@ ST_AgeTab[,c(2:3)]= apply(ST_AgeTab[,c(2:3)], 2, function(x) as.numeric(as.chara
 
 colnames(ST_AgeTab)[1:4] <- c("Main effects","Df",sprintf("$\\chi^{2}$"),"p")
 # -------------------------------------------------------------------------
+
+Final_ST.Tab2 <- ST_AgeTab
+```
+
+```{r,label='ST-AgeEffectNEWASL', echo=FALSE,results='hide',message=FALSE,warning=FALSE, include=FALSE,eval=FALSE}
+##### Age effect? ################################################################# 
+
+### ASL ONLY
+
+ST_trimmed_ASL <- subset(ST_trimmed,material=="ASLN") %>% droplevels()
+
+######## lmer model ##########################################
+
+## Find Best fit 
+# start with a saturated model (3-way interaction with age)
+
+model1 <- lmer(uRevs~CondCode*Age*APDsibling+(1|listener), ST_trimmed_ASL, REML=FALSE)
+summary(model1)
+
+(model2<-update(model1,  ~ . - CondCode:Age:APDsibling))
+anova(model1,model2)
+summary(model2)
+# model2: uRevs ~ CondCode + Age + APDsibling + (1 | listener) + CondCode:Age + 
+# model2:     CondCode:APDsibling + Age:APDsibling
+# model1: uRevs ~ CondCode * Age * APDsibling + (1 | listener)
+#        npar     AIC     BIC logLik deviance  Chisq Df Pr(>Chisq)
+# model2   18 -191.28 -141.87 113.64  -227.28                     
+# model1   22 -186.47 -126.08 115.24  -230.47 3.1919  4     0.5262
+
+(model3<-update(model2,  ~ . - Age:APDsibling))
+anova(model2,model3)
+summary(model3)
+# model3: uRevs ~ CondCode + Age + APDsibling + (1 | listener) + CondCode:Age + 
+# model3:     CondCode:APDsibling
+# model2: uRevs ~ CondCode + Age + APDsibling + (1 | listener) + CondCode:Age + 
+# model2:     CondCode:APDsibling + Age:APDsibling
+#        npar     AIC     BIC logLik deviance  Chisq Df Pr(>Chisq)
+# model3   17 -192.44 -145.78 113.22  -226.44                     
+# model2   18 -191.28 -141.87 113.64  -227.28 0.8387  1     0.3598
+
+(model4<-update(model3,  ~ . -  CondCode:APDsibling))
+anova(model3,model4)
+summary(model4)
+# model4: uRevs ~ CondCode + Age + APDsibling + (1 | listener) + CondCode:Age
+# model3: uRevs ~ CondCode + Age + APDsibling + (1 | listener) + CondCode:Age + 
+# model3:     CondCode:APDsibling
+#        npar     AIC     BIC logLik deviance  Chisq Df Pr(>Chisq)
+# model4   13 -198.83 -163.15 112.41  -224.83                     
+# model3   17 -192.44 -145.78 113.22  -226.44 1.6123  4     0.8066
+
+(model5<-update(model4,  ~ . - CondCode:Age))
+anova(model4,model5)
+summary(model5)
+# model5: uRevs ~ CondCode + Age + APDsibling + (1 | listener)
+# model4: uRevs ~ CondCode + Age + APDsibling + (1 | listener) + CondCode:Age
+#        npar     AIC     BIC logLik deviance  Chisq Df Pr(>Chisq)
+# model5    9 -199.83 -175.12 108.92  -217.83                     
+# model4   13 -198.83 -163.15 112.41  -224.83 6.9995  4     0.1359
+
+(model6<-update(model5,  ~ . - APDsibling))
+anova(model5,model6)
+summary(model6)
+# model6: uRevs ~ CondCode + Age + (1 | listener)
+# model5: uRevs ~ CondCode + Age + APDsibling + (1 | listener)
+#        npar     AIC     BIC logLik deviance  Chisq Df Pr(>Chisq)
+# model6    8 -201.79 -179.83 108.89  -217.79                     
+# model5    9 -199.83 -175.12 108.92  -217.83 0.0391  1     0.8433
+
+(model7<-update(model6,  ~ . - Age))
+anova(model6,model7)
+summary(model7)
+# model7: uRevs ~ CondCode + (1 | listener)
+# model6: uRevs ~ CondCode + Age + (1 | listener)
+#        npar     AIC     BIC logLik deviance  Chisq Df Pr(>Chisq)   
+# model7    7 -192.97 -173.75 103.48  -206.97                        
+# model6    8 -201.79 -179.83 108.89  -217.79 10.824  1   0.001002 **
+
+# best model --> model 6: uRevs ~ CondCode + Age + (1 | listener)
+BestModel <- model6
+tab_model(BestModel)
+# visreg::visreg(model6)
+
+# ---------------------------------------------------------------------------------
+# test main effects:
+rstatix::Anova(BestModel,type="II",test.statistic="Chisq")
+
+
+# report::report(model7)
+
+# Age
+(BestModel.1 <- update(BestModel,  . ~ . -Age))
+Age.LMEM <- anova(BestModel,BestModel.1)
+summary(BestModel.1)
+# BestModel.1: uRevs ~ CondCode + (1 | listener)
+# BestModel: uRevs ~ CondCode + Age + (1 | listener)
+#             npar     AIC     BIC logLik deviance  Chisq Df Pr(>Chisq)   
+# BestModel.1    7 -192.97 -173.75 103.48  -206.97                        
+# BestModel      8 -201.79 -179.83 108.89  -217.79 10.824  1   0.001002 **
+
+# CondCode
+(BestModel.2 <- update(BestModel,  . ~ . -CondCode))
+Cond.LMEM <- anova(BestModel,BestModel.2)
+summary(BestModel.2)
+# BestModel.2: uRevs ~ Age + (1 | listener)
+# BestModel: uRevs ~ CondCode + Age + (1 | listener)
+#             npar      AIC      BIC  logLik deviance  Chisq Df Pr(>Chisq)    
+# BestModel.2    4  -55.265  -44.286  31.633  -63.265                         
+# BestModel      8 -201.790 -179.831 108.895 -217.790 154.52  4  < 2.2e-16 ***
+
+# -------------------------------------------------------------------------
+# get table
+# -------------------------------------------------------------------------
+ST_AgeTab_ASL <- data.frame(rbind(
+  c("Age",Age.LMEM$Df[2],Age.LMEM$Chisq[2],sprintf("\\textbf{%0.3f}",Age.LMEM$`Pr(>Chisq)`[2])),
+  c("Condition",Cond.LMEM$Df[2],Cond.LMEM$Chisq[2],sprintf("\\textbf{%0.3f}",Cond.LMEM$`Pr(>Chisq)`[2]))
+  ))
+
+ST_AgeTab_ASL[,c(2:3)]= apply(ST_AgeTab_ASL[,c(2:3)], 2, function(x) as.numeric(as.character(x)))
+
+colnames(ST_AgeTab_ASL)[1:4] <- c("Main effects","Df",sprintf("$\\chi^{2}$"),"p")
+# -------------------------------------------------------------------------
+
+```
+
+```{r,label='ST-AgeEffectNEWCCRM', echo=FALSE,results='hide',message=FALSE,warning=FALSE, include=FALSE,eval=FALSE}
+##### Age effect? ################################################################# 
+
+### CCRM ONLY
+
+ST_trimmed_CCRM <- subset(ST_trimmed,material=="CCRM") %>% droplevels()
+
+######## lmer model ##########################################
+
+## Find Best fit 
+# start with a saturated model (3-way interaction with age)
+
+model1 <- lmer(uRevs~CondCode*Age*APDsibling+(1|listener), ST_trimmed_CCRM, REML=FALSE)
+summary(model1)
+
+(model2<-update(model1,  ~ . - CondCode:Age:APDsibling))
+anova(model1,model2)
+summary(model2)
+# model2: uRevs ~ CondCode + Age + APDsibling + (1 | listener) + CondCode:Age + 
+# model2:     CondCode:APDsibling + Age:APDsibling
+# model1: uRevs ~ CondCode * Age * APDsibling + (1 | listener)
+#        npar     AIC     BIC logLik deviance  Chisq Df Pr(>Chisq)
+# model2   18 -190.01 -141.56 113.00  -226.01                     
+# model1   22 -183.49 -124.28 113.74  -227.49 1.4776  4     0.8306
+
+(model3<-update(model2,  ~ . - Age:APDsibling))
+anova(model2,model3)
+summary(model3)
+# model3: uRevs ~ CondCode + Age + APDsibling + (1 | listener) + CondCode:Age + 
+# model3:     CondCode:APDsibling
+# model2: uRevs ~ CondCode + Age + APDsibling + (1 | listener) + CondCode:Age + 
+# model2:     CondCode:APDsibling + Age:APDsibling
+#        npar     AIC     BIC logLik deviance  Chisq Df Pr(>Chisq)
+# model3   17 -191.97 -146.22 112.99  -225.97                     
+# model2   18 -190.01 -141.56 113.00  -226.01 0.0339  1     0.8539
+
+(model4<-update(model3,  ~ . -  CondCode:APDsibling))
+anova(model3,model4)
+summary(model4)
+# model4: uRevs ~ CondCode + Age + APDsibling + (1 | listener) + CondCode:Age
+# model3: uRevs ~ CondCode + Age + APDsibling + (1 | listener) + CondCode:Age + 
+# model3:     CondCode:APDsibling
+#        npar     AIC     BIC logLik deviance  Chisq Df Pr(>Chisq)
+# model4   13 -196.82 -161.84 111.41  -222.82                     
+# model3   17 -191.97 -146.22 112.99  -225.97 3.1485  4     0.5333
+
+(model5<-update(model4,  ~ . - CondCode:Age))
+anova(model4,model5)
+summary(model5)
+# model5: uRevs ~ CondCode + Age + APDsibling + (1 | listener)
+# model4: uRevs ~ CondCode + Age + APDsibling + (1 | listener) + CondCode:Age
+#        npar     AIC     BIC logLik deviance  Chisq Df Pr(>Chisq)   
+# model5    9 -191.52 -167.29 104.76  -209.52                        
+# model4   13 -196.82 -161.84 111.41  -222.82 13.308  4   0.009865 **
+
+
+# best model --> model 4: uRevs ~ CondCode + Age + APDsibling + CondCode:Age + (1 | listener)
+BestModel <- model4
+tab_model(BestModel)
+# visreg::visreg(model4)
+# report::report(model4)
+
+# ---------------------------------------------------------------------------------
+# test main effects:
+rstatix::Anova(BestModel,type="II",test.statistic="Chisq")
+
+# CondCode x Age:
+(BestModel.1 <- update(BestModel,  . ~ . -CondCode:Age))
+CondAge.LMEM <- anova(BestModel,BestModel.1)
+summary(BestModel.1)
+# BestModel.1: uRevs ~ CondCode + Age + APDsibling + (1 | listener)
+# BestModel: uRevs ~ CondCode + Age + APDsibling + (1 | listener) + CondCode:Age
+#             npar     AIC     BIC logLik deviance  Chisq Df Pr(>Chisq)   
+# BestModel.1    9 -191.52 -167.29 104.76  -209.52                        
+# BestModel     13 -196.82 -161.84 111.41  -222.82 13.308  4   0.009865 **
+
+# APDsibling
+(BestModel.2 <- update(BestModel,  . ~ . -APDsibling))
+APDsib.LMEM <- anova(BestModel,BestModel.2)
+summary(BestModel.2)
+# BestModel.2: uRevs ~ CondCode + Age + (1 | listener) + CondCode:Age
+# BestModel: uRevs ~ CondCode + Age + APDsibling + (1 | listener) + CondCode:Age
+#             npar     AIC     BIC logLik deviance  Chisq Df Pr(>Chisq)
+# BestModel.2   12 -196.49 -164.20 110.25  -220.49                     
+# BestModel     13 -196.82 -161.84 111.41  -222.82 2.3304  1     0.1269
+
+# -------------------------------------------------------------------------
+# get table
+# -------------------------------------------------------------------------
+ST_AgeTab_CCRM <- data.frame(rbind(
+  c("APDsibling",APDsib.LMEM$Df[2],APDsib.LMEM$Chisq[2],sprintf("%0.3f",APDsib.LMEM$`Pr(>Chisq)`[2])),
+  c("Condition:Age",CondAge.LMEM$Df[2],CondAge.LMEM$Chisq[2],sprintf("\\textbf{%0.3f}",CondAge.LMEM$`Pr(>Chisq)`[2]))
+  ))
+
+ST_AgeTab_CCRM[,c(2:3)]= apply(ST_AgeTab_CCRM[,c(2:3)], 2, function(x) as.numeric(as.character(x)))
+
+colnames(ST_AgeTab_CCRM)[1:4] <- c("Main effects","Df",sprintf("$\\chi^{2}$"),"p")
+# -------------------------------------------------------------------------
+
+```
+
+```{r, eval=FALSE}
+test <- ST_trimmed %>% 
+  arrange(listener,CondCode,material) %>% 
+    group_by(listener) %>%
+    mutate(Diff = uRevs - lag(uRevs)) %>% 
+  subset(., material=="CCRM")
+
+# change data from Long2Wide
+ST_trimmed_w <- ST_trimmed %>%
+  pivot_wider(
+    id_cols = c("listener","Group","Age","material","CondCode","APDsibling"),
+    names_from = "material",
+    values_from = c("uRevs")) %>%
+  ungroup()
+
+ST_trimmed_w <- data.frame(ST_trimmed_w)
+
+t1 <- ggplot(ST_trimmed_w, aes(x=CCRM, y=ASLN, shape=CondCode, colour=APDsibling)) +
+  geom_point(size=3,alpha=1) +
+  geom_smooth(method="lm" , aes(group=APDsibling, linetype=APDsibling), se=FALSE) +
+  scale_y_continuous(limits = c(0,1),breaks=seq(0,1,0.1))+
+  scale_x_continuous(limits = c(0,1),breaks=seq(0,1,0.1))+
+  # geom_abline(intercept=0, slope=1)+ 
+  labs(y = "ASL",x = "CCRM", title = "z-score") + 
+  theme_bw() +
+  theme(axis.text = element_text(size = 10, face="bold",colour = "black"),
+        axis.title.x = element_text(size=11, face="bold"),
+        axis.title.y = element_text(size=11, face="bold"),
+        legend.title = element_text(size=11, face="bold"),
+        legend.text  = element_text(size=10, face="bold"),
+        legend.position = "bottom",
+        legend.direction = "horizontal",
+        legend.background = element_blank(),
+        legend.box.background = element_rect(colour = "black"))
+
+
+ddply(ST_trimmed_w,~APDsibling,summarise,median=median(ASLN,na.rm=TRUE),mean=mean(ASLN,na.rm=TRUE),sd=sd(ASLN,na.rm=TRUE), min=min(ASLN,na.rm=TRUE),max=max(ASLN,na.rm=TRUE))   
+# APDsibling    median      mean        sd       min       max
+# 1          1 0.5156667 0.5217875 0.1830361 0.2480000 0.8573333
+# 2          0 0.4783333 0.5556022 0.1994344 0.2886667 0.9700000
+
+ddply(ST_trimmed_w,~APDsibling,summarise,median=median(CCRM,na.rm=TRUE),mean=mean(CCRM,na.rm=TRUE),sd=sd(CCRM,na.rm=TRUE), min=min(CCRM,na.rm=TRUE),max=max(CCRM,na.rm=TRUE)) 
+# APDsibling    median      mean        sd    min       max
+# 1          1 0.2981667 0.3363565 0.1640863 0.0875 0.6746667
+# 2          0 0.2896667 0.3153858 0.1593562 0.0750 0.7750000  
+
 ```
 
 ```{r,label='ST-AgeEffect2', echo=FALSE,results='hide',message=FALSE,warning=FALSE, include=FALSE,eval=FALSE}
@@ -2974,7 +3254,7 @@ t1 <- ggplot(ASLN, aes(x=Age, y=uRevs, color=Group)) +
   geom_text(data = dat_text.ASL, mapping = aes(x = -Inf, y = -Inf, label = label2),
             hjust = -0.06, vjust = -1, size = 3.5)+
   geom_boxplot(ASLN_adults,mapping = aes(x = 14 , y = uRevs),color="black") +
-  labs(y = "SRdTs (proportion of duty cycle)",x = "Age (in years)") + 
+  labs(y = "SRdTs (proportion of duty cycle)",x = "Age (years)") + 
   scale_y_continuous(limits = c(-0.05,1.05),breaks=seq(0,1,0.1)) +
   scale_x_continuous(breaks=seq(7,14,1),labels=c("7","8","9","10","11","12","13","18-35"))+
   theme_bw() +
@@ -3011,7 +3291,7 @@ t2 <- ggplot(CCRM, aes(x=Age, y=uRevs, color=Group)) +
   geom_text(data = dat_text.CCRM, mapping = aes(x = -Inf, y = -Inf, label = label2),
             hjust = -0.06, vjust = -1, size = 3.5)+
   geom_boxplot(CCRM_adults,mapping = aes(x = 14 , y = uRevs),color="black") +
-  labs(y = "SRdTs (proportion of duty cycle)",x = "Age (in years)") + 
+  labs(y = "SRdTs (proportion of duty cycle)",x = "Age (years)") + 
   scale_y_continuous(limits = c(-0.05,1.05),breaks=seq(0,1,0.1)) +
   scale_x_continuous(breaks=seq(7,14,1),labels=c("7","8","9","10","11","12","13","18-35"))+
   # remove legend
@@ -3042,6 +3322,63 @@ t2 <- t2 + facet_grid(. ~ reorder(CondCode,CondCode), scales = "free", switch = 
         plot.tag = element_text(face = 'bold'))
 ```
 
+```{r, fig.width=14, fig.asp=0.8, out.width='100%',eval=FALSE}
+
+# uRevs ------------------------------------------------------------------
+p1 <- ggplot(ASLN, aes(x=APDsibling, y=uRevs)) +
+  geom_hline(yintercept=0.97, linetype="dashed",color = "black", size=0.5)+
+  geom_hline(yintercept=0.05, linetype="dashed",color = "black", size=0.5)+
+  geom_boxplot(data=filter(ASLN, Group=="TD"),position=position_dodge(width=0.7),outlier.shape=NA) +
+  geom_quasirandom(data=filter(ASLN, Group=="TD"),dodge.width=0.7,shape=1,colour="blue")+
+  labs(title = "ASL" ) + 
+  scale_y_continuous(limits = c(0,1),breaks=seq(0,1,0.1)) +
+  theme_bw() +
+  facet_grid(. ~ CondCode, scales = "free", switch = "y")
+
+  
+p2 <- ggplot(CCRM, aes(x=APDsibling, y=uRevs)) +
+  geom_hline(yintercept=0.97, linetype="dashed",color = "black", size=0.5)+
+  geom_hline(yintercept=0.05, linetype="dashed",color = "black", size=0.5)+
+  geom_boxplot(data=filter(CCRM, Group=="TD"),position=position_dodge(width=0.7),outlier.shape=NA) +
+  geom_quasirandom(data=filter(CCRM, Group=="TD"),dodge.width=0.7,shape=1,colour="blue")+
+  labs(title = "CCRM" ) + 
+  scale_y_continuous(limits = c(0,1),breaks=seq(0,1,0.1)) +
+  theme_bw() +
+  facet_grid(. ~ CondCode, scales = "free", switch = "y")
+
+(p1 + p2) + plot_layout(ncol = 1, nrow = 2, heights = c(1, 1), widths = c(1.5,1.5)) + plot_annotation(tag_levels = 'A') + plot_layout(guides='collect') &
+  theme(legend.position='bottom',        
+        legend.direction = "horizontal",
+        legend.background = element_blank(),
+        legend.box.background = element_rect(colour = "black"),
+        plot.tag = element_text(face = 'bold'))
+
+# z-scores ------------------------------------------------------------------
+p1 <- ggplot(ASLN, aes(x=APDsibling, y=z_trim)) +
+  geom_boxplot(data=filter(ASLN, Group=="TD"),position=position_dodge(width=0.7),outlier.shape=NA) +
+  geom_quasirandom(data=filter(ASLN, Group=="TD"),dodge.width=0.7,shape=1,colour="blue")+
+  labs(title = "ASL" ) + 
+  scale_y_continuous(limits = c(-5,10),breaks=seq(-5,10,2)) +
+  theme_bw() +
+  facet_grid(. ~ CondCode, scales = "free", switch = "y")
+
+p2 <- ggplot(CCRM, aes(x=APDsibling, y=z_trim)) +
+  geom_boxplot(data=filter(CCRM, Group=="TD"),position=position_dodge(width=0.7),outlier.shape=NA) +
+  geom_quasirandom(data=filter(CCRM, Group=="TD"),dodge.width=0.7,shape=1,colour="blue")+
+  labs(title = "CCRM" ) + 
+  scale_y_continuous(limits = c(-5,10),breaks=seq(-5,10,2)) +
+  theme_bw() +
+  facet_grid(. ~ CondCode, scales = "free", switch = "y")
+
+(p1 + p2) + plot_layout(ncol = 1, nrow = 2, heights = c(1, 1), widths = c(1.5,1.5)) + plot_annotation(tag_levels = 'A') + plot_layout(guides='collect') &
+  theme(legend.position='bottom',        
+        legend.direction = "horizontal",
+        legend.background = element_blank(),
+        legend.box.background = element_rect(colour = "black"),
+        plot.tag = element_text(face = 'bold'))
+```
+
+
 Looking at Figure \@ref(fig:ST-Age) A-B, it is noticeable that children in both groups showed a larger decrement in performance when presented with speech distractors. The regression lines indicates that the improvement in performance by age was more prominent for speech distractors, with relatively steeper slopes (at least twice as steep) than for the non-speech distractor (AMSSN) or for conditions without a distractor. Furthermore, as expected, CCRM sentences were more intelligible, with performance shifted towards lower DC range relative to performance for the ASL speech material. The lower DC meant that the children were able to understand 50\% of the sentences with larger portions of the speech information missing.\
 
 A closer look at the linear lines shows several interesting trends. The non-speech AMSSN distractor showed to have little-to-no effect on performance, at least in the TD group, where performance was fairly similar to performance in the Quiet conditions. Introducing alternations (as in Quiet-Alt vs. Quiet-NoAlt), seems to hinder intelligibility in both groups, however the effect is relatively small and may not be significant due to the large spread in the APD group. Furthermore, when comparing the regression lines, there appears to be a relatively larger separation between the groups for data measured with the CCRM material, especially for AMSSN, but also for the speech distractors. However, it is possible that the APD regression lines do not reflect the true population due to the large spread in performance and the small sample size and thus any interpretation should be taken with caution. Another interesting observation is that the children showed little-to-no *masking-release* for speech spoken in an unfamiliar language (MDR_F) when compared with a distractor spoken in English (ENG_F). This is in agreement with findings in the adults' study in Chapter \@ref(Chpt2). Lastly, it is apparent from the figure that performance for CCRM_F distractor was near-to-ceiling for some children, mostly among the APD group.\
@@ -3050,11 +3387,11 @@ A closer look at the linear lines shows several interesting trends. The non-spee
 \
 An exploratory comparison between the children's data measured in the present study with data measured across young NH adults collected in Chapter \@ref(Chpt2) further highlight the strong developmental trend, with SRdTs still not entirely "adult-like" even at the age of 13 years, especially for speech distractors (see boxplots in Figure \@ref(fig:ST-Age) A-B). The children in both groups seems to be markedly susceptible to competing CCRM sentences and for familiar- or unfamiliar-speech presented with ASL sentences, with performance at the age of 12 years still largely differing from those obtained by the adults. On the other hand, by the age of 12 years, the TD children reached near to "adult-like" performance when CCRM target sentences were presented with ENG_F speech distractor or when ASL sentences were presented with AMSSN distractor.\
 
-Next, age effect was evaluated using LMEM model, with Condition (Quiet-NoAlt, Quiet-Alt, AMSSN, MDR_F, \& ENG_F), Material (ASL / CCRM) and Age as fixed factors, SRdT as dependent variable and a random intercept for subjects (reference levels: Condition = Quiet-NoAlt; Material = ASL). Note that data for CCRM_F was excluded from the model since it was only measured for the CCRM material[^rmd-basics-cites-and-refs-2]. Parametric assumption inspection of normal distribution was met, whereas the assumption of homogeneity of variance was marginal (p \= 0.04).[Inspect a model with a fix efffect for APDsibling..]{.correction} A model without three-way interaction between Condition, Material and Age was found to give the best fit (see Table \@ref(tab:ST-AgeLMEM)). Model comparison revealed a highly significant two-way interaction between Condition x Age (p \< 0.001) as well as a marginal two-way interaction between Condition x Material and Material x Age (p = 0.052) which further support the trends seen in the scatterplots.\
+Next, age effect was evaluated using LMEM model, with Condition (Quiet-NoAlt, Quiet-Alt, AMSSN, MDR_F, \& ENG_F), Material (ASL / CCRM) and Age as fixed factors, SRdT as dependent variable and a random intercept for subjects (reference levels: Condition = Quiet-NoAlt; Material = ASL). Note that data for CCRM_F was excluded from the model since it was only measured for the CCRM material[^Chapt3-2]. Parametric assumption inspection of normal distribution was met, whereas the assumption of homogeneity of variance was marginal (p \= 0.04).[Inspect a model with a fix efffect for APDsibling..]{.correction} A model without three-way interaction between Condition, Material and Age was found to give the best fit (see Table \@ref(tab:ST-AgeLMEM)). Model comparison revealed a highly significant two-way interaction between Condition x Age (p \< 0.001) as well as a marginal two-way interaction between Condition x Material and Material x Age (p = 0.052) which further support the trends seen in the scatterplots.\
 
 The significant Material x Age interaction indicates that the developmental trend is different between the two speech materials, with a larger age effect (i.e., steeper slopes) for the ASL sentences, with an average improvement of 0.014 DC per 1 year, which is approximately 8\% higher than for the CCRM sentences across the age span. Furthermore, the significant Condition x Material interaction implies that performance in the different test conditions differed between the two speech materials. A post-hoc t-test comparison based on the fitted model given in Table \@ref(tab:ST-AgeLMEMpost), revealed a highly significant difference in performance between the speech materials across all five test conditions (all p-values \< 0.001). The estimated mean difference between the contrast pairs ranged between \+0.18 to \+0.27, hence, the CCRM speech material was significantly more intelligible than the ASL material, across all test conditions.\
 
-[^rmd-basics-cites-and-refs-2]: A separate model for CCRM data only, also gave a significant Condition x Age interaction (p\ \<\ 0.001).
+[^Chapt3-2]: A separate model for CCRM data only, also gave a significant Condition x Age interaction (p\ \<\ 0.001).
 
 Lastly, the highly significant Condition x Age interaction supports the observation in Figure \@ref(fig:ST-Age) A-B, that the magnitude of the age effect was different across the test conditions. These findings raises the following questions -- do all the conditions show a significant age effect? Moreover, since the effect of age is not the same across the test conditions, which conditions showed the largest age effect? One possible way to tackle these questions is to compare the separate regression models using F-statistics. Nonetheless, due to the small sample-size and the large number of paired comparisons, such test lacks a statistical power and the results may not reflect the true effect in a larger sample. The TD group regression model's R$^{2}$ and p-values are given at the bottom part of Figure A and B. The ASL models p-values indicated a highly significant age effect for ENG_F, MDR_F and Quiet-NoAlt condition as well as a marginal effect for AMSSN (p\ =\ 0.048), whereas no significant age effect was found for Quiet-Alt (p\ =\ 0.168). As for the CCRM material, there was a highly significant age effect for ENG_F and a marginal effect for the Quiet-Alt condition (p\ =\ 0.058) and for CCRM_F condition (p\ =\ 0.05) which was not included in the LMEM model, whilst there was no significant age effect found for Quiet-NoAlt, AMSSN and MDR_F conditions. Furthermore, age was found to be a better predictor (i.e., accounting for larger variance in SRdT) for conditions with speech distractors, with R$^{2}$ ranging between 32\% to 72% for the ASL material and about 12\% to 29\% for the CCRM. A comparison between the test conditions regression line slopes fitted for the CCRM (x-axis) and ASL speech material (y-axis) is depicted in Figure \@ref(fig:ST-AgeSlopes). A possible pattern emerges from the figure, where slopes for the quiet and non-speech conditions are fairly similar across the two speech material (indicated by their proximity to the diagonal line), while, differences between the slopes are relatively larger for speech distractors, in particularly for MDR_F where the slope for the ASL material (-0.13) is about six times steeper than the slope for the CCRM material (-0.02).
 
@@ -3123,8 +3460,20 @@ t1$labels$shape ="Condition"
 t1
 ```
 
+```{block type='correction'}
+**Where should it best go?**
+
+Simple correlation for the listeners SRdTs between conditions is given in appendices, separately for the ASL (Figure\ \@ref(fig:ST-dcASLcor)) and CCRM material (Figure\ \@ref(fig:ST-dcCCRMcor)).
+```
+
 #### Age-independent z-scores {.unnumbered}
 Age-independent standardised residuals (z-scores) were calculated based on a model prediction for the TD group data using a multiple-case study approach  (@Ramus2003; or see section\ \@ref(z-scores) for more details). Descriptive statistics for the listeners z-scores is given in Table \@ref(tab:ST-Tab). Additional boxplots are shown in Figure \@ref(fig:ST-z) A-B, for the ASL and CCRM speech material respectively. Scores were calculated separately for each test condition, with better performance indicated by lower z-score. The grey area marks the two-tailed 1.96 deviance cut-off for abnormal score from the theoretical control group mean (z = 0), where only about 5\% of the normal population is expected to score below and above it. Overall, APD children performance was noticeably poorer in both test material, with higher median z-scores than compared with the TD children. The next paragraphs will cover the examination and statistical analysis of the individuals and group differences separately for each speech material.\
+
+```{block type='correction'}
+**Where should it best go?**
+
+Again, simple correlation for the listeners z-scores between conditions is given in appendices, separately for the ASL (Figure\ \@ref(fig:ST-zASLcor)) and CCRM material (Figure\ \@ref(fig:ST-zCCRMcor)).
+```
 
 ```{r, label='ST-z', fig.cap="ST: Boxplots of the listeners age-independent standardised residuals for data measured with the ASL (A) and the CCRM speech material (B). Residuals were calculated separately for each condition and are based on a model prediction for TD group only. The grey area represents the deviance cut-off for abnormal score (SD $\\pm$\ 1.96 below and above the TD mean), where about 95\\% of the normal population is expected to lay within. The dashed line represents the theoretical TD group mean (z = 0). Individual scores are indicated by circles. The boxes show the data interquartile range (25th-75th percentile) and the horizontal line indicate the median (i.e., 50th percentile). Values that fall within 1.5 times the interquartile range are indicated by the whiskers.", fig.align='center', fig.width=10, fig.asp=.9, out.width='100%',echo=FALSE, message=FALSE, warning=FALSE, results='hide'}
 
@@ -3213,9 +3562,9 @@ kbl(ST_tab,booktabs = T, escape = F, linesep = "",caption = "ST: Descriptives fo
 \
 Surprisingly, a comparison of the groups averaged z-score reveals that the non-switched quiet condition (Quiet-NoAlt) and the switched condition with the nonspeech distractor (AMSSN) yielded the largest separation between the groups, with APD median z-score of 1.81 and 1.79, respectively, laying just within the norms upper limit. Performance of the APD children was also noticeably poorer for conditions with speech distractors (MDR_F and ENG_F), each with a median z-score of circa 1, whereas performance for Quiet-Alt condition was fairly similar between the groups.\
 
-Within the APD group AMSSN, Quiet-NoAlt and MDR_F resulted in the highest proportion of abnormal scores[^rmd-basics-cites-and-refs-3]. Surprisingly, AMSSN distractor yielded the highest proportion of abnormal scores, where half of the APD children fell outside the norm (20/10, 50\%). Followed by the non-switched condition Quiet-NoAlt, where paradoxically and against our expectation 45\% of the APD group (9/20) had abnormally poor score, whereas only 10\% (2/20) had abnormal score in the switched condition Quiet-Alt. Another interesting finding was that the APD children did not benefit from a release from masking for a speech distractor spoken in an unfamiliar language (MDR_F) as opposed to a familiar speech spoken in English (ENG_F), with median scores very similar in both conditions. This sits well with our previous findings with adults where adults showed no benefit for MDR_F speech masker (see chapter ???). Moreover, while the overall performance was similar in the two conditions, the percentage of abnormal score was twice as large for MDR_F condition (8/20, 40\%) than for ENG_F condition (4/20, 20\%). The proportion of abnormal scores amongst the TD group ranged between 0\% to 13\% (mean = 7.8\%), which is relatively higher than expected in the normal population.\
+Within the APD group AMSSN, Quiet-NoAlt and MDR_F resulted in the highest proportion of abnormal scores[^Chapt3-3]. Surprisingly, AMSSN distractor yielded the highest proportion of abnormal scores, where half of the APD children fell outside the norm (20/10, 50\%). Followed by the non-switched condition Quiet-NoAlt, where paradoxically and against our expectation 45\% of the APD group (9/20) had abnormally poor score, whereas only 10\% (2/20) had abnormal score in the switched condition Quiet-Alt. Another interesting finding was that the APD children did not benefit from a release from masking for a speech distractor spoken in an unfamiliar language (MDR_F) as opposed to a familiar speech spoken in English (ENG_F), with median scores very similar in both conditions. This sits well with our previous findings with adults where adults showed no benefit for MDR_F speech masker (see Chapter\ \@ref(Chpt1)). Moreover, while the overall performance was similar in the two conditions, the percentage of abnormal score was twice as large for MDR_F condition (8/20, 40\%) than for ENG_F condition (4/20, 20\%). The proportion of abnormal scores amongst the TD group ranged between 0\% to 13\% (mean = 7.8\%), which is relatively higher than expected in the normal population.\
 
-[^rmd-basics-cites-and-refs-3]: with the aim to develop a clinically applicable test that exhibits good sensitivity and specificity rates, we were only interested in identifying children with clinically poor performance. Thus, abnormal score was defined as a one-tailed deviance cut-off of z-score \> 1.96, within which circa 97.5\% of the normal population is expected to lay.
+[^Chapt3-3]: with the aim to develop a clinically applicable test that exhibits good sensitivity and specificity rates, we were only interested in identifying children with clinically poor performance. Thus, abnormal score was defined as a one-tailed deviance cut-off of z-score \> 1.96, within which circa 97.5\% of the normal population is expected to lay.
 
 ##### CCRM speech material {.unnumbered}
 \
@@ -3625,6 +3974,144 @@ t5 <- ggMarginal(t5, type="boxplot",groupFill = TRUE)
 plot_grid(t1,t2,t3,t4,t5, ncol=2, nrow = 3)
 ```
 
+```{r, label='ST-CorrTest',echo=FALSE,warning=FALSE,message=FALSE, results='hide', eval=FALSE}
+# Do ST conditions correlate with one another?
+
+
+# get correlation table: ####################################################################
+library(xtable)
+
+# x is a matrix containing the data
+# method : correlation method. "pearson"" or "spearman"" is supported
+# removeTriangle : remove upper or lower triangle
+# results :  if "html" or "latex"
+  # the results will be displayed in html or latex format
+corstars <-function(x, method=c("pearson", "spearman"), removeTriangle=c("upper", "lower"),
+                     result=c("none", "html", "latex"), p.adj=c("none","fdr")){
+    #Compute correlation matrix
+    require(Hmisc)
+    x <- as.matrix(x)
+    correlation_matrix<-rcorr(x, type=method[1])
+    R <- correlation_matrix$r # Matrix of correlation coefficients
+    p <- correlation_matrix$P # Matrix of p-value 
+    # OPTIONAL: Apply p-correction
+    if(p.adj[1]=="fdr"){
+      p <- p.adjust(p,method="fdr",n=length(p)) 
+    }
+    # p <- p.adjust(p,method="fdr",n=length(p)) # OPTIONAL: Apply p-correction
+    
+    ## Define notions for significance levels; spacing is important.
+    mystars <- ifelse(p < .0001, "****", ifelse(p < .001, "*** ", ifelse(p < .01, "**  ", ifelse(p < .05, "*   ", "    "))))
+    # mystars <- ifelse(p < .0001, "\\text{*}\\text{*}\\text{*}\\text{*}", ifelse(p < .001, "\\text{*}\\text{*}\\text{*}", ifelse(p < .01, "\\text{*}\\text{*}", ifelse(p < .05, "\\text{*}", " "))))
+    
+    ## trunctuate the correlation matrix to two decimal
+    R <- format(round(cbind(rep(-1.11, ncol(x)), R), 2))[,-1]
+    
+    ## build a new matrix that includes the correlations with their appropriate stars
+    Rnew <- matrix(paste(R, mystars, sep=""), ncol=ncol(x))
+    diag(Rnew) <- paste(diag(R), " ", sep="")
+    rownames(Rnew) <- colnames(x)
+    colnames(Rnew) <- paste(colnames(x), "", sep="")
+    
+    ## remove upper triangle of correlation matrix
+    if(removeTriangle[1]=="upper"){
+      Rnew <- as.matrix(Rnew)
+      Rnew[upper.tri(Rnew, diag = TRUE)] <- ""
+      Rnew <- as.data.frame(Rnew)
+    }
+    
+    ## remove lower triangle of correlation matrix
+    else if(removeTriangle[1]=="lower"){
+      Rnew <- as.matrix(Rnew)
+      Rnew[lower.tri(Rnew, diag = TRUE)] <- ""
+      Rnew <- as.data.frame(Rnew)
+    }
+    
+    ## remove last column and return the correlation matrix
+    Rnew <- cbind(Rnew[1:length(Rnew)-1])
+    if (result[1]=="none") return(Rnew)
+    else{
+      if(result[1]=="html") print(xtable(Rnew), type="html")
+      else print(xtable(Rnew), type="latex") 
+    }
+} 
+
+################# Correlation matrix for all subjects ################# 
+
+CorrAll <- Hmisc::rcorr(as.matrix(ASLN_w)[,9:13],type="spearman")
+# CorrAll
+
+CorrAll_s <- corstars(ASLN_w[,9:13], result="none", method="spearman",p.adj = "none")
+
+################# Correlation matrix by group ################# 
+CorrByGroups <- lapply(split(ASLN_w, ASLN_w$Group), function(x) {
+    Hmisc::rcorr(as.matrix(x[,9:13]), type="spearman")})
+
+# CorrByGroups
+  
+CorrByGroups_s <- lapply(split(ASLN_w, ASLN_w$Group), function(x) {
+    corstars(x[,9:12], result="none", method="spearman",p.adj = "none")})
+
+kbl(CorrByGroups_s["TD"]$TD, booktabs = T, caption = "TD group correlation matrix (Spearman) with ST and language composite measures") %>%
+  kable_styling(latex_options = c("scale_down"))
+
+kbl(CorrByGroups_s["APD"]$APD, booktabs = T, caption = "APD group correlation matrix (Spearman) with ST and language composite measures") %>%
+  kable_styling(latex_options = c("scale_down"))
+
+kbl(CorrAll_s, booktabs = T, caption = "Both group correlation matrix (Spearman) with ST and language composite measures") %>%
+  kable_styling(latex_options = c("scale_down"))
+```
+
+```{r ST-zASLcor, fig.align='center', fig.asp=0.5, fig.width=14, message=FALSE, warning=FALSE, dev='png', include=FALSE, out.width='90%', results='hide'}
+# Check z-scores..
+require(GGally)
+# make a copy before changing names
+ASLN_w2 <- ASLN_w
+
+for ( col in 1:ncol(ASLN_w2)){
+  colnames(ASLN_w2)[col] <-  sub("trim_", "", colnames(ASLN_w2)[col])
+  colnames(ASLN_w2)[col] <-  sub("uRevs_", "DC_", colnames(ASLN_w2)[col])
+}
+
+ggpairs(ASLN_w2[c(9:13,3,2)],
+        lower = list(continuous = "smooth"),
+        mapping = aes(color = ASLN_w2$Group),title="ST-ASL: z-scores")
+
+```
+
+```{r ST-dcASLcor, fig.align='center', fig.asp=0.5, fig.width=14, message=FALSE, warning=FALSE, dev='png', include=FALSE, out.width='100%', results='hide'}
+
+ggpairs(ASLN_w2[c(4:8,3,2)],
+        lower = list(continuous = "smooth"),
+        mapping = aes(color = ASLN_w2$Group),title="ST-ASL: SRdTs")
+
+```
+
+```{r ST-zCCRMcor, fig.align='center', fig.asp=0.5, fig.width=16, message=FALSE, warning=FALSE, dev='png', include=FALSE, out.width='100%', results='hide'}
+# Check z-scores..
+require(GGally)
+# make a copy before changing names
+CCRM_w2 <- CCRM_w
+
+for ( col in 1:ncol(CCRM_w2)){
+  colnames(CCRM_w2)[col] <-  sub("trim_", "", colnames(CCRM_w2)[col])
+  colnames(CCRM_w2)[col] <-  sub("uRevs_", "DC_", colnames(CCRM_w2)[col])
+}
+
+ggpairs(CCRM_w2[c(10:15,3,2)],
+        lower = list(continuous = "smooth"),
+        mapping = aes(color = CCRM_w2$Group),title="ST-CCRM: z-scores")
+
+```
+
+```{r ST-dcCCRMcor, fig.align='center', fig.asp=0.5, fig.width=16, message=FALSE, warning=FALSE, dev='png', include=FALSE, out.width='100%', results='hide'}
+
+ggpairs(CCRM_w2[c(4:9,3,2)],
+        lower = list(continuous = "smooth"),
+        mapping = aes(color = CCRM_w2$Group),title="ST-CCRM: SRdTs")
+
+```
+
 ### LiSNS-UK
 
 ```{r, label='get-LiSNS', echo=FALSE,results='hide',message=FALSE,warning=FALSE}
@@ -4026,7 +4513,7 @@ t1 <- ggplot(LiSNS_NoSRM, aes(x=Age, y=uRevs, color=Group)) +
             hjust = -0.05, vjust = -3,size = 4)+
   geom_text(data = dat_text.LiSNS, mapping = aes(x = -Inf, y = -Inf, label = label2),
             hjust = -0.06, vjust = -1, size = 4)+
-  labs(y = "Speech Reception Threshold, SRT (in dB SNR)",x = "Age (in years)") + 
+  labs(y = "SRT (dB SNR)",x = "Age (years)") + 
   scale_y_continuous(limits = c(-15,5),breaks=seq(-15,5,2)) +
   theme_bw() +
   theme(axis.text = element_text(size = 10, face="bold",colour = "black"),
@@ -4057,7 +4544,7 @@ t2 <- ggplot(LiSNS_SRM, aes(x=Age, y=uRevs, color=Group)) +
             hjust = -0.05, vjust = -3,size = 4)+
   geom_text(data = dat_text.LiSNS2, mapping = aes(x = -Inf, y = -Inf, label = label2),
             hjust = -0.06, vjust = -1, size = 4)+
-  labs(y = "dB",x = "Age (in years)") + 
+  labs(y = "dB",x = "Age (years)") + 
   scale_y_continuous(limits = c(0,13),breaks=seq(0,13,2)) +
   theme_bw() +
   theme(axis.text = element_text(size = 10, face="bold",colour = "black"),
@@ -4146,9 +4633,9 @@ summary(model5)
 # model5    8 348.48 368.39 -166.24   332.48                        
 # model4   11 340.18 367.56 -159.09   318.18 14.292  3   0.002534 **
 
-# best mode --> model 6: ~ CondCode + Age + APDsibling + CondCode:Age + (1 | listener)
+# best mode --> model 4: uRevs ~ CondCode + Age + APDsibling + CondCode:Age + (1 | listener)
 tab_model(model4)
-
+m_withSRM <- model4
 # ---------------------------------------------------------------------------------
 # test main effects:
 rstatix::Anova(model4,type="II",test.statistic="Chisq")
@@ -4276,7 +4763,8 @@ summary(model7)
 
 # best mode --> model 6: uRevs ~ CondCode + Age + (1 | listener)
 tab_model(model6)
-
+m_withoutSRM <- model6
+tab_model(m_withSRM,m_withoutSRM)
 # ---------------------------------------------------------------------------------
 # test main effects:
 rstatix::Anova(model6,type="II",test.statistic="Chisq")
@@ -4939,7 +5427,7 @@ d_ENVASA_L_Total  <- d_ENVASA_L_sd[ d_ENVASA_L_sd$CondCode %in%
 d_ENVASA_L_Total <- rbind(d_ENVASA_L_Total,d_ENVASA_L_c_Total)
 ```
 
-Due to technical problems, observations for six listeners are missing (TD: 2; APD: 4), resulting in a total sample-size of 21 and 17 for the TD and APD group, respectively. Initial inspection of the individuals performance was performed to ensure that the task instructions were followed and well understood. Performance for the reference condition (single incongruent background at a high SNR), which is expected to least impact performance, was compared with a cut-off criterion of `r CutOff_TD2`%, calculated as 2 SD from the TD group mean (`r mean_TD`% $\pm$ `r SD_TD`%). Individuals with performance below the cut-off criterion were excluded from the analysis. One TD listener aged 7 years old scored 45 % and was thus excluded, resulting in a total of 20 listeners in the TD group.
+Due to technical problems, observations for six listeners are missing (x2 TD; x4 APD), resulting in a total sample-size of 21 and 17 for the TD and the APD group, respectively. Initial inspection of the individuals performance was performed to ensure that the task instructions were followed and well understood. Performance for the reference condition (single incongruent background at a high SNR), which is expected to least impact performance, was compared with a cut-off criterion of `r CutOff_TD2`%, calculated as 2 SD from the TD group mean (`r mean_TD`% $\pm$ `r SD_TD`%). Individuals with performance below the cut-off criterion were excluded from the analysis. One TD listener aged 7 years old scored 45 % and was thus excluded, resulting in a total of 20 listeners in the TD group.
 
 ```{r, label='ENVASA-getZ',echo=FALSE,results='hide',message=FALSE,warning=FALSE}
 ## -------------------------------------------------------------------------------------------------------
@@ -5338,9 +5826,10 @@ colnames(ENVASA_AgeTab)[1:4] <- c("Main effects","Df",sprintf("$\\chi^{2}$"),"p"
 
 #### %-correct by age {.unnumbered}
 
-The ENVASA measurements followed the same factorial design as used by @Leech2009, with 2 background types (single/dual) x 4 SNRs (low: -6, -3 dB; high: 0 \+3 dB), resulting in a total of 92 responses (\%-correct, PC) per listener or between 10 to 11 test items per background-SNR combination. Because of the small number of test items per condition, responses were averaged into three measures: 1) *single background*, 2) *dual backgrounds*, and 3) *combined background* which reflects the overall performance across the two background types.\
+The ENVASA measurements followed the same factorial design as used by @Leech2009, with 2 background types (single/dual) x 4 SNRs (low: -6, -3 dB; high: 0 \+3 dB), resulting in a total of 92 responses (\%-correct, PC) per listener or between 10 to 11 test items per background-SNR combination. Because of the small number of test items per condition, responses were averaged into three measures: 1. *single background*, 2. *dual backgrounds*, and 3. *combined background* which reflects the overall performance across the two background types.\
 
-The relationship between performance and age was inspected in the same way as carried out for the other auditory tasks, with the listeners average response plotted as a function age, with linear regression lines, model coefficients and statistics for the trimmed TD group (see Figure \@ref(fig:ENVASA-Age)). The regression lines revealed a noticeable developmental trend in all three measures, where performance improved with increasing age. A single linear regression line with a monotonic increase in performance by age was found to best fit performance for a single background, with an increase of circa 3.5\% in PC per year. Performance for dual backgrounds and the combined score on the other hand were best described using segmented linear regression models, with an increase of PC by circa 12\% per year until the age of 9 years, where PC plateaued thereafter. The effect of age was statistically tested using an LMEM model with the three background measures, age, and APDsibling, which indicates whether a child has an APD sibling (1) or not (0) as fixed factors and a random intercept for subjects with PC as dependent variable (reference levels: Background = single-background, APDsibling = 1). A model without an interaction term was found to give the best fit (see Table \@ref(tab:ENVASA-AgeLMEMTabnew)). Model comparison revealed a highly significant main effect for age and condition (p \< 0.001). This is in agreement with the @Krishnan2013 study where they found a strong developmental effect across normal-hearing typically developing children in a similar age range to those measured in the present study.
+The relationship between performance and age was inspected in the same way as carried out for the other auditory tasks, with the listeners average response plotted as a function age, with linear regression lines, model coefficients and statistics for the trimmed TD group (see Figure \@ref(fig:ENVASA-Age)). The regression lines revealed a noticeable developmental trend in all three measures, where performance improved with increasing age. A single linear regression line with a monotonic increase in performance by age was found to best fit performance for a single background, with an increase of circa 3.5\% in PC per year. Performance for dual backgrounds and the combined score on the other hand were best described using segmented linear regression models, with an increase of PC by circa 12\% per year until the age of 9 years, where PC plateaued thereafter. The effect of age was statistically tested using an LMEM model with PC as dependent variable, and the three background measures, the listeners age, and a categorical term APDsibling as fixed factors as well as a random intercept for subjects (reference levels: Background = single-background, APDsibling = 1). 
+Whereby TD children with an APD sibling were were classified as 1 and TD children without APD siblings were classified as 0. A model without an interaction term was found to give the best fit (see Table \@ref(tab:ENVASA-AgeLMEMTabnew)). Model comparison revealed a highly significant main effect for age and condition (p \< 0.001). This is in agreement with the @Krishnan2013 study where they found a strong developmental effect across normal-hearing typically developing children in a similar age range to those measured in the present study.
 
 ```{block type='correction'}
  The main effect of APDsibling was marginal (p = 0.05) with an estimated mean difference of 5.15 (SE = 2.50, CI = 0.24 - 10.05). Although there is no significant interaction between Background and APDsibling, a post-hoc comparison finds no significant difference between APD-siblings and non-siblings within a condition... 
@@ -5380,7 +5869,7 @@ t1 <- ggplot(ENVASA_Total, aes(x=Age, y=PC, color=Group)) +
             hjust = -0.05, vjust = -3,size = 4.5)+
   geom_text(data = dat_text.ENVASA, mapping = aes(x = -Inf, y = -Inf, label = label2),
             hjust = -0.06, vjust = -1, size = 4.5)+
-  labs(y = "PC (% correct)",x = "Age") + 
+  labs(y = "PC (%-correct)",x = "Age (years)") + 
   scale_y_continuous(limits = c(30,100),breaks=seq(30,100,10))+
   scale_x_continuous(breaks=seq(7,13,1),labels=c("7","8","9","10","11","12","13"),limits=c(7, 13))+
   theme_bw() +
@@ -5638,7 +6127,7 @@ ggplot(d_RS, aes(x=Group,y=ScaledScore,fill=Group))+
   geom_boxplot(position=position_dodge(width=0.8),outlier.shape=NA)+ 
   geom_hline(yintercept=10, linetype="dashed", color = "black")+
   #geom_text(label=d_RS$listener)+
-  labs(y = "Scaled score",x = "Group")+ 
+  labs(y = "CELF-RS scaled score",x = " ")+ 
   geom_quasirandom(dodge.width=0.8,colour="blue", shape=1)+
   scale_y_continuous(limits = c(1,19),breaks=seq(1,19,2))+
   scale_x_discrete(labels=c("APD","TD"))+
@@ -6046,11 +6535,9 @@ colnames(ECLiPS_Wilcox)[1] <- sprintf("95\\%%-CI")
 ```
 
 ## Overall performance
-An overview of the children's performance split by group is given in Figure \@ref(fig:MatrixPlot) providing an overlook at individuals that performed outside the norm in one or more tasks (filled black cells). Abnormally poor performance for the listeners age-independent scores was defined using standardised norms for the CELF-RS, ECLiPS and the CCC-2 data or was defined as a one-tailed cut-off of $\pm$ 1.96 (where circa 97.5% of the normal population is expected to lay within) for the rest of the tasks.\
+An overview of the children's performance split by group is given in Figure \@ref(fig:MatrixPlot) providing an overlook at individuals that performed outside the norm in one or more tasks (filled black cells). Abnormally poor performance for the listeners age-independent scores was defined using standardised norms for the CELF-RS, ECLiPS and the CCC-2 data or was defined as a one-tailed cut-off of $\pm$ 1.96 (where circa 97.5% of the normal population is expected to lay within) for the rest of the tasks. Note that DLD and PLI were composed as a way to discriminate children with more structural versus pragmatic language deficit and were based on the CCC-2 data as a combination of abnormal GCC score (\< 55) and the SIDC score. DLD score (developmental language disorder) denotes a combination of abnormal GCC and a positive SIDC ($\geq$\ 0) which is expected to capture severe deficit in structural language in conjunction to only a mild pragmatic difficulties. PLI score (pragmatic language impairment) on the other hand denotes a combination of abnormal GCC and a negative SIDC ($\leq$\ 0) which is expected to be a strong indicator for social communication problems with only mild structural language difficulties.\ 
 
-As seen in the figure, the proportion of abnormal scores across the APD group is substantially higher than in the TD group. The majority of the APD children (80\%, 16/20) performed abnormally in at least two test conditions either in the ST or LiSNS-UK task, whereas there were only three cases (13\%, 3/23) in the TD children. 
-
-Another interesting observation is that apart from one TD child, which experienced difficulties in various measures including the CCC-2, none of the other TD children experienced language difficulties. This is in contrast to the APD group where 90\% (18/20) of the children experienced some kind of language deficit. The CELF-RS has been reported to be a good marker for children with DLD, nevertheless, the results of the present study suggests otherwise. While performance in the APD group was noticeably poorer than in the APD group, only two APD children obtained abnormally poor CELF-RS score, whereas nearly half of the APD children (45\%, 9/20) exhibited a CCC-2 score indicative of DLD, and the about the remaining half (40\% 8/20) obtained a CCC-2 score indicative of pragmatic language and social communication deficit (PLI).
+As seen in the figure, the proportion of abnormal scores across the APD group is substantially higher than in the TD group. The majority of the APD children (80\%, 16/20) performed abnormally in at least two test conditions either in the ST or LiSNS-UK task, whereas there were only three cases (13\%, 3/23) in the TD children. Another interesting observation is that apart from one TD child, which experienced difficulties in various measures including the CCC-2, none of the other TD children experienced language difficulties. This is in contrast to the APD group where 90\% (18/20) of the children experienced some kind of language deficit. The CELF-RS has been reported to be a good marker for children with DLD, nevertheless, the results of the present study suggests otherwise. While performance in the APD group was noticeably poorer than in the APD group, only two APD children obtained abnormally poor CELF-RS score, whereas nearly half of the APD children (45\%, 9/20) exhibited a CCC-2 score indicative of DLD, and about the remaining half (40\% 8/20) obtained a CCC-2 score indicative of pragmatic language and social communication deficit (PLI).
 
 ```{block type='correction'}
 [Potential experimental bias of reporters when recruited due to an informed group affiliation? email Courtenay!]{.correction}
@@ -6866,7 +7353,7 @@ kbl(CorrAll_s, booktabs = T, escape = F, linesep = "", caption = "Correlation ma
 There was a significant correlation between the listeners overall performance in the switching task (PC1.ST) and their language skills (PC1.Lang; $\rho$ = -0.55, p \< 0.001), PTA ($\rho$ = 0.46, p \< 0.01), speech perception in noise (SSN; $\rho$ = 0.46, p \< 0.01), and the spatialised LiSNS-UK test conditions S0N0 ($\rho$ = 0.35, p \< 0.05) and S0N90 ($\rho$ = 0.45, p \< 0.01). The second ST principal component, PC2.Material, significantly correlated with S0N0 ($\rho$ = 0.33, p \< 0.05) and SRM ($\rho$ = 0.33, p \< 0.05), whereas no relationship was found between the third PC3.Nz and any of the study measures.\
 <!-- Finally, as expected, the three ST PCA components were found to be independent from one another with no significant correlations between them. -->
 
-Performance in the LiSNS-UK exhibited the highest correlation coefficients, with highly significant correlation between S0N0 and S0N90, where better performance in one condition was highly associated with better performance in the other ($\rho$ = 0.64, p \< 0.0001), and between S0N90 and SRM ($\rho$ = -0.67, p \< 0.0001), where better SRM was predicted by better performance for S0N90, whereas correlation between S0N0 and SRM was not significant ($\rho$ = 0.08, p = 0.62). Note that lower z-score in the spatialised conditions denotes better performance, whereas the opposite holds for SRM with higher z-scores marking better performance, which explains the negative correlation between SRM and S0N90. A separate group-wise analysis gave similar results for correlation between S0N90 and SRM, whereas correlations in the APD group between S0N0 and S0N90, and between S0N0 and SRM were smaller and not significant ($\rho$: 0.35 and 0.30, respectively). The non-significant correlation between SRM and S0N0 stands in contrasts to our expectations, which are supported by the norming study in Chapter ???, for a positive correlation, where listeners with poorer (i.e., higher) S0N0 score were expected to have a larger (i.e., better) SRM. The insignificant and reduced correlation in the APD group is likely due to sampling error and the small sample size in the present study (correlation between the LiSNS-UK condition for the listeners SRT and z-scores are given in appendices in Figures\ \@ref(fig:LiSNS-SRTcorr) and \@ref(fig:LiSNS-zcorr)).\
+Performance in the LiSNS-UK exhibited the highest correlation coefficients, with highly significant correlation between S0N0 and S0N90, where better performance in one condition was highly associated with better performance in the other ($\rho$ = 0.64, p \< 0.0001), and between S0N90 and SRM ($\rho$ = -0.67, p \< 0.0001), where better SRM was predicted by better performance for S0N90, whereas correlation between S0N0 and SRM was not significant ($\rho$ = 0.08, p = 0.62). Note that lower z-score in the spatialised conditions denotes better performance, whereas the opposite holds for SRM with higher z-scores marking better performance, which explains the negative correlation between SRM and S0N90. A separate group-wise analysis gave similar results for correlation between S0N90 and SRM, whereas correlations in the APD group between S0N0 and S0N90, and between S0N0 and SRM were smaller and not significant ($\rho$: 0.35 and 0.30, respectively). The non-significant correlation between SRM and S0N0 stands in contrasts to our expectations, for a positive correlation, where listeners with poorer (i.e., higher) S0N0 score were expected to have a larger (i.e., better) SRM. The insignificant and reduced correlation in the APD group is likely due to sampling error and the small sample size in the present study (correlation between the LiSNS-UK condition for the listeners SRT and z-scores are given in appendices in Figures\ \@ref(fig:LiSNS-SRTcorr) and \@ref(fig:LiSNS-zcorr)).\
 
 <!-- SRM vs S0N0: positive correlation, i.e., better SRM is predicted by poorer (higher) S0N0 score. -->
 <!-- SRM vs. S0N90: negative correlation, i.e., better SRM is predicted by better (lower) S0N90 score. -->
@@ -6874,7 +7361,7 @@ Performance in the LiSNS-UK exhibited the highest correlation coefficients, with
 SSN score was found to be related to performance in the two spatialised LiSNS-UK test conditions with correlation coefficients of 0.30 (S0N90) and 0.39 (S0N0), however only correlation for S0N0 was significant (p \< 0.05), while p-value for correlation with S0N90 was just above the significance level (p = 0.055). The listeners S0N90 score significantly correlated with hearing sensitivity thresholds measured at both standard (PTA; $\rho$ = 0.45, p \< 0.01) and extended frequency bands ($PTA_{EHF}$; $\rho$ = 0.34, p \< 0.05). Moreover, none of the LiSNS-UK measures significantly correlated with the language principle components PC1.Lang - PC3.Lang or the attention measure ENVASA. Additional significant correlations were found between PC1.Lang and SSN ($\rho$ = -0.51, p \< 0.0001) and between PC1.Lang and the ENVASA task ($\rho$ = 0.46, p \< 0.001). No p-value Bonferroni correction for multiple comparisons was applied.
 
 #### Exploratory predictors in the APD group
-Association of potential predictors with performance in the APD group was examined in the following section. Nevertheless, it is important to emphasise that this is an exploratory examination across a small sample size and thus it's outcomes may not be generalised in a larger sample. Predictors were selected based on the caregivers response in the background questionnaire, where the APD children were subdivided into the following group-pairs: 1. APD diagnosis (APD vs. LiD), 2. SPD diagnosis (SPD vs. non-SPD), 3. Regular use of FM-device (FM vs. No FM), 4. History of OME (OME vs. No OME), 5. Pressure equalisation tube history (PET vs. No PET), and 6. Auditory training (Training vs. No training). The listeners performance subdivided by predictors is shown in Figure\ \@ref(fig:EvalAPD-fig) for data measured with the ST task (PCA1.ST), the language composite (PCA1.Lang), SRM, and thresholds for standard audiometry (PTA) and EHF audiometry (EHF PTA). Individual observations are marked in circles, whereby observations of children diagnosed with APD are filled in dark blue, while LiD observations are filled in light blue. From the boxplots, PTE and OME emerges as the best predictors, explaining the largest portion of the within group differences. History of PET showed the highest association with poorer EHF PTA thresholds, and to a relatively smaller extent with PC1.ST (higher score indicates poorer performance) and with the SRM score (higher score indicates better performance). Consequently, it is not surprising that a related predictor -- history of OME was also highly related to poorer EHF PTA thresholds, nevertheless, association between OME and the other measures was weak. Interestingly, there was no association between SRM performance and a diagnosis of SPD, with only a small difference between APD children with or without an SPD diagnosis.\
+Association of potential predictors with performance in the APD group was examined in the following section. Nevertheless, it is important to emphasise that this is an exploratory examination across a small sample size and thus it's outcomes may not be generalised in a larger sample. Predictors were selected based on the caregivers response in the background questionnaire, where the APD children were subdivided into the following pair of groups: 1. APD diagnosis (APD vs. LiD), 2. SPD diagnosis (SPD vs. non-SPD), 3. Regular use of FM-device (FM vs. No FM), 4. History of OME (OME vs. No OME), 5. Pressure equalisation tube history (PET vs. No PET), and 6. Auditory training (Training vs. No training). The listeners performance subdivided by predictors is shown in Figure\ \@ref(fig:EvalAPD-fig) for data measured with the ST task (PCA1.ST), the language composite (PCA1.Lang), SRM, and thresholds for standard audiometry (PTA) and EHF audiometry (EHF PTA). Individual observations are marked in circles, whereby observations of children diagnosed with APD are filled in dark blue, and LiD observations are filled in light blue. From the boxplots, PTE and OME emerges as the best predictors, explaining the largest portion of the within group differences. History of PET showed the highest association with poorer EHF PTA thresholds, and to a relatively smaller extent with PC1.ST (higher score indicates poorer performance) and with the SRM score (higher score indicates better performance). Consequently, it is not surprising that a related predictor -- history of OME was also highly related to poorer EHF PTA thresholds, nevertheless, association between OME and the other measures was weak. Interestingly, there was no association between SRM performance and a diagnosis of SPD, with only a small difference between APD children with or without an SPD diagnosis.\
 
 ```{r,label='EvalAPD-getData',echo=FALSE, message=FALSE, warning=FALSE,results='hide'}
 # Add standard PTA
@@ -6882,18 +7369,30 @@ d_Info <- d_PTA_L %>% filter(PTA=="PTA_RL") %>% select(., listener, "PTA"=dBHL) 
 # Add EHF PTA
 d_Info <- d_HF_PTA_L %>% filter(PTA=="PTA_RL") %>% select(., listener, "PTA_EHF"=dBHL) %>% merge(., d_Info, by="listener",all=TRUE)
 
-# add other measures
-Eval_APD <- merge(d_Info, d_Corr[,c("listener","Group","SRM","PC1.ST","PC1.Lang")],by="listener", na.rm=FALSE) %>% filter(Group=="APD") %>% droplevels()
+Eval <- merge(d_Info, d_Corr[,c("listener","Group","SRM","PC1.ST","PC1.Lang")],by="listener", na.rm=FALSE) %>%
+  plyr::rename(., c("SRM"="zSRM")) %>%
+  droplevels()
 
-# Eval_APD <- Eval_APD[,-match(c("X"),names(Eval_APD))] 
-Eval_APD$SPD <- factor(Eval_APD$SPD,levels=c("1","0"))
-Eval_APD$EarProblems <- factor(Eval_APD$EarProblems,levels=c("1","0"))
-Eval_APD$Grommets <- factor(Eval_APD$Grommets,levels=c("1","0"))
-Eval_APD$FMuse <- factor(Eval_APD$FMuse,levels=c("1","0"))
-Eval_APD$AuditoryTraining <- factor(Eval_APD$AuditoryTraining,levels=c("1","0"))
+# add LiSNS data in dB
+Eval <- merge(Eval, LiSNS_w[,c("listener","uRevs_S0N0","uRevs_S0N90","uRevs_SRM")],by="listener", na.rm=FALSE) %>% 
+  droplevels()
+
+Eval$SPD[is.na(Eval$SPD)] <-"0"
+Eval$SPD <- factor(Eval$SPD,levels=c("1","0"))
+Eval$SPD <- factor(Eval$SPD,levels=c("1","0","NA"))
+
+Eval$EarProblems <- factor(Eval$EarProblems,levels=c("1","0"))
+Eval$EarProblemsDur <- factor(Eval$EarProblemsDur,levels=c(">2","<2","0"))
+Eval$Grommets <- factor(Eval$Grommets,levels=c("1","0"))
+
+Eval$FMuse[is.na(Eval$FMuse)] <-"0"
+Eval$FMuse <- factor(Eval$FMuse,levels=c("1","0"))
+
+Eval$AuditoryTraining[is.na(Eval$AuditoryTraining)] <-"0"
+Eval$AuditoryTraining <- factor(Eval$AuditoryTraining,levels=c("1","0"))
 
 # -- Change data layout from Wide2Long -----------------------
-Eval_APD_L <- Eval_APD %>% 
+Eval_L <- Eval %>% 
   select(listener:PC1.Lang) %>%
   pivot_longer(
     cols = c("PC1.ST","PC1.Lang"), 
@@ -6902,47 +7401,292 @@ Eval_APD_L <- Eval_APD %>%
     values_to = "score") %>%
   ungroup()
 
-# Eval_APD_L$SPD <- factor(Eval_APD_L$SPD,levels=c("1","0"))
-# Eval_APD_L$EarProblems <- factor(Eval_APD_L$EarProblems,levels=c("1","0"))
-# Eval_APD_L$Grommets <- factor(Eval_APD_L$Grommets,levels=c("1","0"))
-# Eval_APD_L$FMuse <- factor(Eval_APD_L$FMuse,levels=c("1","0"))
-# Eval_APD_L$AuditoryTraining <- factor(Eval_APD_L$AuditoryTraining,levels=c("1","0"))
-
-ST_Diag.t_test   <- t.test(PC1.ST~ Diagnosis, data=Eval_APD, conf.level = 0.95, paired = FALSE)
-ST_SPD.t_test   <- t.test(PC1.ST~ SPD, data=Eval_APD, conf.level = 0.95, paired = FALSE)
-ST_FM.t_test    <- t.test(PC1.ST~ FMuse, data=Eval_APD, conf.level = 0.95, paired = FALSE)
-ST_OME.t_test   <- t.test(PC1.ST~ EarProblems, data=Eval_APD, conf.level = 0.95, paired = FALSE)
-ST_PET.t_test   <- t.test(PC1.ST~ Grommets, data=Eval_APD, conf.level = 0.95, paired = FALSE)
-
-Lang_Diag.t_test   <- t.test(PC1.Lang~ Diagnosis, data=Eval_APD, conf.level = 0.95, paired = FALSE)
-Lang_SPD.t_test    <- t.test(PC1.Lang~ SPD, data=Eval_APD, conf.level = 0.95, paired = FALSE)
-Lang_FM.t_test     <- t.test(PC1.Lang~ FMuse, data=Eval_APD, conf.level = 0.95, paired = FALSE)
-Lang_OME.t_test    <- t.test(PC1.Lang~ EarProblems, data=Eval_APD, conf.level = 0.95, paired = FALSE)
-Lang_PET.t_test    <- t.test(PC1.Lang~ Grommets, data=Eval_APD, conf.level = 0.95, paired = FALSE)
-
-# SRM_SPD.t_test    <- Eval_APD %>% filter(Group=="APD") %>% t.test(SRM~ SPD, data=., conf.level = 0.95, paired = FALSE)
-SRM_SPD.t_test    <- t.test(SRM~ SPD, data=Eval_APD, conf.level = 0.95, paired = FALSE)
-SRM_OME.t_test    <- t.test(SRM~ EarProblems, data=Eval_APD, conf.level = 0.95, paired = FALSE)
-SRM_PET.t_test    <- t.test(SRM~ Grommets, data=Eval_APD, conf.level = 0.95, paired = FALSE)
-SRM_Tra.t_test    <- t.test(SRM~ AuditoryTraining, data=Eval_APD, conf.level = 0.95, paired = FALSE)
-
-PTA_OME.t_test       <- t.test(PTA~ EarProblems, data=Eval_APD, conf.level = 0.95, paired = FALSE)
-PTA_PET.t_test       <- t.test(PTA~ Grommets, data=Eval_APD, conf.level = 0.95, paired = FALSE)
-EHF_PTA_OME.t_test   <- t.test(PTA_EHF~ EarProblems, data=Eval_APD, conf.level = 0.95, paired = FALSE)
-EHF_PTA_PET.t_test   <- t.test(PTA_EHF~ Grommets, data=Eval_APD, conf.level = 0.95, paired = FALSE)
-
+# Eval_L$SPD <- factor(Eval_L$SPD,levels=c("1","0","NA"))
 ```
 
-```{r echo=FALSE, fig.align='center', fig.asp=1, fig.cap="Association between predictors and performance in the APD group for the switching task composite (PC1.ST), language composite (PC1.Lang), SRM, standard and EHF pure-tone PTA. Predictors included: 1. APD diagnosis (APD vs. LiD), 2. SPD diagnosis (SPD vs. non-SPD), 3. Regular use of FM-device (FM vs. No FM), 4. History of OME (OME vs. No OME), 5. Pressure equalisation tube history (PET vs. No PET), and 6. Auditory training (Training vs. No training). Individual observations are marked in circles. Observations of children diagnosed with APD are filled in dark blue, and LiD observations are filled in light blue. Significant p-values for independent t-test comparison are marked with asterisk (p < 0.05).", fig.width=14, message=FALSE, warning=FALSE, label='EvalAPD-fig', out.width='100%'}
+```{block type='correction'}
+*OME*: is a composite calculated based on the caregivers indication of history of **Ear infection** \& **Glue ear** in the background questionnaire. OME is 1 if response was 'Yes' to at least one of these items, whereas OME is 0 if response was 'No' for both items.
+```
+
+```{r echo=FALSE, fig.align='center', fig.asp=1.2, fig.cap="Association between predictors and performance in the APD group for the switching task composite (PC1.ST), language composite (PC1.Lang), SRM, standard and EHF pure-tone PTA. Predictors included: 1. APD diagnosis (APD vs. LiD), 2. SPD diagnosis (SPD vs. non-SPD), 3. Regular use of FM-device (FM vs. No FM), 4. History of OME (OME vs. No OME), 5. Pressure equalisation tube history (PET vs. No PET), and 6. Auditory training (Training vs. No training). Individual observations are marked in circles. Observations of children diagnosed with APD are filled in dark blue, and LiD observations are filled in light blue. Significant p-values for independent t-test comparison are marked with asterisk (p < 0.05).", fig.width=18, message=FALSE, warning=FALSE, label='EvalAPD-fig', out.width='100%'}
 
 # stat_compare_means(): method="wilcox.test" OR method="t.test"
 
-t1 <- ggplot(Eval_APD_L, aes(x=Diagnosis,y=score)) +
+t1 <- ggplot(Eval_L, aes(x=Diagnosis,y=score)) +
   geom_boxplot(position=position_dodge(width=0.8),outlier.shape=NA) + 
   geom_quasirandom(dodge.width=0.8,shape=21,aes(fill=Diagnosis))+
-  scale_fill_manual(values=c("blue","lightblue"))+
-  stat_compare_means(label =  "p.signif", label.x = 1.5,method="t.test",vjust = 1) +  
+  scale_fill_manual(values=c("blue","lightblue","black"))+
+  facet_grid(. ~ CondCode, scales = "free", switch = "y")+
+  stat_compare_means(comparisons = list( c("APD","LiD")),label =  "p.signif")+
   labs(y="Weighted score" ,x = "") + 
+  scale_y_continuous(limits = c(-7,7),breaks=seq(-7,7,2))+
+  theme_bw()+
+  theme(axis.text = element_text(size = 11, face="bold",colour = "black"),
+        axis.title.x = element_text(size=11, face="bold"),
+        axis.title.y = element_text(size=11, face="bold"),
+        legend.title = element_text(size=11, face="bold"),
+        legend.text  = element_text(size=11, face="bold"),
+        panel.spacing.x = unit(0,"line"),
+        strip.background = element_rect(fill="white", color="white"),
+        strip.text = element_text(face = "bold", size = 11))
+
+t2 <- ggplot(Eval_L, aes(x=SPD,y=score)) +
+  geom_boxplot(position=position_dodge(width=0.8),outlier.shape=NA)+ 
+  geom_quasirandom(dodge.width=0.8,shape=21,aes(fill=Diagnosis))+
+  scale_fill_manual(values=c("blue","lightblue","black"))+
+  facet_grid(. ~ CondCode, scales = "free", switch = "y")+
+  labs(y="Weighted score" ,x = "") + 
+  scale_y_continuous(limits = c(-7,7),breaks=seq(-7,7,2))+
+  scale_x_discrete(breaks=c("1", "0",NA),labels=c("SPD", "non-SPD","TD"))+
+  stat_compare_means(comparisons = list( c("1","0")),label =  "p.signif", method = "t.test")+
+  theme_bw()+
+  theme(axis.text = element_text(size = 11, face="bold",colour = "black"),
+        axis.title.x = element_text(size=11, face="bold"),
+        axis.title.y = element_text(size=11, face="bold"),
+        legend.title = element_text(size=11, face="bold"),
+        legend.text  = element_text(size=11, face="bold"),
+        panel.spacing.x = unit(0,"line"),
+        strip.background = element_rect(fill="white", color="white"),
+        strip.text = element_text(face = "bold", size = 11))
+
+t3 <- ggplot(Eval_L, aes(x=interaction(FMuse,Group),y=score)) +
+  geom_boxplot(position=position_dodge(width=0.8),outlier.shape=NA) + 
+  geom_quasirandom(dodge.width=0.8,shape=21,aes(fill=Diagnosis))+
+  facet_grid(. ~ CondCode, scales = "free", switch = "y")+
+  scale_fill_manual(values=c("blue","lightblue","black"))+
+  # geom_vline(xintercept=2.5)+
+  labs(y="Weighted score" ,x = "") + 
+  scale_y_continuous(limits = c(-7,7),breaks=seq(-7,7,2))+
+  scale_x_discrete(breaks=c("1.APD", "0.APD","0.TD"),labels=c("FM", "No FM","TD"))+
+  stat_compare_means(comparisons = list( c("1.APD","0.APD")),label =  "p.signif", method = "t.test")+
+  theme_bw()+
+  theme(axis.text = element_text(size = 11, face="bold",colour = "black"),
+        axis.title.x = element_text(size=11, face="bold"),
+        axis.title.y = element_text(size=11, face="bold"),
+        legend.title = element_text(size=11, face="bold"),
+        legend.text  = element_text(size=11, face="bold"),
+        panel.spacing.x = unit(0,"line"),
+        strip.background = element_rect(fill="white", color="white"),
+        strip.text = element_text(face = "bold", size = 11))
+
+t4 <- ggplot(Eval_L, aes(x=EarProblems,y=score)) +
+  geom_boxplot(position=position_dodge(width=0.8),outlier.shape=NA) + 
+  geom_quasirandom(dodge.width=0.8,shape=21,aes(fill=Diagnosis))+
+  facet_grid(. ~ CondCode+Group, scales = "free", switch = "y")+
+  scale_fill_manual(values=c("blue","lightblue","black"))+
+  # geom_vline(xintercept=2.5)+
+  labs(y="Weighted score" ,x = "") + 
+  scale_y_continuous(limits = c(-7,7),breaks=seq(-7,7,2))+
+  scale_x_discrete(breaks=c("1", "0"),labels=c("OME", "No OME"))+
+  stat_compare_means(comparisons = list( c("1","0")),label =  "p.signif", method = "t.test")+
+  theme_bw()+
+  theme(axis.text = element_text(size = 11, face="bold",colour = "black"),
+        axis.title.x = element_text(size=11, face="bold"),
+        axis.title.y = element_text(size=11, face="bold"),
+        legend.title = element_text(size=11, face="bold"),
+        legend.text  = element_text(size=11, face="bold"),
+        panel.spacing.x = unit(0,"line"),
+        strip.background = element_rect(fill="white", color="white"),
+        strip.text = element_text(face = "bold", size = 11))
+
+# PET: Pressure equalisation tube
+t5 <- ggplot(Eval_L, aes(x=interaction(Grommets,Group),y=score)) +
+  geom_boxplot(position=position_dodge(width=0.8),outlier.shape=NA) + 
+  geom_quasirandom(dodge.width=0.8,shape=21,aes(fill=Diagnosis))+
+  facet_grid(. ~ CondCode, scales = "free", switch = "y")+
+  scale_fill_manual(values=c("blue","lightblue","black"))+
+  # geom_vline(xintercept=2.5)+
+  labs(y="Weighted score" ,x = "") + 
+  scale_y_continuous(limits = c(-7,7),breaks=seq(-7,7,2))+
+  scale_x_discrete(breaks=c("1.APD", "0.APD","0.TD"),labels=c("PET", "No PET","TD"))+
+  stat_compare_means(comparisons = list( c("1.APD","0.APD")),label =  "p.signif", method = "t.test")+
+  theme_bw()+
+  theme(axis.text = element_text(size = 11, face="bold",colour = "black"),
+        axis.title.x = element_text(size=11, face="bold"),
+        axis.title.y = element_text(size=11, face="bold"),
+        legend.title = element_text(size=11, face="bold"),
+        legend.text  = element_text(size=11, face="bold"),
+        panel.spacing.x = unit(0,"line"),
+        strip.background = element_rect(fill="white", color="white"),
+        strip.text = element_text(face = "bold", size = 11))
+  
+t6 <- ggplot(Eval, aes(x=interaction(SPD,Group),y=zSRM)) +
+  geom_boxplot(position=position_dodge(width=0.8),outlier.shape=NA) + 
+  geom_quasirandom(dodge.width=0.8,shape=21,aes(fill=Diagnosis))+
+  facet_grid(. ~ AuditoryTraining, scales = "free", switch = "y",
+             labeller = as_labeller(c("1" ="Training","0"="No training")))+
+  scale_fill_manual(values=c("blue","lightblue","black"))+
+  labs(y = "SRM (z-score)" ,x = "") +
+  scale_y_continuous(limits = c(-7,5),breaks=seq(-7,5,2))+
+  scale_x_discrete(breaks=c("1.APD","0.APD", NA),labels=c("SPD", "non-SPD","TD"))+
+  stat_compare_means(comparisons = list( c("1.APD","0.APD")),label =  "p.signif", method = "t.test")+
+  theme_bw()+
+  theme(axis.text = element_text(size = 11, face="bold",colour = "black"),
+        axis.title.x = element_text(size=11, face="bold"),
+        axis.title.y = element_text(size=11, face="bold"),
+        legend.title = element_text(size=11, face="bold"),
+        legend.text  = element_text(size=11, face="bold"),
+        panel.spacing.x = unit(0,"line"),
+        strip.background = element_rect(fill="white", color="white"),
+        strip.text = element_text(face = "bold", size = 11))
+                      
+t7 <- ggplot(Eval, aes(x=EarProblems,y=zSRM)) +
+  geom_boxplot(position=position_dodge(width=0.8),outlier.shape=NA) + 
+  geom_quasirandom(dodge.width=0.8,shape=21,aes(fill=Diagnosis))+
+  facet_grid(. ~ Group, scales = "free", switch = "y")+
+  scale_fill_manual(values=c("blue","lightblue","black"))+
+  labs(y = "SRM (z-score)" ,x = "") +
+  scale_y_continuous(limits = c(-7,5),breaks=seq(-7,5,2))+
+  scale_x_discrete(breaks=c("1", "0"),labels=c("OME", "No OME"))+
+  stat_compare_means(comparisons = list( c("1","0")),label =  "p.signif", method = "t.test")+
+  theme_bw()+
+  theme(axis.text = element_text(size = 11, face="bold",colour = "black"),
+        axis.title.x = element_text(size=11, face="bold"),
+        axis.title.y = element_text(size=11, face="bold"),
+        legend.title = element_text(size=11, face="bold"),
+        legend.text  = element_text(size=11, face="bold"),
+        panel.spacing.x = unit(0,"line"),
+        strip.background = element_rect(fill="white", color="white"),
+        strip.text = element_text(face = "bold", size = 11))
+
+t8 <- ggplot(Eval, aes(x=interaction(Grommets,Group),y=zSRM)) +
+  geom_boxplot(position=position_dodge(width=0.8),outlier.shape=NA) + 
+  geom_quasirandom(dodge.width=0.8,shape=21,aes(fill=Diagnosis))+
+  scale_fill_manual(values=c("blue","lightblue","black"))+
+  labs(y = "SRM (z-score)" ,x = "") +
+  scale_y_continuous(limits = c(-7,5),breaks=seq(-7,5,2))+
+  scale_x_discrete(breaks=c("1.APD", "0.APD","0.TD"),labels=c("PET", "No PET","TD"))+
+  stat_compare_means(comparisons = list( c("1.APD","0.APD")),label =  "p.signif", method = "t.test")+
+  theme_bw()+
+  theme(axis.text = element_text(size = 11, face="bold",colour = "black"),
+        axis.title.x = element_text(size=11, face="bold"),
+        axis.title.y = element_text(size=11, face="bold"),
+        legend.title = element_text(size=11, face="bold"),
+        legend.text  = element_text(size=11, face="bold"),
+        panel.spacing.x = unit(0,"line"),
+        strip.background = element_rect(fill="white", color="white"),
+        strip.text = element_text(face = "bold", size = 11))
+
+t9 <- ggplot(Eval, aes(x=interaction(FMuse,Group),y=zSRM)) +
+  geom_boxplot(position=position_dodge(width=0.8),outlier.shape=NA) + 
+  geom_quasirandom(dodge.width=0.8,shape=21,aes(fill=Diagnosis))+
+  scale_fill_manual(values=c("blue","lightblue","black"))+
+  labs(y = "SRM (z-score)" ,x = "") +
+  scale_y_continuous(limits = c(-7,5),breaks=seq(-7,5,2))+
+  scale_x_discrete(breaks=c("1.APD", "0.APD","0.TD"),labels=c("FM", "No FM", "TD"))+
+  stat_compare_means(comparisons = list( c("1.APD","0.APD")),label =  "p.signif", method = "t.test")+
+  theme_bw()+
+  theme(axis.text = element_text(size = 11, face="bold",colour = "black"),
+        axis.title.x = element_text(size=11, face="bold"),
+        axis.title.y = element_text(size=11, face="bold"),
+        legend.title = element_text(size=11, face="bold"),
+        legend.text  = element_text(size=11, face="bold"),
+        panel.spacing.x = unit(0,"line"),
+        strip.background = element_rect(fill="white", color="white"),
+        strip.text = element_text(face = "bold", size = 11))
+
+
+t10 <- ggplot(Eval, aes(x=interaction(AuditoryTraining,Group),y=zSRM)) +
+  geom_boxplot(position=position_dodge(width=0.8),outlier.shape=NA) + 
+  geom_quasirandom(dodge.width=0.8,shape=21,aes(fill=Diagnosis))+
+  scale_fill_manual(values=c("blue","lightblue","black"))+
+  labs(y = "SRM (z-score)" ,x = "") +
+  scale_y_continuous(limits = c(-7,5),breaks=seq(-7,5,2))+
+  scale_x_discrete(breaks=c("1.APD", "0.APD","0.TD"),labels=c("Training", "No \n training", "TD"))+
+  stat_compare_means(comparisons = list( c("1.APD","0.APD")),label =  "p.signif", method = "t.test")+
+  theme_bw()+
+  theme(axis.text = element_text(size = 11, face="bold",colour = "black"),
+        axis.title.x = element_text(size=11, face="bold"),
+        axis.title.y = element_text(size=11, face="bold"),
+        legend.title = element_text(size=11, face="bold"),
+        legend.text  = element_text(size=11, face="bold"),
+        panel.spacing.x = unit(0,"line"),
+        strip.background = element_rect(fill="white", color="white"),
+        strip.text = element_text(face = "bold", size = 11))
+
+t11 <- ggplot(Eval, aes(x=EarProblems,y=PTA)) +
+  geom_boxplot(position=position_dodge(width=0.8),outlier.shape=NA) + 
+  geom_quasirandom(dodge.width=0.8,shape=21,aes(fill=Diagnosis))+
+  facet_grid(. ~ Group, scales = "free", switch = "y")+
+  scale_fill_manual(values=c("blue","lightblue","black"))+
+  scale_y_reverse(limits = c(15,-5),breaks=seq(15,-5,-5))+
+  scale_x_discrete(labels=c("1" = "OME", "0" = "No OME"))+
+  stat_compare_means(comparisons = list( c("1","0")),label =  "p.signif", method = "t.test")+
+  labs(y = "Standard PTA \n (dB HL)" ,x = "") +
+  theme_bw()+
+  theme(axis.text = element_text(size = 11, face="bold",colour = "black"),
+        axis.title.x = element_text(size=11, face="bold"),
+        axis.title.y = element_text(size=11, face="bold"),
+        legend.title = element_text(size=11, face="bold"),
+        legend.text  = element_text(size=11, face="bold"),
+        panel.spacing.x = unit(0,"line"),
+        strip.background = element_rect(fill="white", color="white"),
+        strip.text = element_text(face = "bold", size = 11))
+
+t12 <- ggplot(Eval, aes(x=interaction(Grommets,Group),y=PTA)) +
+  geom_boxplot(position=position_dodge(width=0.8),outlier.shape=NA) + 
+  geom_quasirandom(dodge.width=0.8,shape=21,aes(fill=Diagnosis))+
+  scale_fill_manual(values=c("blue","lightblue","black"))+
+  scale_y_reverse(limits = c(15,-5),breaks=seq(15,-5,-5))+
+  scale_x_discrete(breaks=c("1.APD", "0.APD","0.TD"),labels=c("PET", "No PET", "TD"))+
+  stat_compare_means(comparisons = list( c("1.APD","0.APD")),label =  "p.signif", method = "t.test")+
+  labs(y = "Standard PTA \n (dB HL)" ,x = "") +
+  theme_bw()+
+  theme(axis.text = element_text(size = 11, face="bold",colour = "black"),
+        axis.title.x = element_text(size=11, face="bold"),
+        axis.title.y = element_text(size=11, face="bold"),
+        legend.title = element_text(size=11, face="bold"),
+        legend.text  = element_text(size=11, face="bold"),
+        panel.spacing.x = unit(0,"line"),
+        strip.background = element_rect(fill="white", color="white"),
+        strip.text = element_text(face = "bold", size = 11))
+
+t13 <- ggplot(Eval, aes(x=EarProblems,y=PTA_EHF)) +
+  geom_boxplot(position=position_dodge(width=0.8),outlier.shape=NA) + 
+  geom_quasirandom(dodge.width=0.8,shape=21,aes(fill=Diagnosis))+
+  facet_grid(. ~ Group, scales = "free", switch = "y")+
+  scale_fill_manual(values=c("blue","lightblue","black"))+
+  scale_y_reverse(limits = c(35,-5),breaks=seq(35,-5,-5))+
+  scale_x_discrete(labels=c("1" = "OME", "0" = "No OME"))+
+  stat_compare_means(comparisons = list( c("1","0")),label =  "p.signif", method = "t.test")+
+  labs(y = "EHF PTA \n (dB HL)" ,x = "") + 
+  theme_bw()+
+  theme(axis.text = element_text(size = 11, face="bold",colour = "black"),
+        axis.title.x = element_text(size=11, face="bold"),
+        axis.title.y = element_text(size=11, face="bold"),
+        legend.title = element_text(size=11, face="bold"),
+        legend.text  = element_text(size=11, face="bold"),
+        panel.spacing.x = unit(0,"line"),
+        strip.background = element_rect(fill="white", color="white"),
+        strip.text = element_text(face = "bold", size = 11))
+
+t13b <- ggplot(Eval, aes(x=EarProblemsDur,y=PTA_EHF)) +
+  geom_boxplot(position=position_dodge(width=0.8),outlier.shape=NA) +
+  geom_quasirandom(dodge.width=0.8,shape=21,aes(fill=Diagnosis))+
+  facet_grid(. ~ Group, scales = "free", switch = "y")+
+  scale_fill_manual(values=c("blue","lightblue","black"))+
+  scale_y_reverse(limits = c(35,-5),breaks=seq(35,-5,-5))+
+  # scale_x_discrete(labels=c("1" = "OME", "0" = "No OME"))+
+  stat_compare_means(comparisons = list( c(">2","0")),label =  "p.signif", method = "t.test")+
+  labs(y = "EHF PTA \n (dB HL)" ,x = "") +
+  theme_bw()+
+  theme(axis.text = element_text(size = 11, face="bold",colour = "black"),
+        axis.title.x = element_text(size=11, face="bold"),
+        axis.title.y = element_text(size=11, face="bold"),
+        legend.title = element_text(size=11, face="bold"),
+        legend.text  = element_text(size=11, face="bold"),
+        panel.spacing.x = unit(0,"line"),
+        strip.background = element_rect(fill="white", color="white"),
+        strip.text = element_text(face = "bold", size = 11))
+
+t14 <- ggplot(Eval, aes(x=interaction(Grommets,Group),y=PTA_EHF)) +
+  geom_boxplot(position=position_dodge(width=0.8),outlier.shape=NA) + 
+  geom_quasirandom(dodge.width=0.8,shape=21,aes(fill=Diagnosis))+
+  scale_fill_manual(values=c("blue","lightblue","black"))+
+  scale_x_discrete(labels=c("1.APD" = "PET", "0.APD" = "No PET","0.TD" = "TD"))+
+  stat_compare_means(comparisons = list( c("1.APD","0.APD")),label =  "p.signif")+
+  scale_y_reverse(limits = c(35,-5),breaks=seq(35,-5,-5))+
+  labs(y = "EHF PTA \n (dB HL)" ,x = "") + 
   theme_bw()+
   theme(axis.text = element_text(size = 11, face="bold",colour = "black"),
         axis.title.x = element_text(size=11, face="bold"),
@@ -6950,37 +7694,24 @@ t1 <- ggplot(Eval_APD_L, aes(x=Diagnosis,y=score)) +
         legend.title = element_text(size=11, face="bold"),
         legend.text  = element_text(size=11, face="bold"))
 
-t1 <- t1 + facet_grid(. ~ CondCode, scales = "free", switch = "y")+
-  theme(panel.spacing.x = unit(0,"line"),
-        strip.background = element_rect(fill="white", color="white"),
-        strip.text = element_text(face = "bold", size = 11))
+(t1 + t2 + t3 + t4 + t5 + t6 + t7 + t8 + t9 + t10 + t11 + t12 + t13 + t14) + plot_layout(ncol = 3, nrow = 5, heights = c(1,1), widths = c(1,1)) + plot_annotation(tag_levels = 'A') + plot_layout(guides='collect') &
+  theme(legend.position='bottom',        
+        legend.direction = "horizontal",
+        legend.background = element_blank(),
+        legend.box.background = element_rect(colour = "black"),
+        plot.tag = element_text(face = 'bold'))
+```
 
-t2 <- ggplot(Eval_APD_L, aes(x=SPD,y=score)) +
-  geom_boxplot(position=position_dodge(width=0.8),outlier.shape=NA) + 
-  geom_quasirandom(dodge.width=0.8,shape=21,aes(fill=Diagnosis))+
-  scale_fill_manual(values=c("blue","lightblue"))+
-  stat_compare_means(label =  "p.signif", label.x = 1.5,vjust = 1) +  
-  scale_x_discrete(labels=c("1" = "SPD", "0" = "non-SPD"))+
-  labs(y="Weighted score" ,x = "") + 
-  theme_bw()+
-  theme(axis.text = element_text(size = 11, face="bold",colour = "black"),
-        axis.title.x = element_text(size=11, face="bold"),
-        axis.title.y = element_text(size=11, face="bold"),
-        legend.title = element_text(size=11, face="bold"),
-        legend.text  = element_text(size=11, face="bold"))
+```{r, fig.align='center', fig.asp=1, fig.width=14, eval=FALSE}
+# SRM in dB
 
-t2 <- t2 + facet_grid(. ~ CondCode, scales = "free", switch = "y")+
-  theme(panel.spacing.x = unit(0,"line"),
-        strip.background = element_rect(fill="white", color="white"),
-        strip.text = element_text(face = "bold", size = 11))
-
-t3 <- ggplot(Eval_APD_L, aes(x=FMuse,y=score)) +
+t6 <- ggplot(Eval_APD, aes(x=SPD,y=uRevs_SRM)) +
     geom_boxplot(position=position_dodge(width=0.8),outlier.shape=NA) + 
   geom_quasirandom(dodge.width=0.8,shape=21,aes(fill=Diagnosis))+
   scale_fill_manual(values=c("blue","lightblue"))+
   stat_compare_means(label =  "p.signif", label.x = 1.5,vjust = 1) +  
-  scale_x_discrete(labels=c("1" = "FM", "0" = "No FM"))+
-  labs(y="Weighted score" ,x = "") + 
+  scale_x_discrete(labels=c("1" = "SPD", "0" = "non-SPD"))+
+  labs(y = "SRM (z-score)" ,x = "") +
   theme_bw()+
   theme(axis.text = element_text(size = 11, face="bold",colour = "black"),
         axis.title.x = element_text(size=11, face="bold"),
@@ -6988,18 +7719,19 @@ t3 <- ggplot(Eval_APD_L, aes(x=FMuse,y=score)) +
         legend.title = element_text(size=11, face="bold"),
         legend.text  = element_text(size=11, face="bold"))
 
-t3 <- t3 + facet_grid(. ~ CondCode, scales = "free", switch = "y")+
+t6 <- t6 + facet_grid(. ~ AuditoryTraining, scales = "free", switch = "y",
+  labeller = as_labeller(c("1" ="Training","0"="No training")))+
   theme(panel.spacing.x = unit(0,"line"),
         strip.background = element_rect(fill="white", color="white"),
         strip.text = element_text(face = "bold", size = 11))
 
-t4 <- ggplot(Eval_APD_L, aes(x=EarProblems,y=score)) +
+t7 <- ggplot(Eval_APD, aes(x=EarProblems,y=uRevs_SRM)) +
     geom_boxplot(position=position_dodge(width=0.8),outlier.shape=NA) + 
   geom_quasirandom(dodge.width=0.8,shape=21,aes(fill=Diagnosis))+
   scale_fill_manual(values=c("blue","lightblue"))+
   stat_compare_means(label =  "p.signif", label.x = 1.5,vjust = 1) +  
   scale_x_discrete(labels=c("1" = "OME", "0" = "No OME"))+
-  labs(y = "Weighted score" ,x = "") + 
+  labs(y = "SRM (z-score)" ,x = "") +
   theme_bw()+
   theme(axis.text = element_text(size = 11, face="bold",colour = "black"),
         axis.title.x = element_text(size=11, face="bold"),
@@ -7007,37 +7739,12 @@ t4 <- ggplot(Eval_APD_L, aes(x=EarProblems,y=score)) +
         legend.title = element_text(size=11, face="bold"),
         legend.text  = element_text(size=11, face="bold"))
 
-t4 <- t4 + facet_grid(. ~ CondCode, scales = "free", switch = "y")+
-  theme(panel.spacing.x = unit(0,"line"),
-        strip.background = element_rect(fill="white", color="white"),
-        strip.text = element_text(face = "bold", size = 11))
-
-# PET: Pressure equalisation tube
-t5 <- ggplot(Eval_APD_L, aes(x=Grommets,y=score)) +
+t8 <- ggplot(Eval_APD, aes(x=Grommets,y=uRevs_SRM)) +
     geom_boxplot(position=position_dodge(width=0.8),outlier.shape=NA) + 
   geom_quasirandom(dodge.width=0.8,shape=21,aes(fill=Diagnosis))+
   scale_fill_manual(values=c("blue","lightblue"))+
   stat_compare_means(label =  "p.signif", label.x = 1.5,vjust = 1) +  
   scale_x_discrete(labels=c("1" = "PET", "0" = "No PET"))+
-  labs(y="Weighted score" ,x = "") + 
-  theme_bw()+
-  theme(axis.text = element_text(size = 11, face="bold",colour = "black"),
-        axis.title.x = element_text(size=11, face="bold"),
-        axis.title.y = element_text(size=11, face="bold"),
-        legend.title = element_text(size=11, face="bold"),
-        legend.text  = element_text(size=11, face="bold"))
-
-t5 <- t5 + facet_grid(. ~ CondCode, scales = "free", switch = "y")+
-  theme(panel.spacing.x = unit(0,"line"),
-        strip.background = element_rect(fill="white", color="white"),
-        strip.text = element_text(face = "bold", size = 11))
-
-t6 <- ggplot(Eval_APD, aes(x=SPD,y=SRM)) +
-    geom_boxplot(position=position_dodge(width=0.8),outlier.shape=NA) + 
-  geom_quasirandom(dodge.width=0.8,shape=21,aes(fill=Diagnosis))+
-  scale_fill_manual(values=c("blue","lightblue"))+
-  stat_compare_means(label =  "p.signif", label.x = 1.5,vjust = 1) +  
-  scale_x_discrete(labels=c("1" = "SPD", "0" = "non-SPD"))+
   labs(y = "SRM (z-score)" ,x = "") +
   theme_bw()+
   theme(axis.text = element_text(size = 11, face="bold",colour = "black"),
@@ -7046,53 +7753,7 @@ t6 <- ggplot(Eval_APD, aes(x=SPD,y=SRM)) +
         legend.title = element_text(size=11, face="bold"),
         legend.text  = element_text(size=11, face="bold"))
 
-# t6 <- ggplot(Eval_APD, aes(x=SPD,y=SRM)) +
-#     geom_boxplot(position=position_dodge(width=0.8),outlier.shape=NA) + 
-#   geom_quasirandom(data=filter(Eval_APD,Diagnosis=="APD"),dodge.width=0.8,shape=21,aes(fill=AuditoryTraining))+
-#   scale_fill_manual(values=c("blue","lightblue"))+
-#   # geom_quasirandom(aes(x=SPD,y=SRM),data=filter(Eval_APD,AuditoryTraining=="1"),shape=1,size=4,show.legend = FALSE)+
-#   scale_x_discrete(labels=c("1" = "SPD", "0" = "APD only"))+
-#   labs(y = "SRM (z-score)" ,x = "") +
-#   theme_bw()+
-#   theme(axis.text = element_text(size = 11, face="bold",colour = "black"),
-#         axis.title.x = element_text(size=11, face="bold"),
-#         axis.title.y = element_text(size=11, face="bold"),
-#         legend.title = element_text(size=11, face="bold"),
-#         legend.text  = element_text(size=11, face="bold"),
-#         legend.position = "bottom",
-#         legend.direction = "horizontal",
-#         legend.background = element_blank(),
-#         legend.box.background = element_rect(colour = "black"))
-
-t7 <- ggplot(Eval_APD, aes(x=EarProblems,y=SRM)) +
-    geom_boxplot(position=position_dodge(width=0.8),outlier.shape=NA) + 
-  geom_quasirandom(dodge.width=0.8,shape=21,aes(fill=Diagnosis))+
-  scale_fill_manual(values=c("blue","lightblue"))+
-  stat_compare_means(label =  "p.signif", label.x = 1.5,vjust = 1) +  
-  scale_x_discrete(labels=c("1" = "OME", "0" = "No OME"))+
-  labs(y = "SRM (z-score)" ,x = "") +
-  theme_bw()+
-  theme(axis.text = element_text(size = 11, face="bold",colour = "black"),
-        axis.title.x = element_text(size=11, face="bold"),
-        axis.title.y = element_text(size=11, face="bold"),
-        legend.title = element_text(size=11, face="bold"),
-        legend.text  = element_text(size=11, face="bold"))
-
-t8 <- ggplot(Eval_APD, aes(x=Grommets,y=SRM)) +
-    geom_boxplot(position=position_dodge(width=0.8),outlier.shape=NA) + 
-  geom_quasirandom(dodge.width=0.8,shape=21,aes(fill=Diagnosis))+
-  scale_fill_manual(values=c("blue","lightblue"))+
-  stat_compare_means(label =  "p.signif", label.x = 1.5,vjust = 1) +  
-  scale_x_discrete(labels=c("1" = "PTE", "0" = "No PET"))+
-  labs(y = "SRM (z-score)" ,x = "") +
-  theme_bw()+
-  theme(axis.text = element_text(size = 11, face="bold",colour = "black"),
-        axis.title.x = element_text(size=11, face="bold"),
-        axis.title.y = element_text(size=11, face="bold"),
-        legend.title = element_text(size=11, face="bold"),
-        legend.text  = element_text(size=11, face="bold"))
-
-t9 <- ggplot(Eval_APD, aes(x=FMuse,y=SRM)) +
+t9 <- ggplot(Eval_APD, aes(x=FMuse,y=uRevs_SRM)) +
     geom_boxplot(position=position_dodge(width=0.8),outlier.shape=NA) + 
   geom_quasirandom(dodge.width=0.8,shape=21,aes(fill=Diagnosis))+
   scale_fill_manual(values=c("blue","lightblue"))+
@@ -7106,7 +7767,7 @@ t9 <- ggplot(Eval_APD, aes(x=FMuse,y=SRM)) +
         legend.title = element_text(size=11, face="bold"),
         legend.text  = element_text(size=11, face="bold"))
 
-t10 <- ggplot(Eval_APD, aes(x=AuditoryTraining,y=SRM)) +
+t10 <- ggplot(Eval_APD, aes(x=AuditoryTraining,y=uRevs_SRM)) +
     geom_boxplot(position=position_dodge(width=0.8),outlier.shape=NA) + 
   geom_quasirandom(dodge.width=0.8,shape=21,aes(fill=Diagnosis))+
   scale_fill_manual(values=c("blue","lightblue"))+
@@ -7120,75 +7781,13 @@ t10 <- ggplot(Eval_APD, aes(x=AuditoryTraining,y=SRM)) +
         legend.title = element_text(size=11, face="bold"),
         legend.text  = element_text(size=11, face="bold"))
 
-t11 <- ggplot(Eval_APD, aes(x=EarProblems,y=PTA)) +
-  geom_boxplot(position=position_dodge(width=0.8),outlier.shape=NA) + 
-  geom_quasirandom(dodge.width=0.8,shape=21,aes(fill=Diagnosis))+
-  scale_fill_manual(values=c("blue","lightblue"))+
-  scale_y_reverse(limits = c(15,0),breaks=seq(15,0,-5))+
-  stat_compare_means(label =  "p.signif", label.x = 1.5,vjust = 1) +
-  scale_x_discrete(labels=c("1" = "OME", "0" = "No OME"))+
-  labs(y = "Standard PTA \n (dB HL)" ,x = "") + 
-  theme_bw()+
-  theme(axis.text = element_text(size = 11, face="bold",colour = "black"),
-        axis.title.x = element_text(size=11, face="bold"),
-        axis.title.y = element_text(size=11, face="bold"),
-        legend.title = element_text(size=11, face="bold"),
-        legend.text  = element_text(size=11, face="bold"))
-
-t12 <- ggplot(Eval_APD, aes(x=Grommets,y=PTA)) +
-    geom_boxplot(position=position_dodge(width=0.8),outlier.shape=NA) + 
-  geom_quasirandom(dodge.width=0.8,shape=21,aes(fill=Diagnosis))+
-  scale_fill_manual(values=c("blue","lightblue"))+
-  scale_y_reverse(limits = c(15,0),breaks=seq(15,0,-5))+
-  stat_compare_means(label =  "p.signif", label.x = 1.5,vjust = 1) +
-  scale_x_discrete(labels=c("1" = "PTE", "0" = "No PET"))+
-  labs(y = "Standard PTA \n (dB HL)" ,x = "") + 
-  theme_bw()+
-  theme(axis.text = element_text(size = 11, face="bold",colour = "black"),
-        axis.title.x = element_text(size=11, face="bold"),
-        axis.title.y = element_text(size=11, face="bold"),
-        legend.title = element_text(size=11, face="bold"),
-        legend.text  = element_text(size=11, face="bold"))
-
-
-t13 <- ggplot(Eval_APD, aes(x=EarProblems,y=PTA_EHF)) +
-    geom_boxplot(position=position_dodge(width=0.8),outlier.shape=NA) + 
-  geom_quasirandom(dodge.width=0.8,shape=21,aes(fill=Diagnosis))+
-  scale_fill_manual(values=c("blue","lightblue"))+
-  scale_y_reverse(limits = c(30,0),breaks=seq(30,0,-5))+
-  stat_compare_means(label =  "p.signif", label.x = 1.5,vjust = 1) +
-  scale_x_discrete(labels=c("1" = "OME", "0" = "No OME"))+
-  labs(y = "EHF PTA \n (dB HL)" ,x = "") + 
-  theme_bw()+
-  theme(axis.text = element_text(size = 11, face="bold",colour = "black"),
-        axis.title.x = element_text(size=11, face="bold"),
-        axis.title.y = element_text(size=11, face="bold"),
-        legend.title = element_text(size=11, face="bold"),
-        legend.text  = element_text(size=11, face="bold"))
-
-t14 <- ggplot(Eval_APD, aes(x=Grommets,y=PTA_EHF)) +
-    geom_boxplot(position=position_dodge(width=0.8),outlier.shape=NA) + 
-  geom_quasirandom(dodge.width=0.8,shape=21,aes(fill=Diagnosis))+
-  scale_fill_manual(values=c("blue","lightblue"))+
-  scale_y_reverse(limits = c(30,0),breaks=seq(30,0,-5))+
-  stat_compare_means(label =  "p.signif", label.x = 1.5,vjust = 1) +
-  scale_x_discrete(labels=c("1" = "PTE", "0" = "No PET"))+
-  labs(y = "EHF PTA \n (dB HL)" ,x = "") + 
-  theme_bw()+
-  theme(axis.text = element_text(size = 11, face="bold",colour = "black"),
-        axis.title.x = element_text(size=11, face="bold"),
-        axis.title.y = element_text(size=11, face="bold"),
-        legend.title = element_text(size=11, face="bold"),
-        legend.text  = element_text(size=11, face="bold"))
-
-(t1 + t2 + t3 + t4 + t5 + t6 + t7 + t8 + t9 + t10 + t11 + t12 + t13 + t14) + plot_layout(ncol = 4, nrow = 5, heights = c(1,1), widths = c(1,1)) + plot_annotation(tag_levels = 'A') + plot_layout(guides='collect') &
+(t6 + t7 + t8 + t9 + t10) + plot_layout(ncol = 4, nrow = 5, heights = c(1,1), widths = c(1,1)) + plot_annotation(tag_levels = 'A') + plot_layout(guides='collect') &
   theme(legend.position='bottom',        
         legend.direction = "horizontal",
         legend.background = element_blank(),
         legend.box.background = element_rect(colour = "black"),
         plot.tag = element_text(face = 'bold'))
 ```
-
 
 
 \newpage
