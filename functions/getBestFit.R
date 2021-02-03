@@ -86,7 +86,7 @@ getBestFit <- function(df,CondCodeName,CutOff,slope1,int1,brk,slope2){
     # add a second slope if needed:
   } else {
     m1.TwoLines <- tryCatch({
-      m1.TwoLines <- nls(uRevs ~ TwoLinesFCT(Age, slope1, slope2, int1, brk),
+      nls(uRevs ~ TwoLinesFCT(Age, slope1, slope2, int1, brk),
                          start=list(slope1=slope1,slope2=slope2, int1=int1, brk=brk),
                          data=df_TD,
                          upper = max(df_TD$Age),

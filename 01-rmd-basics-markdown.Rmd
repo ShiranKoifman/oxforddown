@@ -1,9 +1,14 @@
 ---
 output:
+  #bookdown::html_document2: default
+  #bookdown::word_document2: default
   bookdown::pdf_document2:
     template: templates/brief_template.tex
-  bookdown::word_document2: default
-  bookdown::html_document2: default
+    latex_engine: xelatex
+  header-includes:
+    - \usepackage{float}
+    - \floatplacement{figure}{H}
+    - \usepackage{graphicx} 
 documentclass: book
 bibliography: references.bib
 ---
@@ -155,6 +160,8 @@ Findings in the first experiment demonstrated that performance in the task was u
 #### Methods 
 
 ##### Participants
+
+\
 Sixteen young adults who were native British English speakers participated in the first experiment (mean age 25.5 $\pm$ 5.3 years, ranging from 18 to 34 years, 8 females). All the participants were tested to have normal hearing acuity, defined by air conduction pure tone audiometric thresholds $\leq$ 25 dB\ HL for frequencies ranging from 0.25 to 8\ kHz. 
 On one occasion, a threshold of 30 dB\ HL at 2\ kHz was accepted. Nonetheless, all the participants had a PTA$_{4}$ below 25 dB\ HL, averaged across the frequencies 0.25, 1, 2, and 4\ kHz [@WHO1998], in the left (3.6 $\pm$ 3.6 dB\ HL) and the right ear (4.5 $\pm$ 5.8 dB\ HL). The listeners' thresholds for the left and the right ear are plotted in Fig.\ \ref{fig:PTA_Exp1}. The shaded grey area represents the range of audiometric thresholds at each frequency, while the white line represents the mean of the participants at each frequency. The dashed line represents the threshold criteria. None of the participants reported a history of ear or hearing problems or language or other cognitive impairment.  The Study was approved by the UCL Research Ethics Committee (Project ID Number 0544/006) and testing commenced once an informed consent was given. Participants were recruited from the UCL psychology subject pool and were paid for their participation.
 
@@ -168,6 +175,8 @@ On one occasion, a threshold of 30 dB\ HL at 2\ kHz was accepted. Nonetheless, a
 ```
 
 ##### Stimuli
+
+\
 The target stimuli were taken from the Adaptive Sentence List corpus [ASL; @MacLeod1990], comprising 270 sentences spoken by an adult male talker with a standard southern British English accent (sampled at 22.05\ kHz with 16 bits per sample, low-pass filtered at 10\ kHz). The speech material is based closely on the BKB sentences [@Bench1979], comprising simple "everyday" sentences of five words on average (range: 4-6 words) with three keywords each. The sentences are suitable for testing listeners with a wide range of speech perception abilities from children to adults. A loose keyword scoring method was used, whereby errors of case or declension were considered as correct responses. For example, as in a repetition of the keywords '$<$clown\textbf{s}$>$ $<$funny$>$ $<$face\textbf{s}$>$' to the stimulus 'The $<$clown$>$ had a $<$funny$>$ $<$face$>$'. Six different distractors were used in the first experiment and can be grouped into two types: speech- and non-speech distractors, with different degrees of acoustic similarity to speech. The speech distractors consisted of two short unrelated conversational passages (each 5-6 sentences long) with durations roughly ranging between 15 to 30\ s. They were taken from a large corpus of passages spoken by native speakers of Southern standard British English [EUROM corpus; @Chan1995]. Out of the two selected passages, one was spoken by a male talker, i.e., a talker of the same sex as the target talker (ENG$_{same-sex}$), while the second passage was spoken by a female talker (ENG$_{opposite-sex}$). The male talker used for the same-sex distractor was different from the one used for the target sentences. However they had similar speech rate and fundamental frequency.\
   
   
@@ -184,6 +193,8 @@ The non-speech distractors were derived from the original speech distractors, se
 
 
 ##### The switching task
+
+\
 The listening task was developed locally in MATLAB, and involves perception of target speech which is interrupted and alternated between the ears out-of-phase with an interrupted distractor, resulting in alternated segments of both signals between the two ears, with only one stimulus present in each ear at any given time.
 Interruption is applied by gating the signal at a fixed modulation rate of 5 Hz, i.e., a period of 200\ ms (with 5\ ms rise/fall times), and varying the duty-cycle (DC), which is the proportion of time the signal is present in each modulation period. As illustrated in Fig.\ \ref{fig:Interrupted}, DC ranged between 0.1, where signal is nearly completely 'off' (left figures), to 0.9, where the signal is almost entirely 'on' (right figures).
 
@@ -221,8 +232,9 @@ Listeners were presented with two listening conditions, with or without a distra
 ```
 
 
-
 ##### Procedure
+
+\
 A single experimental session with a maximal duration of 2 hours (including breaks) took place in a sound attenuated chamber. Stimulus presentation and scoring were carried out using a locally developed MATLAB script via a MacBook Pro 13 laptop (macOS High Sierra 10.13.4) connected via USB to an RME Babyface soundcard (Audio AG, Haimhausen, Germany). The test signals were presented through Sennheiser HD-25 headphones (Wedemark, Germany) at a fixed output level of circa 70 dB\ SPL, measured using an artificial ear (Br\"{u}el \& Kjær 4153, Sound and Vibration Measurements A/S, Nærum, Denmark) over a frequency range of 100 Hz to 10 kHz. A 30\ ms long cosine onset ramp was applied to the segmented target signal to avoid the stimulus from sounding abrupt. For conditions with a distractor, the target onset was 1\ s after the distractor to avoid uncertainty to which signal the listener should attend to. In each trial, a distractor segment was randomly selected from the long signal to match the length of the target sentence (plus 1\ s onset time). The starting DC was 0.97 (i.e., signal is almost entirely present). Subsequently, the DC varied depending on the listeners response, with an initial step-size of 0.12 which decreased gradually over the first three (practice) reversals to 0.05. Nonetheless, examination of pilot data suggested that the psychometric functions of speech distractors are shallower, thus it was decided to set the minimum DC step-size speech distractors to 0.1. The starting ear of the switched segments was randomised in each trial.\
 
 In experiment I, a self-scoring method was used via a graphical user interface (GUI), whereby the listeners were instructed to transcribe the sentence using a keyboard and press the 'OK' button once completed using a computer mouse. The response was thereafter recorded and could not be altered any more. Next, the listeners were asked to select the correctly recalled keywords from the options shown on the screen, based on their displayed transcription. Pressing again the 'OK' button prompted the presentation of the next trial. Feedback was given following each trial only for the practice phase where both the non-degraded target sentence and the test stimuli were presented.
@@ -305,6 +317,7 @@ Next a post-hoc t-test comparison showed no significant difference in SRdTs betw
 
 ```{=latex}
 \begin{table}[ht]
+\center
 \caption{\label{tab:Exp1_LMEM2}{3x2 mixed-effects model for SRdTs measured in experiment I across all subjects (N observations $=$ 96; N Subjects $=$ 16. Reference levels: distractor type = AMSSN; distractor talker-sex = opposite. Significant p-values are marked as bold.}}
 \renewcommand{\arraystretch}{2}
 \begin{tabular}{lccc}
@@ -353,6 +366,8 @@ Findings in the first experiment demonstrated that performance in the task is sp
 #### Methods
 
 ##### Participants
+
+\
 The data in the second experiment was taken from a larger study which aimed to compare performance in the task between two groups of young and older adults, native British English speakers with 20 listeners in each group [@Huang2018]. None of the participants were familiar with Mandarin. Here we present only the data collected with the younger group. To enable a better comparison of listeners scores between experiment I and II, the same inclusion criteria were employed. Thus, only listeners with an age $\leq$\ 35 years old were included, resulting in a total of 15 listeners. Next, inspecting for outliers (more than 2 s.d.'s from the mean), revealed that one listener was indicated as a possible outlier 9 times out of 10 with an over all poor performance, and was therefore removed. The remaining 14 listeners mean age was 25.1 $\pm$ 4.2 (range: 19-35 years, 11 females) and were tested to have normal hearing acuity based on the same criteria as in the previous experiment (right ear $PTA_{4}=3.6 \pm 2.6$ dB\ HL, left ear $PTA_{4}=4.1 \pm 3.2$ dB\ HL; see Fig.\ \ref{fig:PTA_Exp2}). Participants were recruited from the UCL psychology subject pool and from the Speech and Language Therapy MSc programme at City, University of London and were paid for their participation. The Study was approved by the UCL research Ethics Committee (Project ID Number 0544/006).\
 
 ```{=latex}
@@ -364,12 +379,16 @@ The data in the second experiment was taken from a larger study which aimed to c
 ```
 
 ##### Stimuli
+
+\
 The same ASL target sentences were used in the second experiment. Nonetheless, unlike the first experiment where the frequency range of the  stimuli extended up to 10\ kHz, the stimuli in the current experiment were low-pass filtered at 4\ kHz. This was carried out in order to minimise the effects of any possible high-frequency hearing loss in the older-adult group, which is known to increase in prevalence with age [e.g., @Brant1990]. As in the previous experiment, several speech and non-speech distractors were used. However, only data for speech distractors will be discussed here. The speech distractors in experiment II consisted of either familiar English passages (ENG), originating as before from the EUROM corpus, or unfamiliar Mandarin passages (MDR), spoken by native Mandarin Chinese adult speakers. The Mandarin passages were recorded in the Department of Speech, Hearing, and Phonetics Sciences, University College London (UCL) in an anechoic chamber and followed similar recording and editing steps as in the EUROM passages [@Chan1995]. Each of the speech distractors (ENG and MDR) comprised twenty different talkers (10 same-sex and 10 opposite-sex), with a total of forty different speech passages.\
 
 <!-- % Advantage of using Mandarin speech masker vs English for native English speakers: Mandarin has different phoneme inventory, syllable structure, rhythmic properties, and prosodic properties. 
 By comparing languages that differ dramatically, such as these, the chance of observing differential speech noise effects is maximized (Van Engen & Bradlow, 2007) -->
 
 ##### Procedure
+
+\
 A similar experimental design was employed in the second experiment with a few exceptions. Instead of a self-scoring method, listeners were asked to verbally repeat the target sentences to the experimenter who was situated alongside the participant in the sound treated chamber. The experimenter scored the response by selecting the correctly repeated keywords on the screen. Listeners were encouraged to guess if unsure and no feedback was given at any time. Additionally, while in the first experiment the same passage was used throughout the testing, here, a distractor passage was selected at random out of the ten different passages in each trial. Finally, each test condition was measured twice with no repetition of the target sentences. The order of the test conditions was pseudo-randomised.\
 
 #### Results
@@ -377,20 +396,24 @@ In the second experiment, listeners were presented with the target sentences wit
 
 <!-- % Test-retest------------------------------------------------------------ -->
 ##### Within-session test-retest reliability
+\
 Descriptive statistics of the listeners performance (in SRdTs) for the different test conditions is given in Tab.\ \ref{tab:Test-RetestDiscriptive}. A comparison between the test runs is depicted in Fig.\ \ref{fig:Exp2_2runs}, with the SRdTs obtained in the first run (x-axis) plotted as a function of the second run (y-axis). The figure reveals that most observations are fairly close to or on the diagonal line across the different test conditions, which represents an identical performance between the first and the second run.\
   
 ```{=latex}
 \begin{figure}[ht]
 \center
-\includegraphics[width=\textwidth]{figures/Chapt1/Exp2_Run1_Run2_2021-01-29.png}
+%\includegraphics[width=\textwidth]{figures/Chapt1/Exp2_Run1_Run2_2021-01-29.png}
+\includegraphics[scale=.11]{figures/Chapt1/Exp2_Run1_Run2_2021-01-29.png}
 \caption{\label{fig:Exp2_2runs}{Test-retest SRdTs obtained in experiment II for the test conditions Quiet, ENG$_{opposite-sex}$ and ENG$_{same-sex}$. Individual scores are represented by the different shapes corresponding to the test condition, whereby the diagonal line represents an optimal agreement between run 1 and 2.}}
 \end{figure} 
 ```
 
 ```{=latex}
 \begin{table}[ht]
+\center
 \caption{\label{tab:Test-RetestDiscriptive}{Descriptive statistics for SRdTs obtained in experiment II with M indicates the mean and SD for the listeners SRdTs, whereas the grand mean indicates the aggregated data across both experiments.}}
 \renewcommand{\arraystretch}{2}
+\scalebox{0.8}{
 \begin{tabular}{lcccccc}
 \hline \hline
                 & \multicolumn{6}{c}{Distractor talker-sex}                                                      \\
@@ -402,6 +425,7 @@ MDR             & 0.48 (0.07)     & 0.46 (0.10)    & 0.47 (0.09)     & 0.71 (0.0
 Quiet           & \multicolumn{2}{c}{0.30 (0.05)}  & \multicolumn{2}{c}{0.32 (0.05)}  & \multicolumn{2}{c}{0.28 (0.05)}       \\ \hline \hline
 \\
 \end{tabular}
+}
 \end{table}
 ```
 
@@ -410,6 +434,7 @@ To evaluate the test-retest reliability between run 1 and 2 across the different
   
 ```{=latex}
 \begin{table}[ht]
+\center
 \caption{\label{tab:Exp2_TestRetest}{SRdTs test-retest reliability analysis: paired t-test using \textit{t.test()} function (stats package; R Core Team, 2020).}}
 \renewcommand{\arraystretch}{2}
 \begin{tabular}{l c c c}
@@ -437,6 +462,7 @@ MDR$_{opposite-sex}$ & 0.011 & -0.033 - 0.055 & 0.596 \\
 ```
 
 ##### Score reproducibility — a comparison between experiment I and II
+\
 Next, the reproducibility of the test scores was examined by comparison of the SRdTs obtained in experiment I (dark gray) and II (light gray) for Quiet and ENG speech distractor for same- and opposite-sex distractor talker(s) (see Fig.\ \ref{fig:Cmpr_Exp1_2}). No listener participated in both experiments. Overall, the averaged SRdT scores in the two experiments were fairly similar across the different condition, with mean SRdTs of roughly 0.32, 0.51 and 0.78, respectively. Nonetheless, there is a small but noticeable tendency for increased SRdTs (i.e., poorer performance) in the first experiment and for a larger variance when compared with the results in the second experiment.\
 
 The assumption of normal distribution was fulfilled (Shapiro-Wilk test), however, the assumption of homogeneity of the variance (Levene's test) for the interaction between the two experiments and test conditions Quiet, ENG$_{same-sex}$ and ENG$_{ opposite-sex}$) was not met ($F(5,84)~=~4.86$, $p < 0.0001$). Thus, a nonparametric approach using \textit{nparLD()} function [nparLD package; @nparLDPackageR] was applied to examine the differences in SRdTs between experiments. The function offers a robust rank-based ANOVA-type statistic test (ATS) for analysis of skewed data or for data with outliers or from a small sample size [see @Feys2016, for a good introduction on robust nonparametric techniques]. The analysis was based on a f1-ld-f1 design ATS test, which refers to an experimental design with a single between-subjects factor (Experiment: I \& II) and a single within-subject factor (Condition: Quiet, ENG$_{opposite-sex}$, \& ENG$_{same-sex}$). There was no significant interaction between Experiment x Condition (Statistic = 0.412, df = 1.74, $p = 0.634$), indicating that performance in the two experiments did not differ between conditions. Whereas there was a highly significant main effect of Condition (Statistic = 271.580, df=1.74, $p < 0.001$) and a significant main effect of Experiment (Statistic = 8.260, df = 1.00, $p < 0.01$). Nevertheless, the effect-size for Experiment was small with a Cohen's d of 0.264 (95\%-CI: -0.158 - 0.686), whereas the effect-size of condition was large with d ranging between -2.280 to -5.850 [\textit{effsize::cohen.d()}; @effsizeRPackage].\
@@ -445,7 +471,7 @@ The assumption of normal distribution was fulfilled (Shapiro-Wilk test), however
 ##### Effects of the distractor's language familiarity and talker-sex on IM
 <!-- % Comparison btw. ENG & MDR + Talker-sex effect------------------------------  -->
 <!-- % see: TalkerGenderAdvantag.R -->
-
+\
 A comparison between the listeners' SRdTs measured with the familiar speech distractor (ENG) and the unfamiliar speech distractor (MDR), for same- and opposite-sex distractor talkers, is shown in Fig.\ \ref{fig:ENG_vs_MDR}. As before, the diagonal line represents identical performance for the two distractors. The scores were on average very similar in the two distractor-talker configurations, with a DC of roughly 0.5 for opposite-sex and 0.7 for same-sex distractor talkers.\
 
 The effect of familiarity of the speech distractor was tested using an 2x2x2 factorial design LMEM with repeated measures, with speech distractors as fixed factor (DistrType: ENG \& MDR), distractor talker-sex (DistrTlkrSex: same- and opposite-sex), and the run's order (Order: 1 \& 2) as fixed factors, and subjects as random intercepts (reference levels: ENG$_{opposite-sex}$, Order=1). The model coefficients and p-values are given in Tab.\ \ref{tab:Exp2_LMEM}. A backward model selection, starting from a fully saturated model with three-way interaction for the fixed factors (DistrTlkrSex x DistrType x Order), revealed no significant interaction. The final model did not include interaction terms. Model comparison revealed a highly significant main effect of distractor talker sex ($p<0.001$) and a significant effect for familiarity with the language of the speech distractor ($p=0.029$), although, the estimated mean difference (0.03) is very small. Similarly, there was a significant main effect of Order ($p=0.014$), whilst the overall DC improvement in the second run was again very small (-0.03). The lack of interaction between Order and the other predictors implies that the main effect of Order was the same across the predictors with an overall improvement in the second run. The effect size, Cohen's d, for Order (d = 0.205) was small. The effect size for language was considered "negligible" (d = -0.181) and is much smaller than that for the talker-sex (d = -2.494, "large").\
@@ -463,6 +489,7 @@ The effect of familiarity of the speech distractor was tested using an 2x2x2 fac
   
 ```{=latex}
 \begin{table}[ht]
+\center
 \caption{\label{tab:Exp2_LMEM}{2x2x2 mixed-effects model for SRdTs measured in experiment II across all subjects (N~observations $=$ 112; N~Subjects $=$ 13). Significant p-values are marked as bold.}}
 \renewcommand{\arraystretch}{2}
 \begin{tabular}{lccc}
@@ -489,6 +516,7 @@ Order  (2)  & -0.03                     & 0.01     & -0.06 – -0.01   \\ \hline
 #### Discussion
 
 ##### Within-session test-retest reliability
+\
 Reliability of the outcome measure is an important requirement for both research and clinical use. Reliability reflects the degree to which a test measure is reproducible when measured by the same listener at different points in time. Low reliability negatively affects the test sensitivity, thus making it difficult to detect difference in scores across different test conditions and/or to distinguish whether the listener's score falls within the normal range [@Cameron2007].
 <!-- % There are different ways to quantify reliability. Examples... Look in Cameron et al., 2007b. -->
 <!-- % Why did we use the method we used?  -->
@@ -496,6 +524,7 @@ Test-retest reliability analysis of the listeners SRdTs showed no significant di
   
   
 ##### Score reproducibility — a comparison between experiment I and II
+\
 Overall, there was a fairly good agreement in SRdTs obtained in experiments I and II across the different test conditions, whereby both experiments showed the same trend of decline in performance when a speech distractor was introduced, with a further decline in performance when the distractor talker was the same sex as of the target talker. Nonetheless, Fig.\ \ref{fig:Cmpr_Exp1_2} reveal a small but noticeable positive shift in SRdTs (i.e., poorer performance) as well as a larger variance in the first experiment than in the second experiment. Furthermore, a statistical analysis revealed a significant difference in performance averaged across conditions (p < 0.01), albeit the effect-size (Cohen's d = 0.264) is considered small.\
 <!-- %While no significant difference between both experiments was found for Quiet and ENG$_{opposite-sex}$, a significant difference in SRdTs was found for ENG$_{same-sex}$.  -->
 
@@ -506,6 +535,7 @@ There are several factors that may have contributed to the observed differences 
 Nonetheless, probably the most influential factor responsible for the difference in scores may be due to differences in the distractor stimuli. In the first experiment, the speech distractor consisted of a random segment taken from a long passage recorded by a single talker. To maximise the similarity between the target and the distractor, the male talker was chosen to have similar voice characteristics as for the target male voice. In experiment II however, each distractor originated from ten different talkers with a varying voice characteristics, from which a short segment was selected at random every trial. The good agreement in performance between the two experiments in the opposite-sex condition (see Fig.\ \ref{fig:Cmpr_Exp1_2}) suggests that when reliable differences in F0 were available, variations in voice characteristics had only a negligible effect on the listener's performance. The IM effect in the opposite-sex distractor talker(s) is likely to be dominated by top-down attentional processing of object-selection, related to target-distractor uncertainty, and may be supported by cues such as phonological cues, semantic content and spatial separation. Such masking interference can take place even when the target and the distractor signals are well formed. The magnitude of the distractor interference also depends on similarity between the two streams in terms of their voice characteristics. Listeners are able to use F0 differences as little as 6\% to considerably improve identification of two simultaneous vowels [@Brokx1982]. F0 cues are known to facilitate speech perception in noise [e.g., @Binns2007; @Miller2010], helping the listener to easily latch onto the target signal after being "lost" by the distractor or by occurrence of an unvoiced speech sound. As for same-sex condition, IM is most likely to be attributed to bottom-up processing, driven by target-distractor similarities (e.g., pitch and prosody) that hinder object formation. One possible explanation for the improved intelligibility in the second experiment may be assigned to the larger set of talkers, resulting in larger variation in talker voice characteristics than in the first experiment which consisted of only a single talker. It is possible that in the second experiment some talkers were more similar to the target talker than others, and that talkers that had less in common with the target talker significantly improved performance when trials were averaged together.\
 
 ##### Effects of distractor's language familiarity and talker sex on IM
+\
 One of the main objectives of the second experiment was to examine the role of the semantic content of a distractor on IM in the switching task. The distractor's semantic content was controlled by having distractors spoken in a language that the listeners are or are not familiar with.\
 
 To our knowledge, no other study has attempted to investigate the components of IM involved in a speech-on-speech listening as presented here; where the target and the distractor signals are interrupted and periodically switched between the two ears out-of-phase with one another. Perhaps the most striking outcome of the first experiment was that only speech distractors impaired task performance. In the absence of a noticeable masking effect for the non-speech distractors, one possible explanation to this is that the ability to ignore a competing talker and to focus on the target talker is hindered by the distractor's semantic content. We therefore hypothesised that the unfamiliar speech distractor in the second experiment will produce smaller masking interference, resulting in better performance than for the familiar speech distractor. However, in contradiction to our expectation, the listeners did not display a masking release when the target speech was presented with an unfamiliar speech distractor (MDR), with only small difference in performance between the two speech types (ENG vs. MDR). In addition, the non-significant interaction between the distractor type (familiar/unfamiliar) and distractor talker-sex (same/different), indicates that the effect of distractor's talker sex was the same in both distractor types.\
@@ -515,36 +545,40 @@ The findings in the present study corroborate earlier studies [@Freyman2001; @Br
 
 ### General discussion and conclusion
 
+<!-- %In Conclusion, the present study confirmed/found/showed..... -->
+The results in the first experiment showed that perception of switched speech presented with an interleaved speech distractor taps into an aspect of IM that is highly specific, and not probed by non-speech distractors. The results in the present study were comparable to those obtained by Akinseye [unpublished BSc thesis, -@Akinseye2015] for Quiet and ENG$_{opposite-sex}$ conditions, and are in accordance with other studies that used interrupted or alternated speech.\
 
+We did not observe IM for non-speech distractors, not even for the most "speechy" one (FxNx) and with no other obvious explanation for the lack of IM, we speculated this may be due to the lack of semantic and linguistic information in the nonspeech distractors. Presumably, higher level perceptual cues of lexical and prosodic speech information were prioritised by the listeners over more fine-grained lower-level of acoustic segmentation cues (such as F0 and TFS).
+Nonetheless, the results of the second experiment speak against this explanation, where we found no or minimal masking release for a speech distractor spoken in an unfamiliar language (MDR). The small difference in IM due to language familiarity could also arise from differences between the talkers. Nevertheless, this is likely to be a less of a factor because several talkers were used and not just one. The remaining burning question is what feature(s) in the MDR distractor facilitated this large target interference? %One possible factor for this may be assigned to the MDR distractor amplitude fluctuations, resulting in within-channels interference with the target speech amplitude modulations, as proposed by @Stone2012.\
+
+<!-- %Freyman et al. (2001), Brungart and Simpson (2002) Carlile and Crokhill (2015) and Roberts and Summers (2020) findings corroborates with the findings in the present study, supporting the idea that in some more challenging listening tasks, similarity of the masker to speech can produce a significant amount of non-energetic/central masking also for unfamiliar speech masker. This further suggests the involvement of other factors than semantic content in masking processing such as MM and attention. Furthermore, although the use of FxNx speech-like masker as in first experiment of the present study did not produced similar masking effect, it would be interesting to see if we can get a similar masking in the task using the garbled speech masker as used by Carlile and Crokhill (2015) or other speech-like maskers such as XXXX proposed by Robert and Summers (2020). -->
+
+<!-- % Distractor's talker-sex: -->
+Moreover, in corroboration with other studies [e.g., @Brungart2001; @Festen1990], the results of the present study demonstrate that similarity between the target and distractor has a large influence on the amount of IM that is produced. A distractor talker of the same sex as the target talker was found to elicit significantly more IM (i.e., poorer performance or larger DC) than a distractor spoken by a talker from the opposite sex to the target talker. Nevertheless, this was only the case for speech distractors, no matter if they were intelligible (ENG) or not (MDR). No IM was found for the non-speech distractors, despite being generated from features extracted from the original speech distractors. The increase in IM for same-sex distractor talker is likely to be caused by a combination of bottom-up failure in object formation in addition to the impaired top-down object selection elicited by an opposite-sex speech distractor.\
+
+The amount of IM produced by a speech distractor can vary depending on various voice characteristics of the distractor talker and it's similarity to the target talker voice. While the distractors used in the first experiment originated from one realisation spoken by a single talker, in the second experiment, each of the speech distractors (ENG and MDR) comprised of different speech passages, spoken by twenty different talkers (10 same-sex and 10 opposite-sex), with a total of forty different speech passages. A comparison with the listeners performance in both experiments showed a fairly good agreement, indicating that listeners' ability to use voice characteristics as cues to segregate sound streams is robust to variations in voice characteristics across talkers.\
+
+In conclusion, the present study investigated the utility of a novel speech-on-speech listening task that involves perception of interrupted speech that is switched between the two ears out-of-phase with an interrupted distractor. The proposed paradigm enables us to eliminate peripheral (EM) masking, while maintaining high IM for speech distractors. Providing this ``purer" measure of IM may aid in disentangling the reasons why different groups of people experience difficulties in adverse noisy listening situations. One such group is children with developmental auditory processing disorder (APD). APD children typically express difficulties in understanding speech in noisy environments (e.g., a classroom), despite having normal peripheral hearing. There is a growing notion that APD arises from higher-level cognitive deficits [e.g., @Moore2010; DeWit2018]. Since the switching task taps into attentional or other cognitive aspects, it may be useful in better understanding the underlying causes of APD.\
+<!-- % something about the specific effect of speech (intelligible or not) on performance in the task.? -->
+
+More research is required to further understand the underlying mechanisms involved in the switching task. For example, the extent to which listeners are able to obtain information from both ears, as opposed to attending to one ear only, cannot be drawn from the present results and is yet to be examined. The underlying assumption is that the task necessitates sustained and selective attention functions in order to attend to the target signal and to integrate the short-term binaural glimpses of auditory information across the two ears. Nonetheless, determining whether the listeners are attending both ears or only one ear while they carry out the task may be challenging to confidently estimate. Future studies could for instance compare the listeners' performance with an additional monotic listening configuration, where only the information from either the left or the right ear is presented (i.e., presentation of a single channel out of the binaural stimuli), as opposed to a binaural configuration in which the stimuli are fully preserved when the switched segments are combined across the two ears. 
+Another interesting direction could be to investigate the influence of the speech material (as in its structure and complexity) on performance. Future studies will explore the feasibility of a test version that uses CRM-type sentences [@Bolia2000], e.g. 'Show the $<$animal$>$ where the $<$colour$>$ $<$digit$>$ is'. Furthermore, the ability to attend to the target speech while ignoring a competing distractor can be estimated using a distractor with the exact same structure as the target sentence. Several studies used this technique to estimate the distractor-related response error in CRM sentences [e.g., @Brungart2001]. The 'distractor error' reflects the distractor's intrusion, indicated by a response that corresponds with the distractor word rather than the target word. A distractor error reflects attentional aspects of IM, meaning that the listener attended to the wrong stimulus. Such a test version may have several other advantages. It reduces the role of language skills due to the fixed and simpler sentence structure, thus making the task more suitable for both children and adults and potentially for non-native speakers. It also eliminates the need to verbally recall the keywords and enables an automatic testing, negating the need of the examiner to manually score the listeners' responses.\
 
 ## Dichotic vs. monotic presentation and the influence of speech material
 
 ### Introduction
 
-
 ### Methods
 
+#### Participants
+
+#### Stimuli
+
+#### Procedure
+
+#### Statistical methods
+
 ### Results
-
-
-To create numbered equations, put them in an 'equation' environment and give them a label with the syntax `(\#eq:label)`, like this:
-
-```latex
-\begin{equation} 
-  f\left(k\right) = \binom{n}{k} p^k\left(1-p\right)^{n-k}
-  (\#eq:binom)
-\end{equation} 
-```
-
-Becomes:
-\begin{equation}
-f\left(k\right)=\binom{n}{k}p^k\left(1-p\right)^{n-k}
-(\#eq:binom)
-\end{equation}
-
-
-For more (e.g. how to theorems), see e.g. the documentation on [bookdown.org](https://bookdown.org/yihui/bookdown/markdown-extensions-by-bookdown.html#equations)
-
 
 
 ### Discussion

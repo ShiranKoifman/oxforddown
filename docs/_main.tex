@@ -437,6 +437,7 @@ Findings in the first experiment demonstrated that performance in the task was u
 \hypertarget{participants}{%
 \paragraph{Participants}\label{participants}}
 
+\hfill\break
 Sixteen young adults who were native British English speakers participated in the first experiment (mean age 25.5 \(\pm\) 5.3 years, ranging from 18 to 34 years, 8 females). All the participants were tested to have normal hearing acuity, defined by air conduction pure tone audiometric thresholds \(\leq\) 25 dB~HL for frequencies ranging from 0.25 to 8~kHz.
 On one occasion, a threshold of 30 dB~HL at 2~kHz was accepted. Nonetheless, all the participants had a PTA\(_{4}\) below 25 dB~HL, averaged across the frequencies 0.25, 1, 2, and 4~kHz \autocite{WHO1998}, in the left (3.6 \(\pm\) 3.6 dB~HL) and the right ear (4.5 \(\pm\) 5.8 dB~HL). The listeners' thresholds for the left and the right ear are plotted in Fig.~\ref{fig:PTA_Exp1}. The shaded grey area represents the range of audiometric thresholds at each frequency, while the white line represents the mean of the participants at each frequency. The dashed line represents the threshold criteria. None of the participants reported a history of ear or hearing problems or language or other cognitive impairment. The Study was approved by the UCL Research Ethics Committee (Project ID Number 0544/006) and testing commenced once an informed consent was given. Participants were recruited from the UCL psychology subject pool and were paid for their participation.
 
@@ -450,6 +451,7 @@ On one occasion, a threshold of 30 dB~HL at 2~kHz was accepted. Nonetheless, all
 \hypertarget{stimuli}{%
 \paragraph{Stimuli}\label{stimuli}}
 
+\hfill\break
 The target stimuli were taken from the Adaptive Sentence List corpus \autocite[ASL;][]{MacLeod1990}, comprising 270 sentences spoken by an adult male talker with a standard southern British English accent (sampled at 22.05~kHz with 16 bits per sample, low-pass filtered at 10~kHz). The speech material is based closely on the BKB sentences \autocite{Bench1979}, comprising simple ``everyday'' sentences of five words on average (range: 4-6 words) with three keywords each. The sentences are suitable for testing listeners with a wide range of speech perception abilities from children to adults. A loose keyword scoring method was used, whereby errors of case or declension were considered as correct responses. For example, as in a repetition of the keywords `\(<\)clown\textbf{s}\(>\) \(<\)funny\(>\) \(<\)face\textbf{s}\(>\)' to the stimulus `The \(<\)clown\(>\) had a \(<\)funny\(>\) \(<\)face\(>\)'. Six different distractors were used in the first experiment and can be grouped into two types: speech- and non-speech distractors, with different degrees of acoustic similarity to speech. The speech distractors consisted of two short unrelated conversational passages (each 5-6 sentences long) with durations roughly ranging between 15 to 30~s. They were taken from a large corpus of passages spoken by native speakers of Southern standard British English \autocite[EUROM corpus;][]{Chan1995}. Out of the two selected passages, one was spoken by a male talker, i.e., a talker of the same sex as the target talker (ENG\(_{same-sex}\)), while the second passage was spoken by a female talker (ENG\(_{opposite-sex}\)). The male talker used for the same-sex distractor was different from the one used for the target sentences. However they had similar speech rate and fundamental frequency.\\
 
 The non-speech distractors were derived from the original speech distractors, separately for same- and opposite-sex talker, and varied in their amount of ``speech-like'' characteristics from high to low, respectively. The first one is thought to preserve the original speech temporal fine structure (TFS) associated with the speech periodicity and aperiodicity (but not that associated with overall spectral shape), and comprised of single-band vocoded speech with natural mix of periodicity and aperiodicity \autocite[FxNx; also described in][]{Steinmetzger2015}. The second non-speech distractor was an amplitude modulated speech-shaped-noise, with the same long-term spectrum, and modulation envelope as the speech distractors (AMSSN), preserving the original speech slowly varying wide-band amplitude envelope. Exemplary waveforms and spectrograms of the different distractor types are shown in Fig.~\ref{fig:MaskerType}. The distractors were generated in MATLAB (Version R2017b, Mathworks, Natick, Massachusetts) using a channel vocoder \autocites[described in][]{Green2013,Steinmetzger2015}. First, the speech distractors were bandpass filtered into a single band using zero-phase-shift 6th-order Butterworth filter (frequency range: 70 Hz - 10 kHz). The amplitude envelope was then extracted by applying full-wave rectification of the filter output and a low-pass filtering at 30 Hz (zero-phase shift, 8th-order Butterworth filter) to remove any modulations arising from voice fundamental frequency. For the generation of the AMSSN, the envelope of the single channel was multiplied with a wide-band noise carrier and the resulting waveform was low-pass filtered at 10 kHz using 6th-order elliptic filter. Next, the output signal was scaled to the RMS level of the original speech signal. FxNx was generated by multiplication of the single-band envelope with either a white noise carrier for unvoiced speech segments in the original speech, or with the fundamental frequency contour of the original signal when speech was voiced. F0 contours were extracted in PRAAT \autocite[Version 6.0.19;][]{Boersma2001} using ProsodyPro \autocite[Version 5.7.2;][]{Xu2013}, and subsequently manually corrected. Next, F0 contours were sampled at 1 kHz and interpolated through periods of voiceless and silent segments using piecewise cubic Hermite interpolation in logarithmic frequency. The start and end of each pitch contour were anchored to the signal's median frequency, resulting in a carrier with the same length as the original signal. Finally, filtering was applied to the vocoded AMSSN and FxNx signals to have the same LTASS as the original speech signals.\\
@@ -463,6 +465,7 @@ The non-speech distractors were derived from the original speech distractors, se
 \hypertarget{the-switching-task}{%
 \paragraph{The switching task}\label{the-switching-task}}
 
+\hfill\break
 The listening task was developed locally in MATLAB, and involves perception of target speech which is interrupted and alternated between the ears out-of-phase with an interrupted distractor, resulting in alternated segments of both signals between the two ears, with only one stimulus present in each ear at any given time.
 Interruption is applied by gating the signal at a fixed modulation rate of 5 Hz, i.e., a period of 200~ms (with 5~ms rise/fall times), and varying the duty-cycle (DC), which is the proportion of time the signal is present in each modulation period. As illustrated in Fig.~\ref{fig:Interrupted}, DC ranged between 0.1, where signal is nearly completely `off' (left figures), to 0.9, where the signal is almost entirely `on' (right figures).
 
@@ -495,6 +498,7 @@ Listeners were presented with two listening conditions, with or without a distra
 \hypertarget{procedure}{%
 \paragraph{Procedure}\label{procedure}}
 
+\hfill\break
 A single experimental session with a maximal duration of 2 hours (including breaks) took place in a sound attenuated chamber. Stimulus presentation and scoring were carried out using a locally developed MATLAB script via a MacBook Pro 13 laptop (macOS High Sierra 10.13.4) connected via USB to an RME Babyface soundcard (Audio AG, Haimhausen, Germany). The test signals were presented through Sennheiser HD-25 headphones (Wedemark, Germany) at a fixed output level of circa 70 dB~SPL, measured using an artificial ear (Br"\{u\}el \& Kjær 4153, Sound and Vibration Measurements A/S, Nærum, Denmark) over a frequency range of 100 Hz to 10 kHz. A 30~ms long cosine onset ramp was applied to the segmented target signal to avoid the stimulus from sounding abrupt. For conditions with a distractor, the target onset was 1~s after the distractor to avoid uncertainty to which signal the listener should attend to. In each trial, a distractor segment was randomly selected from the long signal to match the length of the target sentence (plus 1~s onset time). The starting DC was 0.97 (i.e., signal is almost entirely present). Subsequently, the DC varied depending on the listeners response, with an initial step-size of 0.12 which decreased gradually over the first three (practice) reversals to 0.05. Nonetheless, examination of pilot data suggested that the psychometric functions of speech distractors are shallower, thus it was decided to set the minimum DC step-size speech distractors to 0.1. The starting ear of the switched segments was randomised in each trial.\\
 
 In experiment I, a self-scoring method was used via a graphical user interface (GUI), whereby the listeners were instructed to transcribe the sentence using a keyboard and press the `OK' button once completed using a computer mouse. The response was thereafter recorded and could not be altered any more. Next, the listeners were asked to select the correctly recalled keywords from the options shown on the screen, based on their displayed transcription. Pressing again the `OK' button prompted the presentation of the next trial. Feedback was given following each trial only for the practice phase where both the non-degraded target sentence and the test stimuli were presented.
@@ -569,6 +573,7 @@ A separate model without observations measured with the Quiet condition examined
 Next a post-hoc t-test comparison showed no significant difference in SRdTs between the two non-speech distractors FxNx and AMSSN {[}t(85.33)=1.11, \(p=0.808\){]}, and a highly significant difference between the non-speech and speech distractors {[}AMSSN vs.~ENG: t(85.3)=-16.85; FxNx vs.~ENG: t(85.3)=-15.73, \(p<0.001\){]} . Moreover, differences in performance due to distractor talker-sex (two-way interaction) was significant (and highly so) only for the speech distractors {[}t(85.3)=-10.46, \(p<0.0001\){]}.\\
 
 \begin{table}[ht]
+\center
 \caption{\label{tab:Exp1_LMEM2}{3x2 mixed-effects model for SRdTs measured in experiment I across all subjects (N observations $=$ 96; N Subjects $=$ 16. Reference levels: distractor type = AMSSN; distractor talker-sex = opposite. Significant p-values are marked as bold.}}
 \renewcommand{\arraystretch}{2}
 \begin{tabular}{lccc}
@@ -618,6 +623,7 @@ Findings in the first experiment demonstrated that performance in the task is sp
 \hypertarget{participants-1}{%
 \paragraph{Participants}\label{participants-1}}
 
+\hfill\break
 The data in the second experiment was taken from a larger study which aimed to compare performance in the task between two groups of young and older adults, native British English speakers with 20 listeners in each group \autocite{Huang2018}. None of the participants were familiar with Mandarin. Here we present only the data collected with the younger group. To enable a better comparison of listeners scores between experiment I and II, the same inclusion criteria were employed. Thus, only listeners with an age \(\leq\)~35 years old were included, resulting in a total of 15 listeners. Next, inspecting for outliers (more than 2 s.d.'s from the mean), revealed that one listener was indicated as a possible outlier 9 times out of 10 with an over all poor performance, and was therefore removed. The remaining 14 listeners mean age was 25.1 \(\pm\) 4.2 (range: 19-35 years, 11 females) and were tested to have normal hearing acuity based on the same criteria as in the previous experiment (right ear \(PTA_{4}=3.6 \pm 2.6\) dB~HL, left ear \(PTA_{4}=4.1 \pm 3.2\) dB~HL; see Fig.~\ref{fig:PTA_Exp2}). Participants were recruited from the UCL psychology subject pool and from the Speech and Language Therapy MSc programme at City, University of London and were paid for their participation. The Study was approved by the UCL research Ethics Committee (Project ID Number 0544/006).\\
 
 \begin{figure}[ht]
@@ -629,11 +635,13 @@ The data in the second experiment was taken from a larger study which aimed to c
 \hypertarget{stimuli-1}{%
 \paragraph{Stimuli}\label{stimuli-1}}
 
+\hfill\break
 The same ASL target sentences were used in the second experiment. Nonetheless, unlike the first experiment where the frequency range of the stimuli extended up to 10~kHz, the stimuli in the current experiment were low-pass filtered at 4~kHz. This was carried out in order to minimise the effects of any possible high-frequency hearing loss in the older-adult group, which is known to increase in prevalence with age \autocite[e.g.,][]{Brant1990}. As in the previous experiment, several speech and non-speech distractors were used. However, only data for speech distractors will be discussed here. The speech distractors in experiment II consisted of either familiar English passages (ENG), originating as before from the EUROM corpus, or unfamiliar Mandarin passages (MDR), spoken by native Mandarin Chinese adult speakers. The Mandarin passages were recorded in the Department of Speech, Hearing, and Phonetics Sciences, University College London (UCL) in an anechoic chamber and followed similar recording and editing steps as in the EUROM passages \autocite{Chan1995}. Each of the speech distractors (ENG and MDR) comprised twenty different talkers (10 same-sex and 10 opposite-sex), with a total of forty different speech passages.\\
 
 \hypertarget{procedure-1}{%
 \paragraph{Procedure}\label{procedure-1}}
 
+\hfill\break
 A similar experimental design was employed in the second experiment with a few exceptions. Instead of a self-scoring method, listeners were asked to verbally repeat the target sentences to the experimenter who was situated alongside the participant in the sound treated chamber. The experimenter scored the response by selecting the correctly repeated keywords on the screen. Listeners were encouraged to guess if unsure and no feedback was given at any time. Additionally, while in the first experiment the same passage was used throughout the testing, here, a distractor passage was selected at random out of the ten different passages in each trial. Finally, each test condition was measured twice with no repetition of the target sentences. The order of the test conditions was pseudo-randomised.\\
 
 \hypertarget{results-1}{%
@@ -644,17 +652,21 @@ In the second experiment, listeners were presented with the target sentences wit
 \hypertarget{within-session-test-retest-reliability}{%
 \paragraph{Within-session test-retest reliability}\label{within-session-test-retest-reliability}}
 
+\hfill\break
 Descriptive statistics of the listeners performance (in SRdTs) for the different test conditions is given in Tab.~\ref{tab:Test-RetestDiscriptive}. A comparison between the test runs is depicted in Fig.~\ref{fig:Exp2_2runs}, with the SRdTs obtained in the first run (x-axis) plotted as a function of the second run (y-axis). The figure reveals that most observations are fairly close to or on the diagonal line across the different test conditions, which represents an identical performance between the first and the second run.\\
 
 \begin{figure}[ht]
 \center
-\includegraphics[width=\textwidth]{figures/Chapt1/Exp2_Run1_Run2_2021-01-29.png}
+%\includegraphics[width=\textwidth]{figures/Chapt1/Exp2_Run1_Run2_2021-01-29.png}
+\includegraphics[scale=.11]{figures/Chapt1/Exp2_Run1_Run2_2021-01-29.png}
 \caption{\label{fig:Exp2_2runs}{Test-retest SRdTs obtained in experiment II for the test conditions Quiet, ENG$_{opposite-sex}$ and ENG$_{same-sex}$. Individual scores are represented by the different shapes corresponding to the test condition, whereby the diagonal line represents an optimal agreement between run 1 and 2.}}
 \end{figure} 
 
 \begin{table}[ht]
+\center
 \caption{\label{tab:Test-RetestDiscriptive}{Descriptive statistics for SRdTs obtained in experiment II with M indicates the mean and SD for the listeners SRdTs, whereas the grand mean indicates the aggregated data across both experiments.}}
 \renewcommand{\arraystretch}{2}
+\scalebox{0.8}{
 \begin{tabular}{lcccccc}
 \hline \hline
                 & \multicolumn{6}{c}{Distractor talker-sex}                                                      \\
@@ -666,11 +678,13 @@ MDR             & 0.48 (0.07)     & 0.46 (0.10)    & 0.47 (0.09)     & 0.71 (0.0
 Quiet           & \multicolumn{2}{c}{0.30 (0.05)}  & \multicolumn{2}{c}{0.32 (0.05)}  & \multicolumn{2}{c}{0.28 (0.05)}       \\ \hline \hline
 \\
 \end{tabular}
+}
 \end{table}
 
 To evaluate the test-retest reliability between run 1 and 2 across the different test conditions, we first calculated the intraclass correlation coefficients (ICCs) using \textit{icc()} in \textit{irr} R package \autocite{Stats_TestRetest_irr}. We used the ICC(1) formula for a two-way mixed effects model, with absolute agreement and single measures \autocite[cf.][]{Koo2016}. The ICC is ``.. an index of reliability representing the ratio of the between-subject variability to the total variability in the data" \autocite[p.~458]{Leensen2013}. An ICC of 1 stands for high reliability and an ICC of 0 stands for no relationship at all. Despite the small between- and within-subjects differences in scores across the two runs, all the calculated ICCs were negative. A negative ICC is typically considered as unreliable and thus considered as an ICC of zero \autocites[e.g.,][]{Qin2019,Matheson2019}. Negatives ICC can arise from several factors such as a small between-subject variance and a small sample size. Since test-retest reliability was not the main objective of the study, it was decided to use a less conservative approach to quantify the difference between the two runs among the different listeners. For this, the null hypothesis that the mean difference between the runs is zero was tested using a paired t-test \autocite[\textit{t.test()}, stats package;][]{RCoreTeam}. The data met the test assumptions for normal distribution \autocite[Shapiro-Wilk test;][]{Stats_ShapiroWilkRPackage} and homogeneity of variance \autocite[Levene's test;][]{Car_LevenTestRPackage}. The tests results are shown in Tab.~\ref{tab:Exp2_TestRetest} , where there was no significant difference found between the first and the second run across all conditions (all \(p's > 0.05\)), thus for further analysis the individual averaged scores were used.\\
 
 \begin{table}[ht]
+\center
 \caption{\label{tab:Exp2_TestRetest}{SRdTs test-retest reliability analysis: paired t-test using \textit{t.test()} function (stats package; R Core Team, 2020).}}
 \renewcommand{\arraystretch}{2}
 \begin{tabular}{l c c c}
@@ -697,6 +711,7 @@ MDR$_{opposite-sex}$ & 0.011 & -0.033 - 0.055 & 0.596 \\
 \hypertarget{score-reproducibility-a-comparison-between-experiment-i-and-ii}{%
 \paragraph{Score reproducibility --- a comparison between experiment I and II}\label{score-reproducibility-a-comparison-between-experiment-i-and-ii}}
 
+\hfill\break
 Next, the reproducibility of the test scores was examined by comparison of the SRdTs obtained in experiment I (dark gray) and II (light gray) for Quiet and ENG speech distractor for same- and opposite-sex distractor talker(s) (see Fig.~\ref{fig:Cmpr_Exp1_2}). No listener participated in both experiments. Overall, the averaged SRdT scores in the two experiments were fairly similar across the different condition, with mean SRdTs of roughly 0.32, 0.51 and 0.78, respectively. Nonetheless, there is a small but noticeable tendency for increased SRdTs (i.e., poorer performance) in the first experiment and for a larger variance when compared with the results in the second experiment.\\
 
 The assumption of normal distribution was fulfilled (Shapiro-Wilk test), however, the assumption of homogeneity of the variance (Levene's test) for the interaction between the two experiments and test conditions Quiet, ENG\(_{same-sex}\) and ENG\(_{ opposite-sex}\)) was not met (\(F(5,84)~=~4.86\), \(p < 0.0001\)). Thus, a nonparametric approach using \textit{nparLD()} function \autocite[nparLD package;][]{nparLDPackageR} was applied to examine the differences in SRdTs between experiments. The function offers a robust rank-based ANOVA-type statistic test (ATS) for analysis of skewed data or for data with outliers or from a small sample size \autocite[see][for a good introduction on robust nonparametric techniques]{Feys2016}. The analysis was based on a f1-ld-f1 design ATS test, which refers to an experimental design with a single between-subjects factor (Experiment: I \& II) and a single within-subject factor (Condition: Quiet, ENG\(_{opposite-sex}\), \& ENG\(_{same-sex}\)). There was no significant interaction between Experiment x Condition (Statistic = 0.412, df = 1.74, \(p = 0.634\)), indicating that performance in the two experiments did not differ between conditions. Whereas there was a highly significant main effect of Condition (Statistic = 271.580, df=1.74, \(p < 0.001\)) and a significant main effect of Experiment (Statistic = 8.260, df = 1.00, \(p < 0.01\)). Nevertheless, the effect-size for Experiment was small with a Cohen's d of 0.264 (95\%-CI: -0.158 - 0.686), whereas the effect-size of condition was large with d ranging between -2.280 to -5.850 \autocite[\textit{effsize::cohen.d()};][]{effsizeRPackage}.\\
@@ -704,6 +719,7 @@ The assumption of normal distribution was fulfilled (Shapiro-Wilk test), however
 \hypertarget{effects-of-the-distractors-language-familiarity-and-talker-sex-on-im}{%
 \paragraph{Effects of the distractor's language familiarity and talker-sex on IM}\label{effects-of-the-distractors-language-familiarity-and-talker-sex-on-im}}
 
+\hfill\break
 A comparison between the listeners' SRdTs measured with the familiar speech distractor (ENG) and the unfamiliar speech distractor (MDR), for same- and opposite-sex distractor talkers, is shown in Fig.~\ref{fig:ENG_vs_MDR}. As before, the diagonal line represents identical performance for the two distractors. The scores were on average very similar in the two distractor-talker configurations, with a DC of roughly 0.5 for opposite-sex and 0.7 for same-sex distractor talkers.\\
 
 The effect of familiarity of the speech distractor was tested using an 2x2x2 factorial design LMEM with repeated measures, with speech distractors as fixed factor (DistrType: ENG \& MDR), distractor talker-sex (DistrTlkrSex: same- and opposite-sex), and the run's order (Order: 1 \& 2) as fixed factors, and subjects as random intercepts (reference levels: ENG\(_{opposite-sex}\), Order=1). The model coefficients and p-values are given in Tab.~\ref{tab:Exp2_LMEM}. A backward model selection, starting from a fully saturated model with three-way interaction for the fixed factors (DistrTlkrSex x DistrType x Order), revealed no significant interaction. The final model did not include interaction terms. Model comparison revealed a highly significant main effect of distractor talker sex (\(p<0.001\)) and a significant effect for familiarity with the language of the speech distractor (\(p=0.029\)), although, the estimated mean difference (0.03) is very small. Similarly, there was a significant main effect of Order (\(p=0.014\)), whilst the overall DC improvement in the second run was again very small (-0.03). The lack of interaction between Order and the other predictors implies that the main effect of Order was the same across the predictors with an overall improvement in the second run. The effect size, Cohen's d, for Order (d = 0.205) was small. The effect size for language was considered ``negligible'' (d = -0.181) and is much smaller than that for the talker-sex (d = -2.494, ``large'').\\
@@ -716,6 +732,7 @@ The effect of familiarity of the speech distractor was tested using an 2x2x2 fac
 \end{figure}
 
 \begin{table}[ht]
+\center
 \caption{\label{tab:Exp2_LMEM}{2x2x2 mixed-effects model for SRdTs measured in experiment II across all subjects (N~observations $=$ 112; N~Subjects $=$ 13). Significant p-values are marked as bold.}}
 \renewcommand{\arraystretch}{2}
 \begin{tabular}{lccc}
@@ -743,12 +760,14 @@ Order  (2)  & -0.03                     & 0.01     & -0.06 – -0.01   \\ \hline
 \hypertarget{within-session-test-retest-reliability-1}{%
 \paragraph{Within-session test-retest reliability}\label{within-session-test-retest-reliability-1}}
 
+\hfill\break
 Reliability of the outcome measure is an important requirement for both research and clinical use. Reliability reflects the degree to which a test measure is reproducible when measured by the same listener at different points in time. Low reliability negatively affects the test sensitivity, thus making it difficult to detect difference in scores across different test conditions and/or to distinguish whether the listener's score falls within the normal range \autocite{Cameron2007}.
 Test-retest reliability analysis of the listeners SRdTs showed no significant difference between the first and the second run across the different test conditions with estimated mean difference ranging between 0.014 to 0.047. Thus, the switching task appears to provide reliable and reproducible results which is an important requirement for a clinical tool.\\
 
 \hypertarget{score-reproducibility-a-comparison-between-experiment-i-and-ii-1}{%
 \paragraph{Score reproducibility --- a comparison between experiment I and II}\label{score-reproducibility-a-comparison-between-experiment-i-and-ii-1}}
 
+\hfill\break
 Overall, there was a fairly good agreement in SRdTs obtained in experiments I and II across the different test conditions, whereby both experiments showed the same trend of decline in performance when a speech distractor was introduced, with a further decline in performance when the distractor talker was the same sex as of the target talker. Nonetheless, Fig.~\ref{fig:Cmpr_Exp1_2} reveal a small but noticeable positive shift in SRdTs (i.e., poorer performance) as well as a larger variance in the first experiment than in the second experiment. Furthermore, a statistical analysis revealed a significant difference in performance averaged across conditions (p \textless{} 0.01), albeit the effect-size (Cohen's d = 0.264) is considered small.\\
 
 There are several factors that may have contributed to the observed differences in scores. The smaller variability in the SRdTs in experiment II may have been partially as a result of averaging the listeners scores across the two runs, reducing their variability. In experiment I on the other hand, the listeners were presented only once with each test condition. Another, less likely contributing element stems from the different ways the listeners' response was recorded. Typically, in listening tasks that use (non-matrix) everyday sentences, the examiner records the listeners' verbal response. This method was used in experiment II. The self-scoring method we used in the first experiment was deemed lengthy and may have increased the testing error by imposing fatigue and decline in motivation which may explain the overall small trend of poorer SRdTs in experiment I.\\
@@ -758,6 +777,7 @@ Nonetheless, probably the most influential factor responsible for the difference
 \hypertarget{effects-of-distractors-language-familiarity-and-talker-sex-on-im}{%
 \paragraph{Effects of distractor's language familiarity and talker sex on IM}\label{effects-of-distractors-language-familiarity-and-talker-sex-on-im}}
 
+\hfill\break
 One of the main objectives of the second experiment was to examine the role of the semantic content of a distractor on IM in the switching task. The distractor's semantic content was controlled by having distractors spoken in a language that the listeners are or are not familiar with.\\
 
 To our knowledge, no other study has attempted to investigate the components of IM involved in a speech-on-speech listening as presented here; where the target and the distractor signals are interrupted and periodically switched between the two ears out-of-phase with one another. Perhaps the most striking outcome of the first experiment was that only speech distractors impaired task performance. In the absence of a noticeable masking effect for the non-speech distractors, one possible explanation to this is that the ability to ignore a competing talker and to focus on the target talker is hindered by the distractor's semantic content. We therefore hypothesised that the unfamiliar speech distractor in the second experiment will produce smaller masking interference, resulting in better performance than for the familiar speech distractor. However, in contradiction to our expectation, the listeners did not display a masking release when the target speech was presented with an unfamiliar speech distractor (MDR), with only small difference in performance between the two speech types (ENG vs.~MDR). In addition, the non-significant interaction between the distractor type (familiar/unfamiliar) and distractor talker-sex (same/different), indicates that the effect of distractor's talker sex was the same in both distractor types.\\
@@ -766,6 +786,20 @@ The findings in the present study corroborate earlier studies \autocite{Freyman2
 
 \hypertarget{general-discussion-and-conclusion}{%
 \subsection{General discussion and conclusion}\label{general-discussion-and-conclusion}}
+
+The results in the first experiment showed that perception of switched speech presented with an interleaved speech distractor taps into an aspect of IM that is highly specific, and not probed by non-speech distractors. The results in the present study were comparable to those obtained by Akinseye \autocite*[unpublished BSc thesis,][]{Akinseye2015} for Quiet and ENG\(_{opposite-sex}\) conditions, and are in accordance with other studies that used interrupted or alternated speech.\\
+
+We did not observe IM for non-speech distractors, not even for the most ``speechy'' one (FxNx) and with no other obvious explanation for the lack of IM, we speculated this may be due to the lack of semantic and linguistic information in the nonspeech distractors. Presumably, higher level perceptual cues of lexical and prosodic speech information were prioritised by the listeners over more fine-grained lower-level of acoustic segmentation cues (such as F0 and TFS).
+Nonetheless, the results of the second experiment speak against this explanation, where we found no or minimal masking release for a speech distractor spoken in an unfamiliar language (MDR). The small difference in IM due to language familiarity could also arise from differences between the talkers. Nevertheless, this is likely to be a less of a factor because several talkers were used and not just one. The remaining burning question is what feature(s) in the MDR distractor facilitated this large target interference? \%One possible factor for this may be assigned to the MDR distractor amplitude fluctuations, resulting in within-channels interference with the target speech amplitude modulations, as proposed by \textcite{Stone2012}.\\
+
+Moreover, in corroboration with other studies \autocites[e.g.,][]{Brungart2001,Festen1990}, the results of the present study demonstrate that similarity between the target and distractor has a large influence on the amount of IM that is produced. A distractor talker of the same sex as the target talker was found to elicit significantly more IM (i.e., poorer performance or larger DC) than a distractor spoken by a talker from the opposite sex to the target talker. Nevertheless, this was only the case for speech distractors, no matter if they were intelligible (ENG) or not (MDR). No IM was found for the non-speech distractors, despite being generated from features extracted from the original speech distractors. The increase in IM for same-sex distractor talker is likely to be caused by a combination of bottom-up failure in object formation in addition to the impaired top-down object selection elicited by an opposite-sex speech distractor.\\
+
+The amount of IM produced by a speech distractor can vary depending on various voice characteristics of the distractor talker and it's similarity to the target talker voice. While the distractors used in the first experiment originated from one realisation spoken by a single talker, in the second experiment, each of the speech distractors (ENG and MDR) comprised of different speech passages, spoken by twenty different talkers (10 same-sex and 10 opposite-sex), with a total of forty different speech passages. A comparison with the listeners performance in both experiments showed a fairly good agreement, indicating that listeners' ability to use voice characteristics as cues to segregate sound streams is robust to variations in voice characteristics across talkers.\\
+
+In conclusion, the present study investigated the utility of a novel speech-on-speech listening task that involves perception of interrupted speech that is switched between the two ears out-of-phase with an interrupted distractor. The proposed paradigm enables us to eliminate peripheral (EM) masking, while maintaining high IM for speech distractors. Providing this ``purer" measure of IM may aid in disentangling the reasons why different groups of people experience difficulties in adverse noisy listening situations. One such group is children with developmental auditory processing disorder (APD). APD children typically express difficulties in understanding speech in noisy environments (e.g., a classroom), despite having normal peripheral hearing. There is a growing notion that APD arises from higher-level cognitive deficits {[}e.g., \textcite{Moore2010}; DeWit2018{]}. Since the switching task taps into attentional or other cognitive aspects, it may be useful in better understanding the underlying causes of APD.\\
+
+More research is required to further understand the underlying mechanisms involved in the switching task. For example, the extent to which listeners are able to obtain information from both ears, as opposed to attending to one ear only, cannot be drawn from the present results and is yet to be examined. The underlying assumption is that the task necessitates sustained and selective attention functions in order to attend to the target signal and to integrate the short-term binaural glimpses of auditory information across the two ears. Nonetheless, determining whether the listeners are attending both ears or only one ear while they carry out the task may be challenging to confidently estimate. Future studies could for instance compare the listeners' performance with an additional monotic listening configuration, where only the information from either the left or the right ear is presented (i.e., presentation of a single channel out of the binaural stimuli), as opposed to a binaural configuration in which the stimuli are fully preserved when the switched segments are combined across the two ears.
+Another interesting direction could be to investigate the influence of the speech material (as in its structure and complexity) on performance. Future studies will explore the feasibility of a test version that uses CRM-type sentences \autocite{Bolia2000}, e.g.~`Show the \(<\)animal\(>\) where the \(<\)colour\(>\) \(<\)digit\(>\) is'. Furthermore, the ability to attend to the target speech while ignoring a competing distractor can be estimated using a distractor with the exact same structure as the target sentence. Several studies used this technique to estimate the distractor-related response error in CRM sentences \autocite[e.g.,][]{Brungart2001}. The `distractor error' reflects the distractor's intrusion, indicated by a response that corresponds with the distractor word rather than the target word. A distractor error reflects attentional aspects of IM, meaning that the listener attended to the wrong stimulus. Such a test version may have several other advantages. It reduces the role of language skills due to the fixed and simpler sentence structure, thus making the task more suitable for both children and adults and potentially for non-native speakers. It also eliminates the need to verbally recall the keywords and enables an automatic testing, negating the need of the examiner to manually score the listeners' responses.\\
 
 \hypertarget{dichotic-vs.-monotic-presentation-and-the-influence-of-speech-material}{%
 \section{Dichotic vs.~monotic presentation and the influence of speech material}\label{dichotic-vs.-monotic-presentation-and-the-influence-of-speech-material}}
@@ -776,27 +810,20 @@ The findings in the present study corroborate earlier studies \autocite{Freyman2
 \hypertarget{methods-2}{%
 \subsection{Methods}\label{methods-2}}
 
+\hypertarget{participants-2}{%
+\subsubsection{Participants}\label{participants-2}}
+
+\hypertarget{stimuli-2}{%
+\subsubsection{Stimuli}\label{stimuli-2}}
+
+\hypertarget{procedure-2}{%
+\subsubsection{Procedure}\label{procedure-2}}
+
+\hypertarget{statistical-methods}{%
+\subsubsection{Statistical methods}\label{statistical-methods}}
+
 \hypertarget{results-2}{%
 \subsection{Results}\label{results-2}}
-
-To create numbered equations, put them in an `equation' environment and give them a label with the syntax \texttt{(\textbackslash{}\#eq:label)}, like this:
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\KeywordTok{\textbackslash{}begin}\NormalTok{\{}\ExtensionTok{equation}\NormalTok{\}}\SpecialStringTok{ }
-\SpecialStringTok{  f}\SpecialCharTok{\textbackslash{}left}\SpecialStringTok{(k}\SpecialCharTok{\textbackslash{}right}\SpecialStringTok{) = }\SpecialCharTok{\textbackslash{}binom}\SpecialStringTok{\{n\}\{k\} p\^{}k}\SpecialCharTok{\textbackslash{}left}\SpecialStringTok{(1{-}p}\SpecialCharTok{\textbackslash{}right}\SpecialStringTok{)\^{}\{n{-}k\}}
-\SpecialStringTok{  (}\SpecialCharTok{\textbackslash{}\#}\SpecialStringTok{eq:binom)}
-\KeywordTok{\textbackslash{}end}\NormalTok{\{}\ExtensionTok{equation}\NormalTok{\} }
-\end{Highlighting}
-\end{Shaded}
-
-Becomes:
-\begin{equation}
-f\left(k\right)=\binom{n}{k}p^k\left(1-p\right)^{n-k}
-\label{eq:binom}
-\end{equation}
-
-For more (e.g.~how to theorems), see e.g.~the documentation on \href{https://bookdown.org/yihui/bookdown/markdown-extensions-by-bookdown.html\#equations}{bookdown.org}
 
 \hypertarget{discussion-2}{%
 \subsection{Discussion}\label{discussion-2}}
@@ -911,13 +938,11 @@ Individuals may have a combination of both.
   Conductive loss results in impaired spatial processing (Cameron et al., 2014) and binaural interaction (Hall et al., 1995; Hogan et al., 1996)
 \end{itemize}
 
-\newpage
-
 \hypertarget{methods-4}{%
 \section{Methods}\label{methods-4}}
 
-\hypertarget{participants-2}{%
-\subsection{Participants}\label{participants-2}}
+\hypertarget{participants-3}{%
+\subsection{Participants}\label{participants-3}}
 
 Forty-four primary school children who are native British English speakers with normal hearing acuity participated in the study. Amongst them twenty-one belonged to the APD clinical group (5 females) with an average age of 11.04 \(\pm\)~1.42 years (range: 7.8 - 12.9 years). The remaining twenty-three (12 females) comprised of typically developing control children (TD) with no reported concerns or diagnosis of an auditory, language or other cognitive developmental disorder. The TD group average age was 9.47 ±~1.58 years and ranged between 7 to 12.1 years. Since not all the measurement equipment was easily portable and in order to maintain the same environment during the assessment across the complete sample, the children and their caregivers were required to travel to central London for the testing. In order to maximise the number of children taking part in the study, 8 out of the 23 TD children (35\%) had APD siblings which took part in a parallel study on the same day of testing. All the children who participated in the study were required to have normal hearing acuity, defined as thresholds \(\leq\) 25~dB~HL at the octave frequency bands between 0.25 to 8~kHz and their eardrum had to be visible, healthy and intact in both ears following otoscopic inspection. One APD participant was excluded from the analysis due to raised thresholds predominantly in the right ear, ranging between 30 to 45~dB~HL (PTA\(_{Right}\) = 36.25~dB~HL; PTA\(_{Left}\) = 13.75~dB~HL), thus resulting in a final APD group size of twenty. Otoscopic inspection of the child's ear canal revealed a large accumulation of cerumen in both ears with an occluded right ear. Two additional children (x1 APD, x1 TD) had slightly raised thresholds at 8~kHz in one ear of 35 and 30~dB~HL, respectively. However, since thresholds at all other frequency bands were well within the \(\leq\) 25~dB~HL criteria they were not excluded.\\
 
@@ -990,9 +1015,9 @@ The test battery used in the present study is described in the following section
 \hfill\break
 Otoscopic inspection was performed prior to the audiometric test to ensure the ear was clear from cerumen and to avoid harming the eardrum when inserting the ear probe. Both standard and extended high-frequency (EHF) audiometry thresholds were measured using the Hughson-Westlake manual procedure, starting from 1~kHz. Standard air conduction pure-tone audiometry was carried out at six octave frequency bands ranging between 0.25 to 8~kHz using ???? audiometer and ??? headphones.\\
 
-Extended high-frequency pure-tone detection thresholds were measured at four octave frequency bands 8, 11, 16, \& 20~kHz using locally written MATLAB based software which generated the stimulus and collected the data. Target tones were pulsed (3 repetitions) with a duration time of 700~ms and 50~ms rise/fall time. EHF measurements took place in a designated sound attenuated chamber with the child sitting in the centre of the chamber while the examiner was situated outside. Communication during the testing was carried out via a video-audio intercom system. The child was instructed to raise his/hers hand each time s/he heard a tone. The MATLAB script was executed using a Windows PC which which was connected via USB to an RME ???? sound card (Audio AG, Haimhausen Germany) and an ER10X Extended-Bandwidth Acoustic Probe System (Etym\(\bar{o}\)tic Research, Elk Grove Village, IL). Stimulus was presented via an otoacoustic emission probe with silicon tips in variable sizes (between 10 to 13~mm), depending on the size of the child's ear.\\
+Extended high-frequency pure-tone detection thresholds were measured at four octave frequency bands 8, 11, 16, \& 20~kHz using locally written MATLAB based software which generated the stimulus and collected the data. Target tones were pulsed (3 repetitions) with a duration time of 700~ms and 50~ms rise/fall time. EHF measurements took place in a designated sound attenuated chamber with the child sitting in the centre of the chamber while the examiner was situated outside. Communication during the testing was carried out via a video-audio intercom system. The child was instructed to raise his/hers hand each time s/he heard a tone. The MATLAB script was executed using a Windows PC which which was connected via USB to an RME FireFace UC sound card (Audio AG, Haimhausen Germany) and an ER10X Extended-Bandwidth Acoustic Probe System (Etym\(\bar{o}\)tic Research, Elk Grove Village, IL, USA). Stimulus was presented via an otoacoustic emission probe with silicon tips in variable sizes (between 8 to 13~mm), depending on the size of the child's ear.\\
 
-Standing waves in the ear canal produces spatially non-uniform sound pressure at frequencies above 2-3~kHz, introducing calibration errors when estimating the sound pressure level arriving at the eardrum \autocite{Siegel1994,Richmond2011,Lee2012}. Together with other factors such as individual variations in the ear canal length and differences in depth in which the ear probe is inserted into the ear canal, these factors can introduce up to 20~dB calibration error \autocite{Siegel1994}. To account for that, a sound pressure level calibration procedure was used (chirp noise) using a similar technique as described by \textcite{Lee2012}. For each frequency, the first half-wave resonance of the ear canal was measured, estimating the distance between the ear probe and the eardrum. The target stimulus was then scaled to the desired output level that corresponds to 0~dB~HL using the in-situ calibration forward-pressure level data (FPL) and EHF-specific weighting thresholds (in dB SPL) measured across 84 NH listeners aged 10 to 21 years \autocite[see Table 1 in][]{Lee2012}.
+Standing waves in the ear canal produces spatially non-uniform sound pressure at frequencies above 2-3~kHz, introducing calibration errors when estimating the sound pressure level arriving at the eardrum \autocite{Siegel1994,Richmond2011,Lee2012}. Together with other factors such as individual variations in the ear canal length and differences in depth in which the ear probe is inserted into the ear canal, these factors can introduce up to 20~dB calibration error \autocite{Siegel1994}. To account for that, a sound pressure level calibration was applied using ARLas MATLAB-based software package \autocite{ARLas}, using a similar technique as described by \textcite[\emph{accurat?}]{Lee2012}\{.correction\}. The first half-wave resonance of the ear canal was measured for each frequency using chirp noise, estimating the distance between the ear-probe and the eardrum. The target stimulus was then filtered to the desired output level that corresponds to 0~dB~HL using the in-situ calibration forward-pressure level data (FPL) and EHF-specific weighting thresholds (in dB SPL) measured across 84 NH listeners aged 10 to 21 years \autocite[see Table 1 in][]{Lee2012}.
 
 \hypertarget{switching-task-st}{%
 \paragraph{Switching task (ST)}\label{switching-task-st}}
@@ -1058,8 +1083,8 @@ The ECLiPS questionnaire \autocite{Barry2014} comprises of 38 items, where the r
 \hfill\break
 Communication abilities were assessed using the Children's Communication Checklist second edition questionnaire \autocite[CCC-2;][]{Bishop2003} which is designed to screen communication problems in children aged 4 to 16 years and comprises of 70 checklist items each comprising of a behaviour statement, like ``\emph{Mixes up words of similar meaning}''. The respondents are asked to judge how often the behaviours occur using a four-point Likert rating scale: 0. \emph{less than once a week (or never)}, 1. \emph{at least once a week, but not every day}, 2. \emph{once or twice a day}, 3. \emph{several times (more than twice) a day (or always)}. The items are grouped into ten sub-scales of behaviours tapping into different skills (A. Speech, B. Syntax, C. Semantics, D. Coherence, E. Inappropriate initiation, F. Stereotyped language, G. Use of context, H. Non-verbal communication, I. Social relations, J. Interests). Taking the sum of scores for the sub-scales A to H are used to derive the General Communication Composite (GCC) which is used to identify clinically abnormal communication competence. A GCC score \textless{} 55 was found to well separate between control and clinical groups, identifying children with scores at the bottom 10\% \autocite{Norbury2005}. Another proposed composite, is the SIDC (Social-Interaction Deviance Composite) which is calculated by taking the difference in sum of subscales E, H, I, and J (tapping into pragmatic language and social skills) from the sum of scales of A to D (describes structural language skills). Abnormal GCC (\textless~55) combined with a negative SIDC score has been shown to be indicative of an autistic spectrum disorder profile \autocite{Bishop2003}. The CCC-2 scaled and composite scores were computed using the test scorer.\\
 
-\hypertarget{procedure-2}{%
-\subsection{Procedure}\label{procedure-2}}
+\hypertarget{procedure-3}{%
+\subsection{Procedure}\label{procedure-3}}
 
 Testing took place at the SHaPS laboratory (UCL, London) in a sound-attenuated chamber. Unfortunately, since many of the APD children had to travel from outside London and because of difficulties in recruitment, all the testing had to be made in a single session, lasting in total circa 2.5 to 3 hours (including breaks). To minimise possible fatigue effect, the session was carefully designed to ensure several planned and unplanned brakes. The participants were encouraged to request for a break between test runs whenever they required and were observed for any signs of fatigue by the examiner. The different tasks were gathered into short blocks and different measures were scattered throughout the session to keep the session fun and engaging for the child. At the end of the session, each child received a certificate and an Amazon voucher as a token of appreciation for taking part in the study and travel costs of the family were reimbursed.\\
 
@@ -1328,55 +1353,6 @@ As expected, most of the identified cases in both materials were for observation
 \includegraphics[width=1\linewidth]{_main_files/figure-latex/ST-FigLevsPC-1} \caption{ST raw data: Frequency of potential outliers with LevsPC $\leq$ 35\%. LevsPC denotes the proportion of correct keywords within the final test trials.}\label{fig:ST-FigLevsPC}
 \end{figure}
 
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{test }\OtherTok{\textless{}{-}}\NormalTok{ ST\_trimmed }\SpecialCharTok{\%\textgreater{}\%} 
-  \FunctionTok{arrange}\NormalTok{(listener,CondCode,material) }\SpecialCharTok{\%\textgreater{}\%} 
-    \FunctionTok{group\_by}\NormalTok{(listener) }\SpecialCharTok{\%\textgreater{}\%}
-    \FunctionTok{mutate}\NormalTok{(}\AttributeTok{Diff =}\NormalTok{ uRevs }\SpecialCharTok{{-}} \FunctionTok{lag}\NormalTok{(uRevs)) }\SpecialCharTok{\%\textgreater{}\%} 
-  \FunctionTok{subset}\NormalTok{(., material}\SpecialCharTok{==}\StringTok{"CCRM"}\NormalTok{)}
-
-\CommentTok{\# change data from Long2Wide}
-\NormalTok{ST\_trimmed\_w }\OtherTok{\textless{}{-}}\NormalTok{ ST\_trimmed }\SpecialCharTok{\%\textgreater{}\%}
-  \FunctionTok{pivot\_wider}\NormalTok{(}
-    \AttributeTok{id\_cols =} \FunctionTok{c}\NormalTok{(}\StringTok{"listener"}\NormalTok{,}\StringTok{"Group"}\NormalTok{,}\StringTok{"Age"}\NormalTok{,}\StringTok{"material"}\NormalTok{,}\StringTok{"CondCode"}\NormalTok{,}\StringTok{"APDsibling"}\NormalTok{),}
-    \AttributeTok{names\_from =} \StringTok{"material"}\NormalTok{,}
-    \AttributeTok{values\_from =} \FunctionTok{c}\NormalTok{(}\StringTok{"uRevs"}\NormalTok{)) }\SpecialCharTok{\%\textgreater{}\%}
-  \FunctionTok{ungroup}\NormalTok{()}
-
-\NormalTok{ST\_trimmed\_w }\OtherTok{\textless{}{-}} \FunctionTok{data.frame}\NormalTok{(ST\_trimmed\_w)}
-
-\NormalTok{t1 }\OtherTok{\textless{}{-}} \FunctionTok{ggplot}\NormalTok{(ST\_trimmed\_w, }\FunctionTok{aes}\NormalTok{(}\AttributeTok{x=}\NormalTok{CCRM, }\AttributeTok{y=}\NormalTok{ASLN, }\AttributeTok{shape=}\NormalTok{CondCode, }\AttributeTok{colour=}\NormalTok{APDsibling)) }\SpecialCharTok{+}
-  \FunctionTok{geom\_point}\NormalTok{(}\AttributeTok{size=}\DecValTok{3}\NormalTok{,}\AttributeTok{alpha=}\DecValTok{1}\NormalTok{) }\SpecialCharTok{+}
-  \FunctionTok{geom\_smooth}\NormalTok{(}\AttributeTok{method=}\StringTok{"lm"}\NormalTok{ , }\FunctionTok{aes}\NormalTok{(}\AttributeTok{group=}\NormalTok{APDsibling, }\AttributeTok{linetype=}\NormalTok{APDsibling), }\AttributeTok{se=}\ConstantTok{FALSE}\NormalTok{) }\SpecialCharTok{+}
-  \FunctionTok{scale\_y\_continuous}\NormalTok{(}\AttributeTok{limits =} \FunctionTok{c}\NormalTok{(}\DecValTok{0}\NormalTok{,}\DecValTok{1}\NormalTok{),}\AttributeTok{breaks=}\FunctionTok{seq}\NormalTok{(}\DecValTok{0}\NormalTok{,}\DecValTok{1}\NormalTok{,}\FloatTok{0.1}\NormalTok{))}\SpecialCharTok{+}
-  \FunctionTok{scale\_x\_continuous}\NormalTok{(}\AttributeTok{limits =} \FunctionTok{c}\NormalTok{(}\DecValTok{0}\NormalTok{,}\DecValTok{1}\NormalTok{),}\AttributeTok{breaks=}\FunctionTok{seq}\NormalTok{(}\DecValTok{0}\NormalTok{,}\DecValTok{1}\NormalTok{,}\FloatTok{0.1}\NormalTok{))}\SpecialCharTok{+}
-  \CommentTok{\# geom\_abline(intercept=0, slope=1)+ }
-  \FunctionTok{labs}\NormalTok{(}\AttributeTok{y =} \StringTok{"ASL"}\NormalTok{,}\AttributeTok{x =} \StringTok{"CCRM"}\NormalTok{, }\AttributeTok{title =} \StringTok{"z{-}score"}\NormalTok{) }\SpecialCharTok{+} 
-  \FunctionTok{theme\_bw}\NormalTok{() }\SpecialCharTok{+}
-  \FunctionTok{theme}\NormalTok{(}\AttributeTok{axis.text =} \FunctionTok{element\_text}\NormalTok{(}\AttributeTok{size =} \DecValTok{10}\NormalTok{, }\AttributeTok{face=}\StringTok{"bold"}\NormalTok{,}\AttributeTok{colour =} \StringTok{"black"}\NormalTok{),}
-        \AttributeTok{axis.title.x =} \FunctionTok{element\_text}\NormalTok{(}\AttributeTok{size=}\DecValTok{11}\NormalTok{, }\AttributeTok{face=}\StringTok{"bold"}\NormalTok{),}
-        \AttributeTok{axis.title.y =} \FunctionTok{element\_text}\NormalTok{(}\AttributeTok{size=}\DecValTok{11}\NormalTok{, }\AttributeTok{face=}\StringTok{"bold"}\NormalTok{),}
-        \AttributeTok{legend.title =} \FunctionTok{element\_text}\NormalTok{(}\AttributeTok{size=}\DecValTok{11}\NormalTok{, }\AttributeTok{face=}\StringTok{"bold"}\NormalTok{),}
-        \AttributeTok{legend.text  =} \FunctionTok{element\_text}\NormalTok{(}\AttributeTok{size=}\DecValTok{10}\NormalTok{, }\AttributeTok{face=}\StringTok{"bold"}\NormalTok{),}
-        \AttributeTok{legend.position =} \StringTok{"bottom"}\NormalTok{,}
-        \AttributeTok{legend.direction =} \StringTok{"horizontal"}\NormalTok{,}
-        \AttributeTok{legend.background =} \FunctionTok{element\_blank}\NormalTok{(),}
-        \AttributeTok{legend.box.background =} \FunctionTok{element\_rect}\NormalTok{(}\AttributeTok{colour =} \StringTok{"black"}\NormalTok{))}
-
-
-\FunctionTok{ddply}\NormalTok{(ST\_trimmed\_w,}\SpecialCharTok{\textasciitilde{}}\NormalTok{APDsibling,summarise,}\AttributeTok{median=}\FunctionTok{median}\NormalTok{(ASLN,}\AttributeTok{na.rm=}\ConstantTok{TRUE}\NormalTok{),}\AttributeTok{mean=}\FunctionTok{mean}\NormalTok{(ASLN,}\AttributeTok{na.rm=}\ConstantTok{TRUE}\NormalTok{),}\AttributeTok{sd=}\FunctionTok{sd}\NormalTok{(ASLN,}\AttributeTok{na.rm=}\ConstantTok{TRUE}\NormalTok{), }\AttributeTok{min=}\FunctionTok{min}\NormalTok{(ASLN,}\AttributeTok{na.rm=}\ConstantTok{TRUE}\NormalTok{),}\AttributeTok{max=}\FunctionTok{max}\NormalTok{(ASLN,}\AttributeTok{na.rm=}\ConstantTok{TRUE}\NormalTok{))   }
-\CommentTok{\# APDsibling    median      mean        sd       min       max}
-\CommentTok{\# 1          1 0.5156667 0.5217875 0.1830361 0.2480000 0.8573333}
-\CommentTok{\# 2          0 0.4783333 0.5556022 0.1994344 0.2886667 0.9700000}
-
-\FunctionTok{ddply}\NormalTok{(ST\_trimmed\_w,}\SpecialCharTok{\textasciitilde{}}\NormalTok{APDsibling,summarise,}\AttributeTok{median=}\FunctionTok{median}\NormalTok{(CCRM,}\AttributeTok{na.rm=}\ConstantTok{TRUE}\NormalTok{),}\AttributeTok{mean=}\FunctionTok{mean}\NormalTok{(CCRM,}\AttributeTok{na.rm=}\ConstantTok{TRUE}\NormalTok{),}\AttributeTok{sd=}\FunctionTok{sd}\NormalTok{(CCRM,}\AttributeTok{na.rm=}\ConstantTok{TRUE}\NormalTok{), }\AttributeTok{min=}\FunctionTok{min}\NormalTok{(CCRM,}\AttributeTok{na.rm=}\ConstantTok{TRUE}\NormalTok{),}\AttributeTok{max=}\FunctionTok{max}\NormalTok{(CCRM,}\AttributeTok{na.rm=}\ConstantTok{TRUE}\NormalTok{)) }
-\CommentTok{\# APDsibling    median      mean        sd    min       max}
-\CommentTok{\# 1          1 0.2981667 0.3363565 0.1640863 0.0875 0.6746667}
-\CommentTok{\# 2          0 0.2896667 0.3153858 0.1593562 0.0750 0.7750000  }
-\end{Highlighting}
-\end{Shaded}
-
 \hypertarget{srdts-by-age}{%
 \subsubsection*{SRdTs by age}\label{srdts-by-age}}
 \addcontentsline{toc}{subsubsection}{SRdTs by age}
@@ -1392,63 +1368,6 @@ Since the present study sample comprised of young children from different age gr
 \caption{ST: Scatterplot and linear regression lines for the listeners SRdTs measured with the ASL (A) and CCRM speech material (B) as a function of age. Corresponding regression coefficients and statistics is provided for TD group only. Red indicates data from the APD group and cyan indicates data from the TD control group. Data for normal hearing adults taken from Chapter 2 is shown in the boxplots as a reference.}\label{fig:ST-Age}
 \end{figure}
 
-\begin{Shaded}
-\begin{Highlighting}[]
-\CommentTok{\# uRevs {-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}}
-\NormalTok{p1 }\OtherTok{\textless{}{-}} \FunctionTok{ggplot}\NormalTok{(ASLN, }\FunctionTok{aes}\NormalTok{(}\AttributeTok{x=}\NormalTok{APDsibling, }\AttributeTok{y=}\NormalTok{uRevs)) }\SpecialCharTok{+}
-  \FunctionTok{geom\_hline}\NormalTok{(}\AttributeTok{yintercept=}\FloatTok{0.97}\NormalTok{, }\AttributeTok{linetype=}\StringTok{"dashed"}\NormalTok{,}\AttributeTok{color =} \StringTok{"black"}\NormalTok{, }\AttributeTok{size=}\FloatTok{0.5}\NormalTok{)}\SpecialCharTok{+}
-  \FunctionTok{geom\_hline}\NormalTok{(}\AttributeTok{yintercept=}\FloatTok{0.05}\NormalTok{, }\AttributeTok{linetype=}\StringTok{"dashed"}\NormalTok{,}\AttributeTok{color =} \StringTok{"black"}\NormalTok{, }\AttributeTok{size=}\FloatTok{0.5}\NormalTok{)}\SpecialCharTok{+}
-  \FunctionTok{geom\_boxplot}\NormalTok{(}\AttributeTok{data=}\FunctionTok{filter}\NormalTok{(ASLN, Group}\SpecialCharTok{==}\StringTok{"TD"}\NormalTok{),}\AttributeTok{position=}\FunctionTok{position\_dodge}\NormalTok{(}\AttributeTok{width=}\FloatTok{0.7}\NormalTok{),}\AttributeTok{outlier.shape=}\ConstantTok{NA}\NormalTok{) }\SpecialCharTok{+}
-  \FunctionTok{geom\_quasirandom}\NormalTok{(}\AttributeTok{data=}\FunctionTok{filter}\NormalTok{(ASLN, Group}\SpecialCharTok{==}\StringTok{"TD"}\NormalTok{),}\AttributeTok{dodge.width=}\FloatTok{0.7}\NormalTok{,}\AttributeTok{shape=}\DecValTok{1}\NormalTok{,}\AttributeTok{colour=}\StringTok{"blue"}\NormalTok{)}\SpecialCharTok{+}
-  \FunctionTok{labs}\NormalTok{(}\AttributeTok{title =} \StringTok{"ASL"}\NormalTok{ ) }\SpecialCharTok{+} 
-  \FunctionTok{scale\_y\_continuous}\NormalTok{(}\AttributeTok{limits =} \FunctionTok{c}\NormalTok{(}\DecValTok{0}\NormalTok{,}\DecValTok{1}\NormalTok{),}\AttributeTok{breaks=}\FunctionTok{seq}\NormalTok{(}\DecValTok{0}\NormalTok{,}\DecValTok{1}\NormalTok{,}\FloatTok{0.1}\NormalTok{)) }\SpecialCharTok{+}
-  \FunctionTok{theme\_bw}\NormalTok{() }\SpecialCharTok{+}
-  \FunctionTok{facet\_grid}\NormalTok{(. }\SpecialCharTok{\textasciitilde{}}\NormalTok{ CondCode, }\AttributeTok{scales =} \StringTok{"free"}\NormalTok{, }\AttributeTok{switch =} \StringTok{"y"}\NormalTok{)}
-
-  
-\NormalTok{p2 }\OtherTok{\textless{}{-}} \FunctionTok{ggplot}\NormalTok{(CCRM, }\FunctionTok{aes}\NormalTok{(}\AttributeTok{x=}\NormalTok{APDsibling, }\AttributeTok{y=}\NormalTok{uRevs)) }\SpecialCharTok{+}
-  \FunctionTok{geom\_hline}\NormalTok{(}\AttributeTok{yintercept=}\FloatTok{0.97}\NormalTok{, }\AttributeTok{linetype=}\StringTok{"dashed"}\NormalTok{,}\AttributeTok{color =} \StringTok{"black"}\NormalTok{, }\AttributeTok{size=}\FloatTok{0.5}\NormalTok{)}\SpecialCharTok{+}
-  \FunctionTok{geom\_hline}\NormalTok{(}\AttributeTok{yintercept=}\FloatTok{0.05}\NormalTok{, }\AttributeTok{linetype=}\StringTok{"dashed"}\NormalTok{,}\AttributeTok{color =} \StringTok{"black"}\NormalTok{, }\AttributeTok{size=}\FloatTok{0.5}\NormalTok{)}\SpecialCharTok{+}
-  \FunctionTok{geom\_boxplot}\NormalTok{(}\AttributeTok{data=}\FunctionTok{filter}\NormalTok{(CCRM, Group}\SpecialCharTok{==}\StringTok{"TD"}\NormalTok{),}\AttributeTok{position=}\FunctionTok{position\_dodge}\NormalTok{(}\AttributeTok{width=}\FloatTok{0.7}\NormalTok{),}\AttributeTok{outlier.shape=}\ConstantTok{NA}\NormalTok{) }\SpecialCharTok{+}
-  \FunctionTok{geom\_quasirandom}\NormalTok{(}\AttributeTok{data=}\FunctionTok{filter}\NormalTok{(CCRM, Group}\SpecialCharTok{==}\StringTok{"TD"}\NormalTok{),}\AttributeTok{dodge.width=}\FloatTok{0.7}\NormalTok{,}\AttributeTok{shape=}\DecValTok{1}\NormalTok{,}\AttributeTok{colour=}\StringTok{"blue"}\NormalTok{)}\SpecialCharTok{+}
-  \FunctionTok{labs}\NormalTok{(}\AttributeTok{title =} \StringTok{"CCRM"}\NormalTok{ ) }\SpecialCharTok{+} 
-  \FunctionTok{scale\_y\_continuous}\NormalTok{(}\AttributeTok{limits =} \FunctionTok{c}\NormalTok{(}\DecValTok{0}\NormalTok{,}\DecValTok{1}\NormalTok{),}\AttributeTok{breaks=}\FunctionTok{seq}\NormalTok{(}\DecValTok{0}\NormalTok{,}\DecValTok{1}\NormalTok{,}\FloatTok{0.1}\NormalTok{)) }\SpecialCharTok{+}
-  \FunctionTok{theme\_bw}\NormalTok{() }\SpecialCharTok{+}
-  \FunctionTok{facet\_grid}\NormalTok{(. }\SpecialCharTok{\textasciitilde{}}\NormalTok{ CondCode, }\AttributeTok{scales =} \StringTok{"free"}\NormalTok{, }\AttributeTok{switch =} \StringTok{"y"}\NormalTok{)}
-
-\NormalTok{(p1 }\SpecialCharTok{+}\NormalTok{ p2) }\SpecialCharTok{+} \FunctionTok{plot\_layout}\NormalTok{(}\AttributeTok{ncol =} \DecValTok{1}\NormalTok{, }\AttributeTok{nrow =} \DecValTok{2}\NormalTok{, }\AttributeTok{heights =} \FunctionTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{, }\DecValTok{1}\NormalTok{), }\AttributeTok{widths =} \FunctionTok{c}\NormalTok{(}\FloatTok{1.5}\NormalTok{,}\FloatTok{1.5}\NormalTok{)) }\SpecialCharTok{+} \FunctionTok{plot\_annotation}\NormalTok{(}\AttributeTok{tag\_levels =} \StringTok{\textquotesingle{}A\textquotesingle{}}\NormalTok{) }\SpecialCharTok{+} \FunctionTok{plot\_layout}\NormalTok{(}\AttributeTok{guides=}\StringTok{\textquotesingle{}collect\textquotesingle{}}\NormalTok{) }\SpecialCharTok{\&}
-  \FunctionTok{theme}\NormalTok{(}\AttributeTok{legend.position=}\StringTok{\textquotesingle{}bottom\textquotesingle{}}\NormalTok{,        }
-        \AttributeTok{legend.direction =} \StringTok{"horizontal"}\NormalTok{,}
-        \AttributeTok{legend.background =} \FunctionTok{element\_blank}\NormalTok{(),}
-        \AttributeTok{legend.box.background =} \FunctionTok{element\_rect}\NormalTok{(}\AttributeTok{colour =} \StringTok{"black"}\NormalTok{),}
-        \AttributeTok{plot.tag =} \FunctionTok{element\_text}\NormalTok{(}\AttributeTok{face =} \StringTok{\textquotesingle{}bold\textquotesingle{}}\NormalTok{))}
-
-\CommentTok{\# z{-}scores {-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}}
-\NormalTok{p1 }\OtherTok{\textless{}{-}} \FunctionTok{ggplot}\NormalTok{(ASLN, }\FunctionTok{aes}\NormalTok{(}\AttributeTok{x=}\NormalTok{APDsibling, }\AttributeTok{y=}\NormalTok{z\_trim)) }\SpecialCharTok{+}
-  \FunctionTok{geom\_boxplot}\NormalTok{(}\AttributeTok{data=}\FunctionTok{filter}\NormalTok{(ASLN, Group}\SpecialCharTok{==}\StringTok{"TD"}\NormalTok{),}\AttributeTok{position=}\FunctionTok{position\_dodge}\NormalTok{(}\AttributeTok{width=}\FloatTok{0.7}\NormalTok{),}\AttributeTok{outlier.shape=}\ConstantTok{NA}\NormalTok{) }\SpecialCharTok{+}
-  \FunctionTok{geom\_quasirandom}\NormalTok{(}\AttributeTok{data=}\FunctionTok{filter}\NormalTok{(ASLN, Group}\SpecialCharTok{==}\StringTok{"TD"}\NormalTok{),}\AttributeTok{dodge.width=}\FloatTok{0.7}\NormalTok{,}\AttributeTok{shape=}\DecValTok{1}\NormalTok{,}\AttributeTok{colour=}\StringTok{"blue"}\NormalTok{)}\SpecialCharTok{+}
-  \FunctionTok{labs}\NormalTok{(}\AttributeTok{title =} \StringTok{"ASL"}\NormalTok{ ) }\SpecialCharTok{+} 
-  \FunctionTok{scale\_y\_continuous}\NormalTok{(}\AttributeTok{limits =} \FunctionTok{c}\NormalTok{(}\SpecialCharTok{{-}}\DecValTok{5}\NormalTok{,}\DecValTok{10}\NormalTok{),}\AttributeTok{breaks=}\FunctionTok{seq}\NormalTok{(}\SpecialCharTok{{-}}\DecValTok{5}\NormalTok{,}\DecValTok{10}\NormalTok{,}\DecValTok{2}\NormalTok{)) }\SpecialCharTok{+}
-  \FunctionTok{theme\_bw}\NormalTok{() }\SpecialCharTok{+}
-  \FunctionTok{facet\_grid}\NormalTok{(. }\SpecialCharTok{\textasciitilde{}}\NormalTok{ CondCode, }\AttributeTok{scales =} \StringTok{"free"}\NormalTok{, }\AttributeTok{switch =} \StringTok{"y"}\NormalTok{)}
-
-\NormalTok{p2 }\OtherTok{\textless{}{-}} \FunctionTok{ggplot}\NormalTok{(CCRM, }\FunctionTok{aes}\NormalTok{(}\AttributeTok{x=}\NormalTok{APDsibling, }\AttributeTok{y=}\NormalTok{z\_trim)) }\SpecialCharTok{+}
-  \FunctionTok{geom\_boxplot}\NormalTok{(}\AttributeTok{data=}\FunctionTok{filter}\NormalTok{(CCRM, Group}\SpecialCharTok{==}\StringTok{"TD"}\NormalTok{),}\AttributeTok{position=}\FunctionTok{position\_dodge}\NormalTok{(}\AttributeTok{width=}\FloatTok{0.7}\NormalTok{),}\AttributeTok{outlier.shape=}\ConstantTok{NA}\NormalTok{) }\SpecialCharTok{+}
-  \FunctionTok{geom\_quasirandom}\NormalTok{(}\AttributeTok{data=}\FunctionTok{filter}\NormalTok{(CCRM, Group}\SpecialCharTok{==}\StringTok{"TD"}\NormalTok{),}\AttributeTok{dodge.width=}\FloatTok{0.7}\NormalTok{,}\AttributeTok{shape=}\DecValTok{1}\NormalTok{,}\AttributeTok{colour=}\StringTok{"blue"}\NormalTok{)}\SpecialCharTok{+}
-  \FunctionTok{labs}\NormalTok{(}\AttributeTok{title =} \StringTok{"CCRM"}\NormalTok{ ) }\SpecialCharTok{+} 
-  \FunctionTok{scale\_y\_continuous}\NormalTok{(}\AttributeTok{limits =} \FunctionTok{c}\NormalTok{(}\SpecialCharTok{{-}}\DecValTok{5}\NormalTok{,}\DecValTok{10}\NormalTok{),}\AttributeTok{breaks=}\FunctionTok{seq}\NormalTok{(}\SpecialCharTok{{-}}\DecValTok{5}\NormalTok{,}\DecValTok{10}\NormalTok{,}\DecValTok{2}\NormalTok{)) }\SpecialCharTok{+}
-  \FunctionTok{theme\_bw}\NormalTok{() }\SpecialCharTok{+}
-  \FunctionTok{facet\_grid}\NormalTok{(. }\SpecialCharTok{\textasciitilde{}}\NormalTok{ CondCode, }\AttributeTok{scales =} \StringTok{"free"}\NormalTok{, }\AttributeTok{switch =} \StringTok{"y"}\NormalTok{)}
-
-\NormalTok{(p1 }\SpecialCharTok{+}\NormalTok{ p2) }\SpecialCharTok{+} \FunctionTok{plot\_layout}\NormalTok{(}\AttributeTok{ncol =} \DecValTok{1}\NormalTok{, }\AttributeTok{nrow =} \DecValTok{2}\NormalTok{, }\AttributeTok{heights =} \FunctionTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{, }\DecValTok{1}\NormalTok{), }\AttributeTok{widths =} \FunctionTok{c}\NormalTok{(}\FloatTok{1.5}\NormalTok{,}\FloatTok{1.5}\NormalTok{)) }\SpecialCharTok{+} \FunctionTok{plot\_annotation}\NormalTok{(}\AttributeTok{tag\_levels =} \StringTok{\textquotesingle{}A\textquotesingle{}}\NormalTok{) }\SpecialCharTok{+} \FunctionTok{plot\_layout}\NormalTok{(}\AttributeTok{guides=}\StringTok{\textquotesingle{}collect\textquotesingle{}}\NormalTok{) }\SpecialCharTok{\&}
-  \FunctionTok{theme}\NormalTok{(}\AttributeTok{legend.position=}\StringTok{\textquotesingle{}bottom\textquotesingle{}}\NormalTok{,        }
-        \AttributeTok{legend.direction =} \StringTok{"horizontal"}\NormalTok{,}
-        \AttributeTok{legend.background =} \FunctionTok{element\_blank}\NormalTok{(),}
-        \AttributeTok{legend.box.background =} \FunctionTok{element\_rect}\NormalTok{(}\AttributeTok{colour =} \StringTok{"black"}\NormalTok{),}
-        \AttributeTok{plot.tag =} \FunctionTok{element\_text}\NormalTok{(}\AttributeTok{face =} \StringTok{\textquotesingle{}bold\textquotesingle{}}\NormalTok{))}
-\end{Highlighting}
-\end{Shaded}
-
 Looking at Figure~\ref{fig:ST-Age}~A-B, it is noticeable that children in both groups showed a larger decrement in performance when presented with speech distractors. The regression lines indicates that the improvement in performance by age was more prominent for speech distractors, with relatively steeper slopes (at least twice as steep) than for the non-speech distractor (AMSSN) or for conditions without a distractor. Furthermore, as expected, CCRM sentences were more intelligible, with performance shifted towards lower DC range relative to performance for the ASL speech material. The lower DC meant that the children were able to understand 50\% of the sentences with larger portions of the speech information missing.\\
 
 A closer look at the linear lines shows several interesting trends. The non-speech AMSSN distractor showed to have little-to-no effect on performance, at least in the TD group, where performance was fairly similar to performance in the Quiet conditions. Introducing alternations (as in Quiet-Alt vs.~Quiet-NoAlt), seems to hinder intelligibility in both groups, however the effect is relatively small and may not be significant due to the large spread in the APD group. Furthermore, when comparing the regression lines, there appears to be a relatively larger separation between the groups for data measured with the CCRM material, especially for AMSSN, but also for the speech distractors. However, it is possible that the APD regression lines do not reflect the true population due to the large spread in performance and the small sample size and thus any interpretation should be taken with caution. Another interesting observation is that the children showed little-to-no \emph{masking-release} for speech spoken in an unfamiliar language (MDR\_F) when compared with a distractor spoken in English (ENG\_F). This is in agreement with findings in the adults' study in Chapter~\ref{Chpt2}. Lastly, it is apparent from the figure that performance for CCRM\_F distractor was near-to-ceiling for some children, mostly among the APD group.\\
@@ -1456,7 +1375,7 @@ A closer look at the linear lines shows several interesting trends. The non-spee
 \colorbox[HTML]{CCCCFF}{\emph{Belongs to discussion?}}\\
 An exploratory comparison between the children's data measured in the present study with data measured across young NH adults collected in Chapter~\ref{Chpt2} further highlight the strong developmental trend, with SRdTs still not entirely ``adult-like'' even at the age of 13 years, especially for speech distractors (see boxplots in Figure~\ref{fig:ST-Age}~A-B). The children in both groups seems to be markedly susceptible to competing CCRM sentences and for familiar- or unfamiliar-speech presented with ASL sentences, with performance at the age of 12 years still largely differing from those obtained by the adults. On the other hand, by the age of 12 years, the TD children reached near to ``adult-like'' performance when CCRM target sentences were presented with ENG\_F speech distractor or when ASL sentences were presented with AMSSN distractor.\\
 
-Next, age effect was evaluated using LMEM model, with Condition (Quiet-NoAlt, Quiet-Alt, AMSSN, MDR\_F, \& ENG\_F), Material (ASL / CCRM) and Age as fixed factors, SRdT as dependent variable and a random intercept for subjects (reference levels: Condition = Quiet-NoAlt; Material = ASL). Note that data for CCRM\_F was excluded from the model since it was only measured for the CCRM material\footnote{A separate model for CCRM data only, also gave a significant Condition x Age interaction (p~\textless~0.001).}. Parametric assumption inspection of normal distribution was met, whereas the assumption of homogeneity of variance was marginal (p = 0.04).\colorbox[HTML]{CCCCFF}{Inspect a model with a fix efffect for APDsibling..} A model without three-way interaction between Condition, Material and Age was found to give the best fit (see Table~\ref{tab:ST-AgeLMEM}). Model comparison revealed a highly significant two-way interaction between Condition~x~Age (p~\textless~0.001) as well as a marginal two-way interaction between Condition x Material and Material x Age (p~=~0.052) which further support the trends seen in the scatterplots.\\
+Next, age effect was tested using LMEM model, with Condition (Quiet-NoAlt, Quiet-Alt, AMSSN, MDR\_F, \& ENG\_F), Material (ASL / CCRM) and Age as fixed factors, SRdT as dependent variable and random intercepts for subjects (reference levels: Condition = Quiet-NoAlt; Material = ASL). Note that data for CCRM\_F was excluded from the model since it was only measured for the CCRM material\footnote{A separate model for CCRM data only, also gave a significant Condition x Age interaction (p~\textless~0.001).}. Parametric assumption inspection of normal distribution was met, whereas the assumption of homogeneity of variance was marginal (p = 0.04).\colorbox[HTML]{CCCCFF}{Inspect a model with a fix effect for APDsibling..} A model without three-way interaction between Condition, Material and Age was found to give the best fit (see Table~\ref{tab:ST-AgeLMEM}). Model comparison revealed a highly significant two-way interaction between Condition~x~Age (p~\textless~0.001) as well as a marginal two-way interaction between Condition x Material and Material x Age (p~=~0.052) which further support the trends seen in the scatterplots.\\
 
 The significant Material x Age interaction indicates that the developmental trend is different between the two speech materials, with a larger age effect (i.e., steeper slopes) for the ASL sentences, with an average improvement of 0.014 DC per 1 year, which is approximately 8\% higher than for the CCRM sentences across the age span. Furthermore, the significant Condition x Material interaction implies that performance in the different test conditions differed between the two speech materials. A post-hoc t-test comparison based on the fitted model given in Table~\ref{tab:ST-AgeLMEMpost}, revealed a highly significant difference in performance between the speech materials across all five test conditions (all p-values \textless~0.001). The estimated mean difference between the contrast pairs ranged between +0.18 to +0.27, hence, the CCRM speech material was significantly more intelligible than the ASL material, across all test conditions.\\
 
@@ -1464,7 +1383,7 @@ Lastly, the highly significant Condition~x~Age interaction supports the observat
 
 \begin{table}
 
-\caption{\label{tab:ST-AgeLMEM}ST: Age effect analysis using LMEM for SRdTs measured across condition, speech material and age as fixed factors and a random intercept for subjects. Reference levels: Condition = Quiet-NoAlt, Group = APD, Material = ASL). Note: only data measured with the control group following outliers trimming was included (trimmed TD). }
+\caption{\label{tab:ST-AgeLMEM}ST: Age effect analysis using LMEM for SRdTs measured across condition, speech material and age as fixed factors and random intercepts for subjects. Reference levels: Condition = Quiet-NoAlt, Group = APD, Material = ASL). Note: only data measured with the control group following outliers trimming was included (trimmed TD). }
 \centering
 \begin{tabular}[t]{>{\raggedright\arraybackslash}p{8cm}cc>{}c}
 \toprule
@@ -1590,33 +1509,50 @@ Within the APD group AMSSN, Quiet-NoAlt and MDR\_F resulted in the highest propo
 \hfill\break
 Figure \ref{fig:ST-z}~B reveals a similar trend for the CCRM sentences, nonetheless with more modest differences between the two groups. Again, AMSSN yielded the largest separation between the groups, where 40\% (8/20) of the APD children obtained an abnormal score and with a median score of 1.62, which is relatively close to the +1.96 upper deviance cut-off. In comparison, only 4.3\% of the TD children (1/23) had abnormal performance for AMSSN condition. The APD group median score for the speech distractors was approximately 1 (range: 0.86-1.11), however the proportion of abnormal APD children was noticeably smaller than seen for AMSSN, with 25\% (5/20) for MDR\_F, 20\% (4/20) for ENG\_F, and only 10\% (2/20) for CCRM\_F distractor. Lastly, in contrast to the ASL material, performance for the CCRM sentences presented in quiet were relatively better without switching (NoAlt) than with switching (Alt). Nonetheless, the spread in performance for the non-switched condition was larger. The percentage of abnormal scores in the TD group were relatively low, ranging between 0 to 8.7\% (mean = 4.3\%).\\
 
-A three-way 2~x~2~x~5 factorial design model with repeated measures was used to test the main effects of Group, Material (ASL / CCRM) and Condition as well as their interaction on performance in the task with z-scores as a dependent variable. Note that the model did not include the CCRM test condition with CCRM-type sentences as distractor (CCRM\_F) since there was no comparable condition in the ASL speech material. Inspection of the data revealed that the assumption of normal distribution was rejected for data measured with both speech material. Furthermore, homogeneity of the variance in the APD group was rejected for the ASL corpus. Thus, due to the small sample size and the incomplete fulfilment of parametric statistical methods assumptions, a non-parametric approach was adopted. This was tested with a rank-based ANOVA-type statistic test (ATS) using the \emph{nparLD()} function \autocite[nparLD package;][]{nparLDPackageR}. The analysis was based on a f2-ld-f1 design ATS test, whereby f2 refers to an experimental design with two between-subjects factors (Group \& Material) and f1 refers to a single within-subjects factor (Condition). The test results are given in Table~\ref{tab:ST-Tab-nparLD}. No significant three-way or two-way interactions were found (Group~x~Material~x~Condition, Group~x~Material, Material~x~Condition, and Group~x~Condition; all p's~\textgreater~0.05), while there was a highly significant main effect of Group (p~\textless{} 0.0001) and a strong main effect of Condition (p~\textless{} 0.001). Despite some evidence for better performance in the CCRM material, the main effect of Material was not significant (p~=~0.62). Furthermore, in spite of some apparent differences in performance between the two groups across the different test conditions, these differences were found to be insignificant based on the Group~x~Condition two-way interaction.\\
+A three-way 3~x~2~x~5 factorial design model with repeated measures was used to test the main effects of Group (APD, and TD with/without APD sibling), Material (ASL / CCRM) and Condition as well as their interaction on performance in the task with z-scores as a dependent variable. Note that the model did not include the CCRM test condition with CCRM-type sentences as distractor (CCRM\_F) since there was no comparable condition in the ASL speech material. Inspection of parametric methods assumptions for the residuals of a linear model revealed that the assumption of normal distribution was rejected, whereas the assumption of homogeneity of the variance was met. Since there are several obvious outliers in the data and due to the incomplete fulfilment of parametric assumptions a non-parametric approach was adopted. This was tested with a rank-based ANOVA-type statistic test (ATS) using the \emph{nparLD()} function \autocite[nparLD package;][]{nparLDPackageR}. The analysis was based on a f2-ld-f1 design ATS test, whereby f2 refers to an experimental design with two between-subjects factors (Group \& Material) and f1 refers to a single within-subjects factor (Condition). The test results are given in Table~\ref{tab:ST-Tab-nparLD}. No significant three-way or two-way interaction were found, except for a Group x Material interaction (p~\textless{} 0.05). In addition, there was no significant main effect of Condition.
 
-Since data for the CCRM material with CCRM-type distractor was not included in the aforementioned model, a separate 2~x~6 model was computed for the CCRM speech material only. The model included Group and Condition as between- and within-subjects predictors, respectively, with z-scores as the dependent variable using nparLD ATS test (f1.ld.f1 design). The ATS test found a strong significant difference between the groups (Statistic = 10.980, df = 1.000, p \textless{} 0.001), while no significant main effect was found for Condition (Statistic = 0.819, df = 4.618, p = 0.527) nor for Group x~Condition interaction (Statistic = 1.215, df = 4.618, p = 0.301).
+To further examine the significant interaction found between Group and Material, we tested two separate f1.ld.f1 models per test material with Group and Condition as predictors. Both models found a significant effect of Group {[}ASL: Statistic = 4.099, df=1.720, p~\textless{} 0.05; CCRM: Statistic = 3.699, df = 1.605, p~\textless{} 0.05{]}, while there was no significant interaction or main effect of condition (all p's~\textgreater{} 0.05). Wilcoxon rank-sum tests pairwise comparison of performance between the groups (see Table~\ref{tab:PostHocTab}). There was a highly significant difference in performance between the APD and the TD children without APD siblings in both test materials. Furthermore, erformance of APD children for ASL material was (highly) significantly poorer than the TD children with APD siblings, whereas there was no significant difference in performance between the two groups when measured with the CCRM material. Furthermore, while there was no significant difference between the TD groups when measured with the ASL material, TD children with APD siblings performed significantly poorer than their TD peers without APD siblings when presented with the CCRM material.\\
+
+Since data for the CCRM material with CCRM-type distractor was not included in the aforementioned model, a separate 3~x~6 model was computed for the CCRM speech material only. The model included Group and Condition as between- and within-subjects predictors, respectively, with z-scores as the dependent variable using nparLD ATS test (f1.ld.f1 design). The ATS test gave similar results to the full model, with a significant main effect of group (Statistic = 4.922, df = 1.597, p \textless{} 0.012), while there was no significant main effect for Condition nor a significant Group x~Condition interaction (all p's \textgreater{} 0.05). A post-hoc pairwise comparison for groups (Wilcox signed-rank tests) found a significant difference between all three groups.
 
 \begin{table}
 
-\caption{\label{tab:ST-Tab-nparLD}ST: Statistical analysis for the effects of Group, Material, and Condition as well as their interaction (2x2x5 factorial design with repeated measures) tested with a robust rank-based method for analysis of nonparametric data using nparLD package (Noguchi et al., 2012). Analysis was based on a f2-ld-f1 design ANOVA-type statistic (ATS) test, whereby f2 refers to an experimental design with two between-subjects factors (Group and Material) and f1 refers to a single within-subjects factor (Condition).}
+\caption{\label{tab:ST-Tab-nparLD}ST: Statistical analysis for the effects of Group, Material, and Condition as well as their interaction (3x2x5 factorial design with repeated measures) tested with a robust rank-based method for analysis of nonparametric data using nparLD package (Noguchi et al., 2012). Analysis was based on a f2-ld-f1 design ANOVA-type statistic (ATS) test, whereby f2 refers to an experimental design with two between-subjects factors (Group and Material) and f1 refers to a single within-subjects factor (Condition).}
 \centering
 \begin{tabular}[t]{llc>{}c}
 \toprule
   & Statistic & df & p-value\\
 \midrule
-Group & 13.555 & 1.000 & \em{\textbf{0.000}}\\
-Material & 0.246 & 1.000 & \em{0.62}\\
-Condition & 3.730 & 3.450 & \em{\textbf{0.008}}\\
-Group:Material & 0.181 & 1.000 & \em{0.67}\\
-Condition:Material & 1.473 & 3.472 & \em{0.214}\\
-Group:Condition & 1.957 & 3.450 & \em{0.109}\\
-Group:Material:Condition & 0.688 & 3.472 & \em{0.58}\\
+Group & 4.009 & 1.531 & \em{\textbf{0.028}}\\
+Material & 0.047 & 1.000 & \em{0.828}\\
+Condition & 1.394 & 3.251 & \em{0.24}\\
+Group:Material & 3.767 & 1.952 & \em{\textbf{0.024}}\\
+Condition:Material & 0.669 & 2.682 & \em{0.554}\\
+Group:Condition & 1.594 & 5.261 & \em{0.154}\\
+Group:Material:Condition & 0.660 & 4.294 & \em{0.631}\\
 \bottomrule
 \multicolumn{4}{l}{\textsuperscript{*} significant p-values (p < 0.05) are shown in bold.}\\
 \end{tabular}
 \end{table}
 
-\colorbox[HTML]{CCCCFF}{\emph{ROC curves table?}}
+\begin{table}
 
-\colorbox[HTML]{CCCCFF}{\emph{Switching effect (derived measures)}}
+\caption{\label{tab:ST-PostHocTab-nparLD}ST: Post-hoc paired comparison (Wilcoxon rank-sum test) for Group differences in z-score split by material.}
+\centering
+\resizebox{\linewidth}{!}{
+\begin{tabular}[t]{l|>{}ccccccc|>{}cccccc>{}c}
+\toprule
+\multicolumn{1}{c}{ } & \multicolumn{7}{c}{ASL model} & \multicolumn{7}{c}{CCRM model} \\
+\cmidrule(l{3pt}r{3pt}){2-8} \cmidrule(l{3pt}r{3pt}){9-15}
+contrast & estimate & n1 & n2 & 95\%-CI & p & r & magnitude & estimate & n1 & n2 & 95\%-CI & p & r & magnitude\\
+\midrule
+APD - TD$_{none}$ & 0.89 & 100 & 75 & 0.46 - 1.34 & \textbf{< 0.001} & 0.30 & moderate & 0.96 & 100 & 75 & 0.58 - 1.33 & \textbf{< 0.001} & 0.37 & \em{moderate}\\
+APD - TD$_{sibling}$ & 1.15 & 100 & 40 & 0.6 - 1.68 & \textbf{< 0.001} & 0.33 & moderate & 0.40 & 100 & 40 & -0.1 - 0.94 & 0.12 & 0.13 & \em{small}\\
+TD$_{none}$ - TD$_{sibling}$ & 0.24 & 75 & 40 & -0.23 - 0.7 & 0.33 & 0.09 & small & -0.57 & 75 & 40 & -1.03 - -0.1 & \textbf{0.02} & 0.22 & \em{small}\\
+\bottomrule
+\multicolumn{15}{l}{\textsuperscript{*} significant p-values (p < 0.05) are shown in bold.}\\
+\end{tabular}}
+\end{table}
 
 \hypertarget{lisns-uk}{%
 \subsection{LiSNS-UK}\label{lisns-uk}}
@@ -2158,95 +2094,6 @@ of these items, whereas OME is 0 if response was `No' for both items.
 
 \caption{Association between predictors and performance in the APD group for the switching task composite (PC1.ST), language composite (PC1.Lang), SRM, standard and EHF pure-tone PTA. Predictors included: 1. APD diagnosis (APD vs. LiD), 2. SPD diagnosis (SPD vs. non-SPD), 3. Regular use of FM-device (FM vs. No FM), 4. History of OME (OME vs. No OME), 5. Pressure equalisation tube history (PET vs. No PET), and 6. Auditory training (Training vs. No training). Individual observations are marked in circles. Observations of children diagnosed with APD are filled in dark blue, and LiD observations are filled in light blue. Significant p-values for independent t-test comparison are marked with asterisk (p < 0.05).}\label{fig:EvalAPD-fig}
 \end{figure}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\CommentTok{\# SRM in dB}
-
-\NormalTok{t6 }\OtherTok{\textless{}{-}} \FunctionTok{ggplot}\NormalTok{(Eval\_APD, }\FunctionTok{aes}\NormalTok{(}\AttributeTok{x=}\NormalTok{SPD,}\AttributeTok{y=}\NormalTok{uRevs\_SRM)) }\SpecialCharTok{+}
-    \FunctionTok{geom\_boxplot}\NormalTok{(}\AttributeTok{position=}\FunctionTok{position\_dodge}\NormalTok{(}\AttributeTok{width=}\FloatTok{0.8}\NormalTok{),}\AttributeTok{outlier.shape=}\ConstantTok{NA}\NormalTok{) }\SpecialCharTok{+} 
-  \FunctionTok{geom\_quasirandom}\NormalTok{(}\AttributeTok{dodge.width=}\FloatTok{0.8}\NormalTok{,}\AttributeTok{shape=}\DecValTok{21}\NormalTok{,}\FunctionTok{aes}\NormalTok{(}\AttributeTok{fill=}\NormalTok{Diagnosis))}\SpecialCharTok{+}
-  \FunctionTok{scale\_fill\_manual}\NormalTok{(}\AttributeTok{values=}\FunctionTok{c}\NormalTok{(}\StringTok{"blue"}\NormalTok{,}\StringTok{"lightblue"}\NormalTok{))}\SpecialCharTok{+}
-  \FunctionTok{stat\_compare\_means}\NormalTok{(}\AttributeTok{label =}  \StringTok{"p.signif"}\NormalTok{, }\AttributeTok{label.x =} \FloatTok{1.5}\NormalTok{,}\AttributeTok{vjust =} \DecValTok{1}\NormalTok{) }\SpecialCharTok{+}  
-  \FunctionTok{scale\_x\_discrete}\NormalTok{(}\AttributeTok{labels=}\FunctionTok{c}\NormalTok{(}\StringTok{"1"} \OtherTok{=} \StringTok{"SPD"}\NormalTok{, }\StringTok{"0"} \OtherTok{=} \StringTok{"non{-}SPD"}\NormalTok{))}\SpecialCharTok{+}
-  \FunctionTok{labs}\NormalTok{(}\AttributeTok{y =} \StringTok{"SRM (z{-}score)"}\NormalTok{ ,}\AttributeTok{x =} \StringTok{""}\NormalTok{) }\SpecialCharTok{+}
-  \FunctionTok{theme\_bw}\NormalTok{()}\SpecialCharTok{+}
-  \FunctionTok{theme}\NormalTok{(}\AttributeTok{axis.text =} \FunctionTok{element\_text}\NormalTok{(}\AttributeTok{size =} \DecValTok{11}\NormalTok{, }\AttributeTok{face=}\StringTok{"bold"}\NormalTok{,}\AttributeTok{colour =} \StringTok{"black"}\NormalTok{),}
-        \AttributeTok{axis.title.x =} \FunctionTok{element\_text}\NormalTok{(}\AttributeTok{size=}\DecValTok{11}\NormalTok{, }\AttributeTok{face=}\StringTok{"bold"}\NormalTok{),}
-        \AttributeTok{axis.title.y =} \FunctionTok{element\_text}\NormalTok{(}\AttributeTok{size=}\DecValTok{11}\NormalTok{, }\AttributeTok{face=}\StringTok{"bold"}\NormalTok{),}
-        \AttributeTok{legend.title =} \FunctionTok{element\_text}\NormalTok{(}\AttributeTok{size=}\DecValTok{11}\NormalTok{, }\AttributeTok{face=}\StringTok{"bold"}\NormalTok{),}
-        \AttributeTok{legend.text  =} \FunctionTok{element\_text}\NormalTok{(}\AttributeTok{size=}\DecValTok{11}\NormalTok{, }\AttributeTok{face=}\StringTok{"bold"}\NormalTok{))}
-
-\NormalTok{t6 }\OtherTok{\textless{}{-}}\NormalTok{ t6 }\SpecialCharTok{+} \FunctionTok{facet\_grid}\NormalTok{(. }\SpecialCharTok{\textasciitilde{}}\NormalTok{ AuditoryTraining, }\AttributeTok{scales =} \StringTok{"free"}\NormalTok{, }\AttributeTok{switch =} \StringTok{"y"}\NormalTok{,}
-  \AttributeTok{labeller =} \FunctionTok{as\_labeller}\NormalTok{(}\FunctionTok{c}\NormalTok{(}\StringTok{"1"} \OtherTok{=}\StringTok{"Training"}\NormalTok{,}\StringTok{"0"}\OtherTok{=}\StringTok{"No training"}\NormalTok{)))}\SpecialCharTok{+}
-  \FunctionTok{theme}\NormalTok{(}\AttributeTok{panel.spacing.x =} \FunctionTok{unit}\NormalTok{(}\DecValTok{0}\NormalTok{,}\StringTok{"line"}\NormalTok{),}
-        \AttributeTok{strip.background =} \FunctionTok{element\_rect}\NormalTok{(}\AttributeTok{fill=}\StringTok{"white"}\NormalTok{, }\AttributeTok{color=}\StringTok{"white"}\NormalTok{),}
-        \AttributeTok{strip.text =} \FunctionTok{element\_text}\NormalTok{(}\AttributeTok{face =} \StringTok{"bold"}\NormalTok{, }\AttributeTok{size =} \DecValTok{11}\NormalTok{))}
-
-\NormalTok{t7 }\OtherTok{\textless{}{-}} \FunctionTok{ggplot}\NormalTok{(Eval\_APD, }\FunctionTok{aes}\NormalTok{(}\AttributeTok{x=}\NormalTok{EarProblems,}\AttributeTok{y=}\NormalTok{uRevs\_SRM)) }\SpecialCharTok{+}
-    \FunctionTok{geom\_boxplot}\NormalTok{(}\AttributeTok{position=}\FunctionTok{position\_dodge}\NormalTok{(}\AttributeTok{width=}\FloatTok{0.8}\NormalTok{),}\AttributeTok{outlier.shape=}\ConstantTok{NA}\NormalTok{) }\SpecialCharTok{+} 
-  \FunctionTok{geom\_quasirandom}\NormalTok{(}\AttributeTok{dodge.width=}\FloatTok{0.8}\NormalTok{,}\AttributeTok{shape=}\DecValTok{21}\NormalTok{,}\FunctionTok{aes}\NormalTok{(}\AttributeTok{fill=}\NormalTok{Diagnosis))}\SpecialCharTok{+}
-  \FunctionTok{scale\_fill\_manual}\NormalTok{(}\AttributeTok{values=}\FunctionTok{c}\NormalTok{(}\StringTok{"blue"}\NormalTok{,}\StringTok{"lightblue"}\NormalTok{))}\SpecialCharTok{+}
-  \FunctionTok{stat\_compare\_means}\NormalTok{(}\AttributeTok{label =}  \StringTok{"p.signif"}\NormalTok{, }\AttributeTok{label.x =} \FloatTok{1.5}\NormalTok{,}\AttributeTok{vjust =} \DecValTok{1}\NormalTok{) }\SpecialCharTok{+}  
-  \FunctionTok{scale\_x\_discrete}\NormalTok{(}\AttributeTok{labels=}\FunctionTok{c}\NormalTok{(}\StringTok{"1"} \OtherTok{=} \StringTok{"OME"}\NormalTok{, }\StringTok{"0"} \OtherTok{=} \StringTok{"No OME"}\NormalTok{))}\SpecialCharTok{+}
-  \FunctionTok{labs}\NormalTok{(}\AttributeTok{y =} \StringTok{"SRM (z{-}score)"}\NormalTok{ ,}\AttributeTok{x =} \StringTok{""}\NormalTok{) }\SpecialCharTok{+}
-  \FunctionTok{theme\_bw}\NormalTok{()}\SpecialCharTok{+}
-  \FunctionTok{theme}\NormalTok{(}\AttributeTok{axis.text =} \FunctionTok{element\_text}\NormalTok{(}\AttributeTok{size =} \DecValTok{11}\NormalTok{, }\AttributeTok{face=}\StringTok{"bold"}\NormalTok{,}\AttributeTok{colour =} \StringTok{"black"}\NormalTok{),}
-        \AttributeTok{axis.title.x =} \FunctionTok{element\_text}\NormalTok{(}\AttributeTok{size=}\DecValTok{11}\NormalTok{, }\AttributeTok{face=}\StringTok{"bold"}\NormalTok{),}
-        \AttributeTok{axis.title.y =} \FunctionTok{element\_text}\NormalTok{(}\AttributeTok{size=}\DecValTok{11}\NormalTok{, }\AttributeTok{face=}\StringTok{"bold"}\NormalTok{),}
-        \AttributeTok{legend.title =} \FunctionTok{element\_text}\NormalTok{(}\AttributeTok{size=}\DecValTok{11}\NormalTok{, }\AttributeTok{face=}\StringTok{"bold"}\NormalTok{),}
-        \AttributeTok{legend.text  =} \FunctionTok{element\_text}\NormalTok{(}\AttributeTok{size=}\DecValTok{11}\NormalTok{, }\AttributeTok{face=}\StringTok{"bold"}\NormalTok{))}
-
-\NormalTok{t8 }\OtherTok{\textless{}{-}} \FunctionTok{ggplot}\NormalTok{(Eval\_APD, }\FunctionTok{aes}\NormalTok{(}\AttributeTok{x=}\NormalTok{Grommets,}\AttributeTok{y=}\NormalTok{uRevs\_SRM)) }\SpecialCharTok{+}
-    \FunctionTok{geom\_boxplot}\NormalTok{(}\AttributeTok{position=}\FunctionTok{position\_dodge}\NormalTok{(}\AttributeTok{width=}\FloatTok{0.8}\NormalTok{),}\AttributeTok{outlier.shape=}\ConstantTok{NA}\NormalTok{) }\SpecialCharTok{+} 
-  \FunctionTok{geom\_quasirandom}\NormalTok{(}\AttributeTok{dodge.width=}\FloatTok{0.8}\NormalTok{,}\AttributeTok{shape=}\DecValTok{21}\NormalTok{,}\FunctionTok{aes}\NormalTok{(}\AttributeTok{fill=}\NormalTok{Diagnosis))}\SpecialCharTok{+}
-  \FunctionTok{scale\_fill\_manual}\NormalTok{(}\AttributeTok{values=}\FunctionTok{c}\NormalTok{(}\StringTok{"blue"}\NormalTok{,}\StringTok{"lightblue"}\NormalTok{))}\SpecialCharTok{+}
-  \FunctionTok{stat\_compare\_means}\NormalTok{(}\AttributeTok{label =}  \StringTok{"p.signif"}\NormalTok{, }\AttributeTok{label.x =} \FloatTok{1.5}\NormalTok{,}\AttributeTok{vjust =} \DecValTok{1}\NormalTok{) }\SpecialCharTok{+}  
-  \FunctionTok{scale\_x\_discrete}\NormalTok{(}\AttributeTok{labels=}\FunctionTok{c}\NormalTok{(}\StringTok{"1"} \OtherTok{=} \StringTok{"PET"}\NormalTok{, }\StringTok{"0"} \OtherTok{=} \StringTok{"No PET"}\NormalTok{))}\SpecialCharTok{+}
-  \FunctionTok{labs}\NormalTok{(}\AttributeTok{y =} \StringTok{"SRM (z{-}score)"}\NormalTok{ ,}\AttributeTok{x =} \StringTok{""}\NormalTok{) }\SpecialCharTok{+}
-  \FunctionTok{theme\_bw}\NormalTok{()}\SpecialCharTok{+}
-  \FunctionTok{theme}\NormalTok{(}\AttributeTok{axis.text =} \FunctionTok{element\_text}\NormalTok{(}\AttributeTok{size =} \DecValTok{11}\NormalTok{, }\AttributeTok{face=}\StringTok{"bold"}\NormalTok{,}\AttributeTok{colour =} \StringTok{"black"}\NormalTok{),}
-        \AttributeTok{axis.title.x =} \FunctionTok{element\_text}\NormalTok{(}\AttributeTok{size=}\DecValTok{11}\NormalTok{, }\AttributeTok{face=}\StringTok{"bold"}\NormalTok{),}
-        \AttributeTok{axis.title.y =} \FunctionTok{element\_text}\NormalTok{(}\AttributeTok{size=}\DecValTok{11}\NormalTok{, }\AttributeTok{face=}\StringTok{"bold"}\NormalTok{),}
-        \AttributeTok{legend.title =} \FunctionTok{element\_text}\NormalTok{(}\AttributeTok{size=}\DecValTok{11}\NormalTok{, }\AttributeTok{face=}\StringTok{"bold"}\NormalTok{),}
-        \AttributeTok{legend.text  =} \FunctionTok{element\_text}\NormalTok{(}\AttributeTok{size=}\DecValTok{11}\NormalTok{, }\AttributeTok{face=}\StringTok{"bold"}\NormalTok{))}
-
-\NormalTok{t9 }\OtherTok{\textless{}{-}} \FunctionTok{ggplot}\NormalTok{(Eval\_APD, }\FunctionTok{aes}\NormalTok{(}\AttributeTok{x=}\NormalTok{FMuse,}\AttributeTok{y=}\NormalTok{uRevs\_SRM)) }\SpecialCharTok{+}
-    \FunctionTok{geom\_boxplot}\NormalTok{(}\AttributeTok{position=}\FunctionTok{position\_dodge}\NormalTok{(}\AttributeTok{width=}\FloatTok{0.8}\NormalTok{),}\AttributeTok{outlier.shape=}\ConstantTok{NA}\NormalTok{) }\SpecialCharTok{+} 
-  \FunctionTok{geom\_quasirandom}\NormalTok{(}\AttributeTok{dodge.width=}\FloatTok{0.8}\NormalTok{,}\AttributeTok{shape=}\DecValTok{21}\NormalTok{,}\FunctionTok{aes}\NormalTok{(}\AttributeTok{fill=}\NormalTok{Diagnosis))}\SpecialCharTok{+}
-  \FunctionTok{scale\_fill\_manual}\NormalTok{(}\AttributeTok{values=}\FunctionTok{c}\NormalTok{(}\StringTok{"blue"}\NormalTok{,}\StringTok{"lightblue"}\NormalTok{))}\SpecialCharTok{+}
-  \FunctionTok{stat\_compare\_means}\NormalTok{(}\AttributeTok{label =}  \StringTok{"p.signif"}\NormalTok{, }\AttributeTok{label.x =} \FloatTok{1.5}\NormalTok{,}\AttributeTok{vjust =} \DecValTok{1}\NormalTok{) }\SpecialCharTok{+}
-  \FunctionTok{scale\_x\_discrete}\NormalTok{(}\AttributeTok{labels=}\FunctionTok{c}\NormalTok{(}\StringTok{"1"} \OtherTok{=} \StringTok{"FM"}\NormalTok{, }\StringTok{"0"} \OtherTok{=} \StringTok{"No FM"}\NormalTok{))}\SpecialCharTok{+}
-  \FunctionTok{labs}\NormalTok{(}\AttributeTok{y =} \StringTok{"SRM (z{-}score)"}\NormalTok{ ,}\AttributeTok{x =} \StringTok{""}\NormalTok{) }\SpecialCharTok{+}
-  \FunctionTok{theme\_bw}\NormalTok{()}\SpecialCharTok{+}
-  \FunctionTok{theme}\NormalTok{(}\AttributeTok{axis.text =} \FunctionTok{element\_text}\NormalTok{(}\AttributeTok{size =} \DecValTok{11}\NormalTok{, }\AttributeTok{face=}\StringTok{"bold"}\NormalTok{,}\AttributeTok{colour =} \StringTok{"black"}\NormalTok{),}
-        \AttributeTok{axis.title.x =} \FunctionTok{element\_text}\NormalTok{(}\AttributeTok{size=}\DecValTok{11}\NormalTok{, }\AttributeTok{face=}\StringTok{"bold"}\NormalTok{),}
-        \AttributeTok{axis.title.y =} \FunctionTok{element\_text}\NormalTok{(}\AttributeTok{size=}\DecValTok{11}\NormalTok{, }\AttributeTok{face=}\StringTok{"bold"}\NormalTok{),}
-        \AttributeTok{legend.title =} \FunctionTok{element\_text}\NormalTok{(}\AttributeTok{size=}\DecValTok{11}\NormalTok{, }\AttributeTok{face=}\StringTok{"bold"}\NormalTok{),}
-        \AttributeTok{legend.text  =} \FunctionTok{element\_text}\NormalTok{(}\AttributeTok{size=}\DecValTok{11}\NormalTok{, }\AttributeTok{face=}\StringTok{"bold"}\NormalTok{))}
-
-\NormalTok{t10 }\OtherTok{\textless{}{-}} \FunctionTok{ggplot}\NormalTok{(Eval\_APD, }\FunctionTok{aes}\NormalTok{(}\AttributeTok{x=}\NormalTok{AuditoryTraining,}\AttributeTok{y=}\NormalTok{uRevs\_SRM)) }\SpecialCharTok{+}
-    \FunctionTok{geom\_boxplot}\NormalTok{(}\AttributeTok{position=}\FunctionTok{position\_dodge}\NormalTok{(}\AttributeTok{width=}\FloatTok{0.8}\NormalTok{),}\AttributeTok{outlier.shape=}\ConstantTok{NA}\NormalTok{) }\SpecialCharTok{+} 
-  \FunctionTok{geom\_quasirandom}\NormalTok{(}\AttributeTok{dodge.width=}\FloatTok{0.8}\NormalTok{,}\AttributeTok{shape=}\DecValTok{21}\NormalTok{,}\FunctionTok{aes}\NormalTok{(}\AttributeTok{fill=}\NormalTok{Diagnosis))}\SpecialCharTok{+}
-  \FunctionTok{scale\_fill\_manual}\NormalTok{(}\AttributeTok{values=}\FunctionTok{c}\NormalTok{(}\StringTok{"blue"}\NormalTok{,}\StringTok{"lightblue"}\NormalTok{))}\SpecialCharTok{+}
-  \FunctionTok{stat\_compare\_means}\NormalTok{(}\AttributeTok{label =}  \StringTok{"p.signif"}\NormalTok{, }\AttributeTok{label.x =} \FloatTok{1.5}\NormalTok{,}\AttributeTok{vjust =} \DecValTok{1}\NormalTok{) }\SpecialCharTok{+}
-  \FunctionTok{scale\_x\_discrete}\NormalTok{(}\AttributeTok{labels=}\FunctionTok{c}\NormalTok{(}\StringTok{"1"} \OtherTok{=} \StringTok{"Training"}\NormalTok{, }\StringTok{"0"} \OtherTok{=} \StringTok{"No }\SpecialCharTok{\textbackslash{}n}\StringTok{ training"}\NormalTok{))}\SpecialCharTok{+}
-  \FunctionTok{labs}\NormalTok{(}\AttributeTok{y =} \StringTok{"SRM (z{-}score)"}\NormalTok{ ,}\AttributeTok{x =} \StringTok{""}\NormalTok{) }\SpecialCharTok{+}
-  \FunctionTok{theme\_bw}\NormalTok{()}\SpecialCharTok{+}
-  \FunctionTok{theme}\NormalTok{(}\AttributeTok{axis.text =} \FunctionTok{element\_text}\NormalTok{(}\AttributeTok{size =} \DecValTok{11}\NormalTok{, }\AttributeTok{face=}\StringTok{"bold"}\NormalTok{,}\AttributeTok{colour =} \StringTok{"black"}\NormalTok{),}
-        \AttributeTok{axis.title.x =} \FunctionTok{element\_text}\NormalTok{(}\AttributeTok{size=}\DecValTok{11}\NormalTok{, }\AttributeTok{face=}\StringTok{"bold"}\NormalTok{),}
-        \AttributeTok{axis.title.y =} \FunctionTok{element\_text}\NormalTok{(}\AttributeTok{size=}\DecValTok{11}\NormalTok{, }\AttributeTok{face=}\StringTok{"bold"}\NormalTok{),}
-        \AttributeTok{legend.title =} \FunctionTok{element\_text}\NormalTok{(}\AttributeTok{size=}\DecValTok{11}\NormalTok{, }\AttributeTok{face=}\StringTok{"bold"}\NormalTok{),}
-        \AttributeTok{legend.text  =} \FunctionTok{element\_text}\NormalTok{(}\AttributeTok{size=}\DecValTok{11}\NormalTok{, }\AttributeTok{face=}\StringTok{"bold"}\NormalTok{))}
-
-\NormalTok{(t6 }\SpecialCharTok{+}\NormalTok{ t7 }\SpecialCharTok{+}\NormalTok{ t8 }\SpecialCharTok{+}\NormalTok{ t9 }\SpecialCharTok{+}\NormalTok{ t10) }\SpecialCharTok{+} \FunctionTok{plot\_layout}\NormalTok{(}\AttributeTok{ncol =} \DecValTok{4}\NormalTok{, }\AttributeTok{nrow =} \DecValTok{5}\NormalTok{, }\AttributeTok{heights =} \FunctionTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{,}\DecValTok{1}\NormalTok{), }\AttributeTok{widths =} \FunctionTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{,}\DecValTok{1}\NormalTok{)) }\SpecialCharTok{+} \FunctionTok{plot\_annotation}\NormalTok{(}\AttributeTok{tag\_levels =} \StringTok{\textquotesingle{}A\textquotesingle{}}\NormalTok{) }\SpecialCharTok{+} \FunctionTok{plot\_layout}\NormalTok{(}\AttributeTok{guides=}\StringTok{\textquotesingle{}collect\textquotesingle{}}\NormalTok{) }\SpecialCharTok{\&}
-  \FunctionTok{theme}\NormalTok{(}\AttributeTok{legend.position=}\StringTok{\textquotesingle{}bottom\textquotesingle{}}\NormalTok{,        }
-        \AttributeTok{legend.direction =} \StringTok{"horizontal"}\NormalTok{,}
-        \AttributeTok{legend.background =} \FunctionTok{element\_blank}\NormalTok{(),}
-        \AttributeTok{legend.box.background =} \FunctionTok{element\_rect}\NormalTok{(}\AttributeTok{colour =} \StringTok{"black"}\NormalTok{),}
-        \AttributeTok{plot.tag =} \FunctionTok{element\_text}\NormalTok{(}\AttributeTok{face =} \StringTok{\textquotesingle{}bold\textquotesingle{}}\NormalTok{))}
-\end{Highlighting}
-\end{Shaded}
 
 \newpage
 

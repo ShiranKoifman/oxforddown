@@ -47,7 +47,6 @@ Individuals may have a combination of both.
   
   Conductive loss results in impaired spatial processing (Cameron et al., 2014) and binaural interaction (Hall et al., 1995; Hogan et al., 1996)
   
-\newpage
   
 ## Methods
 
@@ -81,8 +80,18 @@ require(graphics)
 require(nparLD)
 require(apa)
 require(tidyr)
+library(conflicted)
 require(plyr)
-require(dplyr)
+library(dplyr)
+
+# fix conflicts:
+conflict_prefer("filter", "dplyr")
+conflict_prefer("arrange", "dplyr")
+conflict_prefer("mutate", "dplyr")
+conflict_prefer("select", "dplyr")
+conflict_prefer("plot_grid", "cowplot")
+conflict_prefer("summarise", "dplyr")
+conflict_prefer("%>%", "magrittr")
 
 ## Initialisation ----------------------------------------------------------------------------------------------------
 date <- Sys.Date()
@@ -142,7 +151,7 @@ d_Info <- d_Info[,-match(c("DOB", "TestingDay","Age", "Sex","Group"),names(d_Inf
 
 # merge data frames  -----------------------------------------------------------------------------------------------
 d <- merge(d_Info,d,by=c("listener"))
-cols <- c("AuditoryTraining","EarProblems","EarProblemsDur","SLT","Grommets","MusicalTraining","FMuse","Otoscopy","NrmlSpchUnderstanding","APDsibling")
+cols <- c("AuditoryTraining","EarProblems","EarProblemsDur","SLT","Grommets","MusicalTraining","FMuse","Otoscopy","NrmlSpchUnderstanding")
 d[cols] <- lapply(d[cols], factor)
 
 # Filter data by groups  -------------------------------------------------------------------------------------------
@@ -252,9 +261,10 @@ kbl(MethodsTab, booktabs = T,escape = F, linesep = "",caption = "Summary of the 
 \
 Otoscopic inspection was performed prior to the audiometric test to ensure the ear was clear from cerumen and to avoid harming the eardrum when inserting the ear probe. Both standard and extended high-frequency (EHF) audiometry thresholds were measured using the Hughson-Westlake manual procedure, starting from 1\ kHz. Standard air conduction pure-tone audiometry was carried out at six octave frequency bands ranging between 0.25 to 8 kHz using ???? audiometer and ??? headphones.\
 
-Extended high-frequency pure-tone detection thresholds were measured at four octave frequency bands 8, 11, 16, \& 20 kHz using locally written MATLAB based software which generated the stimulus and collected the data. Target tones were pulsed (3 repetitions) with a duration time of 700 ms and 50 ms rise/fall time. EHF measurements took place in a designated sound attenuated chamber with the child sitting in the centre of the chamber while the examiner was situated outside. Communication during the testing was carried out via a video-audio intercom system. The child was instructed to raise his/hers hand each time s/he heard a tone. The MATLAB script was executed using a Windows PC which which was connected via USB to an RME ???? sound card (Audio AG, Haimhausen Germany) and an ER10X Extended-Bandwidth Acoustic Probe System (Etym$\bar{o}$tic Research, Elk Grove Village, IL). Stimulus was presented via an otoacoustic emission probe with silicon tips in variable sizes (between 10 to 13 mm), depending on the size of the child's ear.\
+Extended high-frequency pure-tone detection thresholds were measured at four octave frequency bands 8, 11, 16, \& 20 kHz using locally written MATLAB based software which generated the stimulus and collected the data. Target tones were pulsed (3 repetitions) with a duration time of 700 ms and 50 ms rise/fall time. EHF measurements took place in a designated sound attenuated chamber with the child sitting in the centre of the chamber while the examiner was situated outside. Communication during the testing was carried out via a video-audio intercom system. The child was instructed to raise his/hers hand each time s/he heard a tone. The MATLAB script was executed using a Windows PC which which was connected via USB to an RME FireFace UC sound card (Audio AG, Haimhausen Germany) and an ER10X Extended-Bandwidth Acoustic Probe System (Etym$\bar{o}$tic Research, Elk Grove Village, IL, USA). Stimulus was presented via an otoacoustic emission probe with silicon tips in variable sizes (between 8 to 13 mm), depending on the size of the child's ear.\
 
-Standing waves in the ear canal produces spatially non-uniform sound pressure at frequencies above 2-3 kHz, introducing calibration errors when estimating the sound pressure level arriving at the eardrum [@Siegel1994; @Richmond2011; @Lee2012]. Together with other factors such as individual variations in the ear canal length and differences in depth in which the ear probe is inserted into the ear canal, these factors can introduce up to 20 dB calibration error [@Siegel1994]. To account for that, a sound pressure level calibration procedure was used (chirp noise) using a similar technique as described by @Lee2012. For each frequency, the first half-wave resonance of the ear canal was measured, estimating the distance between the ear probe and the eardrum. The target stimulus was then scaled to the desired output level that corresponds to 0 dB HL using the in-situ calibration forward-pressure level data (FPL) and EHF-specific weighting thresholds (in dB SPL) measured across 84 NH listeners aged 10 to 21 years [see Table 1 in @Lee2012]. 
+
+Standing waves in the ear canal produces spatially non-uniform sound pressure at frequencies above 2-3 kHz, introducing calibration errors when estimating the sound pressure level arriving at the eardrum [@Siegel1994; @Richmond2011; @Lee2012]. Together with other factors such as individual variations in the ear canal length and differences in depth in which the ear probe is inserted into the ear canal, these factors can introduce up to 20 dB calibration error [@Siegel1994]. To account for that, a sound pressure level calibration was applied using ARLas MATLAB-based software package [@ARLas], using a similar technique as described by @Lee2012 [*accurat?*]{.correction}. The first half-wave resonance of the ear canal was measured for each frequency using chirp noise, estimating the distance between the ear-probe and the eardrum. The target stimulus was then filtered to the desired output level that corresponds to 0 dB HL using the in-situ calibration forward-pressure level data (FPL) and EHF-specific weighting thresholds (in dB SPL) measured across 84 NH listeners aged 10 to 21 years [see Table 1 in @Lee2012]. 
 
 ##### Switching task (ST)
 \
@@ -453,13 +463,13 @@ keycol <- "Freq"
 valuecol <- "dBHL"
 gathercols <- c("R250","R500","R1000","R2000", "R4000", "R8000",
                 "L250","L500","L1000","L2000", "L4000", "L8000")
-d_L <- gather_(d, keycol, valuecol, gathercols)
+d_L <- tidyr::gather_(d, keycol, valuecol, gathercols)
 
 # get ear information as a new column
 library(stringr)
 d_L$Ear <- ifelse(str_detect(d_L$Freq,"R"),"R","L")
 d_L$Ear <- factor(d_L$Ear,levels=c("R","L"))
-d_L$APDsibling <- factor(d_L$APDsibling,levels=c("1","0"))
+# d_L$APDsibling <- factor(d_L$APDsibling,levels=c("1","0"))
 d_L$listener <- factor(d_L$listener)
 # d_L$Freq <- transform(str_replace_all(d_L$Freq,c("R"="","L"="")))
 d_L$Freq  <- as.factor(revalue(d_L$Freq, c("R250"="250","R500"="500","R1000"="1000","R2000"="2000",
@@ -476,6 +486,8 @@ d <- d %>% group_by(listener) %>%
     PTA_RL = round(mean(c(R500,R1000,R2000,R4000,L500,L1000,L2000,L4000),na.rm=TRUE),2)) %>%
   ungroup()
 
+d <- data.frame(d)
+
 # get PTA in the better ear
 d$PTA_BE <- ifelse((d$PTA_R <= d$PTA_L),d$PTA_R,d$PTA_L)
 
@@ -484,7 +496,7 @@ d$PTA_BE <- ifelse((d$PTA_R <= d$PTA_L),d$PTA_R,d$PTA_L)
 keycol <- "PTA"
 valuecol <- "dBHL"
 gathercols <- c("PTA_R","PTA_L","PTA_RL","PTA_BE")
-d_PTA_L <- gather_(d, keycol, valuecol, gathercols)
+d_PTA_L <- tidyr::gather_(d, keycol, valuecol, gathercols)
 
 d_PTA_L$PTA <- factor(d_PTA_L$PTA,levels=c("PTA_R","PTA_L","PTA_RL","PTA_BE"))
 
@@ -615,7 +627,7 @@ NormTest <- d_L %>%
 # homogeneity is met if p>.05
 
 # Option 1: Is the lm model fully covered here?
-leveneTest(residuals(w1) ~ Freq * Ear * Group, data = d_L)
+car::leveneTest(residuals(w1) ~ Freq * Ear * Group, data = d_L)
 # -> homogeneity of the full model is NOT met
 
 # Levene's Test for Homogeneity of Variance (center = median)
@@ -625,9 +637,11 @@ leveneTest(residuals(w1) ~ Freq * Ear * Group, data = d_L)
 
 # Option 2: by fixed factors
 # per condition
-VarTest <- d_L %>%
-  rstatix::group_by(Group) %>%
-  levene_test(dBHL ~ Freq*Ear)
+# d_L$Group <- as.factor(d_L$Group)
+# VarTest <- d_L %>% 
+#   group_by(Group) %>%
+#   levene_test(dBHL ~ Freq*Ear)
+
 # TD group data variance is not homogeneous 
 
 ## By PTA #######################
@@ -665,9 +679,9 @@ leveneTest(residuals(w1) ~ PTA * Group, data = d_PTA_L)
 
 # Option 2: by fixed factors
 # per condition
-VarTest <- d_PTA_L %>%
-  rstatix::group_by(Group) %>%
-  levene_test(dBHL ~ PTA)
+# VarTest <- d_PTA_L %>%
+#   rstatix::group_by(Group) %>%
+#   levene_test(dBHL ~ PTA)
 
 # Homogeneity of variance is met
 ```
@@ -1299,9 +1313,9 @@ d_HF_L %>%
 #### Homogeneity of variance (Levene's test) ###########
 # homogeneity is met if p>.05
 
-d_HF_L %>%
-  rstatix::group_by(Group) %>%
-  levene_test(dBHL ~ Freq*Ear)
+# d_HF_L %>%
+#   rstatix::group_by(Group) %>%
+#   levene_test(dBHL ~ Freq*Ear)
 # -> homogeneity of the full model is met
 
 ## By PTA #######################
@@ -1339,9 +1353,9 @@ car::leveneTest(residuals(w1) ~ PTA * Group, data = d_HF_PTA_L)
 
 # Option 2: by fixed factors
 # per condition
-d_HF_PTA_L %>%
-  rstatix::group_by(Group) %>%
-  levene_test(dBHL ~ PTA)
+# d_HF_PTA_L %>%
+#   rstatix::group_by(Group) %>%
+#   levene_test(dBHL ~ PTA)
 # Homogeneity of variance is met
 ```
 
@@ -1546,6 +1560,7 @@ CCRM[is.na(CCRM$uRevs),] # APD12: Run 5
 ```
 
 ```{r,label='ST-z-ASL',fig.align='center', fig.width=6, fig.asp=1.5, out.width='100%', message=FALSE,warning=FALSE, echo=FALSE, results='hide'}
+
 #########################################
 ##   get z-scores by speech material   ##
 #########################################
@@ -1737,7 +1752,7 @@ TD_trimmed.ASL <- rbind(TD_trimmed_1,TD_trimmed_2,TD_trimmed_3,TD_trimmed_4,TD_t
 ASLN <- ASLN %>% group_by(CondCode) %>%
   mutate(Outlier = ifelse(z_trim > CutOff,1,0))
 
-ddply(ASLN,~CondCode*Group,summarise,nConde= length(listener),nOutlier=sum(Outlier, na.rm=TRUE),prcntOutlier=round((sum(Outlier,na.rm=TRUE)/length(listener)*100),1))
+plyr::ddply(ASLN,~CondCode*Group,summarise,nConde= length(listener),nOutlier=sum(Outlier, na.rm=TRUE),prcntOutlier=round((sum(Outlier,na.rm=TRUE)/length(listener)*100),1))
 
 ```
 
@@ -1971,7 +1986,7 @@ TD_trimmed.CCRM <- rbind(TD_trimmed_1,TD_trimmed_2,TD_trimmed_3,TD_trimmed_4,TD_
 CCRM <- CCRM %>% group_by(CondCode) %>%
   mutate(Outlier = ifelse(z_trim > CutOff,1,0))
 
-ddply(CCRM,~CondCode*Group,summarise,nConde= length(listener),nOutlier=sum(Outlier, na.rm=TRUE),prcntOutlier=round((sum(Outlier,na.rm=TRUE)/length(listener)*100),1))
+plyr::ddply(CCRM,~CondCode*Group,summarise,nConde= length(listener),nOutlier=sum(Outlier, na.rm=TRUE),prcntOutlier=round((sum(Outlier,na.rm=TRUE)/length(listener)*100),1))
 ```
 
 ```{r,label='ST-AgeEffect', echo=FALSE,results='hide',message=FALSE,warning=FALSE, include=FALSE}
@@ -2045,7 +2060,8 @@ summary(model5)
 # best mode --> model 2: uRevs ~ CondCode + material + Age + 
 #                                CondCode:material + CondCode:Age + material:Age + (1 | listener) 
 tab_model(model2)
-Final_ST.m2 <- model2
+BestModel <- model2
+# report(model2)
 
 # Does 'APDsibling' as a random intercept helps model prediction? -> nope..
 # model_a <- lmer(uRevs~CondCode+material+Age+(1|listener)+(1|APDsibling), ST_trimmed, REML=FALSE)
@@ -2055,9 +2071,6 @@ Final_ST.m2 <- model2
 # ---------------------------------------------------------------------------------
 # test main effects:
 rstatix::Anova(model2,type="II",test.statistic="Chisq")
-
-BestModel <- model2
-# report(model2)
 
 # CondCode:Age
 (BestModel.1 <- update(BestModel,  . ~ . -CondCode:Age))
@@ -2180,7 +2193,140 @@ colnames(ST_AgeTab)[1:4] <- c("Main effects","Df",sprintf("$\\chi^{2}$"),"p")
 Final_ST.Tab1 <- ST_AgeTab
 ```
 
-```{r,label='ST-AgeEffectNEW', echo=FALSE,results='hide',message=FALSE,warning=FALSE, include=FALSE,eval=FALSE}
+```{r,label='ST-AgeEffect2', echo=FALSE,results='hide',message=FALSE,warning=FALSE, include=FALSE,eval=FALSE}
+##### Age effect? ################################################################# 
+
+# CCRM data only
+CCRM <- data.frame(CCRM)
+
+######## lmer model ##########################################
+# !!! Model with +(1|APDsibling) as random intercept resulted in singular fit!
+
+## Find Best fit 
+# start with a saturated model (3-way interaction with age)
+model1 <- lmer(uRevs~CondCode*Age+(1|listener), CCRM, REML=FALSE)
+summary(model1)
+
+(model2<-update(model1,  ~ . - CondCode:Age))
+anova(model1,model2)
+summary(model2)
+# model2: uRevs ~ CondCode + Age + (1 | listener)
+# model1: uRevs ~ CondCode * Age + (1 | listener)
+#        npar     AIC     BIC logLik deviance Chisq Df Pr(>Chisq)  
+# model2    9 -320.61 -288.64 169.31  -338.61                      
+# model1   14 -323.82 -274.08 175.91  -351.82 13.21  5    0.02149 *
+
+tab_model(model1)
+
+# Does 'APDsibling' as a random intercept helps model prediction? -> nope..
+# model_a <- lmer(uRevs~CondCode+material+Age+(1|listener)+(1|APDsibling), ST_trimmed, REML=FALSE)
+# model_b <- lmer(uRevs~CondCode+material+Age+(1|listener), ST_trimmed, REML=FALSE)
+# anova(model_a,model_b)
+
+# ---------------------------------------------------------------------------------
+# test main effects:
+rstatix::Anova(model1,type="II",test.statistic="Chisq")
+
+BestModel <- model1
+# report(model2)
+
+# CondCode:Age
+(BestModel.1 <- update(BestModel,  . ~ . -CondCode:Age))
+CondAge.LMEM <- anova(BestModel,BestModel.1)
+# summary(BestModel.1)
+# BestModel.1: uRevs ~ CondCode + Age + (1 | listener)
+# BestModel: uRevs ~ CondCode * Age + (1 | listener)
+#             npar     AIC     BIC logLik deviance Chisq Df Pr(>Chisq)  
+# BestModel.1    9 -320.61 -288.64 169.31  -338.61                      
+# BestModel     14 -323.82 -274.08 175.91  -351.82 13.21  5    0.02149 *
+
+# ------------------------------------------------------------------------------
+# Post hoc -> individual lm's by condition.
+# Since there is no material x condition interaction, observations from 
+# the two speech materials were combined.
+# --> use nls model used to for z-scores. This should be better method, especially for MDR_F-ASL 
+# data where segmented line is needed.
+
+# # get post-hoc test for single regression models (shown in the figure)
+# anova.ST2 <- data.table::rbindlist(anova.ST) %>% data.frame(.) %>% round(.,3)
+# colnames(anova.ST2)[2:4] <- c("SE","t-value","p-value")
+# anova.ST2$`p-value` = ifelse(anova.ST2$`p-value`<.05,sprintf("\\textbf{%0.3f}",anova.ST2$`p-value`),anova.ST2$`p-value`)
+# anova.ST2 <- cbind("Condition"=c("Quiet-NoAlt","Quiet-Alt","AMSSN-Alt","MDR\\_F-Alt","ENG\\_F-Alt","CCRM\\_F"),
+#               rbind(anova.ST2[1:5,],c("","","","")),
+#               anova.ST2[6:11,])
+
+
+# -----------------------------------------------------------------------------------------------------
+# Post-hoc paired comparison
+# -----------------------------------------------------------------------------------------------------
+# CondCode x Age:
+# (ref1 <- emmeans::lsmeans(BestModel,~ CondCode*Age))
+# comps <- emmeans::contrast(ref1,alpha=0.05,method="pairwise",adjust=NULL) #,adjust=NULL) adjust="bonferroni"
+# summary(comps)
+
+# Material x Age:
+(ref1 <- emmeans::lsmeans(BestModel,~ CondCode*Age))
+comps <- emmeans::contrast(ref1,alpha=0.05,method="pairwise",adjust=NULL) #,adjust=NULL) adjust="bonferroni"
+summary(comps)
+
+# MatAge.postLMEM <- data.frame(comps[c(1)])
+# MatAge.CI <- confint(comps[c(1)])
+# MatAge.CI <- MatAge.CI  %>% mutate( CI = sprintf("%s - %s",
+#           round(lower.CL,2),
+#           round(upper.CL,2)))
+# MatAge.postLMEM <- cbind(MatAge.postLMEM,"CI"=MatAge.CI$CI)
+
+# Condition x Material:
+# visual inspection
+# emmeans::emmip(model2, CondCode ~ material)
+# (ref1 <- emmeans::lsmeans(BestModel,~ CondCode*material))
+# comps <- emmeans::contrast(ref1,alpha=0.05,method="pairwise",adjust=NULL) #,adjust=NULL) adjust="bonferroni"
+# summary(comps)
+# 
+# CondMat.postLMEM <- data.frame(comps[c(5,14,22,29,35)])
+# CondMat.CI <- confint(comps[c(5,14,22,29,35)])
+# 
+# CondMat.CI <- CondMat.CI  %>% mutate( CI = sprintf("%s - %s",
+#           round(lower.CL,2),
+#           round(upper.CL,2)))
+# 
+# CondMat.postLMEM <- cbind(CondMat.postLMEM,"CI"=CondMat.CI$CI)
+# postLMEM <- CondMat.postLMEM
+# # postLMEM <- rbind(CondMat.postLMEM,MatAge.postLMEM)
+# 
+# colnames(postLMEM)[1:7] <- c("Contrasts","Estimate","SE","Df","t-value","p-value",sprintf("95\\%%-CI"))
+# row.names(postLMEM) <- NULL
+# 
+# # change contrasts names
+# postLMEM$Contrasts <-  c("(Quiet-NoAlt ASL) - (Quiet-NoAlt CCRM)", 
+#                          "(Quiet-Alt ASL) - (Quiet-Alt CCRM)",
+#                          "(AMSSN-Alt ASL) - (AMSSN-Alt CCRM)", 
+#                          sprintf("(MDR\\_F-Alt ASL) - (MDR\\_F-Alt CCRM)"),
+#                         sprintf("(ENG\\_F-Alt ASL) - (ENG\\_F-Alt CCRM)"))
+                        # sprintf("(ENG\\_F-Alt ASL) - (ENG\\_F-Alt CCRM)"), "ASL - CCRM")
+
+# contrast                            estimate     SE  df t.ratio p.value
+# (Q-NoAlt ASLN) - (Q-NoAlt CCRM)      0.19389 0.0254 216   7.621 <.0001 
+# (Q-Alt ASLN) - (Q-Alt CCRM)          0.20112 0.0251 216   8.012 <.0001
+# (AMSSN-Alt ASLN) - (AMSSN-Alt CCRM)  0.18495 0.0251 216   7.366 <.0001 
+# (MDR_F-Alt ASLN) - (MDR_F-Alt CCRM)  0.24260 0.0251 216   9.662 <.0001 
+# (ENG_F-Alt ASLN) - (ENG_F-Alt CCRM)  0.27378 0.0251 216  10.904 <.0001 
+
+# -------------------------------------------------------------------------
+# get table
+# -------------------------------------------------------------------------
+# ST_AgeTab <- data.frame(rbind(
+#    c("Condition:Material",CondMat.LMEM$Df[2],CondMat.LMEM$Chisq[2],sprintf("\\textbf{%0.3f}",CondMat.LMEM$`Pr(>Chisq)`[2])),
+#   c("Condition:Age",CondAge.LMEM$Df[2],CondAge.LMEM$Chisq[2],sprintf("\\textbf{%0.3f}",CondAge.LMEM$`Pr(>Chisq)`[2])),
+#   c("Material:Age",MatAge.LMEM$Df[2],MatAge.LMEM$Chisq[2],sprintf("\\textbf{%0.3f}",MatAge.LMEM$`Pr(>Chisq)`[2]))))
+# 
+# ST_AgeTab[,c(2:3)]= apply(ST_AgeTab[,c(2:3)], 2, function(x) as.numeric(as.character(x)))
+# 
+# colnames(ST_AgeTab)[1:4] <- c("Main effects","Df",sprintf("$\\chi^{2}$"),"p")
+# # -------------------------------------------------------------------------
+```
+
+```{r,label='ST-AgeEffectAPDsib', echo=FALSE,results='hide',message=FALSE,warning=FALSE, include=FALSE,eval=FALSE}
 ##### Age effect? ################################################################# 
 
 TD_trimmed.CCRM_s <- TD_trimmed.CCRM %>% filter(CondCode!="CCRM_F-CCRM-Alt" & Group=="TD") %>% 
@@ -2199,7 +2345,7 @@ TD_trimmed.ASL_s$CondCode <- revalue(TD_trimmed.ASL_s$CondCode, c("Q-ASLN-NoAlt"
 TD_trimmed.ASL_s <- data.frame(TD_trimmed.ASL_s)
 ST_trimmed <- rbind(TD_trimmed.ASL_s,TD_trimmed.CCRM_s)
 ST_trimmed <- data.frame(ST_trimmed)
-ST_trimmed$APDsibling <- factor(ST_trimmed$APDsibling, levels = c("1","0"))
+# ST_trimmed$APDsibling <- factor(ST_trimmed$APDsibling, levels = c("1","0"))
 ST_trimmed$listener <- factor(ST_trimmed$listener)
 ST_trimmed$material <- factor(ST_trimmed$material, levels = c("ASLN","CCRM"))
 
@@ -2317,14 +2463,15 @@ tab_model(model7)
 # visreg::visreg(model7,"APDsibling","CondCode")
 visreg::visreg(model7,"APDsibling","material")
 
-Final_ST.m1 <- model7
-tab_model(Final_ST.m1,Final_ST.m2)
+BestModel <- model7
+# report::report(model7)
+
+ST.m <- model7
 # ---------------------------------------------------------------------------------
 # test main effects:
 rstatix::Anova(model7,type="II",test.statistic="Chisq")
 
-BestModel <- model7
-# report::report(model7)
+
 
 # Material:APDsibling
 (BestModel.1 <- update(BestModel,  . ~ . -material:APDsibling))
@@ -2480,7 +2627,7 @@ colnames(ST_AgeTab)[1:4] <- c("Main effects","Df",sprintf("$\\chi^{2}$"),"p")
 Final_ST.Tab2 <- ST_AgeTab
 ```
 
-```{r,label='ST-AgeEffectNEWASL', echo=FALSE,results='hide',message=FALSE,warning=FALSE, include=FALSE,eval=FALSE}
+```{r,label='ST-AgeEffectAPDsibASL', echo=FALSE,results='hide',message=FALSE,warning=FALSE, include=FALSE,eval=FALSE}
 ##### Age effect? ################################################################# 
 
 ### ASL ONLY
@@ -2558,6 +2705,7 @@ BestModel <- model6
 tab_model(BestModel)
 # visreg::visreg(model6)
 
+ST_ASL.m <- model6
 # ---------------------------------------------------------------------------------
 # test main effects:
 rstatix::Anova(BestModel,type="II",test.statistic="Chisq")
@@ -2600,7 +2748,7 @@ colnames(ST_AgeTab_ASL)[1:4] <- c("Main effects","Df",sprintf("$\\chi^{2}$"),"p"
 
 ```
 
-```{r,label='ST-AgeEffectNEWCCRM', echo=FALSE,results='hide',message=FALSE,warning=FALSE, include=FALSE,eval=FALSE}
+```{r,label='ST-AgeEffectAPDsibCCRM', echo=FALSE,results='hide',message=FALSE,warning=FALSE, include=FALSE,eval=FALSE}
 ##### Age effect? ################################################################# 
 
 ### CCRM ONLY
@@ -2662,6 +2810,12 @@ tab_model(BestModel)
 # visreg::visreg(model4)
 # report::report(model4)
 
+ST_CCRM.m <- model4
+
+tab_model(ST.m,title="Full model")
+tab_model(ST_ASL.m,title="ASL only")
+tab_model(ST_CCRM.m,title="CCRM only")
+
 # ---------------------------------------------------------------------------------
 # test main effects:
 rstatix::Anova(BestModel,type="II",test.statistic="Chisq")
@@ -2701,12 +2855,7 @@ colnames(ST_AgeTab_CCRM)[1:4] <- c("Main effects","Df",sprintf("$\\chi^{2}$"),"p
 
 ```
 
-```{r, eval=FALSE}
-test <- ST_trimmed %>% 
-  arrange(listener,CondCode,material) %>% 
-    group_by(listener) %>%
-    mutate(Diff = uRevs - lag(uRevs)) %>% 
-  subset(., material=="CCRM")
+```{r, label='ST-APDsibPlots', eval=FALSE,echo=FALSE}
 
 # change data from Long2Wide
 ST_trimmed_w <- ST_trimmed %>%
@@ -2714,9 +2863,13 @@ ST_trimmed_w <- ST_trimmed %>%
     id_cols = c("listener","Group","Age","material","CondCode","APDsibling"),
     names_from = "material",
     values_from = c("uRevs")) %>%
-  ungroup()
+  mutate(Diff = ASLN - CCRM) %>%
+  ungroup() 
 
 ST_trimmed_w <- data.frame(ST_trimmed_w)
+
+plot(Diff~APDsibling, data=ST_trimmed_w, main="Diff = ASL - CCRM")
+plot(Diff~CondCode, data=ST_trimmed_w)
 
 t1 <- ggplot(ST_trimmed_w, aes(x=CCRM, y=ASLN, shape=CondCode, colour=APDsibling)) +
   geom_point(size=3,alpha=1) +
@@ -2737,149 +2890,22 @@ t1 <- ggplot(ST_trimmed_w, aes(x=CCRM, y=ASLN, shape=CondCode, colour=APDsibling
         legend.box.background = element_rect(colour = "black"))
 
 
-ddply(ST_trimmed_w,~APDsibling,summarise,median=median(ASLN,na.rm=TRUE),mean=mean(ASLN,na.rm=TRUE),sd=sd(ASLN,na.rm=TRUE), min=min(ASLN,na.rm=TRUE),max=max(ASLN,na.rm=TRUE))   
-# APDsibling    median      mean        sd       min       max
-# 1          1 0.5156667 0.5217875 0.1830361 0.2480000 0.8573333
-# 2          0 0.4783333 0.5556022 0.1994344 0.2886667 0.9700000
+ddply(ST_trimmed_w,~APDsibling,summarise,median=median(ASLN,na.rm=TRUE),mean=mean(ASLN,na.rm=TRUE),sd=sd(ASLN,na.rm=TRUE), min=min(ASLN,na.rm=TRUE),max=max(ASLN,na.rm=TRUE)) %>% 
+  mutate_if(is.numeric, round, 2) 
+#   APDsibling median mean   sd  min  max
+# 1          1   0.52 0.52 0.18 0.25 0.86
+# 2          0   0.48 0.56 0.20 0.29 0.97
 
-ddply(ST_trimmed_w,~APDsibling,summarise,median=median(CCRM,na.rm=TRUE),mean=mean(CCRM,na.rm=TRUE),sd=sd(CCRM,na.rm=TRUE), min=min(CCRM,na.rm=TRUE),max=max(CCRM,na.rm=TRUE)) 
-# APDsibling    median      mean        sd    min       max
-# 1          1 0.2981667 0.3363565 0.1640863 0.0875 0.6746667
-# 2          0 0.2896667 0.3153858 0.1593562 0.0750 0.7750000  
+ddply(ST_trimmed_w,~APDsibling,summarise,median=median(CCRM,na.rm=TRUE),mean=mean(CCRM,na.rm=TRUE),sd=sd(CCRM,na.rm=TRUE), min=min(CCRM,na.rm=TRUE),max=max(CCRM,na.rm=TRUE)) %>% 
+  mutate_if(is.numeric, round, 2) 
+#   APDsibling median mean   sd  min  max
+# 1          1   0.30 0.34 0.16 0.09 0.67
+# 2          0   0.29 0.32 0.16 0.07 0.78 
 
-```
-
-```{r,label='ST-AgeEffect2', echo=FALSE,results='hide',message=FALSE,warning=FALSE, include=FALSE,eval=FALSE}
-##### Age effect? ################################################################# 
-
-# CCRM data only
-CCRM <- data.frame(CCRM)
-
-######## lmer model ##########################################
-# !!! Model with +(1|APDsibling) as random intercept resulted in singular fit!
-
-## Find Best fit 
-# start with a saturated model (3-way interaction with age)
-model1 <- lmer(uRevs~CondCode*Age+(1|listener), CCRM, REML=FALSE)
-summary(model1)
-
-(model2<-update(model1,  ~ . - CondCode:Age))
-anova(model1,model2)
-summary(model2)
-# model2: uRevs ~ CondCode + Age + (1 | listener)
-# model1: uRevs ~ CondCode * Age + (1 | listener)
-#        npar     AIC     BIC logLik deviance Chisq Df Pr(>Chisq)  
-# model2    9 -320.61 -288.64 169.31  -338.61                      
-# model1   14 -323.82 -274.08 175.91  -351.82 13.21  5    0.02149 *
-
-tab_model(model1)
-
-# Does 'APDsibling' as a random intercept helps model prediction? -> nope..
-# model_a <- lmer(uRevs~CondCode+material+Age+(1|listener)+(1|APDsibling), ST_trimmed, REML=FALSE)
-# model_b <- lmer(uRevs~CondCode+material+Age+(1|listener), ST_trimmed, REML=FALSE)
-# anova(model_a,model_b)
-
-# ---------------------------------------------------------------------------------
-# test main effects:
-rstatix::Anova(model1,type="II",test.statistic="Chisq")
-
-BestModel <- model1
-# report(model2)
-
-# CondCode:Age
-(BestModel.1 <- update(BestModel,  . ~ . -CondCode:Age))
-CondAge.LMEM <- anova(BestModel,BestModel.1)
-# summary(BestModel.1)
-# BestModel.1: uRevs ~ CondCode + Age + (1 | listener)
-# BestModel: uRevs ~ CondCode * Age + (1 | listener)
-#             npar     AIC     BIC logLik deviance Chisq Df Pr(>Chisq)  
-# BestModel.1    9 -320.61 -288.64 169.31  -338.61                      
-# BestModel     14 -323.82 -274.08 175.91  -351.82 13.21  5    0.02149 *
-
-# ------------------------------------------------------------------------------
-# Post hoc -> individual lm's by condition.
-# Since there is no material x condition interaction, observations from 
-# the two speech materials were combined.
-# --> use nls model used to for z-scores. This should be better method, especially for MDR_F-ASL 
-# data where segmented line is needed.
-
-# # get post-hoc test for single regression models (shown in the figure)
-# anova.ST2 <- data.table::rbindlist(anova.ST) %>% data.frame(.) %>% round(.,3)
-# colnames(anova.ST2)[2:4] <- c("SE","t-value","p-value")
-# anova.ST2$`p-value` = ifelse(anova.ST2$`p-value`<.05,sprintf("\\textbf{%0.3f}",anova.ST2$`p-value`),anova.ST2$`p-value`)
-# anova.ST2 <- cbind("Condition"=c("Quiet-NoAlt","Quiet-Alt","AMSSN-Alt","MDR\\_F-Alt","ENG\\_F-Alt","CCRM\\_F"),
-#               rbind(anova.ST2[1:5,],c("","","","")),
-#               anova.ST2[6:11,])
+summarise(ST_trimmed_w, groups="APDsibling")
 
 
-# -----------------------------------------------------------------------------------------------------
-# Post-hoc paired comparison
-# -----------------------------------------------------------------------------------------------------
-# CondCode x Age:
-# (ref1 <- emmeans::lsmeans(BestModel,~ CondCode*Age))
-# comps <- emmeans::contrast(ref1,alpha=0.05,method="pairwise",adjust=NULL) #,adjust=NULL) adjust="bonferroni"
-# summary(comps)
 
-# Material x Age:
-(ref1 <- emmeans::lsmeans(BestModel,~ CondCode*Age))
-comps <- emmeans::contrast(ref1,alpha=0.05,method="pairwise",adjust=NULL) #,adjust=NULL) adjust="bonferroni"
-summary(comps)
-
-# MatAge.postLMEM <- data.frame(comps[c(1)])
-# MatAge.CI <- confint(comps[c(1)])
-# MatAge.CI <- MatAge.CI  %>% mutate( CI = sprintf("%s - %s",
-#           round(lower.CL,2),
-#           round(upper.CL,2)))
-# MatAge.postLMEM <- cbind(MatAge.postLMEM,"CI"=MatAge.CI$CI)
-
-# Condition x Material:
-# visual inspection
-# emmeans::emmip(model2, CondCode ~ material)
-# (ref1 <- emmeans::lsmeans(BestModel,~ CondCode*material))
-# comps <- emmeans::contrast(ref1,alpha=0.05,method="pairwise",adjust=NULL) #,adjust=NULL) adjust="bonferroni"
-# summary(comps)
-# 
-# CondMat.postLMEM <- data.frame(comps[c(5,14,22,29,35)])
-# CondMat.CI <- confint(comps[c(5,14,22,29,35)])
-# 
-# CondMat.CI <- CondMat.CI  %>% mutate( CI = sprintf("%s - %s",
-#           round(lower.CL,2),
-#           round(upper.CL,2)))
-# 
-# CondMat.postLMEM <- cbind(CondMat.postLMEM,"CI"=CondMat.CI$CI)
-# postLMEM <- CondMat.postLMEM
-# # postLMEM <- rbind(CondMat.postLMEM,MatAge.postLMEM)
-# 
-# colnames(postLMEM)[1:7] <- c("Contrasts","Estimate","SE","Df","t-value","p-value",sprintf("95\\%%-CI"))
-# row.names(postLMEM) <- NULL
-# 
-# # change contrasts names
-# postLMEM$Contrasts <-  c("(Quiet-NoAlt ASL) - (Quiet-NoAlt CCRM)", 
-#                          "(Quiet-Alt ASL) - (Quiet-Alt CCRM)",
-#                          "(AMSSN-Alt ASL) - (AMSSN-Alt CCRM)", 
-#                          sprintf("(MDR\\_F-Alt ASL) - (MDR\\_F-Alt CCRM)"),
-#                         sprintf("(ENG\\_F-Alt ASL) - (ENG\\_F-Alt CCRM)"))
-                        # sprintf("(ENG\\_F-Alt ASL) - (ENG\\_F-Alt CCRM)"), "ASL - CCRM")
-
-# contrast                            estimate     SE  df t.ratio p.value
-# (Q-NoAlt ASLN) - (Q-NoAlt CCRM)      0.19389 0.0254 216   7.621 <.0001 
-# (Q-Alt ASLN) - (Q-Alt CCRM)          0.20112 0.0251 216   8.012 <.0001
-# (AMSSN-Alt ASLN) - (AMSSN-Alt CCRM)  0.18495 0.0251 216   7.366 <.0001 
-# (MDR_F-Alt ASLN) - (MDR_F-Alt CCRM)  0.24260 0.0251 216   9.662 <.0001 
-# (ENG_F-Alt ASLN) - (ENG_F-Alt CCRM)  0.27378 0.0251 216  10.904 <.0001 
-
-# -------------------------------------------------------------------------
-# get table
-# -------------------------------------------------------------------------
-# ST_AgeTab <- data.frame(rbind(
-#    c("Condition:Material",CondMat.LMEM$Df[2],CondMat.LMEM$Chisq[2],sprintf("\\textbf{%0.3f}",CondMat.LMEM$`Pr(>Chisq)`[2])),
-#   c("Condition:Age",CondAge.LMEM$Df[2],CondAge.LMEM$Chisq[2],sprintf("\\textbf{%0.3f}",CondAge.LMEM$`Pr(>Chisq)`[2])),
-#   c("Material:Age",MatAge.LMEM$Df[2],MatAge.LMEM$Chisq[2],sprintf("\\textbf{%0.3f}",MatAge.LMEM$`Pr(>Chisq)`[2]))))
-# 
-# ST_AgeTab[,c(2:3)]= apply(ST_AgeTab[,c(2:3)], 2, function(x) as.numeric(as.character(x)))
-# 
-# colnames(ST_AgeTab)[1:4] <- c("Main effects","Df",sprintf("$\\chi^{2}$"),"p")
-# # -------------------------------------------------------------------------
 ```
 
 ```{r,label='ST-TDtrimmedAssumptions', echo=FALSE,results='hide',message=FALSE,warning=FALSE, include=FALSE}
@@ -2977,9 +3003,9 @@ DescTools::LeveneTest(lm(uRevs~ CondCode, data = ASLN))
 
 # Option 3:
 # per condition
-VarTest <- ASLN %>%
-  rstatix::group_by(Group) %>%
-  levene_test(uRevs ~ CondCode)
+# VarTest <- ASLN %>%
+#   rstatix::group_by(Group) %>%
+#   levene_test(uRevs ~ CondCode)
 
 ############
 # CCRM #####
@@ -3021,9 +3047,9 @@ DescTools::LeveneTest(lm(uRevs~ CondCode, data = CCRM))
 
 # Option 3:
 # per condition
-VarTest <- CCRM %>%
-  rstatix::group_by(Group) %>%
-  levene_test(uRevs ~ CondCode)
+# VarTest <- CCRM %>%
+#   rstatix::group_by(Group) %>%
+#   levene_test(uRevs ~ CondCode)
 
 # ---------------- z_trim -------------------------------------------------------
 
@@ -3067,9 +3093,9 @@ DescTools::LeveneTest(lm(z_trim~ CondCode, data = ASLN))
 
 # Option 3:
 # per condition
-VarTest <- ASLN %>%
-  rstatix::group_by(Group) %>%
-  levene_test(z_trim ~ CondCode)
+# VarTest <- ASLN %>%
+#   rstatix::group_by(Group) %>%
+#   levene_test(z_trim ~ CondCode)
 
 ############
 # CCRM #####
@@ -3111,9 +3137,9 @@ DescTools::LeveneTest(lm(z_trim~ CondCode, data = CCRM))
 
 # Option 3:
 # per condition
-VarTest <- CCRM %>%
-  rstatix::group_by(Group) %>%
-  levene_test(z_trim ~ CondCode)
+# VarTest <- CCRM %>%
+#   rstatix::group_by(Group) %>%
+#   levene_test(z_trim ~ CondCode)
 
 ```
 
@@ -3322,63 +3348,6 @@ t2 <- t2 + facet_grid(. ~ reorder(CondCode,CondCode), scales = "free", switch = 
         plot.tag = element_text(face = 'bold'))
 ```
 
-```{r, fig.width=14, fig.asp=0.8, out.width='100%',eval=FALSE}
-
-# uRevs ------------------------------------------------------------------
-p1 <- ggplot(ASLN, aes(x=APDsibling, y=uRevs)) +
-  geom_hline(yintercept=0.97, linetype="dashed",color = "black", size=0.5)+
-  geom_hline(yintercept=0.05, linetype="dashed",color = "black", size=0.5)+
-  geom_boxplot(data=filter(ASLN, Group=="TD"),position=position_dodge(width=0.7),outlier.shape=NA) +
-  geom_quasirandom(data=filter(ASLN, Group=="TD"),dodge.width=0.7,shape=1,colour="blue")+
-  labs(title = "ASL" ) + 
-  scale_y_continuous(limits = c(0,1),breaks=seq(0,1,0.1)) +
-  theme_bw() +
-  facet_grid(. ~ CondCode, scales = "free", switch = "y")
-
-  
-p2 <- ggplot(CCRM, aes(x=APDsibling, y=uRevs)) +
-  geom_hline(yintercept=0.97, linetype="dashed",color = "black", size=0.5)+
-  geom_hline(yintercept=0.05, linetype="dashed",color = "black", size=0.5)+
-  geom_boxplot(data=filter(CCRM, Group=="TD"),position=position_dodge(width=0.7),outlier.shape=NA) +
-  geom_quasirandom(data=filter(CCRM, Group=="TD"),dodge.width=0.7,shape=1,colour="blue")+
-  labs(title = "CCRM" ) + 
-  scale_y_continuous(limits = c(0,1),breaks=seq(0,1,0.1)) +
-  theme_bw() +
-  facet_grid(. ~ CondCode, scales = "free", switch = "y")
-
-(p1 + p2) + plot_layout(ncol = 1, nrow = 2, heights = c(1, 1), widths = c(1.5,1.5)) + plot_annotation(tag_levels = 'A') + plot_layout(guides='collect') &
-  theme(legend.position='bottom',        
-        legend.direction = "horizontal",
-        legend.background = element_blank(),
-        legend.box.background = element_rect(colour = "black"),
-        plot.tag = element_text(face = 'bold'))
-
-# z-scores ------------------------------------------------------------------
-p1 <- ggplot(ASLN, aes(x=APDsibling, y=z_trim)) +
-  geom_boxplot(data=filter(ASLN, Group=="TD"),position=position_dodge(width=0.7),outlier.shape=NA) +
-  geom_quasirandom(data=filter(ASLN, Group=="TD"),dodge.width=0.7,shape=1,colour="blue")+
-  labs(title = "ASL" ) + 
-  scale_y_continuous(limits = c(-5,10),breaks=seq(-5,10,2)) +
-  theme_bw() +
-  facet_grid(. ~ CondCode, scales = "free", switch = "y")
-
-p2 <- ggplot(CCRM, aes(x=APDsibling, y=z_trim)) +
-  geom_boxplot(data=filter(CCRM, Group=="TD"),position=position_dodge(width=0.7),outlier.shape=NA) +
-  geom_quasirandom(data=filter(CCRM, Group=="TD"),dodge.width=0.7,shape=1,colour="blue")+
-  labs(title = "CCRM" ) + 
-  scale_y_continuous(limits = c(-5,10),breaks=seq(-5,10,2)) +
-  theme_bw() +
-  facet_grid(. ~ CondCode, scales = "free", switch = "y")
-
-(p1 + p2) + plot_layout(ncol = 1, nrow = 2, heights = c(1, 1), widths = c(1.5,1.5)) + plot_annotation(tag_levels = 'A') + plot_layout(guides='collect') &
-  theme(legend.position='bottom',        
-        legend.direction = "horizontal",
-        legend.background = element_blank(),
-        legend.box.background = element_rect(colour = "black"),
-        plot.tag = element_text(face = 'bold'))
-```
-
-
 Looking at Figure \@ref(fig:ST-Age) A-B, it is noticeable that children in both groups showed a larger decrement in performance when presented with speech distractors. The regression lines indicates that the improvement in performance by age was more prominent for speech distractors, with relatively steeper slopes (at least twice as steep) than for the non-speech distractor (AMSSN) or for conditions without a distractor. Furthermore, as expected, CCRM sentences were more intelligible, with performance shifted towards lower DC range relative to performance for the ASL speech material. The lower DC meant that the children were able to understand 50\% of the sentences with larger portions of the speech information missing.\
 
 A closer look at the linear lines shows several interesting trends. The non-speech AMSSN distractor showed to have little-to-no effect on performance, at least in the TD group, where performance was fairly similar to performance in the Quiet conditions. Introducing alternations (as in Quiet-Alt vs. Quiet-NoAlt), seems to hinder intelligibility in both groups, however the effect is relatively small and may not be significant due to the large spread in the APD group. Furthermore, when comparing the regression lines, there appears to be a relatively larger separation between the groups for data measured with the CCRM material, especially for AMSSN, but also for the speech distractors. However, it is possible that the APD regression lines do not reflect the true population due to the large spread in performance and the small sample size and thus any interpretation should be taken with caution. Another interesting observation is that the children showed little-to-no *masking-release* for speech spoken in an unfamiliar language (MDR_F) when compared with a distractor spoken in English (ENG_F). This is in agreement with findings in the adults' study in Chapter \@ref(Chpt2). Lastly, it is apparent from the figure that performance for CCRM_F distractor was near-to-ceiling for some children, mostly among the APD group.\
@@ -3387,7 +3356,7 @@ A closer look at the linear lines shows several interesting trends. The non-spee
 \
 An exploratory comparison between the children's data measured in the present study with data measured across young NH adults collected in Chapter \@ref(Chpt2) further highlight the strong developmental trend, with SRdTs still not entirely "adult-like" even at the age of 13 years, especially for speech distractors (see boxplots in Figure \@ref(fig:ST-Age) A-B). The children in both groups seems to be markedly susceptible to competing CCRM sentences and for familiar- or unfamiliar-speech presented with ASL sentences, with performance at the age of 12 years still largely differing from those obtained by the adults. On the other hand, by the age of 12 years, the TD children reached near to "adult-like" performance when CCRM target sentences were presented with ENG_F speech distractor or when ASL sentences were presented with AMSSN distractor.\
 
-Next, age effect was evaluated using LMEM model, with Condition (Quiet-NoAlt, Quiet-Alt, AMSSN, MDR_F, \& ENG_F), Material (ASL / CCRM) and Age as fixed factors, SRdT as dependent variable and a random intercept for subjects (reference levels: Condition = Quiet-NoAlt; Material = ASL). Note that data for CCRM_F was excluded from the model since it was only measured for the CCRM material[^Chapt3-2]. Parametric assumption inspection of normal distribution was met, whereas the assumption of homogeneity of variance was marginal (p \= 0.04).[Inspect a model with a fix efffect for APDsibling..]{.correction} A model without three-way interaction between Condition, Material and Age was found to give the best fit (see Table \@ref(tab:ST-AgeLMEM)). Model comparison revealed a highly significant two-way interaction between Condition x Age (p \< 0.001) as well as a marginal two-way interaction between Condition x Material and Material x Age (p = 0.052) which further support the trends seen in the scatterplots.\
+Next, age effect was tested using LMEM model, with Condition (Quiet-NoAlt, Quiet-Alt, AMSSN, MDR_F, \& ENG_F), Material (ASL / CCRM) and Age as fixed factors, SRdT as dependent variable and random intercepts for subjects (reference levels: Condition = Quiet-NoAlt; Material = ASL). Note that data for CCRM_F was excluded from the model since it was only measured for the CCRM material[^Chapt3-2]. Parametric assumption inspection of normal distribution was met, whereas the assumption of homogeneity of variance was marginal (p \= 0.04).[Inspect a model with a fix effect for APDsibling..]{.correction} A model without three-way interaction between Condition, Material and Age was found to give the best fit (see Table \@ref(tab:ST-AgeLMEM)). Model comparison revealed a highly significant two-way interaction between Condition x Age (p \< 0.001) as well as a marginal two-way interaction between Condition x Material and Material x Age (p = 0.052) which further support the trends seen in the scatterplots.\
 
 The significant Material x Age interaction indicates that the developmental trend is different between the two speech materials, with a larger age effect (i.e., steeper slopes) for the ASL sentences, with an average improvement of 0.014 DC per 1 year, which is approximately 8\% higher than for the CCRM sentences across the age span. Furthermore, the significant Condition x Material interaction implies that performance in the different test conditions differed between the two speech materials. A post-hoc t-test comparison based on the fitted model given in Table \@ref(tab:ST-AgeLMEMpost), revealed a highly significant difference in performance between the speech materials across all five test conditions (all p-values \< 0.001). The estimated mean difference between the contrast pairs ranged between \+0.18 to \+0.27, hence, the CCRM speech material was significantly more intelligible than the ASL material, across all test conditions.\
 
@@ -3397,7 +3366,7 @@ Lastly, the highly significant Condition x Age interaction supports the observ
 
 ```{r,label='ST-AgeLMEM',echo=FALSE,warning=FALSE, message=FALSE}
 
-kbl(ST_AgeTab, booktabs = T,escape = F, linesep = "",caption = "ST: Age effect analysis using LMEM for SRdTs measured across condition, speech material and age as fixed factors and a random intercept for subjects. Reference levels: Condition = Quiet-NoAlt, Group = APD, Material = ASL). Note: only data measured with the control group following outliers trimming was included (trimmed TD). ",
+kbl(ST_AgeTab, booktabs = T,escape = F, linesep = "",caption = "ST: Age effect analysis using LMEM for SRdTs measured across condition, speech material and age as fixed factors and random intercepts for subjects. Reference levels: Condition = Quiet-NoAlt, Group = APD, Material = ASL). Note: only data measured with the control group following outliers trimming was included (trimmed TD). ",
     align = c("lccc"),format = "latex",digits = 3) %>%
     # kable_styling(latex_options = c("scale_down")) %>%
   add_header_above(c("+ Condition:Material + Condition:Age + Material:Age + (1 | Subjects)" = 4)) %>%
@@ -3570,28 +3539,29 @@ Within the APD group AMSSN, Quiet-NoAlt and MDR_F resulted in the highest propor
 \
 Figure \@ref(fig:ST-z) B reveals a similar trend for the CCRM sentences, nonetheless with more modest differences between the two groups. Again, AMSSN yielded the largest separation between the groups, where 40\% (8/20) of the APD children obtained an abnormal score and with a median score of 1.62, which is relatively close to the \+1.96 upper deviance cut-off. In comparison, only 4.3\% of the TD children (1/23) had abnormal performance for AMSSN condition. The APD group median score for the speech distractors was approximately 1 (range: 0.86-1.11), however the proportion of abnormal APD children was noticeably smaller than seen for AMSSN, with 25\% (5/20) for MDR_F, 20\% (4/20) for ENG_F, and only 10\% (2/20) for CCRM_F distractor. Lastly, in contrast to the ASL material, performance for the CCRM sentences presented in quiet were relatively better without switching (NoAlt) than with switching (Alt). Nonetheless, the spread in performance for the non-switched condition was larger. The percentage of abnormal scores in the TD group were relatively low, ranging between 0 to 8.7\% (mean = 4.3\%).\
 
-A three-way 2 x 2 x 5 factorial design model with repeated measures was used to test the main effects of Group, Material (ASL / CCRM) and Condition as well as their interaction on performance in the task with z-scores as a dependent variable. Note that the model did not include the CCRM test condition with CCRM-type sentences as distractor (CCRM_F) since there was no comparable condition in the ASL speech material. Inspection of the data revealed that the assumption of normal distribution was rejected for data measured with both speech material. Furthermore, homogeneity of the variance in the APD group was rejected for the ASL corpus. Thus, due to the small sample size and the incomplete fulfilment of parametric statistical methods assumptions, a non-parametric approach was adopted. This was tested with a rank-based ANOVA-type statistic test (ATS) using the *nparLD()* function [nparLD package; @nparLDPackageR]. The analysis was based on a f2-ld-f1 design ATS test, whereby f2 refers to an experimental design with two between-subjects factors (Group & Material) and f1 refers to a single within-subjects factor (Condition). The test results are given in Table \@ref(tab:ST-Tab-nparLD). No significant three-way or two-way interactions were found (Group x Material x Condition, Group x Material, Material x Condition, and Group x Condition; all p's \> 0.05), while there was a highly significant main effect of Group (p \< 0.0001) and a strong main effect of Condition (p \< 0.001). Despite some evidence for better performance in the CCRM material, the main effect of Material was not significant (p = 0.62). Furthermore, in spite of some apparent differences in performance between the two groups across the different test conditions, these differences were found to be insignificant based on the Group x Condition two-way interaction.\
-
 ```{r,label='ST-zAssumptions', message=FALSE, warning=FALSE, include=FALSE, results='hide'}
 # remove CCRM_F condition
 CCRM_s <- CCRM %>% filter(CondCode!="CCRM_F-CCRM-Alt") %>% 
-  dplyr::select(., listener, Group, material, CondCode, z_trim) %>% droplevels()
+  dplyr::select(., listener, Group, APDsibling, material, CondCode, z_trim) %>% droplevels()
 
 # remove material affiliation in conditions name
 CCRM_s$CondCode <- revalue(CCRM_s$CondCode, c("Q-CCRM-NoAlt"="Q-NoAlt","Q-CCRM-Alt"="Q-Alt",
                                               "AMSSN-CCRM-Alt"="AMSSN-Alt","MDR_F-CCRM-Alt"="MDR_F-Alt",
                                               "ENG_F-CCRM-Alt"="ENG_F-Alt"))
-ASLN_s <- ASLN %>% dplyr::select(., listener, Group, material, CondCode, z_trim) %>% droplevels()
+ASLN_s <- ASLN %>% dplyr::select(., listener,APDsibling, Group, material, CondCode, z_trim) %>% droplevels()
 ASLN_s$CondCode <- revalue(ASLN_s$CondCode, c("Q-ASLN-NoAlt"="Q-NoAlt","Q-ASLN-Alt"="Q-Alt",
                                               "AMSSN-ASLN-Alt"="AMSSN-Alt","MDR_F-ASLN-Alt"="MDR_F-Alt",
                                               "ENG_F-ASLN-Alt"="ENG_F-Alt"))
 
 ST <- rbind(ASLN_s, CCRM_s)
 ST <- data.frame(ST)
+
+ST$material <- factor(ST$material,levels=c("ASLN","CCRM"))
+ST$listener <- factor(ST$listener)
+# str(ST)
 # levels(ST$material)
 # levels(ST$Group)
 # levels(ST$CondCode)
-
 
 ########################### Test assumptions #########################################
 # For ST combined data (z-scores)
@@ -3630,17 +3600,17 @@ leveneTest(residuals(w1) ~ CondCode * Group * material, data = ST)
 
 # Option 2: by fixed factors
 # per condition
-VarTest <- ST %>%
-  rstatix::group_by(CondCode) %>%
-  levene_test(z_trim ~ Group*material)
+# VarTest <- ST %>%
+#   rstatix::group_by(CondCode) %>%
+#   levene_test(z_trim ~ Group*material)
 
-VarTest <- ST %>%
-  rstatix::group_by(Group) %>%
-  levene_test(z_trim ~ CondCode*material)
+# VarTest <- ST %>%
+#   rstatix::group_by(Group) %>%
+#   levene_test(z_trim ~ CondCode*material)
 
-VarTest <- ST %>%
-  rstatix::group_by(material) %>%
-  levene_test(z_trim ~ CondCode*Group)
+# VarTest <- ST %>%
+#   rstatix::group_by(material) %>%
+#   levene_test(z_trim ~ CondCode*Group)
 
 # Option 2: calculate Levene's test by hand, using the model.
 # Based on: https://ademos.people.uic.edu/Chapter18.html [see 6.2]
@@ -3673,22 +3643,257 @@ t1 <- ggplot(ST, aes(x=interaction(CondCode,Group,material), y=BestModel.Res)) +
         legend.box.background = element_rect(colour = "black"))
 ```
 
-```{r,label='ST-nparLD', message=FALSE, warning=FALSE, include=FALSE, results='hide'}
+```{r,label='ST-zAssumptions2', message=FALSE, warning=FALSE, include=FALSE, results='hide'}
+# remove CCRM_F condition
+CCRM_s <- CCRM %>% filter(CondCode!="CCRM_F-CCRM-Alt") %>% 
+  dplyr::select(., listener, Group, APDsibling, material, CondCode, z_trim) %>% droplevels()
+
+# remove material affiliation in conditions name
+CCRM_s$CondCode <- revalue(CCRM_s$CondCode, c("Q-CCRM-NoAlt"="Q-NoAlt","Q-CCRM-Alt"="Q-Alt",
+                                              "AMSSN-CCRM-Alt"="AMSSN-Alt","MDR_F-CCRM-Alt"="MDR_F-Alt",
+                                              "ENG_F-CCRM-Alt"="ENG_F-Alt"))
+ASLN_s <- ASLN %>% dplyr::select(., listener,APDsibling, Group, material, CondCode, z_trim) %>% droplevels()
+ASLN_s$CondCode <- plyr::revalue(ASLN_s$CondCode, c("Q-ASLN-NoAlt"="Q-NoAlt","Q-ASLN-Alt"="Q-Alt",
+                                              "AMSSN-ASLN-Alt"="AMSSN-Alt","MDR_F-ASLN-Alt"="MDR_F-Alt",
+                                              "ENG_F-ASLN-Alt"="ENG_F-Alt"))
+
+ST <- rbind(ASLN_s, CCRM_s)
+ST <- data.frame(ST)
+
+ST$APDsibling <- as.character(ST$APDsibling)
+ST$material <- factor(ST$material,levels=c("ASLN","CCRM"))
+ST$listener <- factor(ST$listener)
+str(ST)
+# levels(ST$material)
+# levels(ST$Group)
+# levels(ST$CondCode)
+
+ST$Group2 <- ifelse(ST$Group=="APD","APD",ifelse(ST$APDsibling<1,"TD_0","TD_1"))
+ST$Group2 <- as.factor(ST$Group2)
+
+########################### Test assumptions #########################################
+# For ST combined data (z-scores)
+
+# Normality: not met
+# homoscedasticity: met
+
+# linear model:
+w1 <- lm(z_trim ~ CondCode * Group2 * material, data = ST)
+
+#### normality (shapiro-wilk) ###########
+# Do all the points fall approximately along the reference line? If YES we can assume normality.
+# ggqqplot(residuals(w1))
 
 
-ST.nparLD <- nparLD(z_trim ~ Group * material * CondCode, data = ST, subject = "listener", description = TRUE, plot.CI=TRUE)
+# Option 1:
+# linearity is met if p>.05
+shapiro.test(residuals(w1))
+# W = 0.94461, p-value = 1.375e-11 --> NOT normaly distr.
 
-ST.nparLD <- data.frame(round(ST.nparLD$ANOVA.test,3))
+# plot & test the residual
+qqnorm(resid(w1))
+qqline(resid(w1))
 
-### CCRM only
-CCRM <- data.frame(CCRM)
-CCRM.nparLD <- nparLD(z_trim ~ Group * CondCode, data = CCRM, subject = "listener", description = TRUE, plot.CI=TRUE)
+# LMEM model:
+shapiro.test(resid(model5))
 
-CCRM.nparLD <- data.frame(CCRM.nparLD$ANOVA.test)
+# plot & test the residual
+qqnorm(resid(model5))
+qqline(resid(model5))
 
+# Option 2: by fixed factors: --> mostly normal..
+NormTest <- ST %>%
+  group_by(CondCode, Group2, material) %>%
+  rstatix::shapiro_test(z_trim)
+
+#### Homogeneity of variance (Levene's test) ###########
+# homogeneity is met if p>.05
+
+# Option 1: Is the lm model fully covered here?
+leveneTest(residuals(w1) ~ CondCode * Group2 * material, data = ST)
+# -> homogeneity of the full model is met
+
+# Levene's Test for Homogeneity of Variance (center = median)
+#        Df F value Pr(>F)
+# group  19  0.8729 0.6174
+#       410    
+
+# Option 2: by fixed factors
+# per condition
+# VarTest <- ST %>%
+#   rstatix::group_by(CondCode) %>%
+#   rstatix::levene_test(z_trim ~ Group2*material)
+
+# VarTest <- ST %>%
+#   rstatix::group_by(Group2) %>%
+#   levene_test(z_trim ~ CondCode*material)
+
+# VarTest <- ST %>%
+#   rstatix::group_by(material) %>%
+#   levene_test(z_trim ~ CondCode*Group2)
+
+# Option 2: calculate Levene's test by hand, using the model.
+# Based on: https://ademos.people.uic.edu/Chapter18.html [see 6.2]
+
+ST$BestModel.Res<- residuals(w1) #extracts the residuals and places them in a new column in our original data table
+ST$Abs.BestModel.Res <-abs(ST$BestModel.Res) #creates a new column with the absolute value of the residuals
+ST$BestModel.Res2 <- ST$Abs.BestModel.Res^2 #squares the absolute values of the residuals to provide the more robust estimate
+Levene.BestModel <- lm(BestModel.Res2 ~ listener, data=ST) #ANOVA of the squared residuals
+anova(Levene.BestModel) #displays the results --> homogeneity of variance is marginally significant (p=0.04), i.e., homogeneity is not met..
+
+boxplot(residuals(w1) ~ CondCode * Group2 * material,data = ST)
+
+plot(BestModel)
+
+t1 <- ggplot(ST, aes(x=interaction(CondCode,Group2,material), y=BestModel.Res)) +
+  geom_point(size=2,alpha=1) +
+  # geom_text(label=ASLN$listener, size=3)+
+  # labs(y = "SRdTs (proportion of duty cycle)",x = "Age (in years)") + 
+  # scale_y_continuous(limits = c(-0.05,1.05),breaks=seq(0,1,0.1)) +
+  # scale_x_continuous(breaks=seq(7,14,1),labels=c("7","8","9","10","11","12","13","18-35"))+
+  theme_bw() +
+  theme(axis.text = element_text(size = 10, face="bold",colour = "black"),
+        axis.title.x = element_text(size=11, face="bold"),
+        axis.title.y = element_text(size=11, face="bold"),
+        legend.title = element_text(size=11, face="bold"),
+        legend.text  = element_text(size=10, face="bold"),
+        legend.position = "bottom",
+        legend.direction = "horizontal",
+        legend.background = element_blank(),
+        legend.box.background = element_rect(colour = "black"))
 ```
 
-Since data for the CCRM material with CCRM-type distractor was not included in the aforementioned model, a separate 2 x 6 model was computed for the CCRM speech material only. The model included Group and Condition as between- and within-subjects predictors, respectively, with z-scores as the dependent variable using nparLD ATS test (f1.ld.f1 design). The ATS test found a strong significant difference between the groups (`r sprintf("Statistic = %0.3f, df = %0.3f, p < %0.3f", CCRM.nparLD[1,1], CCRM.nparLD[1,2],CCRM.nparLD[1,3])`), while no significant main effect was found for Condition (`r sprintf("Statistic = %0.3f, df = %0.3f, p = %0.3f", CCRM.nparLD[2,1], CCRM.nparLD[2,2],CCRM.nparLD[2,3])`) nor for Group x Condition interaction (`r sprintf("Statistic = %0.3f, df = %0.3f, p = %0.3f", CCRM.nparLD[3,1], CCRM.nparLD[3,2],CCRM.nparLD[3,3])`).
+```{r,label='ST-nparLD', message=FALSE, warning=FALSE, include=FALSE, results='hide'}
+
+# ST.nparLD <- nparLD(z_trim ~ Group * material * CondCode, data = ST, subject = "listener", description = TRUE, plot.CI=TRUE)
+# 
+# ST.nparLD <- data.frame(round(ST.nparLD$ANOVA.test,3))
+# 
+# ### CCRM only
+# CCRM <- data.frame(CCRM)
+# CCRM.nparLD <- nparLD(z_trim ~ Group * CondCode, data = CCRM, subject = "listener", description = TRUE, plot.CI=TRUE)
+# 
+# CCRM.nparLD <- data.frame(CCRM.nparLD$ANOVA.test)
+
+## --------------------------------------------------------------------------------------------
+# A full model for ASL and CCRM material
+## --------------------------------------------------------------------------------------------
+
+ST.nparLD <- nparLD(z_trim ~ Group2 * material * CondCode, data = ST, subject = "listener", description = TRUE, plot.CI=TRUE)
+
+
+ST.nparLD <- data.frame(round(ST.nparLD$ANOVA.test,3))
+#                          Statistic    df         p-value
+# Group                        4.009 1.531 \\textbf{0.028}
+# Material                     0.047 1.000           0.828
+# Condition                    1.394 3.251            0.24
+# Group:Material               3.767 1.952 \\textbf{0.024}
+# Condition:Material           0.669 2.682           0.554
+# Group:Condition              1.594 5.261           0.154
+# Group:Material:Condition     0.660 4.294           0.631
+
+# Post hoc test for Group2 x material interaction ------------------------------------------------
+
+### CCRM only
+
+ST_CCRM <- ST %>% filter(material=="CCRM") %>% 
+  dplyr::select(., listener,Group,Group2, APDsibling, material, CondCode, z_trim) %>% droplevels()
+
+ST_CCRM <- data.frame(ST_CCRM)
+CCRM.nparLD <- nparLD(z_trim ~ Group2 * CondCode, data = ST_CCRM, subject = "listener", description = TRUE, plot.CI=TRUE)
+
+# data.frame(round(CCRM.nparLD$ANOVA.test,3))
+
+#                 Statistic    df p.value
+# Group2              3.699 1.605   0.034
+# CondCode            0.264 3.406   0.875
+# Group2:CondCode     0.676 4.937   0.640
+
+CCRM.ST_z_Wilcox <- data.frame(rstatix::wilcox_test(z_trim ~ Group2, data = ST_CCRM,detailed=TRUE)) %>% mutate_if(is.numeric, round, 2) %>%
+    mutate( "95\\%-CI" = sprintf("%s - %s",conf.low,conf.high),
+          p = ifelse(p<.001,"\\textbf{< 0.001}", ifelse(p<.05, sprintf("\\textbf{%.02f}",p),p))) %>% select(estimate, n1,n2,`95\\%-CI`,p)
+  # mutate_if(is.numeric, round, 2) %>%
+  # mutate( "95\\%-CI" = sprintf("%s - %s",conf.low,conf.high)) %>% 
+  # select(estimate, n1,n2,`95\\%-CI`,p.adj) %>% 
+  # rename("p"=p.adj)
+
+CCRM.ST_z_effsize <- as.data.frame(rstatix::wilcox_effsize(z_trim ~ Group2, data = ST_CCRM)) %>% 
+  dplyr::rename("r"=effsize) %>% 
+  select(r,magnitude)  %>% 
+  mutate_if(is.numeric, round, 2)
+
+CCRM_ST_Z.postT <- cbind(CCRM.ST_z_Wilcox,CCRM.ST_z_effsize)
+
+### ASL only
+ST_ASL <- ST %>% filter(material=="ASLN") %>% 
+  dplyr::select(., listener, Group,Group2, APDsibling, material, CondCode, z_trim)  %>% droplevels()
+
+ST_ASL <- data.frame(ST_ASL)
+ASL.nparLD <- nparLD(z_trim ~ Group2 * CondCode, data = ST_ASL, subject = "listener", description = TRUE, plot.CI=TRUE)
+
+# data.frame(round(ASL.nparLD$ANOVA.test,3))
+
+#                 Statistic    df p.value
+# Group2              4.099 1.720   0.022
+# CondCode            2.107 3.543   0.086
+# Group2:CondCode     1.641 5.660   0.136
+
+ASL.ST_z_Wilcox <- data.frame(rstatix::wilcox_test(z_trim ~ Group2, data = ST_ASL,detailed=TRUE)) %>% mutate_if(is.numeric, round, 2) %>%
+  mutate( "95\\%-CI" = sprintf("%s - %s",conf.low,conf.high),
+          p = ifelse(p<.001,"\\textbf{< 0.001}", ifelse(p<.05, sprintf("\\textbf{%.02f}",p),p))) %>% select(estimate, n1,n2,`95\\%-CI`,p)
+
+ASL.ST_z_effsize <-  as.data.frame(rstatix::wilcox_effsize(z_trim ~ Group2, data = ST_ASL)) %>% 
+  dplyr::rename("r"=effsize) %>% 
+  select(r,magnitude)  %>% 
+  mutate_if(is.numeric, round, 2)
+
+ASL_ST_Z.postT <- cbind("contrast" = c("APD - TD$_{none}$","APD - TD$_{sibling}$","TD$_{none}$ - TD$_{sibling}$"),
+                        ASL.ST_z_Wilcox,ASL.ST_z_effsize)
+
+ST_Z.postT <- cbind(ASL_ST_Z.postT,CCRM_ST_Z.postT)
+
+## ---------------------------------------------------------------------------------------------
+# A separate model for CCRM including CCRM_F 
+## ---------------------------------------------------------------------------------------------
+
+CCRM <- data.frame(CCRM)
+# CCRM$Group2 <- ifelse(CCRM$Group=="APD","APD",ifelse(as.character(CCRM$APDsibling)<1,"TD_0","TD_1"))
+CCRM$Group2 <- ifelse(CCRM$Group=="APD","APD",ifelse(CCRM$APDsibling<1,"TD_0","TD_1"))
+CCRM$Group2 <- as.factor(CCRM$Group2)
+
+
+CCRMfull.nparLD <- nparLD(z_trim ~ Group2 * CondCode, data = CCRM, subject = "listener", description = TRUE, plot.CI=TRUE)
+
+CCRMfull.nparLD <- data.frame(CCRMfull.nparLD$ANOVA.test)
+#                 Statistic       df   p.value
+# Group2          3.6987027 1.605151 0.0339063
+# CondCode        0.2639082 3.405634 0.8745395
+# Group2:CondCode 0.6757256 4.936660 0.6399192
+
+CCRMfull.ST_z_Wilcox <- data.frame(rstatix::wilcox_test(z_trim ~ Group2, data = CCRM,detailed=TRUE)) %>% 
+    mutate( "95\\%-CI" = sprintf("%s - %s",conf.low,conf.high),
+          p = ifelse(p<.001,"\\textbf{< 0.001}", ifelse(p<.05, sprintf("\\textbf{%.02f}",p),p))) %>% select(estimate, n1,n2,`95\\%-CI`,p)
+
+CCRMfull.ST_z_effsize <- rstatix::wilcox_effsize(z_trim ~ Group2, data = CCRM) %>% 
+  dplyr::rename("r"=effsize) %>% 
+  select(r,magnitude)  %>% 
+  mutate_if(is.numeric, round, 2)
+```
+
+
+<!-- A three-way 2 x 2 x 5 factorial design model with repeated measures was used to test the main effects of Group, Material (ASL / CCRM) and Condition as well as their interaction on performance in the task with z-scores as a dependent variable. Note that the model did not include the CCRM test condition with CCRM-type sentences as distractor (CCRM_F) since there was no comparable condition in the ASL speech material. Inspection of the data revealed that the assumption of normal distribution was rejected for data measured with both speech material. Furthermore, homogeneity of the variance in the APD group was rejected for the ASL corpus. Thus, due to the small sample size and the incomplete fulfilment of parametric statistical methods assumptions, a non-parametric approach was adopted. This was tested with a rank-based ANOVA-type statistic test (ATS) using the *nparLD()* function [nparLD package; @nparLDPackageR]. The analysis was based on a f2-ld-f1 design ATS test, whereby f2 refers to an experimental design with two between-subjects factors (Group & Material) and f1 refers to a single within-subjects factor (Condition). The test results are given in Table \@ref(tab:ST-Tab-nparLD). No significant three-way or two-way interactions were found (Group x Material x Condition, Group x Material, Material x Condition, and Group x Condition; all p's \> 0.05), while there was a highly significant main effect of Group (p \< 0.0001) and a strong main effect of Condition (p \< 0.001). Despite some evidence for better performance in the CCRM material, the main effect of Material was not significant (p = 0.62). Furthermore, in spite of some apparent differences in performance between the two groups across the different test conditions, these differences were found to be insignificant based on the Group x Condition two-way interaction.\ -->
+
+A three-way 3 x 2 x 5 factorial design model with repeated measures was used to test the main effects of Group (APD, and TD with/without APD sibling), Material (ASL / CCRM) and Condition as well as their interaction on performance in the task with z-scores as a dependent variable. Note that the model did not include the CCRM test condition with CCRM-type sentences as distractor (CCRM_F) since there was no comparable condition in the ASL speech material. Inspection of parametric methods assumptions for the residuals of a linear model revealed that the assumption of normal distribution was rejected, whereas the assumption of homogeneity of the variance was met. Since there are several obvious outliers in the data and due to the incomplete fulfilment of parametric assumptions a non-parametric approach was adopted. This was tested with a rank-based ANOVA-type statistic test (ATS) using the *nparLD()* function [nparLD package; @nparLDPackageR]. The analysis was based on a f2-ld-f1 design ATS test, whereby f2 refers to an experimental design with two between-subjects factors (Group \& Material) and f1 refers to a single within-subjects factor (Condition). The test results are given in Table \@ref(tab:ST-Tab-nparLD). No significant three-way or two-way interaction were found, except for a Group x Material interaction (p\ < 0.05). In addition, there was no significant main effect of Condition.
+
+To further examine the significant interaction found between Group and Material, we tested two separate f1.ld.f1 models  per test material with Group and Condition as predictors. Both models found a significant effect of Group [ASL: Statistic = 4.099, df=1.720, p\ < 0.05; CCRM: Statistic = 3.699, df = 1.605, p\ < 0.05], while there was no significant interaction or main effect of condition (all p's\ > 0.05). Wilcoxon rank-sum tests pairwise comparison of performance between the groups (see Table\ \@ref(tab:PostHocTab)). There was a highly significant difference in performance between the APD and the TD children without APD siblings in both test materials. Furthermore, erformance of APD children for ASL material was (highly) significantly poorer than the TD children with APD siblings, whereas there was no significant difference in performance between the two groups when measured with the CCRM material. Furthermore, while there was no significant difference between the TD groups when measured with the ASL material, TD children with APD siblings performed significantly poorer than their TD peers without APD siblings when presented with the CCRM material.\
+<!-- There was a highly significant difference in performance between APD children and TD children without APD siblings in both test materials (p\ < 0.001, r = 0.30, 'moderate'; CCRM: CI-95\% = 0.58 - 1.33, p\ < 0.001, r = 0.32, 'moderate'). Furthermore, APD children performance for ASL material was (highly) significantly poorer than the TD children with APD siblings (CI-95\% = 0.60 - 1.68, p\ < 0.001, r = 0.33, 'moderate'), whereas there was no significant difference in performance between the two groups when measured with the CCRM material (CI-95\% = -0.10 - 0.94, p = 0.12, r = 0.133, 'small'). Furthermore, while there was no significant difference between the TD groups when measured with the ASL material (CI-95\% = -0.23 - 0.70, p = 0.33, r = 0.09, 'small'), TD children with APD siblings performed significantly poorer than their TD peers without APD siblings when presented with the CCRM material (CI-95\% = -1.03 - -0.1, p\ < 0.05, r = 0.22, 'small'). -->
+
+
+Since data for the CCRM material with CCRM-type distractor was not included in the aforementioned model, a separate 3 x 6 model was computed for the CCRM speech material only. The model included Group and Condition as between- and within-subjects predictors, respectively, with z-scores as the dependent variable using nparLD ATS test (f1.ld.f1 design). The ATS test gave similar results to the full model, with a significant main effect of group (`r sprintf("Statistic = %0.3f, df = %0.3f, p < %0.3f", CCRMfull.nparLD[1,1], CCRMfull.nparLD[1,2],CCRMfull.nparLD[1,3])`), while there was no significant main effect for Condition nor a significant Group x Condition interaction (all p's > 0.05). A post-hoc pairwise comparison for groups (Wilcox signed-rank tests) found a significant difference between all three groups. 
+
+<!-- or two-way interactions were found (Group x Material x Condition, Group x Material, Material x Condition, and Group x Condition; all p's \> 0.05), while there was a highly significant main effect of Group (p \< 0.0001) and a strong main effect of Condition (p \< 0.001). Despite some evidence for better performance in the CCRM material, the main effect of Material was not significant (p = 0.62). Furthermore, in spite of some apparent differences in performance between the two groups across the different test conditions, these differences were found to be insignificant based on the Group x Condition two-way interaction.\ -->
+
+
 
 ```{r, label='ST-Tab-nparLD', echo=FALSE}
 ST.nparLD$p.value = ifelse(ST.nparLD$p.value<.05,sprintf("\\textbf{%0.3f}",ST.nparLD$p.value),ST.nparLD$p.value)
@@ -3699,18 +3904,398 @@ row.names(ST.nparLD) <- c("Group","Material","Condition","Group:Material","Condi
                           "Group:Condition","Group:Material:Condition")
 colnames(ST.nparLD)[3] <- "p-value"
 
-kbl(ST.nparLD,booktabs = T, escape = F, linesep = "",caption = "ST: Statistical analysis for the effects of Group, Material, and Condition as well as their interaction (2x2x5 factorial design with repeated measures) tested with a robust rank-based method for analysis of nonparametric data using nparLD package (Noguchi et al., 2012). Analysis was based on a f2-ld-f1 design ANOVA-type statistic (ATS) test, whereby f2 refers to an experimental design with two between-subjects factors (Group and Material) and f1 refers to a single within-subjects factor (Condition).",
+kbl(ST.nparLD,booktabs = T, escape = F, linesep = "",caption = "ST: Statistical analysis for the effects of Group, Material, and Condition as well as their interaction (3x2x5 factorial design with repeated measures) tested with a robust rank-based method for analysis of nonparametric data using nparLD package (Noguchi et al., 2012). Analysis was based on a f2-ld-f1 design ANOVA-type statistic (ATS) test, whereby f2 refers to an experimental design with two between-subjects factors (Group and Material) and f1 refers to a single within-subjects factor (Condition).",
     align = c("lccc"),format = "latex",digits = 3) %>%
   add_footnote(c("significant p-values (p < 0.05) are shown in bold."), notation = "symbol") %>%
   column_spec(4, italic = T)
+
+# kbl(ST.nparLD,booktabs = T, escape = F, linesep = "",caption = "ST: Statistical analysis for the effects of Group, Material, and Condition as well as their interaction (2x2x5 factorial design with repeated measures) tested with a robust rank-based method for analysis of nonparametric data using nparLD package (Noguchi et al., 2012). Analysis was based on a f2-ld-f1 design ANOVA-type statistic (ATS) test, whereby f2 refers to an experimental design with two between-subjects factors (Group and Material) and f1 refers to a single within-subjects factor (Condition).",
+#     align = c("lccc"),format = "latex",digits = 3) %>%
+#   add_footnote(c("significant p-values (p < 0.05) are shown in bold."), notation = "symbol") %>%
+#   column_spec(4, italic = T)
 
 # use this if you want to fore latex to print the table in an exact location!
 # latex_options = c("hold_position")
 ```
 
-[*ROC curves table?*]{.correction}
+```{r, label='ST-PostHocTab-nparLD', echo=FALSE}
+# prepare table using kbl()
+# for more options see: https://cran.r-project.org/web/packages/kableExtra/vignettes/awesome_table_in_pdf.pdf
+kbl(ST_Z.postT, booktabs = T,escape = F, linesep = "",caption = "ST: Post-hoc paired comparison (Wilcoxon rank-sum test) for Group differences in z-score split by material.",
+    align = c("lcccccccccccccc"),format = "latex",digits = 2) %>% 
+  kable_styling(latex_options = c("scale_down")) %>%
+  add_header_above(c(" " = 1, "ASL model" = 7, "CCRM model" = 7)) %>%
+  column_spec(c(2,9),border_left = T) %>%
+  add_footnote(c("significant p-values (p < 0.05) are shown in bold."), notation = "symbol") %>%
+  column_spec(15, italic = T)
+```
 
-[*Switching effect (derived measures)*]{.correction}
+```{r,label='ST-zLMEM', echo=FALSE,results='hide',message=FALSE,warning=FALSE, include=FALSE, eval=FALSE}
+##### Age effect? ################################################################# 
+
+# Try robust LMEM: robustlmm::rlmer()
+# model1 <- robustlmm::rlmer(z_trim~material*CondCode*Group2+(1|listener), ST, REML=FALSE)
+# summary(model1)
+# 
+# (model2<-update(model1,  ~ . - material:CondCode:Group2))
+# robustlmm::compare(model1,model2, show.rho.functions = FALSE)
+# summary(model2)
+
+######## lmer model ##########################################
+
+## Find Best fit 
+# start with a saturated model (3-way interaction with age)
+
+model1 <- lmer(z_trim~material*CondCode*Group2+(1|listener), ST, REML=FALSE)
+summary(model1)
+
+(model2<-update(model1,  ~ . - material:CondCode:Group2))
+anova(model1,model2)
+summary(model2)
+# Models:
+# model2: z_trim ~ material + CondCode + Group2 + (1 | listener) + material:CondCode + 
+# model2:     material:Group2 + CondCode:Group2
+# model1: z_trim ~ material * CondCode * Group2 + (1 | listener)
+#        npar    AIC    BIC  logLik deviance  Chisq Df Pr(>Chisq)
+# model2   24 1517.3 1614.8 -734.63   1469.3                     
+# model1   32 1529.5 1659.6 -732.76   1465.5 3.7275  8     0.8808
+
+(model3<-update(model2,  ~ . - CondCode:Group2))
+anova(model2,model3)
+summary(model3)
+# model3: z_trim ~ material + CondCode + Group2 + (1 | listener) + material:CondCode + 
+# model3:     material:Group2
+# model2: z_trim ~ material + CondCode + Group2 + (1 | listener) + material:CondCode + 
+# model2:     material:Group2 + CondCode:Group2
+#        npar    AIC    BIC  logLik deviance  Chisq Df Pr(>Chisq)
+# model3   16 1511.2 1576.2 -739.59   1479.2                     
+# model2   24 1517.3 1614.8 -734.63   1469.3 9.9278  8     0.2701
+
+(model4<-update(model3,  ~ . -  material:Group2))
+anova(model3,model4)
+summary(model4)
+# model4: z_trim ~ material + CondCode + Group2 + (1 | listener) + material:CondCode
+# model3: z_trim ~ material + CondCode + Group2 + (1 | listener) + material:CondCode + 
+# model3:     material:Group2
+#        npar    AIC    BIC  logLik deviance  Chisq Df Pr(>Chisq)  
+# model4   14 1512.1 1569.0 -742.04   1484.1                       
+# model3   16 1511.2 1576.2 -739.59   1479.2 4.8901  2    0.08672 .
+
+(model5<-update(model4,  ~ . - material:CondCode))
+anova(model4,model5)
+summary(model5)
+# model5: z_trim ~ material + CondCode + Group2 + (1 | listener)
+# model4: z_trim ~ material + CondCode + Group2 + (1 | listener) + material:CondCode
+#        npar    AIC    BIC  logLik deviance  Chisq Df Pr(>Chisq)
+# model5   10 1510.5 1551.1 -745.25   1490.5                     
+# model4   14 1512.1 1569.0 -742.04   1484.1 6.4256  4     0.1695
+
+(model6<-update(model5,  ~ . - Group2))
+anova(model5,model6)
+summary(model6)
+# model6: z_trim ~ material + CondCode + (1 | listener)
+# model5: z_trim ~ material + CondCode + Group2 + (1 | listener)
+#        npar    AIC    BIC  logLik deviance  Chisq Df Pr(>Chisq)   
+# model6    8 1516.3 1548.8 -750.13   1500.3                        
+# model5   10 1510.5 1551.1 -745.25   1490.5 9.7574  2   0.007607 **
+
+
+# best mode --> model5: z_trim ~ material + CondCode + Group2 + (1 | listener)
+
+tab_model(model5)
+# visreg::visreg(model7)
+# visreg::visreg(model7,"APDsibling","CondCode")
+visreg::visreg(model5,"Group2")
+
+BestModel <- model5
+# report::report(model5)
+
+# ---------------------------------------------------------------------------------
+# test main effects:
+rstatix::Anova(BestModel,type="II",test.statistic="Chisq")
+
+# Group2
+(BestModel.1 <- update(BestModel,  . ~ . -Group2))
+Group2.LMEM <- anova(BestModel,BestModel.1)
+summary(BestModel.1)
+# BestModel.1: uRevs ~ CondCode + material + Age + APDsibling + (1 | listener) + 
+# BestModel.1:     CondCode:material + CondCode:Age + material:Age + CondCode:APDsibling
+# BestModel: uRevs ~ CondCode + material + Age + APDsibling + (1 | listener) + 
+# BestModel:     CondCode:material + CondCode:Age + material:Age + CondCode:APDsibling + 
+# BestModel:     material:APDsibling
+#             npar     AIC     BIC logLik deviance  Chisq Df Pr(>Chisq)  
+# BestModel.1   23 -405.86 -327.39 225.93  -451.86                       
+# BestModel     24 -408.79 -326.91 228.40  -456.79 4.9273  1    0.02643 *
+
+# CondCode
+(BestModel.2 <- update(BestModel,  . ~ . -CondCode))
+Cond.LMEM <- anova(BestModel,BestModel.2)
+summary(BestModel.2)
+# BestModel.1: uRevs ~ CondCode + material + Age + APDsibling + (1 | listener) + 
+# BestModel.1:     CondCode:material + CondCode:Age + material:Age + material:APDsibling
+# BestModel: uRevs ~ CondCode + material + Age + APDsibling + (1 | listener) + 
+# BestModel:     CondCode:material + CondCode:Age + material:Age + CondCode:APDsibling + 
+# BestModel:     material:APDsibling
+#             npar     AIC     BIC logLik deviance Chisq Df Pr(>Chisq)
+# BestModel.1   20 -414.07 -345.83 227.03  -454.07                    
+# BestModel     24 -408.79 -326.91 228.40  -456.79 2.724  4      0.605
+
+# material
+(BestModel.3 <- update(BestModel,  . ~ . -material))
+Mat.LMEM <- anova(BestModel,BestModel.3)
+summary(BestModel.3)
+# BestModel.3: uRevs ~ CondCode + material + Age + APDsibling + (1 | listener) + 
+# BestModel.3:     CondCode:material + CondCode:Age + CondCode:APDsibling + 
+# BestModel.3:     material:APDsibling
+# BestModel: uRevs ~ CondCode + material + Age + APDsibling + (1 | listener) + 
+# BestModel:     CondCode:material + CondCode:Age + material:Age + CondCode:APDsibling + 
+# BestModel:     material:APDsibling
+#             npar     AIC     BIC logLik deviance  Chisq Df Pr(>Chisq)
+# BestModel.3   23 -408.72 -330.25 227.36  -454.72                     
+# BestModel     24 -408.79 -326.91 228.40  -456.79 2.0726  1       0.15
+
+# -----------------------------------------------------------------------------------------------------
+# Post-hoc paired comparison
+# -----------------------------------------------------------------------------------------------------
+
+# CondCode
+# (ref1 <- emmeans::lsmeans(BestModel,~ CondCode))
+# comps <- emmeans::contrast(ref1,alpha=0.05,method="pairwise",adjust=NULL) #,adjust=NULL) adjust="bonferroni"
+# summary(comps)
+
+# Group2:
+(ref1 <- emmeans::lsmeans(BestModel,~ Group2))
+comps <- emmeans::contrast(ref1,alpha=0.05,method="pairwise",adjust=NULL) #,adjust=NULL) adjust="bonferroni"
+summary(comps)
+
+Group2.postLMEM <- data.frame(comps)
+Group2.CI <- confint(comps)
+Group2.CI <- Group2.CI  %>% mutate( CI = sprintf("%s - %s",
+          round(lower.CL,2),
+          round(upper.CL,2)))
+Group2.postLMEM <- cbind(Group2.postLMEM,"CI"=Group2.CI$CI)
+
+postLMEM <- Group2.postLMEM
+# postLMEM <- rbind(CondMat.postLMEM,MatAge.postLMEM)
+
+colnames(postLMEM)[1:7] <- c("contrast","Estimate","SE","Df","t-value","p-value",sprintf("95\\%%-CI"))
+row.names(postLMEM) <- NULL
+
+# change contrasts names
+postLMEM[1] <-  c("APD - TD","APD - TD\\_{APDsibling}","TD - TD\\_{APDsibling}")
+
+postLMEM$`p-value` = ifelse(postLMEM$`p-value`<.05,sprintf("\\textbf{%0.3f}",postLMEM$`p-value`),sprintf("%0.3f",postLMEM$`p-value`))
+
+# -------------------------------------------------------------------------
+# get table
+# -------------------------------------------------------------------------
+ST_zTab <- data.frame(rbind(
+  c("Group",Group2.LMEM$Df[2],Group2.LMEM$Chisq[2],sprintf("\\textbf{%0.3f}",Group2.LMEM$`Pr(>Chisq)`[2])),
+  c("Material",Mat.LMEM$Df[2],Mat.LMEM$Chisq[2],sprintf("%0.3f",Mat.LMEM$`Pr(>Chisq)`[2])),
+  c("Condition",Cond.LMEM$Df[2],Cond.LMEM$Chisq[2],"\\textbf{< 0.0001}")
+  # c("Condition",Cond.LMEM$Df[2],Cond.LMEM$Chisq[2],sprintf("\\textbf{%0.3f}",Cond.LMEM$`Pr(>Chisq)`[2]))
+  ))
+
+ST_zTab[,c(2:3)]= apply(ST_zTab[,c(2:3)], 2, function(x) as.numeric(as.character(x)))
+
+colnames(ST_zTab)[1:4] <- c("Main effects","Df",sprintf("$\\chi^{2}$"),"p")
+# -------------------------------------------------------------------------
+
+```
+
+<!-- An LMEM model was used to test the effect of Material (ASL / CCRM) and Condition (), and Group () as fixed factors and random intercepts for subjects on performance in the task with z-scores as a dependent variable (reference levels: Material = ASLN; Condition: Quiet-NoAlt; Group = APD). As before, the full model did not include data measured for the CCRM condition with CCRM-type sentences as distractor (CCRM_F). Parametric assumption inspection of normal distribution was rejected (p < 0.001), whereas the assumption of homogeneity of variance was met (p > 0.05). However, an inspection of the distribution by groups, material and condition revlead that in most cases (23/30), normallity could not be rejected.  -->
+
+```{r,label='ST-zLMEM2', echo=FALSE,results='hide',message=FALSE,warning=FALSE, include=FALSE, eval=FALSE}
+##### Age effect? ################################################################# 
+
+######## lmer model ##########################################
+
+## Find Best fit 
+# start with a saturated model (3-way interaction with age)
+
+model1 <- robustlmm::rlmer(z_trim~material*CondCode*Group2+(1|listener), ST, REML=FALSE)
+summary(model1)
+
+(model2<-update(model1,  ~ . - material:CondCode:Group2))
+robustlmm::compare(model1,model2, show.rho.functions = FALSE)
+summary(model2)
+# Models:
+# model2: z_trim ~ material + CondCode + Group2 + (1 | listener) + material:CondCode + 
+# model2:     material:Group2 + CondCode:Group2
+# model1: z_trim ~ material * CondCode * Group2 + (1 | listener)
+#        npar    AIC    BIC  logLik deviance  Chisq Df Pr(>Chisq)
+# model2   24 1517.3 1614.8 -734.63   1469.3                     
+# model1   32 1529.5 1659.6 -732.76   1465.5 3.7275  8     0.8808
+
+(model3<-update(model2,  ~ . - CondCode:Group2))
+anova(model2,model3)
+summary(model3)
+# model3: z_trim ~ material + CondCode + Group2 + (1 | listener) + material:CondCode + 
+# model3:     material:Group2
+# model2: z_trim ~ material + CondCode + Group2 + (1 | listener) + material:CondCode + 
+# model2:     material:Group2 + CondCode:Group2
+#        npar    AIC    BIC  logLik deviance  Chisq Df Pr(>Chisq)
+# model3   16 1511.2 1576.2 -739.59   1479.2                     
+# model2   24 1517.3 1614.8 -734.63   1469.3 9.9278  8     0.2701
+
+(model4<-update(model3,  ~ . -  material:Group2))
+anova(model3,model4)
+summary(model4)
+# model4: z_trim ~ material + CondCode + Group2 + (1 | listener) + material:CondCode
+# model3: z_trim ~ material + CondCode + Group2 + (1 | listener) + material:CondCode + 
+# model3:     material:Group2
+#        npar    AIC    BIC  logLik deviance  Chisq Df Pr(>Chisq)  
+# model4   14 1512.1 1569.0 -742.04   1484.1                       
+# model3   16 1511.2 1576.2 -739.59   1479.2 4.8901  2    0.08672 .
+
+(model5<-update(model4,  ~ . - material:CondCode))
+anova(model4,model5)
+summary(model5)
+# model5: z_trim ~ material + CondCode + Group2 + (1 | listener)
+# model4: z_trim ~ material + CondCode + Group2 + (1 | listener) + material:CondCode
+#        npar    AIC    BIC  logLik deviance  Chisq Df Pr(>Chisq)
+# model5   10 1510.5 1551.1 -745.25   1490.5                     
+# model4   14 1512.1 1569.0 -742.04   1484.1 6.4256  4     0.1695
+
+(model6<-update(model5,  ~ . - Group2))
+anova(model5,model6)
+summary(model6)
+# model6: z_trim ~ material + CondCode + (1 | listener)
+# model5: z_trim ~ material + CondCode + Group2 + (1 | listener)
+#        npar    AIC    BIC  logLik deviance  Chisq Df Pr(>Chisq)   
+# model6    8 1516.3 1548.8 -750.13   1500.3                        
+# model5   10 1510.5 1551.1 -745.25   1490.5 9.7574  2   0.007607 **
+
+
+# best mode --> model5: z_trim ~ material + CondCode + Group2 + (1 | listener)
+
+tab_model(model5)
+# visreg::visreg(model7)
+# visreg::visreg(model7,"APDsibling","CondCode")
+visreg::visreg(model5,"Group2")
+
+BestModel <- model5
+# report::report(model5)
+
+# ---------------------------------------------------------------------------------
+# test main effects:
+rstatix::Anova(BestModel,type="II",test.statistic="Chisq")
+
+# Group2
+(BestModel.1 <- update(BestModel,  . ~ . -Group2))
+Group2.LMEM <- anova(BestModel,BestModel.1)
+summary(BestModel.1)
+# BestModel.1: uRevs ~ CondCode + material + Age + APDsibling + (1 | listener) + 
+# BestModel.1:     CondCode:material + CondCode:Age + material:Age + CondCode:APDsibling
+# BestModel: uRevs ~ CondCode + material + Age + APDsibling + (1 | listener) + 
+# BestModel:     CondCode:material + CondCode:Age + material:Age + CondCode:APDsibling + 
+# BestModel:     material:APDsibling
+#             npar     AIC     BIC logLik deviance  Chisq Df Pr(>Chisq)  
+# BestModel.1   23 -405.86 -327.39 225.93  -451.86                       
+# BestModel     24 -408.79 -326.91 228.40  -456.79 4.9273  1    0.02643 *
+
+# CondCode
+(BestModel.2 <- update(BestModel,  . ~ . -CondCode))
+Cond.LMEM <- anova(BestModel,BestModel.2)
+summary(BestModel.2)
+# BestModel.1: uRevs ~ CondCode + material + Age + APDsibling + (1 | listener) + 
+# BestModel.1:     CondCode:material + CondCode:Age + material:Age + material:APDsibling
+# BestModel: uRevs ~ CondCode + material + Age + APDsibling + (1 | listener) + 
+# BestModel:     CondCode:material + CondCode:Age + material:Age + CondCode:APDsibling + 
+# BestModel:     material:APDsibling
+#             npar     AIC     BIC logLik deviance Chisq Df Pr(>Chisq)
+# BestModel.1   20 -414.07 -345.83 227.03  -454.07                    
+# BestModel     24 -408.79 -326.91 228.40  -456.79 2.724  4      0.605
+
+# material
+(BestModel.3 <- update(BestModel,  . ~ . -material))
+Mat.LMEM <- anova(BestModel,BestModel.3)
+summary(BestModel.3)
+# BestModel.3: uRevs ~ CondCode + material + Age + APDsibling + (1 | listener) + 
+# BestModel.3:     CondCode:material + CondCode:Age + CondCode:APDsibling + 
+# BestModel.3:     material:APDsibling
+# BestModel: uRevs ~ CondCode + material + Age + APDsibling + (1 | listener) + 
+# BestModel:     CondCode:material + CondCode:Age + material:Age + CondCode:APDsibling + 
+# BestModel:     material:APDsibling
+#             npar     AIC     BIC logLik deviance  Chisq Df Pr(>Chisq)
+# BestModel.3   23 -408.72 -330.25 227.36  -454.72                     
+# BestModel     24 -408.79 -326.91 228.40  -456.79 2.0726  1       0.15
+
+# -----------------------------------------------------------------------------------------------------
+# Post-hoc paired comparison
+# -----------------------------------------------------------------------------------------------------
+
+# CondCode
+# (ref1 <- emmeans::lsmeans(BestModel,~ CondCode))
+# comps <- emmeans::contrast(ref1,alpha=0.05,method="pairwise",adjust=NULL) #,adjust=NULL) adjust="bonferroni"
+# summary(comps)
+
+# Group2:
+(ref1 <- emmeans::lsmeans(BestModel,~ Group2))
+comps <- emmeans::contrast(ref1,alpha=0.05,method="pairwise",adjust=NULL) #,adjust=NULL) adjust="bonferroni"
+summary(comps)
+
+Group2.postLMEM <- data.frame(comps)
+Group2.CI <- confint(comps)
+Group2.CI <- Group2.CI  %>% mutate( CI = sprintf("%s - %s",
+          round(lower.CL,2),
+          round(upper.CL,2)))
+Group2.postLMEM <- cbind(Group2.postLMEM,"CI"=Group2.CI$CI)
+
+postLMEM <- Group2.postLMEM
+# postLMEM <- rbind(CondMat.postLMEM,MatAge.postLMEM)
+
+colnames(postLMEM)[1:7] <- c("contrast","Estimate","SE","Df","t-value","p-value",sprintf("95\\%%-CI"))
+row.names(postLMEM) <- NULL
+
+# change contrasts names
+postLMEM[1] <-  c("APD - TD","APD - TD\\_{APDsibling}","TD - TD\\_{APDsibling}")
+
+postLMEM$`p-value` = ifelse(postLMEM$`p-value`<.05,sprintf("\\textbf{%0.3f}",postLMEM$`p-value`),sprintf("%0.3f",postLMEM$`p-value`))
+
+# -------------------------------------------------------------------------
+# get table
+# -------------------------------------------------------------------------
+ST_zTab <- data.frame(rbind(
+  c("Group",Group2.LMEM$Df[2],Group2.LMEM$Chisq[2],sprintf("\\textbf{%0.3f}",Group2.LMEM$`Pr(>Chisq)`[2])),
+  c("Material",Mat.LMEM$Df[2],Mat.LMEM$Chisq[2],sprintf("%0.3f",Mat.LMEM$`Pr(>Chisq)`[2])),
+  c("Condition",Cond.LMEM$Df[2],Cond.LMEM$Chisq[2],"\\textbf{< 0.0001}")
+  # c("Condition",Cond.LMEM$Df[2],Cond.LMEM$Chisq[2],sprintf("\\textbf{%0.3f}",Cond.LMEM$`Pr(>Chisq)`[2]))
+  ))
+
+ST_zTab[,c(2:3)]= apply(ST_zTab[,c(2:3)], 2, function(x) as.numeric(as.character(x)))
+
+colnames(ST_zTab)[1:4] <- c("Main effects","Df",sprintf("$\\chi^{2}$"),"p")
+# -------------------------------------------------------------------------
+
+```
+
+```{r,label='ST-zLMEMTab',echo=FALSE,warning=FALSE, message=FALSE, eval=FALSE}
+kbl(ST_zTab, booktabs = T,escape = F, linesep = "",caption = "ST: z-scores statistical analysis using 3x2x5 LMEM for the effects of Material, Condition, and Group as fixed factors and random intercepts for subjects. Groups comprised of three levels: APD children, and TD children with our without APD siblings. Note: data for the CCRM condition with CCRM-type sentences as distractor (CCRM_F) was not included in the model. Reference levels: Group = APD; Material = ASL; Condition = Quiet-NoAlt.",
+    align = c("lccc"),format = "latex",digits = 3) %>% 
+  add_header_above(c("z ~ material + Condition + Group + (1 | Subjects)" = 4)) %>%
+  add_footnote(c("significant p-values (p < 0.05) are shown in bold."), notation = "symbol") %>%
+  column_spec(4, italic = T) 
+
+```
+
+```{r, label='ST-zLMEMpost', echo=FALSE, eval=FALSE}
+
+# (ref:tabCap3) ST: z-scores - post-hoc paired comparison t-test for Group. The test was performed on the fitted LMEM model and included adjusted least-squared-mean for the random intercept (subjects) using lsmeans package [emmeans package; @emmeansPackageR].
+
+kbl(postLMEM,booktabs = T, escape = F, linesep = "",caption = '(ref:tabCap3)',
+    align = c("lcccccc"),format = "latex",digits = 2) %>%
+    kable_styling(latex_options = c("scale_down")) %>%
+  add_footnote(c("significant p-values (p < 0.05) are shown in bold."), notation = "symbol") %>%
+  column_spec(6, italic = T) %>%
+  kable_styling() 
+  # %>%
+  # pack_rows("Condition x Material", 1, 5) %>%
+  # pack_rows("Material", 6,6)
+
+# use this if you want to fore latex to print the table in an exact location!
+# latex_options = c("hold_position")
+```
 
 ```{r,echo=FALSE, message=FALSE, warning=FALSE, results='hide'}
 # Get derived measures ----------------------------------------------------------------------
@@ -4430,9 +5015,9 @@ DescTools::LeveneTest(lm(uRevs~ CondCode, data = LiSNS))
 
 # Option 3:
 # per condition
-VarTest <- LiSNS %>%
-  rstatix::group_by(Group) %>%
-  levene_test(uRevs ~ CondCode)
+# VarTest <- LiSNS %>%
+#   rstatix::group_by(Group) %>%
+#   levene_test(uRevs ~ CondCode)
 
 # ---------------- z_trim -------------------------------------------------------
 
@@ -4472,9 +5057,9 @@ DescTools::LeveneTest(lm(z_trim~ CondCode, data = LiSNS))
 
 # Option 3:
 # per condition
-VarTest <- LiSNS %>%
-  rstatix::group_by(Group) %>%
-  levene_test(z_trim ~ CondCode)
+# VarTest <- LiSNS %>%
+#   rstatix::group_by(Group) %>%
+#   levene_test(z_trim ~ CondCode)
 
 ```
 
@@ -6762,7 +7347,7 @@ ST_w <- data.frame(ST_w)
 
 ##############
 # save ST data
-write.csv(ST_w,file.path(FileDir,'Files','ST_w.csv'))
+# write.csv(ST_w,file.path(FileDir,'Files','ST_w.csv'))
 ##############
 
 # ST_w<- read.csv(file.path(FileDir,'Files',"ST_w.csv"),header=T)
@@ -7702,7 +8287,7 @@ t14 <- ggplot(Eval, aes(x=interaction(Grommets,Group),y=PTA_EHF)) +
         plot.tag = element_text(face = 'bold'))
 ```
 
-```{r, fig.align='center', fig.asp=1, fig.width=14, eval=FALSE}
+```{r, fig.align='center', fig.asp=1, fig.width=14, eval=FALSE, echo=FALSE}
 # SRM in dB
 
 t6 <- ggplot(Eval_APD, aes(x=SPD,y=uRevs_SRM)) +
