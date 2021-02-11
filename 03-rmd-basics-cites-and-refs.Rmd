@@ -5503,6 +5503,181 @@ leveneTest(residuals(w1) ~ CondCode * Group, data = LiSNS_3)
 
 ```
 
+```{r,label='LiSNS-zLMEM-OLD2', message=FALSE, warning=FALSE, include=FALSE, echo=FALSE,results='hide',eval=FALSE}
+##### Test z_trim WITHOUT SRM #####
+
+# Normality: met
+# homoscedasticity: met
+
+
+LiSNS_SRM <- LiSNS %>% filter(CondCode=="SRM") %>% droplevels()
+
+model1 <- lmer(z_trim~Group+(1|listener), LiSNS_SRM, REML=FALSE)
+summary(model1)
+tab_model(model1)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+LiSNS_3 <- LiSNS %>% filter(CondCode!="SRM") %>% droplevels()
+
+LiSNS_3 <- data.frame(LiSNS_3)
+LiSNS_3$listener <- factor(LiSNS_3$listener)
+LiSNS_3$Group <- factor(LiSNS_3$Group, levels=c("APD","TD"))
+# for lmer() analysis see: https://verbingnouns.github.io/notebooks/prose_statistics.nb.html 
+# or: https://ourcodingclub.github.io/tutorials/mixed-models/#fixedstr
+# May be useful too: https://exeter-data-analytics.github.io/StatModelling/mixed-effects-models.html#model-checking-with-mixed-models
+
+## --------------------
+# [From: https://ourcodingclub.github.io/tutorials/mixed-models/#fixedstr]
+# The model selection process recommended by Zuur et al. (2009) is a top-down strategy and goes as follows:
+# 
+# 1. fit a full model (he even recommends “beyond optimal” i.e. more complex than you’d expect or want it to be)
+# 2. sort out the random effects structure (use REML likelihoods or REML AIC or BIC)
+# 3. sort out fixed effects structure (either use REML the F-statistic or the t-statistic or 
+#    compare nested ML models - keep your random effects constant)
+# 4. once you arrive at the final model present it using REML estimation
+## --------------------
+
+##### Select model with the best fit
+#A fixed effect for 'APDsibling' was not used as it resulted in: 
+# Error: Dropping columns failed to produce full column rank design matrix
+
+# Saturated model including 2-way interaction and lower level fixed effects:
+model1 <- lmer(z_trim~CondCode*Group+(1|listener), LiSNS_3, REML=FALSE)
+summary(model1)
+tab_model(model1)
+
+# -----------------------------------------------------------------------------------------------------
+# Chose model with the best fit (top-down stepwise method)
+# test for best fit by comparing the reduced full model with a simpler model until p is significant  (<.05):
+# -----------------------------------------------------------------------------------------------------
+(model2<-update(model1,  ~ . - CondCode:Group))
+anova(model1,model2)
+summary(model2)
+# model2: z_trim ~ CondCode + Group + (1 | listener)
+# model1: z_trim ~ CondCode * Group + (1 | listener)
+#        npar    AIC    BIC  logLik deviance  Chisq Df Pr(>Chisq)
+# model2    6 379.56 396.58 -183.78   367.56                     
+# model1    8 381.78 404.47 -182.89   365.78 1.7777  2     0.4111
+
+(model3<-update(model2,  ~ . - Group))
+anova(model2,model3)
+summary(model3)
+# model3: z_trim ~ CondCode + (1 | listener)
+# model2: z_trim ~ CondCode + Group + (1 | listener)
+#        npar    AIC    BIC  logLik deviance  Chisq Df Pr(>Chisq)   
+# model3    5 386.23 400.41 -188.12   376.23                        
+# model2    6 379.56 396.58 -183.78   367.56 8.6725  1    0.00323 **
+
+# ***** ---> Best model: model2!
+
+# z_trim ~ CondCode + Group + (1 | listener)
+
+# BestModel (model10):
+BestModel <- lmer(z_trim ~ CondCode + Group + (1|listener), data=LiSNS_3, REML=FALSE)
+tab_model(BestModel, 
+          show.se =TRUE,
+          show.stat = TRUE,
+          show.icc = FALSE,
+          show.ngroups = TRUE,
+          show.obs = TRUE)
+
+##### Test main effects:
+# -----------------------------------------------------------------------------------------------------
+# test main effects by comparing the FULL model to a simplified model without the predictor/interaction term.
+# e.g., anova(m1,m2), anova(m1,m3), anova(m1,m4),...
+# -----------------------------------------------------------------------------------------------------
+# How to deal with main efect testing when there is a significant interaction: see https://stats.stackexchange.com/questions/378652/testing-the-significance-of-a-main-effect-using-model-comparison-when-an-intera
+
+# Group
+(BestModel.1 <- update(BestModel,  . ~ . -Group))
+Group.Anova <- anova(BestModel,BestModel.1)
+summary(BestModel.1)
+# BestModel.1: z_trim ~ CondCode + (1 | listener)
+# BestModel: z_trim ~ CondCode + Group + (1 | listener)
+#             npar    AIC    BIC  logLik deviance  Chisq Df Pr(>Chisq)   
+# BestModel.1    5 386.23 400.41 -188.12   376.23                        
+# BestModel      6 379.56 396.58 -183.78   367.56 8.6725  1    0.00323 **
+
+# CondCode
+(BestModel.2<-update(BestModel, . ~ . - CondCode))
+CondCode.Anova <- anova(BestModel,BestModel.2)
+summary(BestModel.2)
+# BestModel.2: z_trim ~ Group + (1 | listener)
+# BestModel: z_trim ~ CondCode + Group + (1 | listener)
+#             npar    AIC    BIC  logLik deviance  Chisq Df Pr(>Chisq)
+# BestModel.2    4 379.37 390.71 -185.68   371.37                     
+# BestModel      6 379.56 396.58 -183.78   367.56 3.8087  2     0.1489
+
+# -------------------------------------------------------------------------
+# get table
+# -------------------------------------------------------------------------
+LiSNS_zTab <- data.frame(rbind(
+  c("Condition",CondCode.Anova$Df[2],CondCode.Anova$Chisq[2], CondCode.Anova$`Pr(>Chisq)`[2]),
+  c("Group",Group.Anova$Df[2],Group.Anova$Chisq[2],Group.Anova$`Pr(>Chisq)`[2])))
+
+LiSNS_zTab[,c(2:4)]= apply(LiSNS_zTab[,c(2:4)], 2, function(x) as.numeric(as.character(x)))
+
+colnames(LiSNS_zTab)[1:4] <- c("Main effects","Df",sprintf("$\\chi^{2}$"),"p")
+# mark all the significant p's
+LiSNS_zTab$p = ifelse(LiSNS_zTab$p<.05,
+                      sprintf("\\textbf{%0.3f}",LiSNS_zTab$p),
+                      sprintf("%0.3f",LiSNS_zTab$p))
+# -------------------------------------------------------------------------
+########################### Test assumptions #########################################
+
+# Normality: met
+# homoscedasticity: met
+
+# linear model:
+w1 <- lm(z_trim ~ CondCode * Group, data = LiSNS_3)
+
+#### normality (shapiro-wilk) ###########
+# Do all the points fall approximately along the reference line? If YES we can assume normality.
+# ggqqplot(residuals(w1))
+
+
+# Option 1:
+# linearity is met if p>.05
+shapiro.test(residuals(w1))
+# W = 0.94461, p-value = 1.375e-11 --> NOT normaly distr.
+
+# plot & test the residual
+qqnorm(resid(w1))
+qqline(resid(w1))
+
+# LMEM model:
+shapiro.test(resid(BestModel))
+
+# plot & test the residual
+qqnorm(resid(BestModel))
+qqline(resid(BestModel))
+
+# Option 2: by fixed factors: --> mostly normal..
+NormTest <- LiSNS_3 %>%
+  group_by(CondCode, Group) %>%
+  rstatix::shapiro_test(z_trim)
+
+#### Homogeneity of variance (Levene's test) ###########
+# homogeneity is met if p>.05
+
+# Option 1: Is the lm model fully covered here?
+leveneTest(residuals(w1) ~ CondCode * Group, data = LiSNS_3)
+# -> homogeneity of the full model is met
+
+```
+
 ```{r,label='LiSNS-zLMEM', message=FALSE, warning=FALSE, include=FALSE, echo=FALSE,results='hide', eval=FALSE}
 ##### Test z_trim #####
 
