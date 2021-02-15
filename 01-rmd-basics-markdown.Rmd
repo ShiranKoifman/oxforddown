@@ -749,7 +749,7 @@ segments(x0 = .29, y0 = 42.9, x1 = .45, y1 = 42.9,col = "white", lwd = 3)
 #### Stimuli
 
 \
-The target stimuli comprised of sentences taken from two type of speech material. The first type was the ASL sentences [@MacLeod1990] as used in Experiment I and II spoken by a single male talker, which are simple "everyday" sentences presented as an open-set (e.g., *'the clown had a funny face'*). The sentences were scored by the experimenter as described in experiment II using loose keyword scoring method (i.e., errors of case or declension were considered as correct responses). The second type of sentences were taken from the Children's Coordinate Response Measure (CCRM) corpus, which is a locally developed children's friendly version of the Coordinate Response Measure corpus [CRM; @Bolia2000], yet is equally suitable for adults. The CCRM sentences are matrix-based with a simple fixed syntax of a carrier phrase 'show the <Animal> where the <Colour> <Digit> is', with a set of six animals (cat, cow, dog, duck, pig, and sheep), six colours (black, blue, green, pink, red, and white), and eight digits (from one to nine, excluding seven as it is bisyllabic and thus may be more recognisable). The target sentences always started with the animal 'dog', whereas colour and digit words were varied randomly across trials. A closed-set scoring procedure was used, where the listeners were instructed to select the colour-digit combination they heard from an array of six coloured grids, each containing eight possible digits, which was displayed on the screen (see Figure\ \ref{fig:CCRM-scoring}). Although the number of test items is small, the speech material has low semantic predictability with a guessing rate of only about 2\% (1/48). This is because a response was counted as correct only when both the target colour and digit were selected correctly. The listeners were instructed to guess if unsure as only by selecting a digit from one of the colour grids prompted the presentation of the next trial. Visual feedback was given for a correct/incorrect response by displaying a smiling/sad image of a bear instead of the dog picture. No feedback was given for the ASL sentences.\
+The target stimuli comprised of sentences taken from two type of speech material. The first type was the ASL sentences [@MacLeod1990] as used in Experiment I and II spoken by a single male talker, which are simple "everyday" sentences presented as an open-set (e.g., *'the clown had a funny face'*). The sentences were scored by the experimenter as described in experiment II using loose keyword scoring method (i.e., errors of case or declension were considered as correct responses). The second type of sentences were taken from the Children's Coordinate Response Measure (CCRM) corpus, which is a locally developed children's friendly version of the Coordinate Response Measure corpus [CRM; @Bolia2000], yet is equally suitable for adults. The CCRM sentences are matrix-based with a simple fixed syntax of a carrier phrase 'show the <Animal> where the <Colour> <Digit> is', with a set of six animals ('cat', 'cow', 'dog', 'duck', 'pig', and 'sheep'), six colours ('black', 'blue', 'green', 'pink', 'red', and 'white'), and eight digits (from 'one' to 'nine', excluding 'seven' as it is bisyllabic and thus may be more recognisable). The target sentences always started with the animal 'dog', whereas colour and digit words were varied randomly across trials. A closed-set scoring procedure was used, where the listeners were instructed to select the colour-digit combination they heard from an array of six coloured grids, each containing eight possible digits, which was displayed on the screen (see Figure\ \ref{fig:CCRM-scoring}). Although the number of test items is small, the speech material has low semantic predictability with a guessing rate of only about 2\% (1/48). This is because a response was counted as correct only when both the target colour and digit were selected correctly. The listeners were instructed to guess if unsure as only by selecting a digit from one of the colour grids prompted the presentation of the next trial. Visual feedback was given for a correct/incorrect response by displaying a smiling/sad image of a bear instead of the dog picture. No feedback was given for the ASL sentences.\
 
 
 ```{=latex}
@@ -815,18 +815,7 @@ ezPrecis(d_r) # Inspect data first
 
 ```
 #### Test-retest
-
-ASL data and CCRM (DSDG) ar not normally distributed. Homogeneity is fulfulled in all the data. 
-
-Wilcox test was used, no difference between order (1 \& 2) was found.
-
-Add figure.
-
-Since only the monaural condition was tested twice, rather than runing further analysis on all data points, keeping order as a predictor, the scores were averaged across listeners.
-
-
-
-```{r,label='TestRetest-analysis', message=FALSE, warning=FALSE, include=FALSE, echo=FALSE,results='hide'}
+```{r,label='TestRetest-analysis1', message=FALSE, warning=FALSE, include=FALSE, echo=FALSE,results='hide'}
 # Session / test-retest difference??
 
 ################### Monaural ################### 
@@ -877,9 +866,13 @@ CI1 <- sprintf("%s - %s",round(CI_temp1$conf.int[1],2),
                  round(CI_temp1$conf.int[2],2))
 
 # save test results by names
-DSDG_ASL_TarM.MskM_Wilk <- cbind("CI"=CI1,
+DSDG_ASL_TarM.MskM_Wilk <- cbind("95\\%-CI"=CI1,
                  "p"=p1,ifelse(p1 < .05, "sig.","n.s"),
                  "r"=r1,"magnitude"=magnitude1)
+
+# Cohen's d:
+# effsize::cohen.d(DSDG_ASL_TarM.MskM$uRevs[which(DSDG_ASL_TarM.MskM$Session=="1")],
+#                  DSDG_ASL_TarM.MskM$uRevs[which(DSDG_ASL_TarM.MskM$Session=="2")])
 
 # ---------------------------------------------------------------------------
 # 2. DSDG_CCRM_TarM.MskM:
@@ -904,9 +897,13 @@ CI2 <- sprintf("%s - %s",round(CI_temp2$conf.int[1],2),
                  round(CI_temp2$conf.int[2],2))
 
 # save test results by names
-DSDG_CCRM_TarM.MskM_Wilk <- cbind("CI"=CI2,
+DSDG_CCRM_TarM.MskM_Wilk <- cbind("95\\%-CI"=CI2,
                  "p"=p2,ifelse(p2 < .05, "sig.","n.s"),
                  "r"=r2,"magnitude"=magnitude2)
+
+# Cohen's d:
+# effsize::cohen.d(DSDG_CCRM_TarM.MskM$uRevs[which(DSDG_CCRM_TarM.MskM$Session=="1")],
+#                  DSDG_CCRM_TarM.MskM$uRevs[which(DSDG_CCRM_TarM.MskM$Session=="2")])
 
 # ---------------------------------------------------------------------------
 # 3. SSDG_CCRM_TarM.MskM:
@@ -931,13 +928,21 @@ CI3 <- sprintf("%s - %s",round(CI_temp3$conf.int[1],2),
                  round(CI_temp3$conf.int[2],2))
 
 # save test results by names
-SSDG_CCRM_TarM.MskM_Wilk <- cbind("CI"=CI3,
+SSDG_CCRM_TarM.MskM_Wilk <- cbind("95\\%-CI"=CI3,
                  "p"=p3,ifelse(p3 < .05, "sig.","n.s"),
                  "r"=r3,"magnitude"=magnitude3)
 
+# Cohen's d:
+# effsize::cohen.d(SSDG_CCRM_TarM.MskM$uRevs[which(SSDG_CCRM_TarM.MskM$Session=="1")],
+#                  SSDG_CCRM_TarM.MskM$uRevs[which(SSDG_CCRM_TarM.MskM$Session=="2")])
 
-# pooled from the whole data without accounting for Condition?
-effsize::cohen.d(d$SRdT[which(d$Experiment=="SK")], d$SRdT[which(d$Experiment=="HW")])
+
+##### get table #####
+
+tr_Wilk <- rbind(DSDG_ASL_TarM.MskM_Wilk,DSDG_CCRM_TarM.MskM_Wilk,SSDG_CCRM_TarM.MskM_Wilk)
+tr_Wilk <- tr_Wilk[,- 3]
+
+#####################
 
 
 ################################ Assumptions testing ################################ 
@@ -966,6 +971,7 @@ qqline(rstandard(w1), col = "red", lwd = 2)
 #dev.off()
 
 shapiro.test(residuals(w1))
+# p = 9.964e-05
 
 
 # 2. Homoggeneity of variance (Levene's test) --> ~ is met!
@@ -973,6 +979,7 @@ shapiro.test(residuals(w1))
 
 # Option 1:
 car::leveneTest(uRevs ~ Session, data=DSDG_ASL_TarM.MskM,center=median)
+# p = 0.9474
 
 # ----------------------------------------------------------------------------
 # 2. DSDG_CCRM_TarM.MskM:
@@ -998,14 +1005,14 @@ qqline(rstandard(w1), col = "red", lwd = 2)
 #dev.off()
 
 shapiro.test(residuals(w1))
-
+# p-value = 0.2833
 
 # 2. Homoggeneity of variance (Levene's test) --> ~ is met!
 # homogeneity is met if p>.05
 
 # Option 1:
 car::leveneTest(uRevs ~ Session, data=DSDG_CCRM_TarM.MskM,center=median)
-
+# p= 0.8634
 # ----------------------------------------------------------------------------
 # 3. SSDG_CCRM_TarM.MskM:
 # ----------------------------------------------------------------------------
@@ -1030,17 +1037,63 @@ qqline(rstandard(w1), col = "red", lwd = 2)
 #dev.off()
 
 shapiro.test(residuals(w1))
-
+# p-value = 0.01976
 
 # 2. Homoggeneity of variance (Levene's test) --> ~ is met!
 # homogeneity is met if p>.05
 
 # Option 1:
 car::leveneTest(uRevs ~ Session, data=SSDG_CCRM_TarM.MskM,center=median)
+# p = 0.924
 
 ```
 
-```{r, label='TestRetest-plot', fig.cap="Add text here.", fig.align='center', fig.width=7, fig.asp=1, out.width='100%',echo=FALSE, message=FALSE, warning=FALSE}
+```{r,label='TestRetest-analysis2', message=FALSE, warning=FALSE, include=FALSE, echo=FALSE,results='hide'}
+# Idea: use two separate models to examine the effect of session 
+# 
+
+# get separate data frames:
+
+# CCRM 
+CCRM_tr <- d_r %>% filter(Material!="ASL", Background!="Quiet", Configuration=="TarM+MskM") %>% droplevels() 
+ezPrecis(CCRM_tr) 
+
+CCRM_tr.nparLD <- nparLD(uRevs ~ Background*Session, data = CCRM_tr, subject = "Listener", description = TRUE, plot.CI=TRUE)
+CCRM_tr.nparLD <- data.frame(round(CCRM_tr.nparLD$ANOVA.test,3))
+#                    Statistic df p.value
+# Background             6.729  1   0.009
+# Session                1.041  1   0.308
+# Background:Session     0.518  1   0.472
+
+CCRM_tr_tab <- CCRM_tr %>% ddply(.,~Background*Session,summarise,N=length(uRevs),mean=mean(uRevs,na.rm=TRUE),sd=sd(uRevs,na.rm=TRUE), min=min(uRevs,na.rm=TRUE),max=max(uRevs,na.rm=TRUE))  %>% 
+  mutate_if(is.numeric, round, 2) %>%
+  arrange(., group_by = Background,Session)
+
+CCRM_tr_tab <- cbind("Material" = c("CCRM","CCRM"),CCRM_tr_tab[c(1,3),c(1,3:7)],CCRM_tr_tab[c(2,4),3:7])
+
+# ASL
+ASL_tr <- d_r %>% filter(Material!="CCRM", Background!="Quiet", Configuration=="TarM+MskM") %>% droplevels() 
+ezPrecis(ASL_tr) 
+
+ASL_tr.nparLD <- nparLD(uRevs ~ Session, data = ASL_tr, subject = "Listener", description = TRUE, plot.CI=TRUE)
+ASL_tr.nparLD <- data.frame(round(ASL_tr.nparLD$ANOVA.test,3))
+#         Statistic df p.value
+# Session     0.046  1    0.83
+
+ASL_tr_tab <- ASL_tr %>% ddply(.,~Session,summarise,N=length(uRevs),mean=mean(uRevs,na.rm=TRUE),sd=sd(uRevs,na.rm=TRUE), min=min(uRevs,na.rm=TRUE),max=max(uRevs,na.rm=TRUE))  %>% 
+  mutate_if(is.numeric, round, 2) %>%
+  arrange(., group_by = Session)
+
+ASL_tr_tab <- cbind("Material" = c("ASL"),"Background" = c("Different material"), ASL_tr_tab[1,2:6],ASL_tr_tab[2,2:6])
+
+tr_tab <- rbind(ASL_tr_tab,CCRM_tr_tab)
+tr_tab <- cbind (tr_tab, tr_Wilk)
+rownames(tr_tab) <- c()
+```
+\
+First, since listeners were presented with the MM configuration twice, once in each session, differences in performance between the two sessions were examined (test-retest).The listeners' SRdTs recorded in the first and the second session are plotted in Figure\ \@ref(fig:TestRetest-plot). The scatterplot reveals that most observations are relatively close or on the diagonal line which represents an identical performance in session one and two. It is also noticeable that variance in performance was smaller for the ASL than for the CCRM speech material.
+
+```{r, label='TestRetest-plot', fig.cap="Test-retest: SRdTs obtained for 'TarM+DstrM' listening configuration in session 1 (x-axis) and session 2 (y-axis). Indivdual SRdTs are represented by the different shapes and colours corresponding to different material (ENG_F, circles) and same material (CCRM_F, triangle) distractors presented with the ASL (red) or CCRM speech material (cyan). The diagonal line represents the same score in both sessions. The dashed lines represents the task's lower and upper DC limit of 0.05 and 0.97.", fig.align='center', fig.width=7, fig.asp=1, out.width='100%',echo=FALSE, message=FALSE, warning=FALSE}
 
 d_r1 <- d_r %>% filter(Session=="1" & Configuration=="TarM+MskM" & Background!="Quiet") %>%
   mutate(
@@ -1058,6 +1111,8 @@ d_12 <- merge(d_r1,d_r2,by=c("Listener","Material","Background","Configuration",
 
 ggplot(d_12, aes(x=uRevs1, y=uRevs2, shape=Background, colour=Material)) +
   geom_point(size=3,alpha=0.8) +
+  geom_hline(yintercept=0.97,linetype = "dashed")+
+  geom_hline(yintercept=0.05,linetype = "dashed")+
   scale_y_continuous(limits = c(0,1),breaks=seq(0,1,0.1))+
   scale_x_continuous(limits = c(0,1),breaks=seq(0,1,0.1))+
   geom_abline(intercept=0, slope=1)+ 
@@ -1076,6 +1131,33 @@ ggplot(d_12, aes(x=uRevs1, y=uRevs2, shape=Background, colour=Material)) +
         legend.box.background = element_rect(colour = "black"))
 ```
 
+Inspection of the data for parametric assumptions revealed that while homoscedasticity of variance was met, the assumption of normal distribution was rejected for the ASL and the CCRM data measured with the ENG_F (different material) distractor. Therefore, differences between sessions were tested using a noneparametric method using Wilcoxon rank-sum test with permutation (N=999999) (*wilcox_test()* function, coin package, REF). Descriptives and test results are shown in Table\ \@ref(tab:Test-RetestTab). There was no significant difference between SRdTs in the first and the second session across test material and distractor type (all p's \>\ 0.05). Therefore, since only MM condition was tested twice while the rest of the test conditions were only measured once, the individuals' average score across the two sessions was used for further analysis.
+
+```{r, label='Test-RetestTab', echo=FALSE}
+# prepare table using kbl()
+# for more options see: https://cran.r-project.org/web/packages/kableExtra/vignettes/awesome_table_in_pdf.pdf
+
+kbl(tr_tab,booktabs = T, escape = F, linesep = "",caption = "Add caption here.",
+    align = c("llcccccccccccccl"),format = "latex") %>%
+  kable_styling(latex_options = c("scale_down")) %>%
+  add_header_above(c(" " =2, "Session 1" = 5, "Session 2" = 5, "Wilcoxon rank-sum test" = 4)) %>%
+  column_spec(c(3,8,13),border_left = T) %>%
+  column_spec(14, italic = T)
+  # add_footnote(c("abnormal: the percentage of abnormal score, defined as z-score > 1.96.","Percentage in brackets were accounted for observations that were trimmed during the z-score calculation procedure."), notation = "none")
+```
+
+#### Binaural benefit (differences between BB & MM and BB & MB)
+
+Boxplots of the listeners SRdTs split by speech material, background type (Quiet, ENG_F \& CCRM_F) and listening configuration are shown in Figure\ \@ref(fig:AverageDC-plot).
+It is apparent from the plot that binaural listening greatly improved performance in all conditions across the two speech materials. Furthermore, there is a clear trend for monaural target with binaural distractor (TarM+DstrB) to further degrade performance, especially for the CCRM material. However, there is a clear ceiling effect for ASL performance for a masker in the monaural configurations. Thus making it difficult to determine whether the two monaural configurations in the ASL material differ or not. Nonetheless, this experimental limitation does not hinder the examination of the present stud main research question which was to examine whether the BB and MB or BB and MM significantly differ.
+
+Furthermore, as expected, the CCRM was more intelligible than the ASL material. However, both materials showed the same trend in performance. Finally, as predicted, intelligibility for CCRM-like distractors (CCRM_F, same material) was poorer than for the unrelated connected speech (ENG_F, different material).\
+
+Next, difference between the listening configurations and between test materials were statistically analysed with linear mixed-effects regression models (LMEMs) using *lmer()* function (REF). Parametric methods assumption of homoscedasticity of variance was met, while the assumption of normal distribution was rejected for the ASL data for ENG_F condition. This is likely due to the cieling effect seen for the monaural configurations. However, since noneparametric tests gave similar results, it was decided to report here only the outcomes of the parametric method.
+
+The first 2x2 LMEM model examined the effect of speech material (ASL / CCRM) and listening configuration (TarB / TarM) as fixed factors on the listeners SRdTs measured in the reference condition, Quiet, and random intercepts for subjects. There was a significant interaction between material and configuration [$\chi^2$(1) = 9.044, p = 0.003]. Thus indicating that performance for target sentences presented monaurally and binaurally is affected differently across the speech materials.
+
+
 ```{r,label='get-AveragedDC', message=FALSE, warning=FALSE, include=FALSE, echo=FALSE,results='hide'}
 ## get averaged duty by for session 1 and 2
 
@@ -1085,7 +1167,7 @@ d_rM <- d_rM[ ! d_rM$CondCode2 %in% c("DSDG_ASL_TarM+MskM_S2","DSDG_CCRM_TarM+Ms
 
 ```
 
-```{r, label='AverageDC-plot', fig.cap="Add text here.", fig.align='center', fig.width=10, fig.asp=.9, out.width='100%',echo=FALSE, message=FALSE, warning=FALSE, results='hide'}
+```{r, label='AverageDC-plot', fig.cap="Boxplots of the listeners SRdTs split by speech material (ASL/CCRM), background type (Quiet, ENG_F and CCRM_F) and listening configuration (binaural: TarB and TarB+DstrB; monaural: TarM and TarM+DstrM; loosely monaural: TarM+DstrB). The boxes are colour-coded, with red, green, and blue, marking the binaural, monaural and loosely monaural condition, respectively. The dashed lines represents the task's lower and upper DC limit of 0.05 and 0.97.", fig.align='center', fig.width=10, fig.asp=.9, out.width='100%',echo=FALSE, message=FALSE, warning=FALSE, results='hide'}
 
 #- Quiet only-------------------------------------------------------------------------
 d_Q <- d_rM %>% filter(Background=="Quiet") %>% droplevels()
@@ -1098,6 +1180,8 @@ group.colors <- c("TarB" = "tomato", "TarM" = "green3")
 t1<- ggplot(d_Q, aes(x=interaction(Background,Material),y=uRevsM,fill=Configuration))+
   geom_boxplot(position = position_dodge2(preserve = "total"),outlier.shape=NA)+
   geom_quasirandom(dodge.width=0.8,shape=1,colour="blue")+
+    geom_hline(yintercept=0.97,linetype = "dashed")+
+  geom_hline(yintercept=0.05,linetype = "dashed")+
   scale_y_continuous(limits = c(0,1),breaks=seq(0,1,0.1))+
   scale_fill_manual(values=group.colors)+
   labs(y = "SRdTs (proportion of duty cycle)",x = " ")+
@@ -1128,6 +1212,8 @@ group.colors <- c("TarB+MskB" ="tomato", "TarM+MskM" = "green3", "TarM+MskB" = "
 t2<- ggplot(d_NoQ, aes(x=interaction(Background,Material),y=uRevsM,fill=Configuration))+
   geom_boxplot(position = position_dodge2(preserve = "total"),outlier.shape=NA)+
   geom_quasirandom(dodge.width=0.8,shape=1,colour="blue")+
+  geom_hline(yintercept=0.97,linetype = "dashed")+
+  geom_hline(yintercept=0.05,linetype = "dashed")+
   scale_y_continuous(limits = c(0,1),breaks=seq(0,1,0.1))+
   scale_fill_manual(values=group.colors)+
   labs(y = "SRdTs (proportion of duty cycle)",x = " ")+
@@ -1154,6 +1240,8 @@ library(patchwork)
 
 # x axis label 4 the combined fig: "Background / Speech material"
 ```
+
+
 
 ```{r,label='get-separateDFs', message=FALSE, warning=FALSE, include=FALSE, echo=FALSE,results='hide'}
 #---------------------------------------------------
@@ -1235,7 +1323,7 @@ summary(model2)
 # best mode --> model 1: uRevsM ~ Material * Configuration + (1 | Listener)
 
 tab_model(model1,show.se=TRUE)
-visreg::visreg(model1,"Material","Configuration")
+# visreg::visreg(model1,"Material","Configuration")
 BestModel <- model1
 
 # ---------------------------------------------------------------------------------
@@ -1257,14 +1345,35 @@ summary(BestModel.1)
 # BestModel      6 -107.72 -95.572 59.862  -119.72 9.0438  1   0.002636 **
 
 # ------------------------------------------------------------------------------
-# Post hoc -> individual lm's by condition. (models R^2 and p's are shown in the figure)
-# The model suggest that there is a significant age effect and that is the same in 
-# all three conditions (since there is no Condition x Age interaction).
+# Post hoc: emmeans package
+# See: https://cran.r-project.org/web/packages/emmeans/vignettes/comparisons.html
+# For interactions, see: : https://cran.r-project.org/web/packages/emmeans/vignettes/interactions.html
+
+# plot
+emmeans::emmip(BestModel, Material ~ Configuration)
+
+# separate pairwise comparison per configuration
+emm_s.conf <- emmeans::emmeans(BestModel, pairwise ~ Configuration | Material)
+# separate pairwise comparison per material
+emm_s.conf <- emmeans::emmeans(BestModel, pairwise ~ Material | Configuration)
 
 # Material x Configuration:
+# Plot: 
+test.emm.s <- emmeans::emmeans(BestModel,  "Material","Configuration")
+plot(test.emm.s, comparisons = TRUE)
+
 (ref1 <- emmeans::lsmeans(BestModel,~ Material*Configuration))
 comps <- emmeans::contrast(ref1,alpha=0.05,method="pairwise",adjust="bonferroni") #,adjust=NULL) adjust="bonferroni"
 summary(comps)
+Quiet_PostHoc <- comps
+
+
+emmeans::eff_size(ref1, sigma = sigma(BestModel), edf = df.residual(BestModel))
+
+
+# blue bars: CIs
+# red arrows: for comparisons of CI's. If an arrow from one mean overlaps an arrow from another group, the difference is not "significant.
+
  # contrast              estimate     SE   df t.ratio p.value
  # ASL TarB - CCRM TarB     0.191 0.0298 45.2   6.419 <.0001 
  # ASL TarB - ASL TarM     -0.450 0.0298 45.2 -15.098 <.0001 
@@ -1381,6 +1490,16 @@ summary(BestModel.1)
 # The model suggest that there is a significant age effect and that is the same in 
 # all three conditions (since there is no Condition x Age interaction).
 
+# plot
+emmeans::emmip(BestModel, ~ Configuration)
+
+# separate pairwise comparison per configuration
+emm_s.conf <- emmeans::emmeans(BestModel, pairwise ~ Configuration)
+
+# Plot: 
+emm_s.conf <- emmeans::emmeans(BestModel,  "Configuration")
+plot(emm_s.conf, comparisons = TRUE)
+
 # Group2 x Condition:
 (ref1 <- emmeans::lsmeans(BestModel,~ Configuration))
 comps <- emmeans::contrast(ref1,alpha=0.05,method="pairwise",adjust="bonferroni") #,adjust=NULL) adjust="bonferroni"
@@ -1390,13 +1509,17 @@ summary(comps)
  # (TarB+MskB) - (TarM+MskB)  -0.3365 0.0261 30.1 -12.882 <.0001 
  # (TarM+MskM) - (TarM+MskB)  -0.0441 0.0261 30.1  -1.687 0.3061 
 
+ASL_PostHoc <- comps
+emmeans::eff_size(ref1, sigma = sigma(BestModel), edf = df.residual(BestModel))
+
+
 # -------------------------------------------------------------------------
 # get table
 # -------------------------------------------------------------------------
-# ENVASA_AgeTab <- data.frame(rbind(
-#   c("Background",CondCode.LMEM$Df[2],CondCode.LMEM$Chisq[2],sprintf("\\textbf{<0.001}")),
-#   c("Age",Age.LMEM$Df[2],Age.LMEM$Chisq[2], sprintf("\\textbf{<0.001}")),
-#   c("Group",APDsib.LMEM$Df[2],APDsib.LMEM$Chisq[2],sprintf("%.03f",APDsib.LMEM$`Pr(>Chisq)`[2]))))
+# Quiet_Tab <- data.frame(rbind(
+#   c("Material",CondCode.LMEM$Df[2],CondCode.LMEM$Chisq[2],sprintf("\\textbf{<0.001}")),
+#   c("Configuration",Age.LMEM$Df[2],Age.LMEM$Chisq[2], sprintf("\\textbf{<0.001}")),
+#   c("Material:Configuration",APDsib.LMEM$Df[2],APDsib.LMEM$Chisq[2],sprintf("%.03f",APDsib.LMEM$`Pr(>Chisq)`[2]))))
 # 
 # ENVASA_AgeTab[,c(2:3)]= apply(ENVASA_AgeTab[,c(2:3)], 2, function(x) as.numeric(as.character(x)))
 # 
@@ -1543,268 +1666,7 @@ leveneTest(residuals(w1) ~ Background*Configuration,data = CCRM)
 # p=0.7294 * --> homogeneity is NOT met!
 ```
 
-```{r,label='DC-LMEM-Q2A', message=FALSE, warning=FALSE, include=FALSE, echo=FALSE,results='hide'}
-# ------------------------------------------------------------------------------------
-# Do the listeners behave differently across the two materials (ASL/CCRM)?
-# ------------------------------------------------------------------------------------
-
-# Quiet: -----------------------------------------------------------------------------
-# Normality: met
-# Homogeneity: met
-# ------------------------------------------------------------------------------------
-# THE SAME AS ABOVE!
-  
-## Find Best fit 
-# start with a saturated model (3-way interaction with age)
-
-model1 <- lmer(uRevsM ~ Material*Configuration+(1|Listener), data=Both_Q, REML=FALSE)
-summary(model1)
-
-(model2<-update(model1,  ~ . - Material:Configuration))
-anova(model1,model2)
-summary(model2)
-# model2: uRevsM ~ Material + Configuration + (1 | Listener)
-# model1: uRevsM ~ Material * Configuration + (1 | Listener)
-#        npar     AIC     BIC logLik deviance  Chisq Df Pr(>Chisq)   
-# model2    5 -100.68 -90.553 55.340  -110.68                        
-# model1    6 -107.72 -95.572 59.862  -119.72 9.0438  1   0.002636 **
-
-# best mode --> model 1: uRevsM ~ Material * Configuration + (1 | Listener)
-
-tab_model(model1,show.se=TRUE)
-# visreg::visreg(model1)
-BestModel <- model1
-
-# ---------------------------------------------------------------------------------
-# test main effects:
-rstatix::Anova(BestModel,type="II",test.statistic="Chisq")
-#                          Chisq Df Pr(>Chisq)    
-# Material               158.678  1    < 2e-16 ***
-# Configuration          360.309  1    < 2e-16 ***
-# Material:Configuration  10.091  1    0.00149 ** 
-
-# Configuration
-(BestModel.1 <- update(BestModel,  . ~ . -Material:Configuration))
-MatConf.LMEM <- anova(BestModel,BestModel.1)
-summary(BestModel.1)
-# BestModel.1: uRevsM ~ Material + Configuration + (1 | Listener)
-# BestModel: uRevsM ~ Material * Configuration + (1 | Listener)
-#             npar     AIC     BIC logLik deviance  Chisq Df Pr(>Chisq)   
-# BestModel.1    5 -100.68 -90.553 55.340  -110.68                        
-# BestModel      6 -107.72 -95.572 59.862  -119.72 9.0438  1   0.002636 **
-
-# ------------------------------------------------------------------------------
-# Post hoc -> individual lm's by condition. (models R^2 and p's are shown in the figure)
-# The model suggest that there is a significant age effect and that is the same in 
-# all three conditions (since there is no Condition x Age interaction).
-
-# Group2 x Condition:
-(ref1 <- emmeans::lsmeans(BestModel,~ Material*Configuration))
-comps <- emmeans::contrast(ref1,alpha=0.05,method="pairwise",adjust="bonferroni") #,adjust=NULL) adjust="bonferroni"
-summary(comps)
-
-
-# -------------------------------------------------------------------------
-# get table
-# -------------------------------------------------------------------------
-# ENVASA_AgeTab <- data.frame(rbind(
-#   c("Background",CondCode.LMEM$Df[2],CondCode.LMEM$Chisq[2],sprintf("\\textbf{<0.001}")),
-#   c("Age",Age.LMEM$Df[2],Age.LMEM$Chisq[2], sprintf("\\textbf{<0.001}")),
-#   c("Group",APDsib.LMEM$Df[2],APDsib.LMEM$Chisq[2],sprintf("%.03f",APDsib.LMEM$`Pr(>Chisq)`[2]))))
-# 
-# ENVASA_AgeTab[,c(2:3)]= apply(ENVASA_AgeTab[,c(2:3)], 2, function(x) as.numeric(as.character(x)))
-# 
-# colnames(ENVASA_AgeTab)[1:4] <- c("Main effects","Df",sprintf("$\\chi^{2}$"),"p")
-# -------------------------------------------------------------------------
-
-############### Test parametric assumptions ###############
-
-# Normality: met
-# Homogeneity: met
-
-w1 <- lm(uRevsM~ Material*Configuration, data = Both_Q)
-
-#### normality (shapiro-wilk) ###########
-# linearity is met if p>.05
-# Option 1:
-shapiro.test(residuals(w1))
-# p-value = 0.3278 --> normaly distr.
-
-#### Homogeneity of variance (Levene's test) ###########
-# homogeneity is met if p>.05
-
-# Option 1: Is the lmer model fully covered here?
-leveneTest(residuals(w1) ~ Material*Configuration,data = Both_Q)
-# p=0.05889 --> homogeneity is met!
-
-# ------------------------------------------------------------------------------------
-# Test Material x Configuration interaction using 2 separate models 
-# ------------------------------------------------------------------------------------
-
-# Quiet- ASL -------------------------------------------------------------------------
-# Normality: met
-# Homogeneity: met
-# ------------------------------------------------------------------------------------
-
-## Find Best fit 
-# start with a saturated model (3-way interaction with age)
-
-model1 <- lmer(uRevsM ~ Configuration+(1|Listener), data=ASL_Q, REML=FALSE)
-summary(model1)
-
-(model2<-update(model1,  ~ . - Configuration))
-anova(model1,model2)
-summary(model2)
-# model2: uRevsM ~ (1 | Listener)
-# model1: uRevsM ~ Configuration + (1 | Listener)
-#        npar     AIC     BIC logLik deviance Chisq Df Pr(>Chisq)    
-# model2    3   4.859   8.856  0.570   -1.141                        
-# model1    4 -59.730 -54.402 33.865  -67.730 66.59  1  3.344e-16 ***
-
-# best mode --> model 1: uRevsM ~ Material * Configuration + (1 | Listener)
-
-tab_model(model1,show.se=TRUE)
-# visreg::visreg(model1)
-BestModel <- model1
-
-# ---------------------------------------------------------------------------------
-# test main effects:
-rstatix::Anova(BestModel,type="II",test.statistic="Chisq")
-# Response: uRevsM
-#                Chisq Df Pr(>Chisq)    
-# Configuration 415.52  1  < 2.2e-16 *** 
-
-# Configuration
-(BestModel.1 <- update(BestModel,  . ~ . -Configuration))
-Conf.LMEM <- anova(BestModel,BestModel.1)
-summary(BestModel.1)
-
-# ------------------------------------------------------------------------------
-# Post hoc -> individual lm's by condition. (models R^2 and p's are shown in the figure)
-# The model suggest that there is a significant age effect and that is the same in 
-# all three conditions (since there is no Condition x Age interaction).
-
-# Group2 x Condition:
-(ref1 <- emmeans::lsmeans(BestModel,~ Configuration))
-comps <- emmeans::contrast(ref1,alpha=0.05,method="pairwise",adjust="bonferroni") #,adjust=NULL) adjust="bonferroni"
-summary(comps)
-
-# -------------------------------------------------------------------------
-# get table
-# -------------------------------------------------------------------------
-# ENVASA_AgeTab <- data.frame(rbind(
-#   c("Background",CondCode.LMEM$Df[2],CondCode.LMEM$Chisq[2],sprintf("\\textbf{<0.001}")),
-#   c("Age",Age.LMEM$Df[2],Age.LMEM$Chisq[2], sprintf("\\textbf{<0.001}")),
-#   c("Group",APDsib.LMEM$Df[2],APDsib.LMEM$Chisq[2],sprintf("%.03f",APDsib.LMEM$`Pr(>Chisq)`[2]))))
-# 
-# ENVASA_AgeTab[,c(2:3)]= apply(ENVASA_AgeTab[,c(2:3)], 2, function(x) as.numeric(as.character(x)))
-# 
-# colnames(ENVASA_AgeTab)[1:4] <- c("Main effects","Df",sprintf("$\\chi^{2}$"),"p")
-# -------------------------------------------------------------------------
-
-############### Test parametric assumptions ###############
-
-# Normality: met
-# Homogeneity: met
-
-w1 <- lm(uRevsM~ Configuration, data = ASL_Q)
-
-#### normality (shapiro-wilk) ###########
-# linearity is met if p>.05
-# Option 1:
-shapiro.test(residuals(w1))
-# p-value = 0.7084 --> normaly distr.
-
-#### Homogeneity of variance (Levene's test) ###########
-# homogeneity is met if p>.05
-
-# Option 1: Is the lmer model fully covered here?
-leveneTest(residuals(w1) ~ Configuration,data = ASL_Q)
-# p=0.8017 --> homogeneity is met!
-
-# Quiet- CCRM ------------------------------------------------------------------------
-# Normality: met
-# Homogeneity: NOT met
-# ------------------------------------------------------------------------------------
-
-## Find Best fit 
-# start with a saturated model (3-way interaction with age)
-
-model1 <- lmer(uRevsM ~ Configuration+(1|Listener), data=CCRM_Q, REML=FALSE)
-summary(model1)
-
-(model2<-update(model1,  ~ . - Configuration))
-anova(model1,model2)
-summary(model2)
-# model2: uRevsM ~ (1 | Listener)
-# model1: uRevsM ~ Configuration + (1 | Listener)
-#        npar     AIC     BIC  logLik deviance  Chisq Df Pr(>Chisq)    
-# model2    3  -8.738  -4.741  7.3688  -14.738                         
-# model1    4 -44.849 -39.520 26.4243  -52.849 38.111  1  6.683e-10 ***
-
-# best mode --> model 1: uRevsM ~ Material * Configuration + (1 | Listener)
-
-tab_model(model1,show.se=TRUE)
-# visreg::visreg(model1)
-BestModel <- model1
-
-# ---------------------------------------------------------------------------------
-# test main effects:
-rstatix::Anova(BestModel,type="II",test.statistic="Chisq")
-# Response: uRevsM
-#                Chisq Df Pr(>Chisq)    
-# Configuration 86.515  1  < 2.2e-16 ***
-
-# Configuration
-(BestModel.1 <- update(BestModel,  . ~ . -Configuration))
-Conf.LMEM <- anova(BestModel,BestModel.1)
-summary(BestModel.1)
-
-# ------------------------------------------------------------------------------
-# Post hoc -> individual lm's by condition. (models R^2 and p's are shown in the figure)
-# The model suggest that there is a significant age effect and that is the same in 
-# all three conditions (since there is no Condition x Age interaction).
-
-# Group2 x Condition:
-(ref1 <- emmeans::lsmeans(BestModel,~ Configuration))
-comps <- emmeans::contrast(ref1,alpha=0.05,method="pairwise",adjust="bonferroni") #,adjust=NULL) adjust="bonferroni"
-summary(comps)
-
-# -------------------------------------------------------------------------
-# get table
-# -------------------------------------------------------------------------
-# ENVASA_AgeTab <- data.frame(rbind(
-#   c("Background",CondCode.LMEM$Df[2],CondCode.LMEM$Chisq[2],sprintf("\\textbf{<0.001}")),
-#   c("Age",Age.LMEM$Df[2],Age.LMEM$Chisq[2], sprintf("\\textbf{<0.001}")),
-#   c("Group",APDsib.LMEM$Df[2],APDsib.LMEM$Chisq[2],sprintf("%.03f",APDsib.LMEM$`Pr(>Chisq)`[2]))))
-# 
-# ENVASA_AgeTab[,c(2:3)]= apply(ENVASA_AgeTab[,c(2:3)], 2, function(x) as.numeric(as.character(x)))
-# 
-# colnames(ENVASA_AgeTab)[1:4] <- c("Main effects","Df",sprintf("$\\chi^{2}$"),"p")
-# -------------------------------------------------------------------------
-
-############### Test parametric assumptions ###############
-
-# Normality: met
-# Homogeneity: NOT met
-
-w1 <- lm(uRevsM~ Configuration, data = CCRM_Q)
-
-#### normality (shapiro-wilk) ###########
-# linearity is met if p>.05
-# Option 1:
-shapiro.test(residuals(w1))
-# p-value = 0.1208 --> normaly distr.
-
-#### Homogeneity of variance (Levene's test) ###########
-# homogeneity is met if p>.05
-
-# Option 1: Is the lmer model fully covered here?
-leveneTest(residuals(w1) ~ Configuration,data = CCRM_Q)
-# p=0.02051 * --> homogeneity is NOT met!
-```
-
-```{r,label='DC-LMEM-Q2B', message=FALSE, warning=FALSE, include=FALSE, echo=FALSE,results='hide'}
+```{r,label='DC-LMEM-Q2', message=FALSE, warning=FALSE, include=FALSE, echo=FALSE,results='hide'}
 
 # ------------------------------------------------------------------------------------
 # Do the listeners behave differently across the two materials (ASL/CCRM)?
@@ -1964,9 +1826,53 @@ leveneTest(residuals(w1) ~ Material*Configuration,data = Both)
 # p=0.004953 ** --> homogeneity is NOT met!
 ```
 
-#### Binaural benefit (differences between BB & MM and BB & MB)
 
-- Quiet Model
+**Quiet Model:** uRevsM ~ Material $\cdot$ Configuration + (1 | Listener) 
+
+- There was a significant Background x Connfiguration interaction 
+
+- Post-hoc tests: all Material x Configuration pairs were significant. --> add effect size Cohen's d!
+
+**ASL model (ENG_F):** uRevsM ~ Configuration + (1 | Listener) 
+
+- Data is not normally distributed (due to ceiling effect for MM condition..), yet results were the same when tested with a noneparametric test [nparLD()].
+
+- There was a highly significant main effect of Configuration.
+
+- Post hoc-tests using lsmeans: sig. difference btw BB vs. MM and BB vs. MB. No sig difference btw MM vs. MB -> ceiling effect!
+
+**CCRM model (ENG_F,CCRM_F):** uRevsM ~ Background + Configuration + (1 | Listener)
+
+- significant main effect of both Background and Configuration.
+
+- Post hoc test for Configuration revealed a highy sig. difference between BB and the 2 monaural configurations. As well as a strong significant difference between MM and MB.
+
+**Differences between materials for ENG_F only:** uRevsM ~ Material + Configuration + (1 | Listener)
+
+- Data is not normally distributed (due to ceiling effect for MM condition..), yet results were the same when tested with a noneparametric test [nparLD()].
+
+- There was a highly significant main effect of Material and Configuration.
+
+- Post hoc tests for Configuration found a highly significant difference between BB and the two MM conditions. While no significant difference was found between MM and MB (again ceiling...).
+
+
+```{r, label='Quiet_PostHocTab', echo=FALSE}
+# prepare table using kbl()
+# for more options see: https://cran.r-project.org/web/packages/kableExtra/vignettes/awesome_table_in_pdf.pdf
+
+kbl(data.frame(Quiet_PostHoc),booktabs = T, escape = F, linesep = "",caption = "Quiet LMEM: Material x Configuration post-hoc.",
+    align = c("lccccc"),format = "latex",digits = 2) %>%
+  kable_styling(latex_options = c("scale_down")) %>%
+  column_spec(6, italic = T)
+```
+
+The significant Material x Configuration tells us that performance for target sentences presented monaurally (TarM) and binaurally (TarB) is affected differently across speech materials. Listeners show to be affected more by the monaural configuration for the ASL than for the CCRM speech material. 
+
+Why? -> Due to the close nature of the responses in the CCRM material..
+Why? The CCRM is a closed-set material with a fixed syntax and a small set of test items (8 digits and 6 colours). In addition, the test items differe in their phonemes combinations, thus resulting in a relatively low confusion between test items within a set. For example, the digit 'six' has a unique sounding when compared with the remaining digits or for example the pairs of digits 'four' and 'five', or 'two' and 'eight'. In addition,... it is enough to hear only a short snippet of the item to recognise it from the rest.Thus, while the theoretical guess rate is only about 2\%, the effective guess rate is probably higher.
+
+listners are less affected by reducing the target information in half in the monaural configuration 
+
 
 #### Material effect
 
