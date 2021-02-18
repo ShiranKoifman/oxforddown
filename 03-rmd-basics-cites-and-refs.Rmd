@@ -48,8 +48,6 @@ Individuals may have a combination of both.
   
   Conductive loss results in impaired spatial processing (Cameron et al., 2014) and binaural interaction (Hall et al., 1995; Hogan et al., 1996)
   
-\newpage
-  
 ## Methods
 
 ### Participants
@@ -3252,19 +3250,21 @@ ST_tab <- rbind(ASL_tab,CCRM_tab)
 #### SRdTs by age {.unnumbered}
 Since the present study sample comprised young children of different ages from circa 7 to 13 years, a developmental age effect was expected, whereby performance was expected to improve with increasing age. This is illustrated by the scatterplots and linear regression lines plotted in Figure \@ref(fig:ST-Age) A-B split by groups for the listeners' SRdTs obtained across the different test conditions and speech material (ASL / CCRM) as a function of age. Note that smaller SRdTs indicate better performance. The age effect was tested against the TD group alone because this group is more homogeneous and thus expected do display smaller variability than the APD group. Also, developmental changes may well be different in the APD group. Nonetheless, despite the larger spread in the APD group, this group showed a similar trend in performance, albeit shifted towards higher SRdTs (i.e., poorer performance). The TD regression lines were determined based on a model comparison and outlier trimming procedure to improve model prediction (described in Section\ \@ref(z-scores)). Simple regression lines were found to be the most suitable in describing the relationship between the TD children's performance and age in all test conditions but the MDR_F condition for the ASL material, where a segmented line was found to give the best fit. The MDR_F segmented line indicated that DC improved with age by circa 0.1 per year until reaching a plateau at the age of 9.5 years.\
 
-```{r, label='ST-Age', fig.cap="ST: Scatterplot and linear regression lines for the listeners SRdTs measured with the ASL (A) and CCRM speech material (B) as a function of age. Corresponding regression coefficients and statistics are provided for TD group only. Red indicates data from the APD group and cyan indicates data from the TD control group. Data for normal hearing adults taken from Chapter 2 is shown in the boxplots as a reference.", fig.align='center', fig.width=14, fig.asp=0.8, out.width='100%',echo=FALSE, message=FALSE, warning=FALSE,fig.pos='h'}
+```{r, label='ST-Age', fig.cap="ST: Scatterplot and linear regression lines for the listeners SRdTs measured with the ASL (A) and the CCRM speech material (B) as a function of age. Corresponding regression coefficients and statistics are provided for the TD group only. Red indicates data from the APD group and cyan indicates data from the TD control group (square shapes: TD children with an APD sibling; triangle shapes: the remaining TD children). Data for normal hearing adults taken from Chapter 2 is shown in the boxplots as a reference. The dashed lines represents the task DC lower and upper limit of 0.05 and 0.97, respectively.", fig.align='center', fig.width=14, fig.asp=0.8, out.width='100%',echo=FALSE, message=FALSE, warning=FALSE,fig.pos='h'}
 
 dat_text.ASL <- data.frame(
   label = Lines.ASL,
   label2 = matrix(LStats.ASL),
   CondCode   = levels(ASLN$CondCode),
-  Group = "TD")
+  Group = "TD",
+  Group2 = "TD_0")
 
 dat_text.CCRM <- data.frame(
   label = Lines.CCRM,
   label2 = matrix(LStats.CCRM),
   CondCode   = levels(CCRM$CondCode),
-  Group = "TD")
+  Group = "TD",
+  Group2 = "TD_0")
 
 ###### ASL ##############
 
@@ -3281,10 +3281,10 @@ TwoLines <- function(Age){
               as.numeric(coefficients(FinalM.ASL[[4]])[3]))
 }
 
-t1 <- ggplot(ASLN, aes(x=Age, y=uRevs, color=Group)) +
-  geom_hline(yintercept=0.97, linetype="dashed",color = "black", size=0.5)+
-  geom_hline(yintercept=0.05, linetype="dashed",color = "black", size=0.5)+
-  geom_point(size=2,alpha=1) +
+t1 <- ggplot(ASLN, aes(x=Age, y=uRevs, colour=Group)) +
+  geom_hline(yintercept=0.97, linetype="dashed",colour = "black", size=0.5)+
+  geom_hline(yintercept=0.05, linetype="dashed",colour = "black", size=0.5)+
+  geom_point(size=2,alpha=1,aes(colour=Group, shape=Group2),show.legend = FALSE) +
   # geom_text(label=ASLN$listener, size=3)+
   geom_line(data=filter(ASLN, Group=="TD",CondCode!="MDR_F-ASLN-Alt"),aes(x = Age, y = predicted), size=1) +
   # plot a separate segmented line for MDR_F
@@ -3292,13 +3292,14 @@ t1 <- ggplot(ASLN, aes(x=Age, y=uRevs, color=Group)) +
                 fun = TwoLines, xlim= c(7.0,12.1), size=1)+ 
   geom_smooth(data=filter(ASLN,Group=="APD"),method="lm" , aes(group=Group), se=FALSE) +
   geom_text(data = dat_text.ASL, mapping = aes(x = -Inf, y = -Inf, label = label),
-            hjust = -0.05, vjust = -3,size = 3.5)+
+            hjust = -0.05, vjust = -3,size = 3.5,show.legend = FALSE)+
   geom_text(data = dat_text.ASL, mapping = aes(x = -Inf, y = -Inf, label = label2),
-            hjust = -0.06, vjust = -1, size = 3.5)+
-  geom_boxplot(ASLN_adults,mapping = aes(x = 14 , y = uRevs),color="black") +
+            hjust = -0.06, vjust = -1, size = 3.5,show.legend = FALSE)+
+  geom_boxplot(ASLN_adults,mapping = aes(x = 14 , y = uRevs),colour="black",show.legend = FALSE) +
   labs(y = "SRdTs (proportion of duty cycle)",x = "Age (years)") + 
   scale_y_continuous(limits = c(-0.05,1.05),breaks=seq(0,1,0.1)) +
   scale_x_continuous(breaks=seq(7,14,1),labels=c("7","8","9","10","11","12","13","18-35"))+
+  # guides(shape=FALSE) +
   theme_bw() +
   theme(axis.text = element_text(size = 10, face="bold",colour = "black"),
         axis.title.x = element_text(size=11, face="bold"),
@@ -3317,27 +3318,27 @@ t1 <- t1 + facet_grid(. ~ reorder(CondCode,CondCode), scales = "free", switch = 
                                                        "MDR_F-ASLN-Alt"="MDR_F-Alt",
                                                        "ENG_F-ASLN-Alt"="ENG_F-Alt"))) +
   theme(panel.spacing.x = unit(0,"line"),
-        strip.background = element_rect(fill="white", color="white"),
+        strip.background = element_rect(fill="white", colour="white"),
         strip.text = element_text(face = "bold", size = 11))
 
 ###### CCRM ##############
-t2 <- ggplot(CCRM, aes(x=Age, y=uRevs, color=Group)) +
-  geom_hline(yintercept=0.97, linetype="dashed",color = "black", size=0.5)+
-  geom_hline(yintercept=0.05, linetype="dashed",color = "black", size=0.5)+
-  geom_point(size=2) +
+t2 <- ggplot(CCRM, aes(x=Age, y=uRevs, colour=Group)) +
+  geom_hline(yintercept=0.97, linetype="dashed",colour = "black", size=0.5)+
+  geom_hline(yintercept=0.05, linetype="dashed",colour = "black", size=0.5)+
+  geom_point(size=2,alpha=1,aes(colour=Group, shape=Group2),show.legend = FALSE) +
   # geom_text(label=CCRM$listener, size=3)+
   geom_line(data=filter(CCRM, Group=="TD"),aes(x = Age, y = predicted), size=1) +
   geom_smooth(data=filter(CCRM,Group=="APD"),method="lm", aes(group=Group), se=FALSE) +
   geom_text(data = dat_text.CCRM, mapping = aes(x = -Inf, y = -Inf, label = label),
-            hjust = -0.05, vjust = -3, size = 3.5)+
+            hjust = -0.05, vjust = -3, size = 3.5,show.legend = FALSE)+
   geom_text(data = dat_text.CCRM, mapping = aes(x = -Inf, y = -Inf, label = label2),
-            hjust = -0.06, vjust = -1, size = 3.5)+
-  geom_boxplot(CCRM_adults,mapping = aes(x = 14 , y = uRevs),color="black") +
+            hjust = -0.06, vjust = -1, size = 3.5,show.legend = FALSE)+
+  geom_boxplot(CCRM_adults,mapping = aes(x = 14 , y = uRevs),colour="black",show.legend = FALSE) +
   labs(y = "SRdTs (proportion of duty cycle)",x = "Age (years)") + 
   scale_y_continuous(limits = c(-0.05,1.05),breaks=seq(0,1,0.1)) +
   scale_x_continuous(breaks=seq(7,14,1),labels=c("7","8","9","10","11","12","13","18-35"))+
   # remove legend
-  guides(color=FALSE) +
+  guides(colour=FALSE) +
   theme_bw() +
   theme(axis.text = element_text(size = 10, face="bold",colour = "black"),
         axis.title.x = element_text(size=11, face="bold"),
@@ -3353,7 +3354,7 @@ t2 <- t2 + facet_grid(. ~ reorder(CondCode,CondCode), scales = "free", switch = 
                                                        "ENG_F-CCRM-Alt"="ENG_F-Alt",
                                                        "CCRM_F-CCRM-Alt"="CCRM_F-Alt"))) +
   theme(panel.spacing.x = unit(0,"line"),
-        strip.background = element_rect(fill="white", color="white"),
+        strip.background = element_rect(fill="white", colour="white"),
         strip.text = element_text(face = "bold", size = 11))
 
 (t1 + t2) + plot_layout(ncol = 1, nrow = 2, heights = c(1, 1), widths = c(1.5,.5)) + plot_annotation(tag_levels = 'A') + plot_layout(guides='collect') &
@@ -3488,7 +3489,7 @@ Again, simple correlation for the listeners z-scores between conditions is given
 # count_freq = count(ASL_Outlier, var_select)
 
 ###### ASL ##############
-t1 <- ggplot(ASLN, aes(x=CondCode,y=z_trim,fill=Group))+ 
+t1 <- ggplot(ASLN, aes(x=CondCode,y=z_trim,fill=Group2))+ 
   geom_rect(aes(xmin=-Inf, xmax=Inf, ymin=-CutOff, ymax=CutOff),fill="lightgray", alpha=0.05)+
   geom_boxplot(position=position_dodge(width=0.8),outlier.shape=NA)+ 
   geom_quasirandom(dodge.width=0.9,shape=1,colour="blue")+
@@ -3496,6 +3497,7 @@ t1 <- ggplot(ASLN, aes(x=CondCode,y=z_trim,fill=Group))+
   labs(y = latex2exp::TeX("\\textbf{\\overset{standardised residual (z-score)}{$\\leftarrow$ better performance}}"),x = NULL)+ 
   # annotate("text", label = latex2exp::TeX("$\\leftarrow$ better performance"),x=0.48, y=1, angle=90, size=5)+
   annotate(geom ="text",  x=1, y = 7.5, label = "ST-ASL", size=9, face="bold",fontface=2) +
+  scale_fill_discrete(name = "Group", labels = c("APD", "TD",bquote(bold(TD[sib]))))+
   # geom_text(aes(label = ifelse(ASLN$z_trim>CutOff,ASLN$listener,"")),
   # position = position_dodge2(width = .8,padding = 0.1))+
   scale_y_continuous(limits = c(-5,8),breaks=seq(-5,8,2))+
@@ -3514,7 +3516,7 @@ t1 <- ggplot(ASLN, aes(x=CondCode,y=z_trim,fill=Group))+
 # var_select = c("listener")
 # count_freq = count(ASL_Outlier, var_select)
 
-t2 <- ggplot(CCRM, aes(x=CondCode,y=z_trim,fill=Group))+ 
+t2 <- ggplot(CCRM, aes(x=CondCode,y=z_trim,fill=Group2))+ 
   geom_rect(aes(xmin=-Inf, xmax=Inf, ymin=-CutOff, ymax=CutOff),fill="lightgray", alpha=0.05)+
   geom_boxplot(position=position_dodge(width=0.8),outlier.shape=NA)+ 
   geom_quasirandom(dodge.width=0.9,shape=1,colour="blue")+
@@ -3524,6 +3526,7 @@ t2 <- ggplot(CCRM, aes(x=CondCode,y=z_trim,fill=Group))+
   annotate(geom ="text",  x=1.3, y = 7.5, label = "ST-CCRM", size=9, face="bold",fontface=2) +
   # geom_text(aes(label = ifelse(z_trim>CutOff,listener,"")),
   # position = position_dodge2(width = .8,padding = 0.1))+
+  scale_fill_discrete(name = "Group", labels = c("APD", "TD",bquote(bold(TD[sib]))))+
   scale_y_continuous(limits = c(-5,8),breaks=seq(-5,8,2))+
   scale_x_discrete(labels=c("Q-CCRM-NoAlt" ="Quiet-NoAlt","Q-CCRM-Alt"="Quiet-Alt",
                             "AMSSN-CCRM-Alt"="AMSSN-Alt","MDR_F-CCRM-Alt"="MDR_F-Alt",
@@ -5001,7 +5004,8 @@ LiSNS$Group <- factor(LiSNS$Group, levels=c("APD","TD"))
 #### SRTs by age {.unnumbered}
 Listener SRTs and their corresponding regression lines split by group are shown in Figure \@ref(fig:LiSNS-Age) A for the spatially- collocated (S0N0) and separated condition (S0N90), as well as for the non-spatialised condition where the ASL sentences were presented with a speech-shaped-noise (SSN). The listeners binaural advantage, calculated as the difference between the collocated and separated spatial conditions (SRM = S0N0 - S0N90) is shown in Figure \@ref(fig:LiSNS-Age) B. As in the switching task, the age effect was tested in the TD group only, where the regression lines for the TD group were estimated based on a model comparison and outlier trimming procedure to improve the model fits (model coefficients and statistic are given at the bottom of the figures).\
 
-```{r, label='LiSNS-Age', fig.cap="LiSNS-UK: Age-effect: scatterplot and linear regression lines for SRTs obtained for SSN and the spatialised conditions S0N0 (collocated) and S0N90 (separated) (A) and the derived measure SRM (B) as a function of the listeners age. Corresponding regression coefficients and statistics are provided for TD group only. Red indicates data from the APD group and cyan indicates data from the TD control group.", fig.align='center', fig.width=12, fig.asp=0.5, out.width='100%',echo=FALSE, message=FALSE, warning=FALSE}
+```{r, label='LiSNS-Age', fig.cap="LiSNS-UK: Age-effect: scatterplot and linear regression lines for SRTs obtained for SSN and the spatialised conditions S0N0 (collocated) and S0N90 (separated) (A) and the derived measure SRM (B) as a function of the listeners age. Corresponding regression coefficients and statistics are provided for TD group only. Red indicates data from the APD group and cyan indicates data from the TD control group (square shapes: TD children with an APD sibling; triangle shapes: the remaining TD children).", fig.align='center', fig.width=12, fig.asp=0.5, out.width='100%',echo=FALSE, message=FALSE, warning=FALSE}
+
 # get some sub dataframes: 
 LiSNS_Col_Sep <- LiSNS %>% filter(CondCode!="SRM" & CondCode!="SSN") %>% droplevels()
 LiSNS_Col_Sep  <- drop_na(LiSNS_Col_Sep, uRevs) %>% droplevels()
@@ -5022,17 +5026,18 @@ dat_text.LiSNS <- data.frame(
   label = c(Lines.LiSNS[1],Lines.LiSNS[2],Lines.LiSNS[3]),
   label2 = c(Lstats.LiSNS[1],Lstats.LiSNS[2],Lstats.LiSNS[3]),
   CondCode   = levels(LiSNS_NoSRM$CondCode),
-  Group = "TD")
+  Group = "TD",
+  Group2 = "TD_0")
 
 
 t1 <- ggplot(LiSNS_NoSRM, aes(x=Age, y=uRevs, color=Group)) +
-  geom_point(size=2) +
+    geom_point(size=2,alpha=1,aes(colour=Group, shape=Group2),show.legend = FALSE) +
   geom_line(data=filter(LiSNS_NoSRM, Group=="TD"),aes(x = Age, y = predicted), size=1) +
   geom_smooth(data=filter(LiSNS_NoSRM,Group=="APD"),method="lm" , aes(group=Group), se=FALSE) +
   geom_text(data = dat_text.LiSNS, mapping = aes(x = -Inf, y = -Inf, label = label),
-            hjust = -0.05, vjust = -3,size = 4)+
+            hjust = -0.05, vjust = -3,size = 4,show.legend = FALSE)+
   geom_text(data = dat_text.LiSNS, mapping = aes(x = -Inf, y = -Inf, label = label2),
-            hjust = -0.06, vjust = -1, size = 4)+
+            hjust = -0.06, vjust = -1, size = 4,show.legend = FALSE)+
   labs(y = "SRT (dB SNR)",x = "Age (years)") + 
   scale_y_continuous(limits = c(-15,5),breaks=seq(-15,5,2)) +
   theme_bw() +
@@ -5054,16 +5059,17 @@ dat_text.LiSNS2 <- data.frame(
   label = c(Lines.LiSNS[4]),
   label2 = c(Lstats.LiSNS[4]),
   CondCode   = levels(LiSNS_SRM$CondCode),
-  Group = "TD")
+  Group = "TD",
+  Group2 = "TD_0")
 
 t2 <- ggplot(LiSNS_SRM, aes(x=Age, y=uRevs, color=Group)) +
-  geom_point(size=2) +
+  geom_point(size=2,alpha=1,aes(colour=Group, shape=Group2),show.legend = FALSE) +
   geom_line(data=filter(LiSNS_SRM, Group=="TD"),aes(x = Age, y = predicted), size=1) +
   geom_smooth(data=filter(LiSNS_SRM,Group=="APD"),method="lm" , aes(group=Group), se=FALSE) +
   geom_text(data = dat_text.LiSNS2, mapping = aes(x = -Inf, y = -Inf, label = label),
-            hjust = -0.05, vjust = -3,size = 4)+
+            hjust = -0.05, vjust = -3,size = 4,show.legend = FALSE)+
   geom_text(data = dat_text.LiSNS2, mapping = aes(x = -Inf, y = -Inf, label = label2),
-            hjust = -0.06, vjust = -1, size = 4)+
+            hjust = -0.06, vjust = -1, size = 4,show.legend = FALSE)+
   labs(y = "dB",x = "Age (years)") + 
   scale_y_continuous(limits = c(0,13),breaks=seq(0,13,2)) +
   theme_bw() +
@@ -5263,7 +5269,7 @@ S0N0 and SRM yielded the largest separation between the groups. However the spre
 
 ```{r, label='LiSNS-zfig', fig.cap="LiSNS-UK: Boxplots of the listeners age-independent standardised residuals (open circles) for data measured with LiSNS-UK task (A) and the derived measure SRM (B). Residuals were calculated separately for each condition and are based on a model prediction for the TD group only. The dashed line represents the theoretical TD group mean (z = 0). The grey area represents 'normal' performance (TD mean $\\pm$\ 1.96), where about 95\\% of the normal population is expected to lay within. Whereas the white area represents abnormal scores.", fig.align='center', fig.width=12, fig.asp=0.5, out.width='100%',echo=FALSE, message=FALSE, warning=FALSE}
 
-t1 <- ggplot(LiSNS_NoSRM, aes(x=CondCode,y=z_trim,fill=Group))+ 
+t1 <- ggplot(LiSNS_NoSRM, aes(x=CondCode,y=z_trim,fill=Group2))+ 
   geom_rect(aes(xmin=-Inf, xmax=Inf, ymin=-CutOff, ymax=CutOff),fill="lightgray", alpha=0.05)+
   geom_boxplot(position=position_dodge(width=1),outlier.shape=NA)+ 
   # scale_fill_manual(values = c("#00BFC4", "#F8766D")) +
@@ -5274,6 +5280,7 @@ t1 <- ggplot(LiSNS_NoSRM, aes(x=CondCode,y=z_trim,fill=Group))+
   geom_hline(yintercept=0, linetype="dashed",color = "black", size=0.5) +
   geom_vline(xintercept=c(1.5,2.5), linetype=1,color = "black", size=0.5) +
   # annotate("text", label = latex2exp::TeX("$\\leftarrow$ better performance"),x=0.4, y=2, angle=90, size=5)+
+  scale_fill_discrete(name = "Group", labels = c("APD", "TD",bquote(bold(TD[sib]))))+
   scale_y_continuous(limits = c(-4,4),breaks=seq(-4,4,1)) +
   scale_x_discrete(position = "top")+
   theme_bw()+
@@ -5284,7 +5291,7 @@ t1 <- ggplot(LiSNS_NoSRM, aes(x=CondCode,y=z_trim,fill=Group))+
         axis.ticks.x = element_line(colour = "transparent"),
         legend.position = "none")
 
-t2 <- ggplot(LiSNS_SRM, aes(x=CondCode,y=z_trim,fill=Group))+ 
+t2 <- ggplot(LiSNS_SRM, aes(x=CondCode,y=z_trim,fill=Group2))+ 
   geom_rect(aes(xmin=-Inf, xmax=Inf, ymin=-CutOff, ymax=CutOff),fill="lightgray", alpha=0.05)+
   geom_boxplot(position=position_dodge(width=1),outlier.shape=NA)+ 
   # scale_fill_manual(values = c("#00BFC4", "#F8766D")) +
@@ -5295,6 +5302,7 @@ t2 <- ggplot(LiSNS_SRM, aes(x=CondCode,y=z_trim,fill=Group))+
   geom_quasirandom(dodge.width=1,shape=1,colour="blue") +
   geom_hline(yintercept=0, linetype="dashed",color = "black", size=0.5) +
   # annotate("text", label = latex2exp::TeX("better performance $\\rightarrow$"),x=0.45, y=0.5, angle=90, size=5)+
+  scale_fill_discrete(name = "Group", labels = c("APD", "TD",bquote(bold(TD[sib]))))+
   scale_y_continuous(limits = c(-4,4),breaks=seq(-4,4,1)) +
   scale_x_discrete(position = "top")+
   theme_bw()+
@@ -6366,7 +6374,7 @@ if (!is.null(Rmv)){df_3 %>% filter(listener %in% Rmv) %>% dplyr::select(., liste
 ################ combine all conditions together #####################
 FinalM.ENVASA <- list(FinalM_1,FinalM_2,FinalM_3)
 ENVASA_Total <- rbind(df_1,df_2,df_3) %>% 
-  dplyr::select(listener,Age,Group,CondCode,PC=uRevs,predicted,z_trim) 
+  dplyr::select(listener,Age,Group,Group2,APDsibling,CondCode,PC=uRevs,predicted,z_trim) 
 Lines.ENVASA <- rbind(L1,L2,L3)
 LStats.ENVASA <- rbind(Lstats_1,Lstats_2,Lstats_3)
 TD_trimmed.ENVASA <- rbind(TD_trimmed_1,TD_trimmed_2,TD_trimmed_3) %>% 
@@ -6640,14 +6648,15 @@ The relationship between performance and age was inspected in the same way as ca
 
 The effect of age was statistically tested using an LMEM model with PC as dependent variable, and the three background measures, the listeners' age, and group (TD chidren with/without an APD sibling, 1/0) as fixed factors as well as random intercepts for subjects (reference levels: Background = single-background, Group = 0). A model without an interaction term was found to give the best fit (see Table \@ref(tab:ENVASA-AgeLMEMTab)). Model comparison revealed a highly significant main effect of Age and Background (p \< 0.001). This is in agreement with @Krishnan2013 where they found a strong developmental effect across normal-hearing typically-developing children in a similar age range to those measured in the present study. The main effect of Group was marginal (p = 0.05) with an estimated mean difference of 5.15 (SE = 2.50, CI = 0.24 - 10.05) and a 'small' effect-size (Cohen's d).\
 
-```{r,label='ENVASA-Age', fig.cap="ENVASA: Scatterplot and linear regression lines for the listeners' PC (\\%-correct) as a function of age for single background, dual backgrounds and the combined measure. Red indicates data from the APD group and cyan indicates data from the TD control group.", fig.align='center', fig.width=12, fig.asp=0.5, out.width='100%',echo=FALSE, message=FALSE, warning=FALSE}
+```{r,label='ENVASA-Age', fig.cap="ENVASA: Scatterplot and linear regression lines for the listeners' PC (\\%-correct) as a function of age for single background, dual backgrounds and the combined measure. Red indicates data from the APD group and cyan indicates data from the TD control group (square shapes: TD children with an APD sibling; triangle shapes: the remaining TD children).", fig.align='center', fig.width=12, fig.asp=0.5, out.width='100%',echo=FALSE, message=FALSE, warning=FALSE}
 # Total PC scores by age
 
 dat_text.ENVASA <- data.frame(
   label = Lines.ENVASA,
   label2 = matrix(LStats.ENVASA),
   CondCode   = levels(ENVASA_Total$CondCode),
-  Group = "TD")
+  Group = "TD",
+  Group2 = "TD_0")
 
 # get segmented regression line for 'Total_d'
 TwoLinesFCT <- function(x, slope1, slope2, int1, brk) {
@@ -6664,16 +6673,16 @@ TwoLines <- function(Age){
 
 
 t1 <- ggplot(ENVASA_Total, aes(x=Age, y=PC, color=Group)) +
-  geom_point(size=2,alpha=1) +
+    geom_point(size=2,alpha=1,aes(colour=Group, shape=Group2),show.legend = FALSE) +
   # geom_text(label=ENVASA_Total$listener, size=3)+
   geom_line(data=filter(ENVASA_Total, Group=="TD" & CondCode!="Total_d"),aes(x = Age, y = predicted), size=1) +
   geom_smooth(data=filter(ENVASA_Total,Group=="APD"),method="lm" , aes(group=Group), se=FALSE) +
   stat_function(data=filter(ENVASA_Total, Group=="TD" & CondCode=="Total_d"),
   fun = TwoLines, xlim= c(7.3,12.1), size=1)+
   geom_text(data = dat_text.ENVASA, mapping = aes(x = -Inf, y = -Inf, label = label),
-            hjust = -0.05, vjust = -3,size = 4.5)+
+            hjust = -0.05, vjust = -3,size = 4.5,show.legend = FALSE)+
   geom_text(data = dat_text.ENVASA, mapping = aes(x = -Inf, y = -Inf, label = label2),
-            hjust = -0.06, vjust = -1, size = 4.5)+
+            hjust = -0.06, vjust = -1, size = 4.5,show.legend = FALSE)+
   labs(y = "PC (%-correct)",x = "Age (years)") + 
   scale_y_continuous(limits = c(30,100),breaks=seq(30,100,10))+
   scale_x_continuous(breaks=seq(7,13,1),labels=c("7","8","9","10","11","12","13"),limits=c(7, 13))+
@@ -6719,14 +6728,15 @@ A two-way interaction between Group (APD/TD) and Condition (2 x 3 factorial de
 # var_select = c("listener")
 # count_freq = count(ENVASA_Total_Outlier, var_select)
 
-t1 <- ggplot(ENVASA_Total, aes(x=CondCode,y=z_trim,fill=Group))+ 
+t1 <- ggplot(ENVASA_Total, aes(x=CondCode,y=z_trim,fill=Group2))+ 
   geom_rect(aes(xmin=-Inf, xmax=Inf, ymin=-CutOff, ymax=CutOff),fill="lightgray", alpha=0.05)+
   geom_boxplot(position=position_dodge(width=0.8),outlier.shape=NA)+ 
   geom_quasirandom(dodge.width=0.9,shape=1,colour="blue")+
   geom_hline(yintercept=0, linetype="dashed",color = "black", size=0.5) +
   labs(y = latex2exp::TeX("\\textbf{\\overset{standardised residual (z-score)}{better performance $\\rightarrow$}}"),x = NULL)+ 
   # labs(y = sprintf("standardised residual (z-score) \n \u2190 better performance") ,x = NULL)+ 
-scale_y_continuous(limits = c(-7,2),breaks=seq(-7,2,1))+
+  scale_fill_discrete(name = "Group", labels = c("APD", "TD",bquote(bold(TD[sib]))))+
+  scale_y_continuous(limits = c(-7,2),breaks=seq(-7,2,1))+
   scale_x_discrete(labels=c("Total_s" ="Single \n background","Total_d"="Dual \n backgrounds",
                             "Total"="Combined"))+
   # geom_text(aes(label = ifelse(ASLN$z_trim>1.65,ASLN$listener,"")),
@@ -7060,15 +7070,16 @@ The children's raw scores were converted into age-corrected scaled scores using 
 
 ```{r, label='CELF', fig.cap="CELF-RS: Boxplots for CELF-5 UK Recall Sentences subtest scaled scores by groups. The dashed line represents the norms mean and the grey area indicates the upper and lower limit average performance in the normal population ($\\pm$\ 1\ SD).", fig.align='center', fig.width=3, fig.asp=1, out.width='50%', ,echo=FALSE,warning=FALSE, message=FALSE}
 # get plot
-ggplot(d_RS, aes(x=Group,y=ScaledScore,fill=Group))+ 
+ggplot(d_RS, aes(x=Group2,y=ScaledScore,fill=Group2))+ 
   geom_rect(aes(xmin=-Inf, xmax=Inf, ymin=7, ymax=13),fill="lightgray", alpha=0.05)+
-  geom_boxplot(position=position_dodge(width=0.8),outlier.shape=NA)+ 
+  geom_boxplot(position=position_dodge(width=0.8),outlier.shape=NA,show.legend = FALSE)+ 
   geom_hline(yintercept=10, linetype="dashed", color = "black")+
   #geom_text(label=d_RS$listener)+
-  labs(y = "CELF-RS scaled score",x = " ")+ 
-  geom_quasirandom(dodge.width=0.8,colour="blue", shape=1)+
+  labs(y = "CELF-RS scaled score",x = " ") + 
+  # scale_fill_discrete(name = "Group", labels = c("APD", "TD",bquote(bold(TD[sib]))))+
+  geom_quasirandom(dodge.width=0.8,colour="blue", shape=1,show.legend = FALSE)+
   scale_y_continuous(limits = c(1,19),breaks=seq(1,19,2))+
-  scale_x_discrete(labels=c("APD","TD"))+
+  scale_x_discrete(labels=c(expression(bold("APD")),expression(bold("TD")),bquote(bold(TD[sib]))))+
   theme(strip.background = element_blank())+
   theme_bw()+
   theme(axis.text = element_text(size = 11, face="bold",colour = "black"),
@@ -7113,6 +7124,9 @@ colnames(d_CCC2)[6] <- "Age"
 # convert age from months to years
 d_CCC2$Age <- round(d_CCC2$Age/12,2)
 
+# Add Group2 and APDsibling columns
+d_CCC2 <- merge(d[c("listener","Group2","APDsibling")],d_CCC2,by=c("listener"))
+
 # -- Change data layout from Wide2Long -----------------------
 # library(tidyr)
 keycol <- "Measure"
@@ -7135,7 +7149,7 @@ d_CCC2_L$Measure <- factor(d_CCC2_L$Measure)
 d_CCC2_L <- merge(d_Info,d_CCC2_L,by=c("listener"))
 # d_CCC2_L <- d_CCC2_L[,-match(c("Group.y"),names(d_CCC2_L))]
 # colnames(d_CCC2_L)[2] = "Group"
-d_CCC2_L <- merge(d[c("listener","Group2","APDsibling")],d_CCC2_L,by=c("listener"))
+# d_CCC2_L <- merge(d[c("listener","Group2","APDsibling")],d_CCC2_L,by=c("listener"))
 
 ## ------------------------------------------------------------------------------------------------------------------
 # Some filtering: 
@@ -7172,7 +7186,7 @@ Boxplots of the groups scaled scores in the ten sub-scales and a scatterplot dep
 
 <!-- Difference in GCC between the two groups was tested using an independent-samples t-test with bootstrapping [*MKinfer::boot.t.test()*, n=9999; @MKinferPackageR]. There was a highly significant difference in GCC between the APD (Mdn = 42.0, SD = 16.4) and TD group [Mdn = 88.5, SD = 17.4; t(39.80) = -9.42, p \< 0.001].\ -->
 
-```{r, label='CCC2-plot', fig.cap="CCC-2 parental reports for the APD (red) and TD group (cyan). (A) Boxplots for scaled scores in the ten sub-scales. (B) Scatterplot for General Communication Composite (GCC) as a function of Social-Interaction Deviance Composite, (SIDC). APD children with diagnosed high-functioning Autism (HF-ASD) are denoted with open circles. APD children with undergoing ASD assessment on the day of testing are marked with open rectangles. The lines indicates the GCC cut-off criteria for typically developing children (TD) SIDC scores indicative of predominantly structural developmental language disorder (DLD) and more social communication deficits (cf. Norbury, 2013).", fig.align='center', fig.width=16, fig.asp=.5, out.width='100%',echo=FALSE, message=FALSE, warning=FALSE, results='hide'}
+```{r, label='CCC2-plot', fig.cap="CCC-2 parental reports for the APD (red) and TD group (cyan). (A) Boxplots for scaled scores in the ten sub-scales. (B) Scatterplot for General Communication Composite (GCC) as a function of Social-Interaction Deviance Composite, (SIDC). Figure B: Red indicates data from the APD group and cyan indicates data from the TD control group (square shapes: TD children with an APD sibling; triangle shapes: the remaining TD children). APD children with diagnosed high-functioning Autism (HF-ASD) are denoted with open circles. APD children with undergoing ASD assessment on the day of testing are marked with open rectangles. The lines indicates the GCC cut-off criteria for typically developing children (TD) SIDC scores indicative of predominantly structural developmental language disorder (DLD) and more social communication deficits (cf. Norbury, 2013).", fig.align='center', fig.width=16, fig.asp=.5, out.width='100%',echo=FALSE, message=FALSE, warning=FALSE, results='hide'}
 
 # Data without subjects with significantly low scores
 # d_CCC2_L_Clean <- d_CCC2_L[ ! d_CCC2_L$listener %in% Sig_listeners, ] %>% droplevels()
@@ -7182,11 +7196,12 @@ CCC_labs <- c("A.speech"="A.speech","B.syntax"="B.syntax","C.semantic"="C.semant
   "F.stereotyped"="F.stereotyped","G.use.of.context"="G.context",
   "H.nonverbal"="H.nonverbal","I.social"="I.social","J.interests"="J.interests")
 
-t1 <- ggplot(d_CCC2_L, aes(x=Measure,y=ScaledScore,fill=Group))+
+t1 <- ggplot(d_CCC2_L, aes(x=Measure,y=ScaledScore,fill=Group2))+
   geom_boxplot(position=position_dodge(width=0.8),outlier.shape=NA)+
   #geom_text(label=d_CCC2_L$listener)+
   labs(y = "CCC-2 scaled score",x = "")+
-  guides(fill=guide_legend(title="Group"))+
+  # guides(fill=guide_legend(title="Group"))+
+  scale_fill_discrete(name = "Group", labels = c("APD", "TD",bquote(bold(TD[sib]))))+
   scale_x_discrete(guide = guide_axis(angle = 0),labels=CCC_labs) +
   geom_quasirandom(dodge.width=0.8,colour="blue", shape=1)+
   scale_y_continuous(limits = c(0,16),breaks=seq(0,16,2))+
@@ -7209,7 +7224,8 @@ t2 <- ggplot(SumScores, aes(x=GCC,y=SPC,color=Group))+
   # geom_rect(aes(xmin=-Inf, xmax=55, ymin=-Inf, ymax=0),colour="lightblue",fill="lightblue", alpha=0.05)+
   geom_vline(xintercept=55, color="black",size=1)+
   geom_segment(aes(x=0,xend=55,y=0,yend=0), color="black",size=1)+
-  geom_point(size=2,show.legend = FALSE) +
+  geom_point(size=2,alpha=1,aes(color=Group, shape=Group2),show.legend = FALSE) +
+  # geom_point(size=2,show.legend = FALSE) +
   geom_point(aes(x=GCC,y=SPC),data=filter(SumScores,listener %in%
                                             c("APD16","APD20","APD21")),shape=1,size=4,show.legend = FALSE) +
   geom_point(aes(x=GCC,y=SPC),data=filter(SumScores,listener %in%
@@ -7486,12 +7502,13 @@ kbl(ECLIPS_tab, booktabs = T,escape = F, linesep = "",caption = "ECLiPS descript
 ```
 
 ```{r, label='ECLIPS-plot', fig.cap="ECLiPS parental report scaled scores split by groups and sub-scales.", fig.align='center', fig.width=10, fig.asp=.5, out.width='100%',echo=FALSE, message=FALSE, warning=FALSE, results='hide'}
-ggplot(d_E_L, aes(x=Measure,y=ScaledScore,fill=Group))+
+ggplot(d_E_L, aes(x=Measure,y=ScaledScore,fill=Group2))+
   geom_boxplot(position=position_dodge(width=0.8),outlier.shape=NA)+
   geom_hline(yintercept=6, linetype="dashed", color = "red")+
   #geom_text(label=d_E_L$listener)+
   labs(y = "ECLiPS scaled score",x = "")+
-  guides(fill=guide_legend(title="Group"))+
+  # guides(fill=guide_legend(title="Group"))+
+  scale_fill_discrete(name = "Group", labels = c("APD", "TD",bquote(bold(TD[sib]))))+
   geom_quasirandom(dodge.width=0.8,colour="blue", shape=1)+
   scale_y_continuous(limits = c(min(d_E_L$ScaledScore),max(d_E_L$ScaledScore)),breaks=seq(min(d_E_L$ScaledScore),max(d_E_L$ScaledScore),2))+
   theme(strip.background = element_blank())+
@@ -7630,7 +7647,7 @@ library(tidyr)
 library(purrr)
 
 Abnormal_RS <-  d_RS %>% 
-  mutate("RS" = ifelse(d_RS$ScaledScore<7,1,0)) %>% select(.,listener, Group, RS)
+  mutate("RS" = ifelse(d_RS$ScaledScore<7,1,0)) %>% select(.,listener, Group,Group2,APDsibling, RS)
 
 # Abnormal_CCC2 <-  d_CCC2 %>% mutate("GCC" = ifelse(d_CCC2$GCC<55,1,0),
 #                                     "SIDC" = ifelse(d_CCC2$SPC<=-15,1,0)) %>%
@@ -7641,22 +7658,22 @@ Abnormal_RS <-  d_RS %>%
 Abnormal_CCC2 <-  d_CCC2 %>% mutate("GCC" = ifelse(d_CCC2$GCC<55,1,0),
                                     "DLD" = ifelse(d_CCC2$GCC<55 & d_CCC2$SPC>0, 1, 0),
                                     "PLI" = ifelse(d_CCC2$GCC<55 & d_CCC2$SPC<0, 1, 0)) %>%
-  dplyr::select(.,listener,Group,GCC,DLD,PLI)
+  dplyr::select(.,listener,Group,Group2,APDsibling,GCC,DLD,PLI)
 
 Abnormal_ECLIPS <-  ECLiPS_Total %>% 
   mutate("ECLiPS" = ifelse(ECLiPS_Total$ScaledScore<6,1,0)) %>% 
-  select(.,listener, Group,ECLiPS)
+  select(.,listener, Group,Group2,APDsibling,ECLiPS)
 
 
 ENVASA_Total <- data.frame(ENVASA_Total)
 Abnormal_ENVASA <-  ENVASA_Total %>% filter(CondCode=="Total_s") %>% 
-  dplyr::select(.,listener, Group,"ENVASA"=Outlier) %>% droplevels()
+  dplyr::select(.,listener, Group,Group2,APDsibling,"ENVASA"=Outlier) %>% droplevels()
 # Abnormal_ENVASA <- data.frame(Abnormal_ENVASA[-c(1)])
 
 ASLN$Abnormal <- ifelse(ASLN$z_trim>CutOff,1,0)
 ASLN_w <- ASLN %>%
   pivot_wider(
-    id_cols = c("listener","Group"),
+    id_cols = c("listener","Group","Group2","APDsibling"),
     names_from = "CondCode",
     values_from = c("Abnormal")) %>%
   ungroup()
@@ -7666,7 +7683,7 @@ ASLN_w <- data.frame(ASLN_w)
 CCRM$Abnormal <- ifelse(CCRM$z_trim>CutOff,1,0)
 CCRM_w <- CCRM %>%
   pivot_wider(
-    id_cols = c("listener","Group"),
+    id_cols = c("listener","Group","Group2","APDsibling"),
     names_from = "CondCode",
     values_from = c("Abnormal")) %>%
   ungroup()
@@ -7676,7 +7693,7 @@ CCRM_w <- data.frame(CCRM_w)
 LiSNS$Abnormal <- ifelse(LiSNS$Outlier==1,1,0)
 LiSNS_w2 <- LiSNS %>%
   pivot_wider(
-    id_cols = c("listener","Group"),
+    id_cols = c("listener","Group","Group2","APDsibling"),
     names_from = "CondCode",
     values_from = c("Abnormal")) %>%
   ungroup()
@@ -7685,7 +7702,7 @@ LiSNS_w2 <- data.frame(LiSNS_w2)
 
 # gether them' all up
 df_list <- list(Abnormal_RS, Abnormal_CCC2,Abnormal_ECLIPS,Abnormal_ENVASA,ASLN_w,CCRM_w,LiSNS_w2)
-FullData_w  <- df_list %>% reduce(full_join, by = c("listener","Group")) 
+FullData_w  <- df_list %>% reduce(full_join, by = c("listener","Group","Group2","APDsibling")) 
 # re-arrange
 FullData_w <- dplyr::arrange(FullData_w, listener)
 # remove 'APD14'
@@ -7693,21 +7710,36 @@ FullData_w <- FullData_w[FullData_w$listener!="APD14", ] %>% droplevels()
 
 #######
 write.csv(FullData_w, file.path(FileDir,'Files','AbnormalScore_w.csv'))
+# FullData_w <- read.csv(file.path(FileDir,'Files','AbnormalScore_w.csv'),header=T)
 #######
+
+FullData_w$APDsibling <- factor(FullData_w$APDsibling, levels = c("1","0"))
 
 # get data by group 
 FullData_w_APD <- FullData_w %>% filter(Group=="APD") %>% dplyr::select(., RS:SRM) %>% droplevels()
 FullData_w_APD <- as.matrix(FullData_w_APD)
 
-FullData_w_TD <- FullData_w %>% filter(Group=="TD") %>% dplyr::select(., RS:SRM) %>% droplevels()
-FullData_w_TD <- as.matrix(FullData_w_TD)
+# FullData_w_TD <- FullData_w %>% filter(Group=="TD") %>% dplyr::select(., RS:SRM) %>% droplevels()
+FullData_w_TD <- FullData_w %>% 
+  filter(Group=="TD") %>% 
+  ddply(., c("APDsibling")) %>%
+  dplyr::select(., listener,RS:SRM) %>% 
+  droplevels()
+
+# FullData_w_TD2 <- FullData_w %>% filter(., Group=="TD") %>% 
+#   ddply(., c("APDsibling")) %>% mutate(label = gsub("[^0-9.-]", "", listener),
+#                                        label2 = ifelse(APDsibling=="1",paste0("*",label),paste0(" ",label))) 
+# 
+# FullData_w_TD <- FullData_w_TD2 %>%
+#   dplyr::select(., RS:SRM) %>% 
+#   droplevels()
 
 ### Plot
 # install.packages("qdap")
 library(qdap)
 
 t1 <- qheat(data.frame(FullData_w_APD), by.column=NULL, high="black", text.color =NA,
-    grid="grey20") + guides(fill=FALSE)
+    grid="grey20") + guides(fill=FALSE) 
 t1 <- t1 + labs(x = "", y = "",title = "APD") +
     scale_y_discrete(labels=c("RS"="CELF-RS","GCC","DLD","PLI","ECLiPS","ENVASA","Q.ASLN.NoAlt"="Quiet-ASL-NoAlt",
                               "Q.ASLN.Alt"="Quiet-ASL-Alt","AMSSN.ASLN.Alt"="AMSSN-ASL","MDR_F.ASLN.Alt"="MDR_F-ASL",
@@ -7720,15 +7752,17 @@ t1 <- t1 + labs(x = "", y = "",title = "APD") +
         axis.text.y = element_text(face="bold",size = 11),
         plot.title = element_text(hjust = 0.5,face="bold",size=16))
 
-t2 <- qheat(data.frame(FullData_w_TD), by.column=NULL, high="black", text.color =NA,
+t2 <- qheat(data.frame(FullData_w_TD[,2:22]), by.column=NULL, high="black", text.color =NA,
     grid="grey20") + guides(fill=FALSE) +
-    scale_x_discrete(labels = gsub("[^0-9.-]", "", FullData_w$listener[which(FullData_w$Group=="TD")])) 
-t2 <- t2 + labs(x = "", y = "",title = "TD") +
+    scale_x_discrete(labels = gsub("[^0-9.-]", "", FullData_w_TD$listener)) + geom_vline(xintercept = 8.5) 
+
+t2 <- t2 + labs(x = "", y = "",title = bquote(bold(TD[sib] ~ "                                 TD                ")))+
   theme(axis.title.y=element_blank(),
         axis.text.y=element_blank(),
         axis.ticks.y=element_blank(),
         axis.text.x = element_text(face="bold",size = 11, angle = 90),
         plot.title = element_text(hjust = 0.5,face="bold",size=16))
+  
 ```
 
 ```{r,label='MatrixPlot', fig.align='center', fig.asp=0.5, fig.cap="Overall performance: Abnormal (black cells) and normal (empty cells) performance in the test battery of individuals from the APD group (n=20) and the TD group (n=23). Missing data is marked by the grey cells.", fig.width=12, out.width='100%', message=FALSE, warning=FALSE, echo=FALSE}
@@ -8335,7 +8369,7 @@ graph_corr
 ```{block type='correction'}
 *Discussion(?): Which measures were best described by the PCA?*  
   
-All the measures showed strong correlation with PC1.Lang, whereas the CCC-2 GCC score showed the largest correlation ($\rho$ = 0.98, p \<.0001). This was true not only for the data aggregated across groups, but also when correlations were examined separately in each group. Therefore, taking into account the short administration time and simplicity, the CCC-2 alone provides a good screening tool for children's language and communication skills with high levels of sensitivity and specificity. Nonetheless, children in the present study knowingly consented to take part in the study either as part of the clinical APD group or the control group, which may introduced bias in the reporters response, and may resulted in a larger separation between the two groups than one would expect across the true population.
+All the measures showed strong correlation with PC1.Lang, whereas the CCC-2 GCC score showed the largest correlation ($\rho$ = 0.98, p \<.0001). This was true not only for the data aggregated across groups, but also when correlations were examined separately in each group. Therefore, taking into account the short administration time and simplicity, the CCC-2 alone provides a good screening tool for children's language and communication skills with high levels of sensitivity and specificity. Nonetheless, children in the present study knowingly consented to take part in the study either as part of the clinical APD group or the control group, which may have introduced bias in the reporters' responses, and may have resulted in a larger separation between the two groups than one would expect across the true population.
 ```
 
 ```{r, label='PCALang-Corr',echo=FALSE,warning=FALSE,message=FALSE, results='hide'}
@@ -8473,7 +8507,7 @@ library(patchwork)
 ```
 
 #### Correlations
-Next, the extent to which individual differences in speech perception could be explained by other measures was examined for the aggregated data across the two groups with multiple Spearman's rho correlations using *rcorr* function [Hmisc R package; @HmiscPackageR] between SSN scores, LiSNS-UK scores for the spatialised conditions and the derived score for spatial release from masking (S0N0, S0N90 & SRM), the principal components for the switching task PC1.ST, PC2.Material and PC3.NZ, and for the language measures PC1.Lang, PC2.Lang and PC3.Lang, average PTA at standard audiometry frequency bands (0.5-4 kHz), average PTA at high-frequency bands ($PTA_{EHF}$, at 8, 11 and 16 kHz), and ENVASA total score as a measure for sustained and selective-attention skills. Age effect was accounted for either by using standardised norms when available or by a regression model based z-score transformation. The correlation matrix outcomes are given in Table \@ref(tab:CorrAll-Tab).\
+Next, the extent to which individual differences in speech perception could be explained by other measures was examined for the aggregated data across the two groups with multiple Spearman's rho correlations using the  *rcorr* function [Hmisc R package; @HmiscPackageR] between SSN scores, LiSNS-UK scores for the spatialised conditions and the derived score for spatial release from masking (S0N0, S0N90 & SRM), the principal components for the switching task PC1.ST, PC2.Material and PC3.NZ, and for the language measures PC1.Lang, PC2.Lang and PC3.Lang, average PTA at standard audiometry frequencies (0.5-4 kHz), average PTA at high-frequencies ($PTA_{EHF}$, at 8, 11 and 16 kHz), and ENVASA total score as a measure for sustained and selective-attention skills. The age effect was accounted for either by using standardised norms when available or by a regression model based z-score transformation. The correlation matrix outcomes are given in Table \@ref(tab:CorrAll-Tab).\
 
 ```{r, label='CorrAll',echo=FALSE,warning=FALSE,message=FALSE, results='hide'}
 d_Corr <- read.csv(file.path(FileDir,'Files','corrData.csv'),header=T) 
@@ -8532,15 +8566,15 @@ kbl(CorrAll_s, booktabs = T, escape = F, linesep = "", caption = "Correlation ma
 There was a significant correlation between the listeners overall performance in the switching task (PC1.ST) and their language skills (PC1.Lang; $\rho$ = -0.55, p \< 0.001), PTA ($\rho$ = 0.46, p \< 0.01), speech perception in noise (SSN; $\rho$ = 0.46, p \< 0.01), and the spatialised LiSNS-UK test conditions S0N0 ($\rho$ = 0.35, p \< 0.05) and S0N90 ($\rho$ = 0.45, p \< 0.01). The second ST principal component, PC2.Material, significantly correlated with S0N0 ($\rho$ = 0.33, p \< 0.05) and SRM ($\rho$ = 0.33, p \< 0.05), whereas no relationship was found between the third PC3.Nz and any of the study measures.\
 <!-- Finally, as expected, the three ST PCA components were found to be independent from one another with no significant correlations between them. -->
 
-Performance in the LiSNS-UK exhibited the highest correlation coefficients, with highly significant correlation between S0N0 and S0N90, where better performance in one condition was highly associated with better performance in the other ($\rho$ = 0.64, p \< 0.0001), and between S0N90 and SRM ($\rho$ = -0.67, p \< 0.0001), where better SRM was predicted by better performance for S0N90, whereas correlation between S0N0 and SRM was not significant ($\rho$ = 0.08, p = 0.62). Note that lower z-score in the spatialised conditions denotes better performance, whereas the opposite holds for SRM, with higher z-scores marking better performance, which explains the negative correlation between SRM and S0N90. A separate group-wise analysis gave similar results for correlation between S0N90 and SRM, whereas correlations in the APD group between S0N0 and S0N90, and between S0N0 and SRM were smaller and not significant ($\rho$: 0.35 and 0.30, respectively). The non-significant correlation between SRM and S0N0 stands in contrasts to our expectations, for a positive correlation, where listeners with poorer (i.e., higher) S0N0 score were expected to have a larger (i.e., better) SRM. The insignificant and reduced correlation in the APD group is likely due to sampling error and due to the small sample size in the present study (correlation between the LiSNS-UK condition for the listeners SRT and z-scores are given in appendices in Figures\ \@ref(fig:LiSNS-SRTcorr) and \@ref(fig:LiSNS-zcorr)).\
+Performance in the LiSNS-UK exhibited the highest correlation coefficients, with highly significant correlations between S0N0 and S0N90, where better performance in one condition was highly associated with better performance in the other ($\rho$ = 0.64, p \< 0.0001), and between S0N90 and SRM ($\rho$ = -0.67, p \< 0.0001), where better SRM was predicted by better performance for S0N90, whereas correlation between S0N0 and SRM was not significant ($\rho$ = 0.08, p = 0.62). Note that a lower z-score in the spatialised conditions denotes better performance, whereas the opposite holds for SRM, with higher z-scores marking better performance, thus explaining the negative correlation between SRM and S0N90. A separate group-wise analysis gave similar results for the correlation between S0N90 and SRM, whereas correlations in the APD group between S0N0 and S0N90, and between S0N0 and SRM were smaller and not significant ($\rho$: 0.35 and 0.30, respectively). The non-significant correlation between SRM and S0N0 stands in contrast to our expectations, for a positive correlation, where listeners with poorer (i.e., higher) S0N0 scores were expected to have a larger (i.e., better) SRM. The insignificant and reduced correlation in the APD group is likely due to sampling error and due to the small sample size in the present study (correlation between the LiSNS-UK condition for the listeners SRT and z-scores are given in appendices in Figures\ \@ref(fig:LiSNS-SRTcorr) and \@ref(fig:LiSNS-zcorr)).\
 
 <!-- SRM vs S0N0: positive correlation, i.e., better SRM is predicted by poorer (higher) S0N0 score. -->
 <!-- SRM vs. S0N90: negative correlation, i.e., better SRM is predicted by better (lower) S0N90 score. -->
 
-SSN score was found to be related to performance in the two spatialised LiSNS-UK test conditions with correlation coefficients of 0.30 (S0N90) and 0.39 (S0N0), however only correlation for S0N0 was significant (p \< 0.05), while p-value for correlation with S0N90 was just above the significance level (p = 0.055). The listeners S0N90 score significantly correlated with hearing sensitivity thresholds measured at both standard (PTA; $\rho$ = 0.45, p \< 0.01) and extended frequency bands ($PTA_{EHF}$; $\rho$ = 0.34, p \< 0.05). Moreover, none of the LiSNS-UK measures significantly correlated with the language principle components PC1.Lang - PC3.Lang or the attention measure ENVASA. Additional significant correlations were found between PC1.Lang and SSN ($\rho$ = -0.51, p \< 0.0001) and between PC1.Lang and the ENVASA task ($\rho$ = 0.46, p \< 0.001). No p-value Bonferroni correction for multiple comparisons was applied.
+The SSN score was found to be related to performance in the two spatialised LiSNS-UK test conditions with correlation coefficients of 0.30 (S0N90) and 0.39 (S0N0). However only the correlation for S0N0 was significant (p \< 0.05), while the p-value for correlation with S0N90 was just above the significance level (p = 0.055). The listeners' S0N90 scores significantly correlated with hearing sensitivity thresholds measured at both standard (PTA; $\rho$ = 0.45, p \< 0.01) and extended frequencies ($PTA_{EHF}$; $\rho$ = 0.34, p \< 0.05). Moreover, none of the LiSNS-UK measures significantly correlated with the language principal components PC1.Lang - PC3.Lang or the attention measure ENVASA. Additional significant correlations were found between PC1.Lang and SSN ($\rho$ = -0.51, p \< 0.0001) and between PC1.Lang and the ENVASA task ($\rho$ = 0.46, p \< 0.001). No p-value Bonferroni correction for multiple comparisons was applied.
 
 #### Exploratory predictors -- APD group
-Association of potential predictors with performance in the APD group was examined in the following section. Nevertheless, it is important to emphasise that this is an exploratory examination across a small sample size and thus the outcomes may not be generalised in a larger sample. Predictors were selected based on the caregivers response in the background questionnaire, where the APD children were subdivided into the following pair of groups: 1. APD diagnosis (APD vs. LiD), 2. SPD diagnosis (SPD vs. non-SPD), 3. Regular use of FM-device (FM vs. No FM), 4. History of middle ear problem (MEHx vs. No MEHx), 5. Pressure equalisation tube history (PET vs. No PET), and 6. Auditory training (Training vs. No training). The listeners performance subdivided by predictors is shown in Figure\ \@ref(fig:EvalAPD-fig) for data measured with the ST task (PCA1.ST), the language composite (PCA1.Lang), SRM, and thresholds for standard audiometry (PTA) and EHF audiometry (EHF PTA). Individual observations are marked in circles, whereby observations of children diagnosed with APD are filled in dark blue, and LiD observations are filled in light blue. Individual data for the TD group is marked in black. From the boxplots, PET and MEHx emerges as the best predictors, explaining the largest portion of the within group differences. History of PET showed the highest association with poorer EHF PTA thresholds, and to a relatively smaller extent with PC1.ST (higher score indicates poorer performance) and with the SRM score (higher score indicates better performance). Consequently, it is not surprising that a related predictor -- history of middle ear problem (MEHx) was also highly related to poorer EHF PTA thresholds, nevertheless, association between MEHx and the other measures was weak. Interestingly, there was no association between SRM score and a diagnosis of SPD, with only a small difference between APD children with or without an SPD diagnosis.\
+Association of potential predictors with performance in the APD group was examined in the following section. Nevertheless, it is important to emphasise that this is an exploratory examination across a small sample size and thus the outcomes may not be generalised in a larger sample. Predictors were selected based on the caregivers response in the background questionnaire, where the APD children were subdivided into the following pair of groups: 1. APD diagnosis (APD vs. LiD), 2. SPD diagnosis (SPD vs. non-SPD), 3. Regular use of FM-device (FM vs. No FM), 4. History of middle ear problem (MEHx vs. No MEHx), 5. Pressure equalisation tube history (PET vs. No PET), and 6. Auditory training (Training vs. No training). The listeners performance subdivided by predictors is shown in Figure\ \@ref(fig:EvalAPD-fig) for data measured with the ST task (PCA1.ST), the language composite (PCA1.Lang), SRM, and thresholds for standard audiometry (PTA) and EHF audiometry (EHF PTA). Individual observations are marked in circles, whereby observations of children diagnosed with APD are filled in dark blue, and LiD observations are filled in light blue. Individual data for the TD group is marked in black. From the boxplots, PET and MEHx emerges as the best predictors, explaining the largest portion of the within-group differences. A history of PET showed the highest association with poorer EHF PTA thresholds, and to a relatively smaller extent with PC1.ST (higher score indicates poorer performance) and with the SRM score (higher score indicates better performance). Consequently, it is not surprising that a related predictor -- history of middle ear problem (MEHx) was also highly related to poorer EHF PTA thresholds. Nevertheless, the association between MEHx and the other measures was weak. Interestingly, there was no association between SRM score and a diagnosis of SPD, with only a small difference between APD children with or without an SPD diagnosis.\
 
 ```{r,label='EvalAPD-getData',echo=FALSE, message=FALSE, warning=FALSE,results='hide'}
 # Add standard PTA
@@ -8587,7 +8621,7 @@ Eval_L <- Eval %>%
 *MEHx*: is a composite calculated based on the caregivers indication of history of **Ear infection** \& **Glue ear** in the background questionnaire. MEHx is 1 if response was 'Yes' to at least one of these items, whereas MEHx is 0 if response was 'No' for both items.
 ```
 
-```{r, echo=FALSE, fig.align='center', fig.asp=1.2, fig.cap="Association between predictors and performance in the APD group for the switching task composite (PC1.ST), language composite (PC1.Lang), SRM, standard and EHF PTA. Predictors included: 1. APD diagnosis (APD vs. LiD), 2. SPD diagnosis (SPD vs. non-SPD), 3. Regular use of FM-device (FM vs. No FM), 4. History of middle ear problem (MEHx vs. No MEHx), 5. Pressure equalisation tube history (PET vs. No PET), and 6. Auditory training (Training vs. No training). Individual observations are marked in circles. Observations of children diagnosed with APD are filled in dark blue, and LiD observations are filled in light blue. TD group observations are marked in black. Significant p-values for independent t-test comparison are marked with asterisk (p < 0.05).", fig.width=18, message=FALSE, warning=FALSE, label='EvalAPD-fig', out.width='100%'}
+```{r, echo=FALSE, fig.align='center', fig.asp=1.2, fig.cap="Association between predictors and performance in the APD group for the switching task composite (PC1.ST), language composite (PC1.Lang), SRM, standard and EHF PTA. Predictors included: 1. APD diagnosis (APD vs. LiD), 2. SPD diagnosis (SPD vs. non-SPD), 3. Regular use of FM-device (FM vs. No FM), 4. History of middle ear problem (MEHx vs. No MEHx), 5. Pressure equalisation tube history (PET vs. No PET), and 6. Auditory training (Training vs. No training). Individual observations are marked in circles. Observations of children diagnosed with APD are filled in dark blue, and LiD observations are filled in light blue. TD group observations are marked in black. Significant p-values for independent t-tests paired-comparisons are marked with asterisk (p < 0.05).", fig.width=18, message=FALSE, warning=FALSE, label='EvalAPD-fig', out.width='100%'}
 
 # stat_compare_means(): method="wilcox.test" OR method="t.test"
 
@@ -9071,18 +9105,9 @@ t5 <-  ggplot(Eval_TD, aes(x=Group2,y=CCC2.GCC)) +
         legend.box.background = element_rect(colour = "black"),
         plot.tag = element_text(face = 'bold'))
 ```
-
-
-\
-
-
-\newpage
   
   
-
 ## Discussion
-
-\newpage
 
 ### EHF
 

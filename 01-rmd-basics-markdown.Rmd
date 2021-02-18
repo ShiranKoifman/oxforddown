@@ -163,14 +163,14 @@ Findings in the first experiment demonstrated that performance in the task was u
 
 \
 Sixteen young adults who were native British English speakers participated in the first experiment (mean age 25.5 $\pm$ 5.3 years, ranging from 18 to 34 years, 8 females). All the participants were tested to have normal hearing acuity, defined by air conduction pure tone audiometric thresholds $\leq$ 25 dB\ HL for frequencies ranging from 0.25 to 8\ kHz. 
-On one occasion, a threshold of 30 dB\ HL at 2\ kHz was accepted. Nonetheless, all the participants had a PTA$_{4}$ below 25 dB\ HL, averaged across the frequencies 0.25, 1, 2, and 4\ kHz [@WHO1998], in the left (3.6 $\pm$ 3.6 dB\ HL) and the right ear (4.5 $\pm$ 5.8 dB\ HL). The listeners' thresholds for the left and the right ear are plotted in Fig.\ \ref{fig:PTA_Exp1}. The shaded grey area represents the range of audiometric thresholds at each frequency, while the white line represents the mean of the participants at each frequency. The dashed line represents the threshold criteria. None of the participants reported a history of ear or hearing problems or language or other cognitive impairment.  The Study was approved by the UCL Research Ethics Committee (Project ID Number 0544/006) and testing commenced once an informed consent was given. Participants were recruited from the UCL psychology subject pool and were paid for their participation.
+On one occasion, a threshold of 30 dB\ HL at 2\ kHz was accepted. Nonetheless, all the participants had a PTA$_{4}$ below 25 dB\ HL, averaged across the frequencies 0.25, 1, 2, and 4\ kHz [@WHO1998], in the left (3.6 $\pm$ 3.6 dB\ HL) and the right ear (4.5 $\pm$ 5.8 dB\ HL). The listeners' thresholds for the left and the right ear are plotted in Fig.\ \ref{fig:PTA-Exp1}. The shaded grey area represents the range of audiometric thresholds at each frequency, while the white line represents the mean of the participants at each frequency. The dashed line represents the threshold criteria. None of the participants reported a history of ear or hearing problems or language or other cognitive impairment.  The Study was approved by the UCL Research Ethics Committee (Project ID Number 0544/006) and testing commenced once an informed consent was given. Participants were recruited from the UCL psychology subject pool and were paid for their participation.
 
 ```{=latex}
 \begin{figure}[h]
 \center
 \includegraphics[width=\textwidth]{figures/Chapt1/SK_Audiogram_03042020.PNG}
 %\includegraphics[scale=.45]{figures/Chapt1/SK_Audiogram_03042020.PNG}
-\caption{\label{fig:PTA_Exp1}{Individual pure-tone-audiogram thresholds plotted separately for the right and the left ear (in black). The shaded grey area represents the range of the audiometric thresholds and the white line represents the mean at each frequency across the listeners. The red dashed line represents the threshold criteria of hearing level $\leq 25$ dB HL.}}
+\caption{\label{fig:PTA-Exp1}{Individual pure-tone-audiogram thresholds plotted separately for the right and the left ear (in black). The shaded grey area represents the range of the audiometric thresholds and the white line represents the mean at each frequency across the listeners. The red dashed line represents the threshold criteria of hearing level $\leq 25$ dB HL.}}
 \end{figure}
 ```
 
@@ -567,7 +567,7 @@ Another interesting direction could be to investigate the influence of the speec
 
 #### Participants
 
-```{r}
+```{r, include=FALSE, echo=FALSE}
 require(ggplot2)
 require(ggbeeswarm)
 require(psych)
@@ -625,7 +625,7 @@ d$Age <- round(d$Age,1)
 d <- d[ ! d$listener %in% c("L06","L13"), ] %>% droplevels()
 ```
 
-```{r, label='PTA', fig.cap="Individual pure-tone detection thresholds plotted seperately for the left and the right ear (black lines). The shaded grey area represents the range of the audiometric threholds and the white line represents the mean at each frequency across the listeners. The dashed red line represents the threshold criteria of hearing level $\\leq$ 25\ dB\ HL.", echo=FALSE, fig.align='center', figures-side, out.width='85%',fig.width=12, fig.height=6}
+```{r, label='PTA-cpt1', fig.cap="Individual pure-tone detection thresholds plotted seperately for the left and the right ear (black lines). The shaded grey area represents the range of the audiometric threholds and the white line represents the mean at each frequency across the listeners. The dashed red line represents the threshold criteria of hearing level $\\leq$ 25\ dB\ HL.", echo=FALSE, fig.align='center', figures-side, out.width='85%',fig.width=12, fig.height=6}
 
 # Define axes
 # xaxis=c(1:8) # number of frequencies tested
@@ -815,7 +815,7 @@ ezPrecis(d_r) # Inspect data first
 
 ```
 #### Test-retest
-```{r,label='TestRetest-analysis1', message=FALSE, warning=FALSE, include=FALSE, echo=FALSE,results='hide'}
+```{r,label='TestRetest-analysis1', message=FALSE, warning=FALSE, include=FALSE, echo=FALSE,results='hide',eval=FALSE}
 # Session / test-retest difference??
 
 ################### Monaural ################### 
@@ -1048,7 +1048,7 @@ car::leveneTest(uRevs ~ Session, data=SSDG_CCRM_TarM.MskM,center=median)
 
 ```
 
-```{r,label='TestRetest-analysis2', message=FALSE, warning=FALSE, include=FALSE, echo=FALSE,results='hide'}
+```{r,label='TestRetest-analysis2', message=FALSE, warning=FALSE, include=FALSE, echo=FALSE,results='hide',eval=FALSE}
 # Idea: use two separate models to examine the effect of session 
 # 
 
@@ -1093,7 +1093,7 @@ rownames(tr_tab) <- c()
 \
 First, since listeners were presented with the MM configuration twice, once in each session, differences in performance between the two sessions were examined (test-retest).The listeners' SRdTs recorded in the first and the second session are plotted in Figure\ \@ref(fig:TestRetest-plot). The scatterplot reveals that most observations are relatively close or on the diagonal line which represents an identical performance in session one and two. It is also noticeable that variance in performance was smaller for the ASL than for the CCRM speech material.
 
-```{r, label='TestRetest-plot', fig.cap="Test-retest: SRdTs obtained for 'TarM+DstrM' listening configuration in session 1 (x-axis) and session 2 (y-axis). Indivdual SRdTs are represented by the different shapes and colours corresponding to different material (ENG_F, circles) and same material (CCRM_F, triangle) distractors presented with the ASL (red) or CCRM speech material (cyan). The diagonal line represents the same score in both sessions. The dashed lines represents the task's lower and upper DC limit of 0.05 and 0.97.", fig.align='center', fig.width=7, fig.asp=1, out.width='100%',echo=FALSE, message=FALSE, warning=FALSE}
+```{r, label='TestRetest-plot', fig.cap="Test-retest: SRdTs obtained for 'TarM+DstrM' listening configuration in session 1 (x-axis) and session 2 (y-axis). Indivdual SRdTs are represented by the different shapes and colours corresponding to different material (ENG\\_F, circles) and same material (CCRM\\_F, triangle) distractors presented with the ASL (red) or CCRM speech material (cyan). The diagonal line represents the same score in both sessions. The dashed lines represents the task's lower and upper DC limit of 0.05 and 0.97.", fig.align='center', fig.width=7, fig.asp=1, out.width='100%',echo=FALSE, message=FALSE, warning=FALSE}
 
 d_r1 <- d_r %>% filter(Session=="1" & Configuration=="TarM+MskM" & Background!="Quiet") %>%
   mutate(
@@ -1133,7 +1133,7 @@ ggplot(d_12, aes(x=uRevs1, y=uRevs2, shape=Background, colour=Material)) +
 
 Inspection of the data for parametric assumptions revealed that while homoscedasticity of variance was met, the assumption of normal distribution was rejected for the ASL and the CCRM data measured with the ENG_F (different material) distractor. Therefore, differences between sessions were tested using a noneparametric method using Wilcoxon rank-sum test with permutation (N=999999) (*wilcox_test()* function, coin package, REF). Descriptives and test results are shown in Table\ \@ref(tab:Test-RetestTab). There was no significant difference between SRdTs in the first and the second session across test material and distractor type (all p's \>\ 0.05). Therefore, since only MM condition was tested twice while the rest of the test conditions were only measured once, the individuals' average score across the two sessions was used for further analysis.
 
-```{r, label='Test-RetestTab', echo=FALSE}
+```{r, label='Test-RetestTab', echo=FALSE,eval=FALSE}
 # prepare table using kbl()
 # for more options see: https://cran.r-project.org/web/packages/kableExtra/vignettes/awesome_table_in_pdf.pdf
 
@@ -1167,7 +1167,7 @@ d_rM <- d_rM[ ! d_rM$CondCode2 %in% c("DSDG_ASL_TarM+MskM_S2","DSDG_CCRM_TarM+Ms
 
 ```
 
-```{r, label='AverageDC-plot', fig.cap="Boxplots of the listeners SRdTs split by speech material (ASL/CCRM), background type (Quiet, ENG_F and CCRM_F) and listening configuration (binaural: TarB and TarB+DstrB; monaural: TarM and TarM+DstrM; loosely monaural: TarM+DstrB). The boxes are colour-coded, with red, green, and blue, marking the binaural, monaural and loosely monaural condition, respectively. The dashed lines represents the task's lower and upper DC limit of 0.05 and 0.97.", fig.align='center', fig.width=10, fig.asp=.9, out.width='100%',echo=FALSE, message=FALSE, warning=FALSE, results='hide'}
+```{r, label='AverageDC-plot', fig.cap="Boxplots of the listeners SRdTs split by speech material (ASL/CCRM), background type (Quiet, ENG\\_F and CCRM\\_F) and listening configuration (binaural: TarB and TarB+DstrB; monaural: TarM and TarM+DstrM; loosely monaural: TarM+DstrB). The boxes are colour-coded, with red, green, and blue, marking the binaural, monaural and loosely monaural condition, respectively. The dashed lines represents the task's lower and upper DC limit of 0.05 and 0.97.", fig.align='center', fig.width=10, fig.asp=.9, out.width='100%',echo=FALSE, message=FALSE, warning=FALSE, results='hide'}
 
 #- Quiet only-------------------------------------------------------------------------
 d_Q <- d_rM %>% filter(Background=="Quiet") %>% droplevels()
@@ -1241,9 +1241,7 @@ library(patchwork)
 # x axis label 4 the combined fig: "Background / Speech material"
 ```
 
-
-
-```{r,label='get-separateDFs', message=FALSE, warning=FALSE, include=FALSE, echo=FALSE,results='hide'}
+```{r,label='get-separateDFs', message=FALSE, warning=FALSE, include=FALSE, echo=FALSE,results='hide',eval=FALSE}
 #---------------------------------------------------
 ## get separate data frames 
 #---------------------------------------------------
@@ -1292,7 +1290,7 @@ Both_Q$Material<- factor(Both_Q$Material,levels=c("ASL","CCRM")) # Material has 
 ezPrecis(Both_Q) # Inspect data first
 ```
 
-```{r,label='DC-LMEM-Q1', message=FALSE, warning=FALSE, include=FALSE, echo=FALSE,results='hide'}
+```{r,label='DC-LMEM-Q1', message=FALSE, warning=FALSE, include=FALSE, echo=FALSE,results='hide',eval=FALSE}
 # ------------------------------------------------------------------------------------
 # Do listeners make use of binaural information? 
 # (Does performance differ between BB & MM or between BB & MB?)
@@ -1666,7 +1664,7 @@ leveneTest(residuals(w1) ~ Background*Configuration,data = CCRM)
 # p=0.7294 * --> homogeneity is NOT met!
 ```
 
-```{r,label='DC-LMEM-Q2', message=FALSE, warning=FALSE, include=FALSE, echo=FALSE,results='hide'}
+```{r,label='DC-LMEM-Q2', message=FALSE, warning=FALSE, include=FALSE, echo=FALSE,results='hide',eval=FALSE}
 
 # ------------------------------------------------------------------------------------
 # Do the listeners behave differently across the two materials (ASL/CCRM)?
@@ -1856,7 +1854,7 @@ leveneTest(residuals(w1) ~ Material*Configuration,data = Both)
 - Post hoc tests for Configuration found a highly significant difference between BB and the two MM conditions. While no significant difference was found between MM and MB (again ceiling...).
 
 
-```{r, label='Quiet_PostHocTab', echo=FALSE}
+```{r, label='Quiet_PostHocTab', echo=FALSE,eval=FALSE}
 # prepare table using kbl()
 # for more options see: https://cran.r-project.org/web/packages/kableExtra/vignettes/awesome_table_in_pdf.pdf
 
