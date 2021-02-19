@@ -242,8 +242,12 @@ leveneTest(residuals(Age.lm) ~ Group, data = d)
 # -> homogeneity of the full model is met
 ```
 <!-- `r as.english(sum(APD_Age$n),english.UK = TRUE)` -->
+<!-- r round(Clean.APD_Age$mean,1)` -->
 
-`r  Hmisc::capitalize(as.character(as.english(sum(TD_Age$n,APD_Age$n),english.UK = TRUE)))` primary school children who were native British English speakers with normal hearing acuity participated in the study. Amongst them twenty-one  belonged to the APD clinical group (`r SexFreq_APD[1,2]` females) with an average age of `r round(Clean.APD_Age$mean,1)` $\pm$ `r round(Clean.APD_Age$sd,1)` years (range: `r round(Clean.APD_Age$min,1)` - `r round(Clean.APD_Age$max,1)` years). The remaining twenty-three (12 females) comprised of typically developing control children (TD) with no reported concerns or diagnosis of an auditory, language or other cognitive developmental disorder. The TD group average age was 9.5 ± 1.6 years and ranged between 7.0 to 12.1 years. Since not all the measurement equipment was easily portable and in order to maintain the same environment during the assessment across the complete sample, the children and their caregivers were required to travel to central London for the testing. In order to maximise the number of children taking part in the study, 8 out of the 23 TD children (35\%) had an APD sibling which took part in a parallel study that took place on the same day of testing. All the children who participated in the study were required to have normal hearing acuity, defined as thresholds $\leq$ 25 dB HL at the octave frequency bands between 0.25 to 8 kHz and their eardrum had to be visible, healthy and intact in both ears following otoscopic inspection. One APD participant was excluded from the analysis due to raised thresholds predominantly in the right ear, ranging between 30 to 45 dB HL (PTA$_{Right}$ = 36.25 dB HL; PTA$_{Left}$ = 13.75 dB HL), thus resulting in a final APD group size of twenty. PTAs were calculated by averaging the individual's thresholds at the frequencies 0.5, 1, 2 and 4 kHz separately for the right and left ear (PTA$_{Right}$, PTA$_{Left}$). Otoscopic inspection of the child's ear canal revealed a large accumulation of cerumen in both ears with an occluded right ear. Two additional children (x1 APD, x1 TD) had slightly raised thresholds at 8 kHz in one ear of 35 and 30 dB HL, respectively. However, since thresholds at all other frequency bands were well within the $\leq$ 25 dB HL criteria they were not excluded.\
+`r  Hmisc::capitalize(as.character(as.english(sum(TD_Age$n,APD_Age$n),english.UK = TRUE)))` primary school children who were native British English speakers with normal hearing acuity participated in the study. Amongst them twenty-one  belonged to the APD clinical group (`r SexFreq_APD[1,2]` females) with an average age of 11.0 $\pm$ `r round(Clean.APD_Age$sd,1)` years (range: `r round(Clean.APD_Age$min,1)` - `r round(Clean.APD_Age$max,1)` years). The remaining twenty-three (12 females) comprised of typically developing control children (TD) with no reported concerns or diagnosis of an auditory, language or other cognitive developmental disorder. The TD group average age was 9.5 ± 1.6 years and ranged between 7.0 to 12.1 years. Since not all the measurement equipment was easily portable and in order to maintain the same environment during the assessment across the complete sample, the children and their caregivers were required to travel to central London for the testing. In order to maximise the number of children taking part in the study, 8 out of the 23 TD children (35\%) had an APD sibling (TD$_{sib}$) which took part in a parallel study that took place on the same day of testing. All the children who participated in the study were required to have normal hearing acuity, defined as thresholds $\leq$ 25 dB HL at the octave frequency bands between 0.25 to 8 kHz and their eardrum had to be visible, healthy and intact in both ears following otoscopic inspection. One APD participant was excluded from the analysis due to raised thresholds predominantly in the right ear, ranging between 30 to 45 dB HL (PTA$_{Right}$ = 36.25 dB HL; PTA$_{Left}$ = 13.75 dB HL), thus resulting in a final APD group size of twenty[^Chapt3-1]. Otoscopic inspection of the child's ear canal revealed a large accumulation of cerumen in both ears with an occluded right ear. Two additional children (x1 APD, x1 TD) had slightly raised thresholds at 8 kHz in one ear of 35 and 30 dB HL, respectively. However, since thresholds at all other frequency bands were well within the $\leq$ 25 dB HL criteria they were not excluded.\
+
+[^Chapt3-1]: PTAs were calculated by averaging the individual's thresholds at the frequencies 0.5, 1, 2 and 4 kHz separately for the right and left ear (PTA$_{Right}$, PTA$_{Left}$).
+
 
 APD children were recruited in two ways. Children diagnosed with APD at Great Ormond Street Hospital (GOSH) or at the London Hearing and Balance Centre (LHBC), London, UK, were identified based on their clinical records and were contacted by a clinical team member. The caregivers were provided with information about the study and means of contact to express interest in participation. Others, including the TD group were recruited by advertisements on social networks (e.g., APD Support UK Facebook group), science events, local information boards and UCL staff newsletter email, where parents were requested to fill-out an online interest form with short screening questions to ensure that the child met the participation requirements. Most of the children in the APD group (85\%, 17/20) were reported to undergo an APD assessment at GOSH, about a third were directly recruited from the clinic. The remaining three were reported to be assessed at the LHBC, at the University of Southampton Auditory Implant Service or the Chime Audiology Royal Devon & Exeter Hospital (screening only).\
 
@@ -300,7 +304,14 @@ Standing waves in the ear canal produces spatially non-uniform sound pressure at
 
 ##### Switching task (ST)
 \
-Estimating the effect of IM while minimising peripheral EM on speech perception was measured using the switching task (ST) which is believed to assess the listeners ability to switch attention and integrate of binaural information. The same test procedure and equipment was used as described in Chapter\ \@ref(Chpt1). Listeners were presented with both test versions using the ASL and the CCRM speech material. As for the stimuli, the ASL target sentences, spoken by a single male talker, were taken from the final sentences selected following the normalisation study. In addition, a level correction was applied to each sentence using the sentence-specific weighing factors estimated in the normalisation study (see Chapter\ \@ref(Chpt2)). The first five test lists out of the eight phonetically-balanced normalised test lists (25 sentences each) were used, whereby their order was quasi-randomised to account for order, masker combinations, and fatigue effects. The target CCRM sentences were the same as described in Chapter\ \@ref(Chpt1), spoken by three different male talkers. These were selected at random every trial and always began with the priming animal 'dog'. The target speech material was presented either without a distractor (Quiet), with and without switching (NoAlt / Alt) or with a distractor. A selection of four distractors were used (see Chapter\ \@ref(Chpt1) for detailed description): English (ENG_F) and Mandarin (MDR_F) unrelated connected-speech, each spoken by ten different female talkers, and a non-speech amplitude-modulated speech-spectrum-noise (AMSSN) with the envelope of a single talker out of 40 talkers (20 females). The fourth distractor was presented only with the CCRM speech material and comprised of CCRM target-like sentences (CCRM_F) with a different priming animal, colour and digit, spoken by ten different female talkers. Each participant was presented with a total of 11 runs, one for each test condition, with 5 conditions for the ASL (Quiet-NoAlt,Quiet-Alt, MDR_F-Alt, ENG_F-Alt), and 6 for the CCRM (with the additional CCRM_F-Alt condition). Testing started following a practice phase, where four trials of each of the eleven test conditions were presented. Practice runs started at an easy-to-moderate DC of 0.8 in order to expose the listeners to the adaptive procedure. In addition, every test run started with two practice sentences (initial DC = 0.97) to orient the listeners to the test condition that was about to be presented.\
+Estimating the effect of IM while minimising peripheral EM on speech perception was measured using the switching task (ST) which is believed to assess the listeners ability to switch attention and integrate of binaural information. The same test procedure and equipment was used as described in Chapter\ \@ref(Chpt1). Listeners were presented with both test versions using the ASL and the CCRM speech material. As for the stimuli, the ASL target sentences, spoken by a single male talker, were taken from the final sentences selected following the normalisation study. In addition, a level correction was applied to each sentence using the sentence-specific weighing factors estimated in the normalisation study (see Chapter\ \@ref(Chpt2)). The first five test lists out of the eight phonetically-balanced normalised test lists (25 sentences each) were used, whereby their order was quasi-randomised to account for order, masker combinations, and fatigue effects. The target CCRM sentences were the same as described in Chapter\ \@ref(Chpt1), spoken by three different male talkers. These were selected at random every trial and always began with the priming animal 'dog'. The target speech material was presented either without a distractor (Quiet), with and without switching (NoAlt / Alt) or with a distractor. A selection of four distractors were used (see Chapter\ \@ref(Chpt1) for detailed description): English (ENG_F) and Mandarin (MDR_F) unrelated connected-speech, each spoken by ten different female talkers, and a non-speech amplitude-modulated speech-spectrum-noise (AMSSN) with the envelope of a single talker out of 40 talkers (20 females). The fourth distractor was presented only with the CCRM speech material and comprised of CCRM target-like sentences (CCRM_F) with a different priming animal, colour and digit, spoken by ten different female talkers. Each participant was presented with a total of 11 runs, one for each test condition, with 5 conditions for the ASL (Quiet-NoAlt,Quiet-Alt, MDR_F-Alt, ENG_F-Alt), and 6 for the CCRM (with the additional CCRM_F-Alt condition). 
+
+```{block type='correction'}
+The starting DC was 0.97 (i.e., signal is almost entirely present) which the SRdT upper limit. Subsequently, the DC varied depending on the listeners response, with an initial step-size of 0.12 which decreased gradually over the first three (practice) reversals to 0.05. Nonetheless, as in the adult studies (see Chapter\ \@ref(Chpt1)), the minimum step-size for the ASL conditions ENG_F and MDR_F was set to 0.1. This is because of a pilot data suggested that the psychometric functions of these conditions were shallower. 
+```
+
+Testing started following a practice phase, where four trials of each of the eleven test conditions were presented. Practice runs started at an easy-to-moderate DC of 0.8 in order to expose the listeners to the adaptive procedure. In addition, every test run started with two practice sentences (initial DC = 0.97) to orient the listeners to the test condition that was about to be presented.\
+
 <!-- *repetative? refer to Chapter to instead and list only the stimuli that is used?* -->
 <!-- The switching task (ST) is a novel speech-on-speech listening task that involves perception of interrupted and periodically segmented speech that is switched between the two ears out-of-phase with an interrupted distractor. Since segments of the target and of the distractor are never presented in the same ear at the same time, it enables to eliminate peripheral (EM) masking, while maintaining high IM for speech distractors. The task assesses the ability to switch attention and integration of binaural information. -->
 
@@ -310,11 +321,11 @@ The locally developed Listening in Spatialised Noise Sentences UK (LiSNS-UK) ass
 
 Speech distractors were presented continuously throughout a run at a fixed 65 dB SPL output level and comprised of a combination of two out of three available passages. A 1-up/1-down adaptive procedure was used, varying the level of the target talker relative to the distractors depending on the listener's response to measure their speech reception threshold (SRT), i.e., the signal-to-noise-ratio (SNR) yielding 50\% speech intelligibility. A 200 ms long reference cue (1 kHz pure-tone) was presented 500 ms before the target sentence onset at 65 dB SPL. The initial target output level was 75 dB SPL for the collocated condition and 70\ dB\ SPL for the separated condition with an initial step-size of 4 dB SNR. The step-size was reduced after the first three reversals, reaching a minimum step-size of 2 dB SNR. The adaptive procedure ended once all 25 test trials were presented and stopped in case a maximal output level of 89\ dB\ SPL was reached more than three times. Nonetheless, such an event did not occur in the present study. Since each listener was only presented once with each condition, it was decided not to introduce any other stopping rules that could have expedited the testing time but may as well have introduced an estimation error for the SRTs in some cases. The SRT was calculated by averaging the test reversals SNRs, whereby test reversals were defined as any reversals following three practice reversals.\
 
-The order of the listening condition, test lists, sentences within a run, and distractor combinations was fixed across all the participants and started with the collocated condition. Each test list consisted of 25 sentences taken from the 8-phonetically-balanced ASL test lists which were constructed following the normalisation study with a sentence-specific level corrections (see Chapter\ \@ref(Chpt2)). Spatialisation was applied by convolving each stimuli with head-related transfer functions (HRTFs) at the corresponding azimuthal direction separately for the left and the right channel. The HRTFs were measured with a Knowles Electronics Manikin for Acoustic Research (KEMAR) with a small pinnae taken from the CIPIC HRTF database[^Chapt3-1] [see @Algazi2001, "special" HRTF data]. A post-equalisation step was applied in order to flatten the magnitude of the headphone frequency response. Headphone-to-ear Transfer Functions (HpTFs) measured with a KEMAR manikin for HD-25 supraaural headphones were extracted from the @Wierstorf2011 HRTF database. The final mixed stimulus was filtered with the inverse HpTFs separately for the left and the right channel before being combined together as a final step. Every participant was presented with two runs, one for each listening condition (collocated / separated). Testing started following a practice phase of two runs, one for each of the test conditions with five BKB sentences each [@Bench1979]. Listeners were instructed to verbally repeat the target sentences to the experimenter who was situated alongside in a sound treated chamber. The experimenter scored the response by selecting the correctly repeated keywords on the screen. Listeners were encouraged to guess if unsure while no feedback was given at any time. A loose keyword scoring method was used, whereby errors of case or declension were considered as correct responses, e.g., a repetition of the keywords '$<$clown**s**$>$ $<$funny$>$ $<$face**s**$>$' to the stimulus 'The $<$clown$>$ had a $<$funny$>$ $<$face$>$'.
+The order of the listening condition, test lists, sentences within a run, and distractor combinations was fixed across all the participants and started with the collocated condition. Each test list consisted of 25 sentences taken from the 8-phonetically-balanced ASL test lists which were constructed following the normalisation study with a sentence-specific level corrections (see Chapter\ \@ref(Chpt2)). Spatialisation was applied by convolving each stimuli with head-related transfer functions (HRTFs) at the corresponding azimuthal direction separately for the left and the right channel. The HRTFs were measured with a Knowles Electronics Manikin for Acoustic Research (KEMAR) with a small pinnae taken from the CIPIC HRTF database[^Chapt3-2] [see @Algazi2001, "special" HRTF data]. A post-equalisation step was applied in order to flatten the magnitude of the headphone frequency response. Headphone-to-ear Transfer Functions (HpTFs) measured with a KEMAR manikin for HD-25 supraaural headphones were extracted from the @Wierstorf2011 HRTF database. The final mixed stimulus was filtered with the inverse HpTFs separately for the left and the right channel before being combined together as a final step. Every participant was presented with two runs, one for each listening condition (collocated / separated). Testing started following a practice phase of two runs, one for each of the test conditions with five BKB sentences each [@Bench1979]. Listeners were instructed to verbally repeat the target sentences to the experimenter who was situated alongside in a sound treated chamber. The experimenter scored the response by selecting the correctly repeated keywords on the screen. Listeners were encouraged to guess if unsure while no feedback was given at any time. A loose keyword scoring method was used, whereby errors of case or declension were considered as correct responses, e.g., a repetition of the keywords '$<$clown**s**$>$ $<$funny$>$ $<$face**s**$>$' to the stimulus 'The $<$clown$>$ had a $<$funny$>$ $<$face$>$'.
 
-[^Chapt3-1]: The database is available online in: <https://www.ece.ucdavis.edu/cipic/spatial-sound/hrtf-data/>
+[^Chapt3-2]: The database is available online in: <https://www.ece.ucdavis.edu/cipic/spatial-sound/hrtf-data/>
 
-##### Speech-shaped-noise (SSN)  
+##### Speech-spectrum-noise (SSN)  
 \
 A speech-in-noise test was used as a more conventional listening task that is widely used in the clinic as opposed to the more complex listening conditions measured by the ST or the LiSNS-UK. The normalised ASL sentences were presented in a speech-spectrum-noise (SSN) with spectrum matched to the ASL corpus. The SSN onset was 500 ms before the target sentence began. The same adaptive procedure as for the LiSNS-UK was used with the same stopping-rules and SRT calculation. Each listener was presented with a single run of 25 sentences following a practice phase with seven BKB sentences. The same test list and sentences order was used across all the listeners.
 
@@ -328,7 +339,7 @@ Every trial was made of two parts, starting with a target audio and visual famil
 
 (ref:Leech2009) Schematic of the ENVASA experimental paradigm [taken from @Leech2009]
 
-```{r, label='ENVASA', fig.cap="(ref:Leech2009)", out.width='65%', fig.align='center', echo=FALSE}
+```{r, label='ENVASA', fig.cap="(ref:Leech2009)", out.width='75%', fig.align='center', echo=FALSE}
 
 knitr::include_graphics("figures/ENVASAparadigm.png")
 ```
@@ -495,7 +506,7 @@ for (j in 1:2){
 
 ```
 
-Boxplots of listeners' pure-tone detection thresholds measured at six frequencies between 0.25 to 8 kHz and their corresponding pure-tone-average (PTA) are shown in Figure \@ref(fig:RegAud-fig) A-B. Individual PTAs were calculated by averaging thresholds at the frequency bands 0.5, 1, 2 and 4 kHz separately for the right and left ear (PTA$_{Right}$, PTA$_{Left}$) and by taking the grand mean for thresholds in both ears (denoted as PTA), whereas the listeners' PTA at the better-ear is denoted as BE. Threshold descriptives by frequency and ear split by the two groups are given in Table \@ref(tab:RegAud-Tab1), as well as Table \@ref(tab:RegAud-LMEMpost) for PTAs and BE with additional statistics.\
+Boxplots of listeners' pure-tone detection thresholds measured at six frequencies between 0.25 to 8 kHz and their corresponding pure-tone-average (PTA) are shown in Figure \@ref(fig:RegAud-fig) A-B. Individual PTAs were calculated by averaging thresholds at the frequencies 0.5, 1, 2 and 4 kHz separately for the left and right ear (PTA$_{Left}$, PTA$_{Right}$) and by taking the grand mean for thresholds in both ears (denoted as PTA), whereas the listeners' PTA at the better-ear is denoted as BE. Threshold descriptives by frequency and ear split by the two groups are given in Table \@ref(tab:RegAud-Tab1), as well as Table \@ref(tab:RegAud-LMEMpost) for PTAs and BE with additional statistics.\
 
 ```{r,label='stdAud', include=FALSE, warning=FALSE}
 # ---------------------------------------------------------------------------------------------
@@ -511,7 +522,7 @@ d_L <- tidyr::gather_(d, keycol, valuecol, gathercols)
 # get ear information as a new column
 library(stringr)
 d_L$Ear <- ifelse(str_detect(d_L$Freq,"R"),"R","L")
-d_L$Ear <- factor(d_L$Ear,levels=c("R","L"))
+d_L$Ear <- factor(d_L$Ear,levels=c("L","R"))
 # d_L$APDsibling <- factor(d_L$APDsibling,levels=c("1","0"))
 d_L$listener <- factor(d_L$listener)
 # d_L$Freq <- transform(str_replace_all(d_L$Freq,c("R"="","L"="")))
@@ -541,7 +552,7 @@ valuecol <- "dBHL"
 gathercols <- c("PTA_R","PTA_L","PTA_RL","PTA_BE")
 d_PTA_L <- tidyr::gather_(d, keycol, valuecol, gathercols)
 
-d_PTA_L$PTA <- factor(d_PTA_L$PTA,levels=c("PTA_R","PTA_L","PTA_RL","PTA_BE"))
+d_PTA_L$PTA <- factor(d_PTA_L$PTA,levels=c("PTA_L","PTA_R","PTA_RL","PTA_BE"))
 
 # --------------------------------------------------------------------------------------------------
 # get table:
@@ -561,7 +572,7 @@ PTA_tab <-  d_PTA_L %>% ddply(.,~PTA*Group,summarise, N=length(dBHL),median=roun
 PTA_tab <- PTA_tab[,-grep("Group",colnames(PTA_tab))]
 PTA_tab <- cbind(PTA_tab[1:4,1:ncol(PTA_tab)],PTA_tab[5:nrow(PTA_tab),2:ncol(PTA_tab)])
 # PTA_tab$Ear <- c("R", "L","","")
-PTA_tab$PTA <- c("PTA$_{Right}$","PTA$_{Left}$","PTA","BE")
+PTA_tab$PTA <- c("PTA$_{Left}$","PTA$_{Right}$","PTA","BE")
 
 # --------------------------------------------------------------------------------------------------
 # combine table
@@ -571,16 +582,17 @@ colnames(PTA_tab1)[1] = "Frequency"
 ```{r, label='RegAud-fig', echo=FALSE,fig.cap="Standard audiometry: Pure-tone detection thresholds by frequency between 0.25 to 8 kHz (A), and averaged thresholds (B). Individual scores are indicated by circles. The boxes show the data interquartile range (25th-75th percentile) and the horizontal line indicate the median (i.e., 50th percentile). Values that fall within 1.5 times the interquartile range are indicated by the whiskers.",fig.align='center', fig.width=12, fig.asp=0.5, out.width='100%', message=FALSE, error=FALSE}
 ### Frequencies ###
 # New facet label names for Ear variable
-Ear.labs <- c("Right", "Left")
-names(Ear.labs) <- c("R","L")
+Ear.labs <- c("Left", "Right")
+names(Ear.labs) <- c("L","R")
 
-t1 <- ggplot(d_L, aes(x=Freq,y=dBHL,fill=Group))+ 
+t1 <- ggplot(d_L, aes(x=Freq,y=dBHL,fill=Group2))+ 
   geom_hline(yintercept=0, linetype="dashed",color = "black", size=0.5)+
   geom_boxplot(position=position_dodge(width=0.8),outlier.shape=NA)+ 
   geom_quasirandom(dodge.width=0.9,colour="blue", shape=1)+
   scale_y_reverse(limits = c(40,-10),breaks=seq(40,-10,-5))+
   #geom_text(label=d_HF_Cmpr_L$listener)+
-    scale_x_discrete(labels=c("250"="0.25","500"="0.5","1000"="1","2000"="2","4000"="4","8000"="8"))+
+  scale_fill_discrete(name = "Group", labels = c("APD", "TD",bquote(bold(TD[sib]))))+
+  scale_x_discrete(labels=c("250"="0.25","500"="0.5","1000"="1","2000"="2","4000"="4","8000"="8"))+
   labs(y = "Hearing thresholds (dB HL)",x = "Frequency (kHz)")+ 
   theme_bw()+
   theme(axis.text = element_text(size = 11, face="bold",colour = "black"),
@@ -602,6 +614,7 @@ t2 <- ggplot(d_PTA_L, aes(x=PTA, y=dBHL, fill=Group),show.legend=FALSE) +
   geom_quasirandom(dodge.width=0.9,colour="blue", shape=1)+
   scale_y_reverse(limits = c(15,-5),breaks=seq(15,-5,-5))+
   labs(y = "dB HL",x = "") + 
+  scale_fill_discrete(name = "Group", labels = c("APD", "TD"))+
   scale_x_discrete(labels=c("PTA_R"=expression(bold(PTA[Right])),"PTA_L"=expression(bold(PTA[Left])),
                             "PTA_RL"=expression(bold("PTA")),"PTA_BE"=expression(bold("BE"))))+
   # scale_x_discrete(position = "top")+
@@ -615,7 +628,7 @@ t2 <- ggplot(d_PTA_L, aes(x=PTA, y=dBHL, fill=Group),show.legend=FALSE) +
         axis.ticks.x = element_line(colour = "transparent"),
         legend.position = "none")
 
-(t1 + t2) + plot_layout(ncol = 2, nrow = 1, heights = c(1, 1), widths = c(1,0.4)) + plot_annotation(tag_levels = 'A') + plot_layout(guides='collect') &
+(t1 + t2) + plot_layout(ncol = 2, nrow = 1, heights = c(1, 1), widths = c(1,0.4)) + plot_annotation(tag_levels = 'A') + plot_layout(guides='keep') &
   theme(legend.position='bottom',        
         legend.direction = "horizontal",
         legend.background = element_blank(),
@@ -640,7 +653,7 @@ kbl(PTA_tab1, booktabs = T, escape = F, linesep = "", caption = "Standard audiom
   column_spec(c(8),border_left = T)
 ```
 
-Differences between groups (APD, and TD children with/without an APD sibling) for detection thresholds across frequency bands and ears were statistically tested with a three-way 6 x 2 x 3 factorial design with repeated measures. Inspection of the data for linear model residuals revealed that the assumption of normality and homoscedasticity were violated. Therefore, a non-parametric approach was adopted, using a rank-based ANOVA-type statistic test (ATS) with the *nparLD()* function [nparLD package; @nparLDPackageR]. The ATS test results are given in Table \@ref(tab:RegAud-TabnparLD). There was no significant three-way or two-way interaction between the three predictors, nor a significant main effect of Ear or Group (all p's\ \>\ 0.05), whereas there was a highly significant main effect of Frequency (p \< 0.001).\
+Differences between groups (APD, and TD children with/without an APD sibling) for detection thresholds across frequencies and ears were statistically tested with a three-way 6 x 2 x 3 factorial design with repeated measures. Inspection of the data for linear model residuals revealed that the assumption of normality and homoscedasticity were violated. Therefore, a non-parametric approach was adopted, using a rank-based ANOVA-type statistic test (ATS) with the *nparLD()* function [nparLD package; @nparLDPackageR]. The ATS test results are given in Table \@ref(tab:RegAud-TabnparLD). There was no significant three-way or two-way interaction between the three predictors, nor a significant main effect of Ear or Group (all p's\ \>\ 0.05), whereas there was a highly significant main effect of Frequency (p \< 0.001).\
 
 <!-- Group differences for detection thresholds across frequency bands and ears was statistically tested with a three-way 6 x 2 x 2 factorial design with repeated measures. Inspection of the data by groups revealed that the assumption of normality and homoscedasticity were violated. Therefore, a non-parametric approach was adopted, using an rank-based ANOVA-type statistic test (ATS) with the *nparLD()* function [nparLD package; @nparLDPackageR]. The ATS test results are given in Table \@ref(tab:RegAud-TabnparLD). There was no significant three-way or two-way interaction between the three factors Group, Frequency and Ear (p \> 0.05), albeit Group x Ear interaction reached significance level (p = 0.062). There was a significant main effect for group difference (p \< 0.05) as well as a highly significant difference in detection thresholds across frequencies (p \< 0.001), however no significant main effect for Ear was found (p\ =\ 0.827).\ -->
 
@@ -730,7 +743,7 @@ kbl(stdrdHL.nparLD,booktabs = T, escape = F, linesep = "",caption = "Standard au
 # latex_options = c("hold_position")
 ```
 
-Group differences for PTAs and BE were examined using a 4 x 2 LMEM model (parametric model assumptions were met). Detection measures (PTA$_{Right}$, PTA$_{Right}$, PTA and BE) and Group (APD/TD) were set as fixed factors (reference levels: PTA$_{Right}$, APD group) and detection threshold (in dB HL) as dependent variable, as well as random intercepts for subjects. Note that the TD children were considered as a single group, since there was no significant difference in thresholds across the TD children with or without an APD sibling. A model with an interaction term was found to give the best fit, showing a significant interaction between the calculated detection measures and Group [$\chi^2$(3) = 12.27, p \< 0.05]. Post-hoc paired-comparison t-tests based on the fitted model were computed using the *lsmeans()* function (*emmeans* package, @emmeansPackageR; see Table \@ref(tab:RegAud-LMEMpost)) which revealed a significant difference between the groups for PTA measured in the left ear (p \< 0.05). However, a group difference of 2.5\ dB is rather small and clinically negligible, and is likely to occur due to sampling error. No significant difference was found in the remaining measures (all p's \> 0.05).\
+Group differences for PTAs and BE were examined using a 4 x 2 LMEM model (parametric model assumptions were met). Detection measures (PTA$_{Left}$, PTA$_{Right}$, PTA and BE) and Group (APD/TD) were set as fixed factors (reference levels: PTA$_{Left}$, APD group) and detection threshold (in dB HL) as dependent variable, as well as random intercepts for subjects. Note that the TD children were considered as a single group, since there was no significant difference in thresholds across the TD children with or without an APD sibling. A model with an interaction term was found to give the best fit, showing a significant interaction between the calculated detection measures and Group [$\chi^2$(3) = 12.27, p \< 0.05]. Post-hoc paired-comparison t-tests based on the fitted model were computed using the *lsmeans()* function (*emmeans* package, @emmeansPackageR; see Table \@ref(tab:RegAud-LMEMpost)) which revealed a significant difference between the groups for PTA measured in the left ear (p \< 0.05). However, a group difference of 2.5\ dB is rather small and clinically negligible, and is likely to occur due to sampling error. No significant difference was found in the remaining measures (all p's \> 0.05).\
 
 ```{r,label='RegAud-PTALMEM', message=FALSE, warning=FALSE, include=FALSE, echo=FALSE,results='hide'}
 
@@ -973,7 +986,7 @@ leveneTest(residuals(w1) ~ PTA * Group2, data = d_PTA_L)
 
 ```{r, label='RegAud-LMEMpost', echo=FALSE}
 kbl(RegAud_tab2,booktabs = T, escape = F, linesep = "",caption = '(ref:tabCap1)',
-    align = c("lcccccccccccccccc"),format = "latex",digits = 3) %>%
+    align = c("lcccccccccccccccc"),format = "latex",digits = 2) %>%
     kable_styling(latex_options = c("scale_down")) %>%
     add_header_above(c(" "=1, "APD" = 5, "TD" = 5,"post-hoc paired t-tests" = 6)) %>%
   add_footnote(c("significant p-values (p < 0.05) are shown in bold."), notation = "symbol") %>%
@@ -1207,7 +1220,7 @@ d_HF_L <- gather_(d_HF, keycol, valuecol, gathercols)
 # get ear information as a new column
 library(stringr)
 d_HF_L$Ear <- ifelse(str_detect(d_HF_L$Freq,"R"),"R","L")
-d_HF_L$Ear <- factor(d_HF_L$Ear,levels=c("R","L"))
+d_HF_L$Ear <- factor(d_HF_L$Ear,levels=c("L","R"))
 
 # set levels
 d_HF_L$Freq <- factor(d_HF_L$Freq,levels=c("R8000","R11000","R16000","L8000","L11000","L16000"))
@@ -1246,7 +1259,7 @@ gathercols <- c("PTA_R","PTA_L","PTA_RL","PTA_BE")
 d_HF_PTA_L <- gather_(d_HF, keycol, valuecol, gathercols)
 
 d_HF_PTA_L <- drop_na(d_HF_PTA_L, dBHL) %>% droplevels()
-d_HF_PTA_L$PTA <- factor(d_HF_PTA_L$PTA,levels=c("PTA_R","PTA_L","PTA_RL","PTA_BE"))
+d_HF_PTA_L$PTA <- factor(d_HF_PTA_L$PTA,levels=c("PTA_L","PTA_R","PTA_RL","PTA_BE"))
 d_HF_PTA_L$Group <- factor(d_HF_PTA_L$Group,levels=c("APD","TD"))
 
 d_HF_PTA_L <- data.frame(d_HF_PTA_L)
@@ -1375,16 +1388,17 @@ for (j in 1:2){
 ### Frequencies ###
 
 # New facet label names for Ear variable
-Ear.labs <- c("Right", "Left")
-names(Ear.labs) <- c("R","L")
+Ear.labs <- c("Left", "Right")
+names(Ear.labs) <- c("L","R")
 d_HF_L$Group <- factor(d_HF_L$Group,levels=c("APD","TD"))
 
-t1 <- ggplot(drop_na(d_HF_L, dBHL), aes(x=Freq,y=dBHL,fill=Group),show.legend=FALSE)+ 
+t1 <- ggplot(drop_na(d_HF_L, dBHL), aes(x=Freq,y=dBHL,fill=Group2),show.legend=FALSE)+ 
   geom_hline(yintercept=0, linetype="dashed",color = "black", size=0.5)+
   geom_boxplot(position=position_dodge(width=0.8),outlier.shape=NA)+ 
   geom_quasirandom(dodge.width=0.9,colour="blue", shape=1)+
   scale_y_reverse(limits = c(45,-5),breaks=seq(45,-5,-5))+
   #geom_text(label=d_HF_Cmpr_L$listener)+
+  scale_fill_discrete(name = "Group", labels = c("APD", "TD",bquote(bold(TD[sib]))))+
   scale_x_discrete(labels=c("8000"="8","11000"="11","16000"="16"))+
   labs(y = "Hearing thresholds (dB HL)",x = "Frequency (kHz)")+ 
   theme_bw()+
@@ -1408,6 +1422,7 @@ t2 <- ggplot(drop_na(d_HF_PTA_L, dBHL), aes(x=PTA, y=dBHL, fill=Group),show.lege
   geom_quasirandom(dodge.width=0.9,colour="blue", shape=1)+
   scale_y_reverse(limits = c(45,-5),breaks=seq(45,-5,-5))+
   labs(y = "dB HL",x = "") + 
+  scale_fill_discrete(name = "Group", labels = c("APD", "TD"))+
   scale_x_discrete(labels=c("PTA_R"=expression(bold(PTA[Right])),"PTA_L"=expression(bold(PTA[Left])),
                             "PTA_RL"=expression(bold("PTA")),"PTA_BE"=expression(bold("BE"))))+
   # scale_x_discrete(position = "top")+
@@ -1420,7 +1435,7 @@ t2 <- ggplot(drop_na(d_HF_PTA_L, dBHL), aes(x=PTA, y=dBHL, fill=Group),show.lege
         axis.ticks.x = element_line(colour = "transparent"),
         legend.position = "none")
 
-(t1 + t2) + plot_layout(ncol = 2, nrow = 1, heights = c(1, 1), widths = c(0.6,0.4)) + plot_annotation(tag_levels = 'A') + plot_layout(guides='collect') &
+(t1 + t2) + plot_layout(ncol = 2, nrow = 1, heights = c(1, 1), widths = c(0.6,0.4)) + plot_annotation(tag_levels = 'A') + plot_layout(guides='keep') &
   theme(legend.position='bottom',        
         legend.direction = "horizontal",
         legend.background = element_blank(),
@@ -1443,8 +1458,8 @@ PTA_tab <-  d_HF_PTA_L %>% ddply(.,~PTA*Group,summarise,Ear = "", N=length(dBHL)
   arrange(., group_by = Group)
 PTA_tab <- PTA_tab[,-grep("Group",colnames(PTA_tab))]
 PTA_tab <- cbind(PTA_tab[1:4,1:ncol(PTA_tab)],PTA_tab[5:nrow(PTA_tab),3:ncol(PTA_tab)])
-PTA_tab$Ear <- c("R", "L","","")
-PTA_tab$PTA <- c("PTA$_{Right}$","PTA$_{Left}$","PTA","BE")
+PTA_tab$Ear <- c("L", "R","","")
+PTA_tab$PTA <- c("PTA$_{Left}$","PTA$_{Right}$","PTA","BE")
 colnames(PTA_tab)[1] = ""
 
 # --------------------------------------------------------------------------------------------------
@@ -1469,13 +1484,13 @@ EHF_tab <- rbind(EHF_tab,PTA_tab)
 #   pack_rows("octave frequency bands", 1, 4) %>%
 #   pack_rows("PTAs and better-ear", 5, 8)
 
-kbl(EHF_tab, booktabs = T,escape = F, linesep = "", caption = "EHF audiometry: Descriptive for pure-tone detection thresholds (dB HL) by extended-high frequency bands (kHz) split by ear and group.",
+kbl(EHF_tab, booktabs = T,escape = F, linesep = "", caption = "EHF audiometry: Descriptive for pure-tone detection thresholds (dB HL) by extended-high frequencies (kHz) split by ear and group.",
     align = c("lccccccccccc"),format = "latex") %>% 
   kable_styling(latex_options = c("scale_down")) %>%
   add_header_above(c(" " = 2, "APD" = 5, "TD" = 5)) %>%
   column_spec(c(8),border_left = T) %>% 
   kable_styling() %>%
-  pack_rows("Octave frequency bands", 1, 6) %>%
+  pack_rows("Frequency", 1, 6) %>%
   pack_rows("PTAs and better-ear", 7, 10) %>%
   add_footnote(c("PTA: average detection threshold at 8, 11, & 16 kHz.","BE: PTA at the better ear."), notation = "none")
 ```
@@ -1638,7 +1653,7 @@ kbl(EHF.nparLD,booktabs = T, escape = F, linesep = "",caption = "EHF audiometry:
 # latex_options = c("hold_position")
 ```
 
-Similarly, an additional nonparametric 4 x 2 factorial design model was used to examine the difference between the two groups (APD/TD) for the four combined threshold measures (PTA$_{Right}$, PTA$_{Left}$, PTA, and BE). As before, the TD group was treated as a single group since no significant difference was found between TD children with or without an APD sibling. The nparLD ATS test found no significant two-way interaction between Group and Measure nor a main effect of groups, while there was a significant main effect of measure (see Table \@ref(tab:EHF-PTATabnparLD)).\
+Similarly, an additional nonparametric 4 x 2 factorial design model was used to examine the difference between the two groups (APD/TD) for the four combined threshold measures (PTA$_{Left}$, PTA$_{Right}$, PTA, and BE). As before, the TD group was treated as a single group since no significant difference was found between TD children with or without an APD sibling. The nparLD ATS test found no significant two-way interaction between Group and Measure nor a main effect of groups, while there was a significant main effect of measure (see Table \@ref(tab:EHF-PTATabnparLD)).\
 
 ```{r, label='EHF-PTAnparLD', message=FALSE,warning=FALSE, echo=FALSE, results='hide'}
 # PTA
@@ -1657,7 +1672,7 @@ EHF_PTA.nparLD$p.value = ifelse(EHF_PTA.nparLD$p.value<.05,
                                 EHF_PTA.nparLD$p.value)
 colnames(EHF_PTA.nparLD)[3] <- "p-value"
 row.names(EHF_PTA.nparLD) <- NULL
-EHF_PTA.nparLD <- cbind(" "=c("Group","Measure","Group:Measure"),EHF_PTA.nparLD)
+EHF_PTA.nparLD <- cbind(" "=c("Group","PTAs","Group:PTAs"),EHF_PTA.nparLD)
 
 
 ########################### Test assumptions #########################################
@@ -1702,7 +1717,7 @@ car::leveneTest(residuals(w1) ~ PTA * Group2, data = d_HF_PTA_L)
 ```
 
 ```{r, label='EHF-PTATabnparLD', echo=FALSE,fig.pos = "!H"}
-kbl(EHF_PTA.nparLD,booktabs = T, escape = F, linesep = "",caption = "EHF audiometry: Statistical analysis for the calculated PTAs (PTA$_{Right}$, PTA$_{Left}$, PTA, and BE) and Group (APD/TD) as well as their interaction (4x2 factorial design with repeated measures) tested with a robust rank-based method for analysis of nonparametric data using nparLD package (Noguchi et al., 2012). Analysis was based on a f1-ld-f1 design ANOVA-type statistic (ATS) test, whereby f1 refers to an experimental design with a single between-subjects factor (Group) and a single within-subjects factor (Measure).",
+kbl(EHF_PTA.nparLD,booktabs = T, escape = F, linesep = "",caption = "EHF audiometry: Statistical analysis for the calculated PTAs (PTA$_{Left}$, PTA$_{Right}$, PTA, and BE) and Group (APD/TD) as well as their interaction (4x2 factorial design with repeated measures) tested with a robust rank-based method for analysis of nonparametric data using nparLD package (Noguchi et al., 2012). Analysis was based on a f1-ld-f1 design ANOVA-type statistic (ATS) test, whereby f1 refers to an experimental design with a single between-subjects factor (Group) and a single within-subjects factor (PTAs).",
     align = c("lccc"),format = "latex",digits = 3) %>%
   add_footnote(c("significant p-values (p < 0.05) are shown in bold."), notation = "symbol") %>%
   column_spec(4, italic = T)
@@ -1714,7 +1729,7 @@ kbl(EHF_PTA.nparLD,booktabs = T, escape = F, linesep = "",caption = "EHF audiome
 ### ST
 
 #### Outliers & missing data {.unnumbered}
-As a first step, the listeners adaptive tracks and psychometric functions were manually inspected for abnormalities. The proportion of correct keywords within the final test trials (LevsPC) was calculated as a measure describing the success of the adaptive procedure. Since the adaptive procedure was set to yield 50\%-correct of key words in sentences, a successful procedure is expected to have a LevsPC at approximately 50\%. A binomial statistical test was applied to identify observations that significantly differ from 50\%. Observations with LevsPC $\leq$ 35\% were flagged as possible outliers and were further inspected (see Figure \@ref(fig:ST-FigLevsPC)). Interestingly, most of the flagged outliers belonged to the CCRM material with 29 observations out of 258 (6 conditions x 43 listeners), whereas only 3 observations out of 215 (5 conditions x 43 listeners) were flagged for data measured with the ASL speech material.\
+As a first step, the listeners adaptive tracks and psychometric functions were manually inspected for abnormalities. Since the SRdT is limited to a DC of 0.97, the adaptive procedure may not be able to present trials that are easy enough for performance levels to reach 50\%-correct of key words in sentences. This could have potentially occurred in the more challenging test conditions with speech distractors. Thus, the proportion of correct keywords within the final test trials (LevsPC) was calculated as a measure describing the success of the adaptive procedure, whereby a successful procedure is expected to have a LevsPC at approximately 50\%. A binomial statistical test was applied to identify observations that significantly differ from 50\%. Observations with LevsPC $\leq$ 35\% were labelled as possible outliers and were further inspected (see Figure \@ref(fig:ST-FigLevsPC)). Interestingly, most of the outliers belonged to the CCRM material with 29 observations from a total of 258 (6 conditions x 43 listeners), whereas only 3 observations out of a total of 215 (5 conditions x 43 listeners) were labelled as outliers for data measured with the ASL speech material.\
 
 As expected, most of the identified cases in both materials were for observations measured with the more demanding conditions with speech distractors. In five cases (2 ASL; 3 CCRM) we were able to confidently determine that the listener's true score was near to ceiling, and thus these observations were set to the maximal DC in the task (0.97). In other cases it was not possible to confidently determine the true SRdT, either because the procedure ended after reaching the maximum number of trials before a minimum number of test reversals was obtained (x1 CCRM, x2 ASL), or due to aberrant adaptive tracks (x5 CCRM). Since all these cases belonged to more challenging test conditions with speech distractors, it is very likely that the children's true score is at or beyond the upper DC limit. Thus, to account for that, rather than removing these observations, which will consequently reduce the statistical power and may not represent the true performance in the group, they were set to a DC of 1, which is above the task's upper DC limit of 0.97.\
 
@@ -2307,6 +2322,7 @@ ST_trimmed <- rbind(TD_trimmed.ASL_s,TD_trimmed.CCRM_s)
 ST_trimmed <- data.frame(ST_trimmed)
 ST_trimmed$listener <- factor(ST_trimmed$listener)
 ST_trimmed$material <- factor(ST_trimmed$material, levels = c("ASLN","CCRM"))
+ST_trimmed$APDsibling <- factor(ST_trimmed$APDsibling, levels = c("0","1"))
 
 ######## lmer model ##########################################
 
@@ -2516,74 +2532,128 @@ summary(BestModel.5)
 # Post-hoc paired comparison
 # -----------------------------------------------------------------------------------------------------
 
-# Material X APDsibling:
+# Check effect size of each term in the model:
+# EMAtools::lme.dscore(BestModel,dat=ST_trimmed,type="lme4")
+
+# Material X Age:
 (ref1 <- emmeans::lsmeans(BestModel,~ material*Age))
 comps <- emmeans::contrast(ref1,alpha=0.05,method="pairwise",adjust=NULL) #,adjust=NULL) adjust="bonferroni"
 summary(comps)
 
 # Material X APDsibling:
+MatSibIntFig <- emmeans::emmip(BestModel, material ~ APDsibling,linearg = list(linetype = c("solid","solid","dashed","dashed")))
+# emm_s.conf <- emmeans::emmeans(BestModel, pairwise ~ material | APDsibling, adjust="bonferroni")
+# plot(emm_s.conf, material ~ APDsibling, comparisons = TRUE, adjust="bonferroni")
+
+# emm_s.conf1 <- emmeans::emmeans(BestModel, pairwise ~ material | APDsibling,adjust="bonferroni")
+# postLMEM.1 <- summary(emm_s.conf1,infer = c(TRUE,TRUE))$contrasts[] %>%
+#                data.frame() %>%
+#                mutate_if(is.numeric, round, 2) %>%
+#                mutate(CI = sprintf("%s - %s",
+#                       round(lower.CL,2),
+#                       round(upper.CL,2))) %>%
+#                select(contrast:df, t.ratio:CI)
+
 (ref1 <- emmeans::lsmeans(BestModel,~ material*APDsibling))
-comps <- emmeans::contrast(ref1,alpha=0.05,method="pairwise",adjust=NULL) #,adjust=NULL) adjust="bonferroni"
-summary(comps)
-
-Matsib.postLMEM <- data.frame(comps)
-Matsib.CI <- confint(comps)
-
-Matsib.CI <- Matsib.CI  %>% mutate( CI = sprintf("%s - %s",
-          round(lower.CL,2),
-          round(upper.CL,2)))
-
-Matsib.postLMEM <- cbind(Matsib.postLMEM,"CI"=Matsib.CI$CI)
-postLMEM.1 <- Matsib.postLMEM %>% mutate_if(is.numeric, round, 2) 
+comps <- emmeans::contrast(ref1,alpha=0.05,method="pairwise",adjust="bonferroni") #,adjust=NULL) adjust="bonferroni"
+postLMEM.1 <-  summary(comps,infer = c(TRUE,TRUE)) %>% 
+               data.frame() %>% 
+               mutate_if(is.numeric, round, 2) %>%
+               mutate(CI = sprintf("%s - %s",
+                      round(lower.CL,2),
+                      round(upper.CL,2))) %>%
+               select(contrast:df, t.ratio:CI)
 
 postLMEM.1$p.value <- ifelse(postLMEM.1$p.value <.001,"\\textbf{< 0.001}", 
                              ifelse(postLMEM.1$p.value <.05, sprintf("\\textbf{%.02f}",postLMEM.1$p.value),
                                     postLMEM.1$p.value))
 
-# postLMEM <- rbind(CondMat.postLMEM,MatAge.postLMEM)
-
-colnames(postLMEM.1)[1:7] <- c("ASL - CCRM","Estimate","SE","Df","t-value","p-value",sprintf("95\\%%-CI"))
-row.names(postLMEM.1) <- NULL
-
-colnames(postLMEM.1)[1:7] <- c("contrast","Estimate","SE","Df","t-value","p-value",sprintf("95\\%%-CI"))
+colnames(postLMEM.1)[1:7] <- c("Contrast","Estimate","SE","Df","t-value","p-value",sprintf("95\\%%-CI"))
 row.names(postLMEM.1) <- NULL
 
 # change contrasts names
-postLMEM.1[1] <-  c("ASL 0 - CCRM 0","ASL 0 - ASL 1","ASLN 0 - CCRM 1","CCRM 0 - ASL 1","CCRM 0 - CCRM 1","ASL 1 - CCRM 1")
+postLMEM.1[1] <-  c("ASL TD - CCRM TD","ASL TD - ASL TD$_{sib}$","ASLN TD - CCRM TD$_{sib}$",
+                    "CCRM TD - ASL TD$_{sib}$","CCRM TD - CCRM TD$_{sib}$","ASL TD$_{sib}$ - CCRM TD$_{sib}$")
 
-# Condition x Material:
+# get effect size:
+# emmeans::eff_size(ref1, sigma = sigma(BestModel), edf = df.residual(BestModel))
+
+
+# Condition x Material: -----------------------------------------------------------------------------------
 # visual inspection
 # emmeans::emmip(model2, CondCode ~ material)
+# emm_s.conf <- emmeans::emmeans(BestModel, pairwise ~ CondCode | material,adjust="bonferroni")
+# plot(emm_s.conf, ~ CondCode | material, comparisons = TRUE, adjust="bonferroni")
 
-(ref1 <- emmeans::lsmeans(BestModel,~ CondCode*material))
-comps <- emmeans::contrast(ref1,alpha=0.05,method="pairwise",adjust=NULL) #,adjust=NULL) adjust="bonferroni"
-summary(comps)
+# Plot description: 
+# The blue bars are confidence intervals for the EMMs, and the red arrows are for the comparisons among them. If an arrow from one mean overlaps an  arrow from another group, the difference is not “significant,” based on the adjust setting (which defaults to "tukey") and the value of alpha (which defaults to 0.05).
+#
+# See: https://cran.r-project.org/web/packages/emmeans/vignettes/comparisons.html
 
-CondMat.postLMEM <- data.frame(comps[c(5,14,22,29,35)])
-CondMat.CI <- confint(comps[c(5,14,22,29,35)])
-
-CondMat.CI <- CondMat.CI  %>% mutate( CI = sprintf("%s - %s",
-          round(lower.CL,2),
-          round(upper.CL,2)))
-
-CondMat.postLMEM <- cbind(CondMat.postLMEM,"CI"=CondMat.CI$CI)
-postLMEM.2 <- CondMat.postLMEM  %>% mutate_if(is.numeric, round, 2)
+emm_s.conf <- emmeans::emmeans(BestModel, pairwise ~ CondCode | material,adjust="bonferroni")
+postLMEM.2 <- summary(emm_s.conf,infer = c(TRUE,TRUE))$contrasts[] %>% 
+               data.frame() %>% 
+               mutate_if(is.numeric, round, 2) %>%
+               mutate(CI = sprintf("%s - %s",
+                      round(lower.CL,2),
+                      round(upper.CL,2))) %>%
+               select(contrast, estimate:df, t.ratio:CI) 
 
 postLMEM.2$p.value <- ifelse(postLMEM.2$p.value <.001,"\\textbf{< 0.001}", 
                              ifelse(postLMEM.2$p.value <.05, sprintf("\\textbf{%.02f}",postLMEM.2$p.value),
                                     postLMEM.2$p.value))
+# change some names
+# postLMEM.2$material <-   str_replace(postLMEM.2$material,"ASLN","ASL")
+postLMEM.2$contrast <-   paste0(str_replace_all(postLMEM.2$contrast, fixed("_"), "\\_"))
+postLMEM.2$contrast <-   paste0(str_replace_all(postLMEM.2$contrast, fixed("("), ""))
+postLMEM.2$contrast <-   paste0(str_replace_all(postLMEM.2$contrast, fixed(")"), ""))
 
-colnames(postLMEM.2)[1:7] <- c("ASL - CCRM","Estimate","SE","Df","t-value","p-value",sprintf("95\\%%-CI"))
+
+# (ref1 <- emmeans::lsmeans(BestModel,~ CondCode*material))
+# comps <- emmeans::contrast(ref1,alpha=0.05,method="pairwise",adjust="bonferroni") #,adjust=NULL) adjust="bonferroni"
+# postLMEM.2 <-  summary(comps,infer = c(TRUE,TRUE)) %>% 
+#                data.frame() %>% 
+#                mutate_if(is.numeric, round, 2) %>%
+#                mutate(CI = sprintf("%s - %s",
+#                       round(lower.CL,2),
+#                       round(upper.CL,2))) %>%
+#                select(contrast:df, t.ratio:CI)
+
+# select only pairs for the same condition type:
+# postLMEM.2 <- postLMEM.2[c(5,14,22,29,35),]
+
+# postLMEM.2$p.value <- ifelse(postLMEM.2$p.value <.001,"\\textbf{< 0.001}", 
+#                              ifelse(postLMEM.2$p.value <.05, sprintf("\\textbf{%.02f}",postLMEM.2$p.value),
+#                                     postLMEM.2$p.value))
+
+colnames(postLMEM.2)[1:7] <- c("Contrast","Estimate","SE","Df","t-value","p-value","95\\%-CI")
 row.names(postLMEM.2) <- NULL
 
-# change contrasts names
-postLMEM.2[1] <-  c("Quiet-NoAlt","Quiet-Alt","AMSSN-Alt", sprintf("MDR\\_F-Alt"),sprintf("ENG\\_F-Alt"))
-# contrast                            estimate     SE  df t.ratio p.value
-# (Q-NoAlt ASLN) - (Q-NoAlt CCRM)      0.19389 0.0254 216   7.621 <.0001 
-# (Q-Alt ASLN) - (Q-Alt CCRM)          0.20112 0.0251 216   8.012 <.0001
-# (AMSSN-Alt ASLN) - (AMSSN-Alt CCRM)  0.18495 0.0251 216   7.366 <.0001 
-# (MDR_F-Alt ASLN) - (MDR_F-Alt CCRM)  0.24260 0.0251 216   9.662 <.0001 
-# (ENG_F-Alt ASLN) - (ENG_F-Alt CCRM)  0.27378 0.0251 216  10.904 <.0001 
+#                         contrast Material Estimate   SE     Df t-value           p-value            CI
+# 1            (Q-NoAlt) - (Q-Alt)      ASL    -0.09 0.03 221.97   -3.49    \\textbf{0.01} -0.16 - -0.02
+# 2        (Q-NoAlt) - (AMSSN-Alt)      ASL    -0.07 0.03 221.94   -2.90    \\textbf{0.04}     -0.15 - 0
+# 3      (Q-NoAlt) - (MDR\\_F-Alt)      ASL    -0.33 0.03 221.97  -13.00 \\textbf{< 0.001}  -0.4 - -0.26
+# 4      (Q-NoAlt) - (ENG\\_F-Alt)      ASL    -0.38 0.03 221.96  -14.97 \\textbf{< 0.001} -0.45 - -0.31
+# 5          (Q-Alt) - (AMSSN-Alt)      ASL     0.02 0.03 221.97    0.59                 1  -0.06 - 0.09
+# 6        (Q-Alt) - (MDR\\_F-Alt)      ASL    -0.24 0.03 221.97   -9.51 \\textbf{< 0.001} -0.31 - -0.17
+# 7        (Q-Alt) - (ENG\\_F-Alt)      ASL    -0.29 0.03 221.96  -11.48 \\textbf{< 0.001} -0.36 - -0.22
+# 8    (AMSSN-Alt) - (MDR\\_F-Alt)      ASL    -0.26 0.03 221.97  -10.10 \\textbf{< 0.001} -0.33 - -0.18
+# 9    (AMSSN-Alt) - (ENG\\_F-Alt)      ASL    -0.31 0.03 221.95  -12.07 \\textbf{< 0.001} -0.38 - -0.23
+# 10 (MDR\\_F-Alt) - (ENG\\_F-Alt)      ASL    -0.05 0.03 221.96   -1.96              0.51  -0.12 - 0.02
+# 11           (Q-NoAlt) - (Q-Alt)     CCRM    -0.08 0.03 222.77   -3.13    \\textbf{0.02} -0.16 - -0.01
+# 12       (Q-NoAlt) - (AMSSN-Alt)     CCRM    -0.08 0.03 222.09   -3.14    \\textbf{0.02} -0.16 - -0.01
+# 13     (Q-NoAlt) - (MDR\\_F-Alt)     CCRM    -0.28 0.03 222.79  -10.57 \\textbf{< 0.001} -0.36 - -0.21
+# 14     (Q-NoAlt) - (ENG\\_F-Alt)     CCRM    -0.30 0.03 222.60  -11.35 \\textbf{< 0.001} -0.37 - -0.22
+# 15         (Q-Alt) - (AMSSN-Alt)     CCRM     0.00 0.03 222.60    0.00                 1  -0.07 - 0.07
+# 16       (Q-Alt) - (MDR\\_F-Alt)     CCRM    -0.20 0.03 222.60   -7.51 \\textbf{< 0.001} -0.27 - -0.12
+# 17       (Q-Alt) - (ENG\\_F-Alt)     CCRM    -0.22 0.03 222.38   -8.27 \\textbf{< 0.001} -0.29 - -0.14
+# 18   (AMSSN-Alt) - (MDR\\_F-Alt)     CCRM    -0.20 0.03 222.60   -7.52 \\textbf{< 0.001} -0.27 - -0.12
+# 19   (AMSSN-Alt) - (ENG\\_F-Alt)     CCRM    -0.22 0.03 222.40   -8.28 \\textbf{< 0.001} -0.29 - -0.14
+# 20 (MDR\\_F-Alt) - (ENG\\_F-Alt)     CCRM    -0.02 0.03 222.39   -0.68                 1  -0.09 - 0.06
+
+
+# get effect size:
+# emmeans::eff_size(emm_s.conf, sigma = sigma(BestModel), edf = df.residual(BestModel))
 
 # -------------------------------------------------------------------------
 # get table
@@ -2592,8 +2662,8 @@ ST_AgeTab <- data.frame(rbind(
   c("Condition:Material",CondMat.LMEM$Df[2],CondMat.LMEM$Chisq[2],sprintf("\\textbf{%0.3f}",CondMat.LMEM$`Pr(>Chisq)`[2])),
   c("Condition:Age",CondAge.LMEM$Df[2],CondAge.LMEM$Chisq[2],sprintf("\\textbf{%0.3f}",CondAge.LMEM$`Pr(>Chisq)`[2])),
   c("Material:Age",MatAge.LMEM$Df[2],MatAge.LMEM$Chisq[2],sprintf("%0.3f",MatAge.LMEM$`Pr(>Chisq)`[2])),
-  c("Condition:Group",CondSib.LMEM$Df[2],CondSib.LMEM$Chisq[2],sprintf("%0.3f",CondSib.LMEM$`Pr(>Chisq)`[2])),
-  c("Material:Group",MatSib.LMEM$Df[2],MatSib.LMEM$Chisq[2],sprintf("\\textbf{%0.3f}",MatSib.LMEM$`Pr(>Chisq)`[2]))
+  c("Condition:Sibling",CondSib.LMEM$Df[2],CondSib.LMEM$Chisq[2],sprintf("%0.3f",CondSib.LMEM$`Pr(>Chisq)`[2])),
+  c("Material:Sibling",MatSib.LMEM$Df[2],MatSib.LMEM$Chisq[2],sprintf("\\textbf{%0.3f}",MatSib.LMEM$`Pr(>Chisq)`[2]))
   ))
 
 ST_AgeTab[,c(2:3)]= apply(ST_AgeTab[,c(2:3)], 2, function(x) as.numeric(as.character(x)))
@@ -3369,17 +3439,17 @@ Looking at Figure \@ref(fig:ST-Age) A-B, it is noticeable that children in bot
 
 A closer look at the regression lines shows several interesting trends. The non-speech AMSSN distractor had little-to-no effect on performance, at least in the TD group, where performance was fairly similar to performance in the Quiet conditions. Introducing alternations (as in Quiet-Alt vs. Quiet-NoAlt), seems to hinder intelligibility in both groups. However the effect is relatively small and may not be significant due to the large spread in the APD group. Furthermore, when comparing the regression lines, there appears to be a relatively larger separation between the groups for SRdTs measured with the CCRM material, especially for AMSSN, but also for the speech distractors. However, it is possible that the APD regression lines do not reflect the true population due to the large spread in performance and the small sample size and thus any interpretation should be taken with caution. Another interesting observation is that the children showed little-to-no *masking-release* for speech spoken in an unfamiliar language (MDR_F) when compared with a distractor spoken in English (ENG_F). This is in agreement with findings in the adults' study in Chapter \@ref(Chpt2). Lastly, it is apparent from the figure that performance for the CCRM_F distractor was near-to-ceiling for some children, mostly among the APD group.\
 
-Next, the age effect was tested using an LMEM model, with Condition (Quiet-NoAlt, Quiet-Alt, AMSSN, MDR_F, \& ENG_F), Material (ASL / CCRM), Age, and Group (TD children with/without an APD sibling, 1/0) as fixed factors, SRdT as the dependent variable and random intercepts for subjects (reference levels: Condition = Quiet-NoAlt; Material = ASL, Group = 0). Note that data for CCRM_F was excluded from the model since it was only measured for the CCRM material[^Chapt3-2]. The final LMEM model that gave the best fit and main effects are given in Table \@ref(tab:ST-AgeLMEM). Inspection of parametric assumptions based on the model's residuals confirmed that both the assumption of normal distribution and homogeneity of variance were met. Model comparison revealed a significant two-way interaction between Condition x Age, between Condition x Material, and between Material x Group (all p's \ \<\ 0.05).\
+Next, the age effect was tested using an LMEM model, with Condition (Quiet-NoAlt, Quiet-Alt, AMSSN, MDR_F, \& ENG_F), Material (ASL / CCRM), Age, and Sibling (TD children with/without an APD sibling, TD/TD$_{sib}$) as fixed factors, SRdT as the dependent variable and random intercepts for subjects (reference levels: Condition = Quiet-NoAlt; Material = ASL, Sibling = TD). Note that data for CCRM_F was excluded from the model since it was only measured for the CCRM material[^Chapt3-3]. The final LMEM model that gave the best fit and main effects are given in Table \@ref(tab:ST-AgeLMEM). Inspection of parametric assumptions based on the model's residuals confirmed that both the assumption of normal distribution and homogeneity of variance were met. Model comparison revealed a significant two-way interaction between Condition x Age, between Condition x Material, and between Material x Sibling (all p's \ \<\ 0.05).\
 
-[^Chapt3-2]: A separate model for the CCRM data with CCRM_F-Alt condition showed similar results, with a strong significant Condition x Age interaction (p\ \<\ 0.001) and no main effect of Group (p\ \>\ 0.05).
+[^Chapt3-3]: A separate model for the CCRM data with CCRM_F-Alt condition showed similar results, with a strong significant Condition x Age interaction (p\ \<\ 0.001) and no main effect of Sibling (p\ \>\ 0.05).
 
 ```{r,label='ST-AgeLMEM',echo=FALSE,warning=FALSE, message=FALSE}
 
-kbl(ST_AgeTab, booktabs = T,escape = F, linesep = "",caption = "ST: Age effect analysis using LMEM for SRdTs measured across condition, speech material, age and group (TD children with/without an APD sibling, 1/0) as fixed factors and random intercepts for subjects. Reference levels: Condition = Quiet-NoAlt, Material = ASL, Group = none sibling (0). Note: only data for the control group (TD) following outlier trimming was included.",
+kbl(ST_AgeTab, booktabs = T,escape = F, linesep = "",caption = "ST: Age effect analysis using LMEM for SRdTs measured across condition, speech material, age and children from the TD group with/without an APD sibling (Sibling: TD/TD$_{sib}$) as fixed factors and random intercepts for subjects. Reference levels: Condition = Quiet-NoAlt, Material = ASL, Sibling = TD. Note: only data for the control group (TD) following outlier trimming was included.",
     align = c("lccc"),format = "latex",digits = 3) %>%
     # kable_styling(latex_options = c("scale_down")) %>%
-  add_header_above(c("Condition:Age + Material:Age + Condition: Group + (1 | Subjects)" = 4),align = "r") %>%
-  add_header_above(c("SRdT ~ Condition + Material + Age + Group + Condition:Material +" = 4), align = "l",line = FALSE) %>%
+  add_header_above(c("Condition:Age + Material:Age + Condition: Sibling + (1 | Subjects)" = 4),align = "r") %>%
+  add_header_above(c("SRdT ~ Condition + Material + Age + Sibling + Condition:Material +" = 4), align = "l",line = FALSE) %>%
   column_spec(1, width = "8cm") %>%
   add_footnote(c("significant p-values (p < 0.05) are shown in bold."), notation = "symbol") %>%
   column_spec(4, italic = T)
@@ -3388,49 +3458,8 @@ kbl(ST_AgeTab, booktabs = T,escape = F, linesep = "",caption = "ST: Age effect a
   # add_header_above(c("SRdT ~ Condition + Material + Age" = 4), align = "l",line = FALSE) %>%
 ```
 
-(ref:tabCap3) ST: Age-effect: post-hoc paired-comparison t-tests for Condition x Material interaction. The test was performed on the fitted LMEM model and included adjusted least-squared-mean for the random intercepts (subjects) using lsmeans package [emmeans package; @emmeansPackageR].
-
-```{r, label='ST-AgeLMEMpost2', echo=FALSE}
-
-kbl(postLMEM.2,booktabs = T, escape = F, linesep = "",caption = '(ref:tabCap3)',
-    align = c("lcccccc"),format = "latex",digits = 2) %>%
-    kable_styling(latex_options = c("scale_down")) %>%
-  add_footnote(c("significant p-values (p < 0.05) are shown in bold."), notation = "symbol") %>%
-  column_spec(6, italic = T) %>%
-  kable_styling() 
-  # %>%
-  # pack_rows("Condition x Material", 1, 5) %>%
-  # pack_rows("Material", 6,6)
-
-# use this if you want to fore latex to print the table in an exact location!
-# latex_options = c("hold_position")
-```
-
-(ref:tabCap2) ST: Age-effect: post-hoc paired-comparison t-tests for Material (ASL/CCRM) x Group (0/1) interaction. The test was performed on the fitted LMEM model and included adjusted least-squared-mean for the random intercepts (subjects) using lsmeans package [emmeans package; @emmeansPackageR].
-
-```{r, label='ST-AgeLMEMpost1', echo=FALSE}
-
-kbl(postLMEM.1,booktabs = T, escape = F, linesep = "",caption = '(ref:tabCap2)',
-    align = c("lcccccc"),format = "latex",digits = 2) %>%
-    kable_styling(latex_options = c("scale_down")) %>%
-  add_footnote(c("significant p-values (p < 0.05) are shown in bold."), notation = "symbol") %>%
-  column_spec(6, italic = T) %>%
-  kable_styling() 
-  # %>%
-  # pack_rows("Condition x Material", 1, 5) %>%
-  # pack_rows("Material", 6,6)
-
-# use this if you want to fore latex to print the table in an exact location!
-# latex_options = c("hold_position")
-```
-
-The significant Material x Age interaction indicates that the developmental trend is different between the two speech materials, with a larger age effect (i.e., steeper slopes) for the ASL sentences, with an average improvement of 0.01 DC per 1 year, which is approximately 6\% higher than for the CCRM sentences across the age span. Furthermore, the significant Condition x Material interaction implies that performance in the different test conditions differed between the two speech materials. A post-hoc t-tests comparison based on the fitted model given in Table \@ref(tab:ST-AgeLMEMpost2), revealed a highly significant difference in performance between the speech materials across all five test conditions (all p's \< 0.001). The estimated mean difference between the contrast pairs ranged between \+0.18 to \+0.27. Hence, the CCRM speech material was significantly more intelligible than the ASL material, across all test conditions.\
-
-The significant Condition x Age interaction supports the observation in Figure \@ref(fig:ST-Age) A-B, that the effect of age was different across the test conditions. These findings raises the following questions -- do all the conditions show a significant age effect? Moreover, since the effect of age is not the same across the test conditions, which conditions showed the largest age effect? One possible way to tackle these questions is to compare the separate regression models using F-statistics. Nonetheless, due to the small sample-size and the large number of paired comparisons, such test lacks a statistical power and the results may not reflect the true effect in a larger sample. The TD group regression models R$^{2}$ and p-values are given at the bottom part of Figure A and B. The ASL models p-values indicated a highly significant age effect for ENG_F, MDR_F and Quiet-NoAlt condition as well as a marginal effect for AMSSN (p\ =\ 0.048), whereas no significant age effect was found for Quiet-Alt (p\ =\ 0.168). As for the CCRM material, there was a highly significant age effect for ENG_F and a marginal effect for the Quiet-Alt condition (p\ =\ 0.058) and for CCRM_F condition (p\ =\ 0.05) which was not included in the LMEM model, whilst there was no significant age effect found for Quiet-NoAlt, AMSSN and MDR_F conditions. Furthermore, age was found to be a better predictor (i.e., accounting for larger variance in SRdT) for conditions with speech distractors, with R$^{2}$ ranging between 32\% to 72\% for the ASL material and about 12\% to 29\% for the CCRM. A comparison between the test conditions regression line slopes split by test material is depicted in Figure \@ref(fig:ST-AgeSlopes). A possible pattern emerges from the figure, where slopes for the quiet and non-speech conditions are fairly similar across the two speech material (indicated by their proximity to the diagonal line), while, differences between the slopes are relatively larger for speech distractors, in particularly for MDR_F where the slope for the ASL material (-0.13) is about six times steeper than the slope for the CCRM material (-0.02).\
-
-Lastly, the significant interaction between test Material and Group was explored using two separate LMEM models for ASL and CCRM data. Both models found no significant effect of Group. Comparison of the average performance by material between the two control groups revealed an opposite direction of performance. While the performance of the TD children with an APD sibling was on average 0.04 better than their TD peers for the ASL material, their performance was 0.02 poorer for the CCRM material. These results are in contradiction to our expectations if any differences arose. In such a case, we would have predicted a larger decrement in performance (i.e., poorer score) for the ASL sentences which are more linguistically challenging than for the CCRM sentences. This disagreement and the very small estimated mean difference for the interaction between Material and Group in the full model (0.052) suggests that the differences picked up by the model are due to sampling error.\
-
-<!-- Lastly, the highly significant Condition x Age interaction supports the observation in Figure \@ref(fig:ST-Age) A-B, that age affected performance differently across the test conditions. These findings raises the following questions -- do all the conditions show a significant age effect? Moreover, since the effect of age is not the same across the test conditions, which conditions showed the largest age effect? One possible way to tackle these questions is to compare the separate regression models using F-statistics. Nonetheless, due to the small sample-size and the large number of paired comparisons, such test lacks a statistical power and the results may not reflect the true effect in a larger sample. The TD group regression model's R$^{2}$ and p-values are given at the bottom part of Figure A and B. The ASL models p-values indicated a highly significant age effect for ENG_F, MDR_F and Quiet-NoAlt condition as well as a marginal effect for AMSSN (p\ =\ 0.048), whereas no significant age effect was found for Quiet-Alt (p\ =\ 0.168). As for the CCRM material, there was a highly significant age effect for ENG_F and a marginal effect for the Quiet-Alt condition (p\ =\ 0.058) and for CCRM_F condition (p\ =\ 0.05) which was not included in the LMEM model, whilst there was no significant age effect found for Quiet-NoAlt, AMSSN and MDR_F conditions. Furthermore, age was found to be a better predictor (i.e., accounting for larger variance in SRdT) for conditions with speech distractors, with R$^{2}$ ranging between 32\% to 72% for the ASL material and about 12\% to 29\% for the CCRM. A comparison between the test conditions regression line slopes fitted for the CCRM (x-axis) and ASL speech material (y-axis) is depicted in Figure \@ref(fig:ST-AgeSlopes). A possible pattern emerges from the figure, where slopes for the quiet and non-speech conditions are fairly similar across the two speech material (indicated by their proximity to the diagonal line), while, differences between the slopes are relatively larger for speech distractors, in particularly for MDR_F where the slope for the ASL material (-0.13) is about six times steeper than the slope for the CCRM material (-0.02). -->
+  
+The significant Material x Age interaction indicates that the developmental trend is different between the two speech materials, with a larger age effect (i.e., steeper slopes) for the ASL sentences, with an average improvement of 0.01 DC per 1 year, which is approximately 6\% higher than for the CCRM sentences across the age span. Moreover, the significant Condition x Age interaction supports the observation in Figure \@ref(fig:ST-Age) A-B, that the effect of age was different across the test conditions. These findings raises the following questions -- do all the conditions show a significant age effect? Moreover, since the effect of age is not the same across the test conditions, which conditions showed the largest age effect? One possible way to tackle these questions is to compare the separate regression models using F-statistics. Nonetheless, due to the small sample-size and the large number of paired comparisons, such test lacks a statistical power and the results may not reflect the true effect in a larger sample. The TD group regression models R$^{2}$ and p-values are given at the bottom part of Figure A and B. The ASL models p-values indicated a highly significant age effect for ENG_F, MDR_F and Quiet-NoAlt condition as well as a marginal effect for AMSSN (p\ =\ 0.048), whereas no significant age effect was found for Quiet-Alt (p\ =\ 0.168). As for the CCRM material, there was a highly significant age effect for ENG_F and a marginal effect for the Quiet-Alt condition (p\ =\ 0.058) and for CCRM_F condition (p\ =\ 0.05) which was not included in the LMEM model, whilst there was no significant age effect found for Quiet-NoAlt, AMSSN and MDR_F conditions. Furthermore, age was found to be a better predictor (i.e., accounting for larger variance in SRdT) for conditions with speech distractors, with R$^{2}$ ranging between 32\% to 72\% for the ASL material and about 12\% to 29\% for the CCRM. A comparison between the test conditions regression line slopes split by test material is depicted in Figure \@ref(fig:ST-AgeSlopes). A possible pattern emerges from the figure, where slopes for the quiet and non-speech conditions are fairly similar across the two speech material (indicated by their proximity to the diagonal line), while, differences between the slopes are relatively larger for speech distractors, in particularly for MDR_F where the slope for the ASL material (-0.13) is about six times steeper than the slope for the CCRM material (-0.02).\
 
 ```{r, label='ST-AgeSlopes', fig.cap="ST: Age effect: a comparison beteween the regression line slopes fitted for the CCRM (x-axis) and ASL speech material (y-axis). Test conditions are represented by the different symbols. The diagonal line represents an optimal agreement between the speech materials. Observations falling below the line indicate a steeper slope for the ASL material than for the CCRM material.", fig.align='center', fig.width=6, fig.asp=0.7, out.width='60%',echo=FALSE, message=FALSE, warning=FALSE}
 
@@ -3464,6 +3493,79 @@ t1 <- ggplot(SlopePlot, aes(x=Slopes.CCRM, y=Slopes.ASLN)) +
 
 t1$labels$shape ="Condition"
 t1
+```
+
+Furthermore, the significant Condition x Material interaction implies that the difference between the two speech materials depends upon condition. A model-based post-hoc pairwise t-tests comparison of the test conditions by material are given in Table \@ref(tab:ST-AgeLMEMpost2). The tests revealed a similar trend in both speech materials, where differences in means across the conditions were all significant, excluding Quiet-Alt - AMSSN-Alt, and MDR_F - ENG_F, which were not significant. The insignificant difference in performance between the conditions MDR_F and ENG_F implies that the TD children did not benefit from a release from masking for a speech distractor spoken in an unfamiliar language (MDR_F) as opposed to a familiar speech spoken in English (ENG_F). This sits well with our previous findings with adults where adults showed no benefit for the MDR_F speech masker (see Chapter\ \@ref(Chpt1)).\ 
+
+<!-- the speech materials across all five test conditions (all p's \< 0.001). The estimated mean difference between the contrast pairs ranged between \+0.18 to \+0.27. Hence, the CCRM speech material was significantly more intelligible than the ASL material, across all test conditions.\ -->
+
+(ref:tabCap3) ST: Age-effect: post-hoc paired-comparison t-tests for Condition x Material interaction. The test was performed on the fitted LMEM model and included adjusted least-squared-mean for the random intercepts (subjects) using lsmeans package [emmeans package; @emmeansPackageR].
+
+```{r, label='ST-AgeLMEMpost2', echo=FALSE}
+
+kbl(postLMEM.2,booktabs = T, escape = F, linesep = "",caption = '(ref:tabCap3)',
+    align = c("lcccccc"),format = "latex",digits = 2) %>%
+  kable_styling(latex_options = c("scale_down")) %>%
+  kable_styling() %>%
+  pack_rows("ASL", 1, 10) %>%
+  pack_rows("CCRM", 11, 20) %>%
+  add_footnote(c("significant p-values (p < 0.05) are shown in bold."), notation = "symbol") %>%
+  column_spec(6, italic = T) %>%
+  kable_styling() 
+  # %>%
+  # pack_rows("Condition x Material", 1, 5) %>%
+  # pack_rows("Material", 6,6)
+
+# use this if you want to fore latex to print the table in an exact location!
+# latex_options = c("hold_position")
+```
+
+Lastly, the significant interaction between Material and Sibling implies that the difference between the speech materials **depends upon the two TD groups**. A model-based post-hoc t-test comparison given in Table\ \@ref(tab:ST-AgeLMEMpost1), revealed a highly significant difference in performance between the two speech materials in both TD groups, whereas there was no significant difference in performance between the groups within each speech material. Comparison of the average performance by material between the two control groups revealed an opposite direction of performance (see also Figure\ \@ref(fig:ST-AgePostHocMatSib)). While the performance of the TD$_{sib}$ children was on average 0.06 better than their TD peers for the ASL material, their performance was 0.04 poorer for the CCRM material. These results are in contradiction to our expectations if any differences arose. In such a case, we would have predicted a larger decrement in performance (i.e., poorer score) for the ASL sentences which are more linguistically challenging than for the CCRM sentences. This disagreement and the very small estimated mean difference for the interaction between Material and Group in the full model (0.052) suggests that the differences picked up by the model are due to sampling error.\
+
+<!-- Lastly, the significant interaction between test Material and Sibling was explored using two separate LMEM models for ASL and CCRM data. Both models found no significant effect of Group.  -->
+
+<!-- Lastly, the highly significant Condition x Age interaction supports the observation in Figure \@ref(fig:ST-Age) A-B, that age affected performance differently across the test conditions. These findings raises the following questions -- do all the conditions show a significant age effect? Moreover, since the effect of age is not the same across the test conditions, which conditions showed the largest age effect? One possible way to tackle these questions is to compare the separate regression models using F-statistics. Nonetheless, due to the small sample-size and the large number of paired comparisons, such test lacks a statistical power and the results may not reflect the true effect in a larger sample. The TD group regression model's R$^{2}$ and p-values are given at the bottom part of Figure A and B. The ASL models p-values indicated a highly significant age effect for ENG_F, MDR_F and Quiet-NoAlt condition as well as a marginal effect for AMSSN (p\ =\ 0.048), whereas no significant age effect was found for Quiet-Alt (p\ =\ 0.168). As for the CCRM material, there was a highly significant age effect for ENG_F and a marginal effect for the Quiet-Alt condition (p\ =\ 0.058) and for CCRM_F condition (p\ =\ 0.05) which was not included in the LMEM model, whilst there was no significant age effect found for Quiet-NoAlt, AMSSN and MDR_F conditions. Furthermore, age was found to be a better predictor (i.e., accounting for larger variance in SRdT) for conditions with speech distractors, with R$^{2}$ ranging between 32\% to 72% for the ASL material and about 12\% to 29\% for the CCRM. A comparison between the test conditions regression line slopes fitted for the CCRM (x-axis) and ASL speech material (y-axis) is depicted in Figure \@ref(fig:ST-AgeSlopes). A possible pattern emerges from the figure, where slopes for the quiet and non-speech conditions are fairly similar across the two speech material (indicated by their proximity to the diagonal line), while, differences between the slopes are relatively larger for speech distractors, in particularly for MDR_F where the slope for the ASL material (-0.13) is about six times steeper than the slope for the CCRM material (-0.02). -->
+
+(ref:tabCap2) ST: Age-effect: post-hoc paired-comparison t-tests for Material (ASL/CCRM) x Sibling (TD/TD$_{sib}$) interaction. The test was performed on the fitted LMEM model and included adjusted least-squared-mean for the random intercepts (subjects) using lsmeans package [emmeans package; @emmeansPackageR].
+
+```{r, label='ST-AgeLMEMpost1', echo=FALSE}
+
+kbl(postLMEM.1,booktabs = T, escape = F, linesep = "",caption = '(ref:tabCap2)',
+    align = c("lcccccc"),format = "latex",digits = 2) %>%
+    kable_styling(latex_options = c("scale_down")) %>%
+  add_footnote(c("significant p-values (p < 0.05) are shown in bold."), notation = "symbol") %>%
+  column_spec(6, italic = T) %>%
+  kable_styling() 
+  # %>%
+  # pack_rows("Condition x Material", 1, 5) %>%
+  # pack_rows("Material", 6,6)
+
+# use this if you want to fore latex to print the table in an exact location!
+# latex_options = c("hold_position")
+```
+
+```{r, label='ST-AgePostHocMatSib', fig.cap="ST: Age effect: model-based estimated marginal means for Material x Sibling interaction fitted using the \\textit{emmip()} function (emmeans package, REF).", fig.align='center', fig.width=6, fig.asp=0.7, out.width='60%',echo=FALSE, message=FALSE, warning=FALSE}
+
+MatSibIntFig + 
+  annotate(geom ="text",  x=0.75, y = 0.545, label = "ASL", size=7, face="bold",fontface=2) +
+  annotate(geom ="text",  x=0.75, y = 0.31, label = "CCRM", size=7, face="bold",fontface=2) +
+  scale_color_manual(values=c("black", "black")) +
+  # scale_linetype_manual("Material", breaks=c("ASLN", "CCRM"), values=c("solid", "dashed"))+
+  scale_x_discrete(labels=c("0" ="TD","1"=bquote(bold(TD[sib]))))+
+  labs(x = "Sibling", y = "Linear prediction (DC)") +
+  # guides(colour=guide_legend(title="Material")) + 
+  guides(colour=FALSE, line=TRUE)+
+  theme_bw() +
+  theme(axis.text = element_text(size = 11, face="bold",colour = "black"),
+        axis.title.x = element_text(size=11, face="bold"),
+        axis.title.y = element_text(size=11, face="bold"),
+        legend.title = element_text(size=11, face="bold"),
+        legend.text  = element_text(size=11, face="bold"),
+        legend.position='bottom',        
+        legend.direction = "horizontal",
+        legend.background = element_blank(),
+        legend.box.background = element_rect(colour = "black"))
+
 ```
 
 ```{block type='correction'}
@@ -3570,9 +3672,9 @@ kbl(ST_tab,booktabs = T, escape = F, linesep = "",caption = "ST: Descriptives fo
 \
 Surprisingly, a comparison of the groups averaged z-score reveals that the non-switched quiet condition (Quiet-NoAlt) and the switched condition with the nonspeech distractor (AMSSN) yielded the largest separation between the groups, with APD median z-scores of 1.81 and 1.79, respectively, laying just within the norms upper limit. Performance of the APD children was also noticeably poorer for conditions with speech distractors (MDR_F and ENG_F), each with a median z-score of circa 1, whereas performance for Quiet-Alt condition was fairly similar between the groups.\
 
-Within the APD group AMSSN, Quiet-NoAlt and MDR_F resulted in the highest proportion of abnormal scores[^Chapt3-3]. Surprisingly, the AMSSN distractor yielded the highest proportion of abnormal scores, where half of the APD children fell outside the norm (20/10, 50\%). This was followed by the non-switched condition Quiet-NoAlt, where paradoxically and against our expectation 45\% of the APD group (9/20) had abnormally poor scores, whereas only 10\% (2/20) had abnormal scores in the switched condition Quiet-Alt. Another interesting finding was that the APD children did not benefit from a release from masking for a speech distractor spoken in an unfamiliar language (MDR_F) as opposed to a familiar speech spoken in English (ENG_F), with median scores very similar in both conditions. This sits well with our previous findings with adults where adults showed no benefit for the MDR_F speech masker (see Chapter\ \@ref(Chpt1)). Moreover, while the overall performance was similar in the two conditions, the percentage of abnormal scores was twice as large for MDR_F condition (8/20, 40\%) than for the ENG_F condition (4/20, 20\%). The proportion of abnormal scores amongst the TD group ranged between 0\% to 13\% (M = 7.8\%), which is relatively higher than expected in the normal population.\
+Within the APD group AMSSN, Quiet-NoAlt and MDR_F resulted in the highest proportion of abnormal scores[^Chapt3-4]. Surprisingly, the AMSSN distractor yielded the highest proportion of abnormal scores, where half of the APD children fell outside the norm (20/10, 50\%). This was followed by the non-switched condition Quiet-NoAlt, where paradoxically and against our expectation 45\% of the APD group (9/20) had abnormally poor scores, whereas only 10\% (2/20) had abnormal scores in the switched condition Quiet-Alt. Moreover, while the overall performance was similar for the two speech distractors, the percentage of abnormal scores was twice as large for the MDR_F condition (8/20, 40\%) than for the ENG_F condition (4/20, 20\%). The proportion of abnormal scores amongst the TD group ranged between 0\% to 13\% (M = 7.8\%), which is relatively higher than expected in the normal population.\
 
-[^Chapt3-3]: With the aim to develop a clinically applicable test that exhibits good sensitivity and specificity, we were only interested in identifying children with clinically poor performance. Thus, an abnormal score was defined as a one-tailed deviance cut-off of z-score \> 1.96, within which circa 97.5\% of the normal population is expected to lay.
+[^Chapt3-4]: With the aim to develop a clinically applicable test that exhibits good sensitivity and specificity, we were only interested in identifying children with clinically poor performance. Thus, an abnormal score was defined as a one-tailed deviance cut-off of z-score \> 1.96, within which circa 97.5\% of the normal population is expected to lay.
 
 ##### CCRM speech material {.unnumbered}
 \
