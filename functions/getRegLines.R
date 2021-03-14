@@ -1,4 +1,4 @@
-getBestFit <- function(df,CondCodeName,CutOff,slope1,int1,brk,slope2){
+getRegLines <- function(df,CondCodeName,CutOff,slope1,int1,brk,slope2){
   # --------------------------------------------
   # Input: 
   # df           : the complete tests data frame
