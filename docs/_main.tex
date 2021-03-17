@@ -1714,9 +1714,10 @@ TD - TD$_{sib}$ & 75 & 40 & CCRM & -0.57 & -1.03 - -0.1 & \em{0.05} & -0.42 & sm
 \subsubsection{Derived scores}\label{derived-scores}}
 
 \hypertarget{proportion-of-duty-cycle-dc}{%
-\subsubsection{Proportion of duty cycle (DC)}\label{proportion-of-duty-cycle-dc}}
+\paragraph{Proportion of duty cycle (DC)}\label{proportion-of-duty-cycle-dc}}
 
-Derived scores were calculated by subtracting the individuals performance for the Quiet-Alt condition from the rest of the test conditions (see Figure~\ref{fig:ST-DerivedPlotsuRevs}). Whereby differences between the conditions without a distractor (Quiet-NoAlt - Quiet-Alt) describes the cost of switching the stimuli between the two ears. Whereas, differences between the conditions with a distractor describes the IM effect after accounting for the costs of switching. It appears from the figure that performance in the TD and APD group are more similar for less challenging conditions, and becomes more different for more challenging conditions with distractors. In addition, there is no strong age effect.
+\hfill\break
+Derived scores were calculated by subtracting the individuals' score for the reference condition Quiet-Alt from the rest of the test conditions (see Figure~\ref{fig:ST-DerivedPlotsuRevs}). Whereby the cost of switching the stimuli between the two ears was represented by subtracting Q-Alt from the condition without a distractor or alternations (Quiet-NoAlt). Whereas, differences between test conditions with a distractor describes the IM effect after accounting for the costs of switching. It appears from the figure that performance in the TD and APD group are more similar for less challenging conditions, and becomes more different for more challenging conditions with distractors. In addition, there is no strong age effect.\\
 
 \begin{figure}[h]
 
@@ -1727,13 +1728,23 @@ Derived scores were calculated by subtracting the individuals performance for th
 \caption{ST: Scatterplot and linear regression lines for the listeners derived scores (in DC) with the ASL (A) and the CCRM speech material (B) as a function of age. Corresponding regression coefficients and statistics are provided for the TD group only. Red indicates data from the APD group and blue indicates data from the TD control group (square shapes: TD children with an APD sibling; triangle shapes: the remaining TD children).}\label{fig:ST-DerivedPlotsuRevs}
 \end{figure}
 
-\textbf{Analysis:}
+Two separate models were used to examine the effect of switching and IM with the derived scores (in DC) as dependent variable (parametric model assumptions were met). Note that data for CCRM\_F was excluded from the analysis since it was only measured for the CCRM material. The first model examined the effect of switching using a linear regression model with Material, Sibling and Age as predictors. The model that gave the best fit and test results are given in Table~\ref{tab:ST-AgeAltEffTab}. There was a (marginally) significant Sibling x Age interaction (\(p\) = 0.043). None of the remaining terms were significant (all \(p\)'s \textgreater{} 0.05). IM effects were tested using LMEM model for the three distractors (Distractor), Material, Sibling, and Age as fixed factors and random intercepts for subjects. The model that gave the best fit did not include the fixed factors Sibling or Age (see Table~\ref{tab:ST-AgeIMEffTab}). There was a highly significant main effect of Distractor (\(p\)~\textless~0.001) as well as a significant effect of Material (\(p\)~\textless{} 0.05). Post-hoc paired-comparison t-tests based on the fitted model for Distractor (with Bonferroni correction) found a significant difference in IM effect between AMSSN and MDR (\(Estimate\) = -0.24, \(95\%-CI\) = -0.29 - -0.19, \(p\)~\textless{} 0.001) and AMSSN and ENG\_F (\(Estimate\) = -0.28, \(95\%-CI\) = -0.33 - -0.23, \(p\)~\textless{} 0.001), whereas there was no significant difference between the two speech distractors (\(Estimate\) = -0.04 \(95\%-CI\) = -0.09 - 0.01, \(p\) = 0.16).\\
 
-Two separate models were used to examine the effect of switching and IM with the derived scores as dependent variable (parametric model assumptions were met). The first model examined the effect of switching using a a simple linear regression model with Material, Sibling and Age as predictors. The model that gave the best fit and test results are given in Table ??. There was a (marginally) significant interaction for Sibling x Age (p= 0.043). None of the remaining terms were significant (all p's \textgreater~0.05). IM effect was tested using LMEM model for the three distractors (Distractor), Material, Sibling, and Age as fixed factors and random intercepts for subjects. The model that gave the best fit did not include the fixed factors Sibling or Age (see and main effects in Table~\ref{tab:ST-AgeIMEffTab}. There was a highly significant main effect of Distractor (p~\textless~0.001) as well as a significant effect of Material (p~\textless~0.05). Post-hoc paired-comparison t-tests based on the fitted model for Distractor (with Bonferroni correction) found a significant difference in IM effect between AMSSN and MDR (Estimate = -0.24, 95\%-CI = -0.29 - -0.19, p~\textless~0.001) and AMSSN and ENG\_F (Estimate = -0.28, 95\%-CI = -0.33 - -0.23, p~\textless~0.001), whereas there was no significant difference between the two speech distractors (Estimate = -0.04 95\%-CI = -0.09 - 0.01, p = 0.16)
+Additional LMEM model looked into IM effect in the CCRM data, including also data for the CCRM\_F distractor (parametric model assumptions were met). The model that gave the best fit included the following interaction terms: Distractor x Age \& and Distractor x Sibling. There was a significant Distractor x Age interaction (\(\chi^{2}\) = 8.275, \(Df\) = 3, \(p\) = 0.041), whereas there was no significant interaction for Distractor x Sibling (\(\chi^{2}\) = 5.362, \(Df\) = 3, \(p\) = 0.147) or main effect of Sibling (\(\chi^{2}\) = 5.382, \(Df\) = 4, \(p\) = 0.250).\\
+
+\textbf{Post-hoc test for Distractor x Age interaction:}
+Model based EMMs suggests opposite age effects between conditions:
+
+\begin{itemize}
+\item
+  AMSSN \& MDR\_F: IM is the largest for older kids and smallest in younger kids (WHY?!)
+\item
+  ENG\_F and CCRM\_F: IM is the largest for younger kids and decreases with age.
+\end{itemize}
 
 \begin{table}
 
-\caption{\label{tab:ST-AgeIMEffTab}ST: Add caption here.}
+\caption{\label{tab:ST-AgeIMEffTab}ST: Derived measures (DC): LMEM model examining the effect of Distractor (AMSSN, MDR\_F, and ENG\_F) and Material (ASL/CCRM) as fixed factors and random intercepts for subjects (reference levels: Distractor = AMSSN; Material = ASL; Sibling = TD). Note: only TD data following outliers trimming was included.}
 \centering
 \begin{tabular}[t]{lcc>{}c}
 \toprule
@@ -1750,32 +1761,61 @@ Material & 1 & 4.057 & \em{\textbf{0.044}}\\
 
 \begin{table}
 
-\caption{\label{tab:ST-AgeAltEffTab}ST: Add caption here.}
+\caption{\label{tab:ST-AgeAltEffTab}ST: Derived measures (DC): A linear regression model with DC as a dependent variable and Material, Sibling and Age as predictors (reference levels: Material = ASL; Sibling = TD). Note: only TD data following outliers trimming was included.}
 \centering
-\begin{tabular}[t]{lccc>{}cccc}
+\begin{tabular}[t]{lcccc>{}ccc}
 \toprule
 \multicolumn{8}{l}{DC \textasciitilde{} Material + Sibling + Age + Material:Sibling + Material:Age + Sibling:Age} \\
 \cmidrule(l{3pt}r{3pt}){1-8}
 Predictor & $SS$ & $df$ & $MS$ & $F$ & $p$ & $\eta^{2}_{partial}$ & $\eta^{2}_{partial}$ 95\%-CI\\
 \midrule
-(Intercept) & 0.03 & 1 & 0.03 & \em{3.71} & 0.062 &  & \\
-Material & 0.02 & 1 & 0.02 & \em{2.45} & 0.127 & .08 & [.00, .26]\\
-Sibling & 0.02 & 1 & 0.02 & \em{2.89} & 0.098 & .08 & [.00, .27]\\
-Age & 0.02 & 1 & 0.02 & \em{2.45} & 0.127 & .08 & [.00, .26]\\
-Material x Sibling & 0.01 & 1 & 0.01 & \em{0.77} & 0.388 & .04 & [.00, .18]\\
-Material x Age & 0.01 & 1 & 0.01 & \em{1.99} & 0.168 & .04 & [.00, .24]\\
-Sibling x Age & 0.03 & 1 & 0.03 & \em{4.42} & \textbf{0.043} & .12 & [.00, .32]\\
-Error & 0.23 & 34 & 0.01 & \em{} &  &  & \\
+(Intercept) & 0.03 & 1 & 0.03 & 3.71 & \em{0.062} &  & \\
+Material & 0.02 & 1 & 0.02 & 2.45 & \em{0.127} & .08 & [.00, .26]\\
+Sibling & 0.02 & 1 & 0.02 & 2.89 & \em{0.098} & .08 & [.00, .27]\\
+Age & 0.02 & 1 & 0.02 & 2.45 & \em{0.127} & .08 & [.00, .26]\\
+Material x Sibling & 0.01 & 1 & 0.01 & 0.77 & \em{0.388} & .04 & [.00, .18]\\
+Material x Age & 0.01 & 1 & 0.01 & 1.99 & \em{0.168} & .04 & [.00, .24]\\
+Sibling x Age & 0.03 & 1 & 0.03 & 4.42 & \em{\textbf{0.043}} & .12 & [.00, .32]\\
+Error & 0.23 & 34 & 0.01 &  & \em{} &  & \\
 \bottomrule
 \multicolumn{8}{l}{\textsuperscript{*} significant p-values (p < 0.05) are shown in bold.}\\
 \end{tabular}
 \end{table}
 
 \hypertarget{age-independent-z-scores-1}{%
-\subsubsection{Age-independent z-scores}\label{age-independent-z-scores-1}}
+\paragraph{Age-independent z-scores}\label{age-independent-z-scores-1}}
 
-Again, differences between the groups are larger for more challenging conditions with speech distractors.
-Generally the percentage of abnormal performance is low across both test materials (range:), with slightly larger proportion for the CCRM material.
+\hfill\break
+As before, descriptive statistics for the listeners' z-scores for the derived measures are given in Table~\ref{tab:ST-DerivedTab} and plotted in Figure~\ref{fig:ST-DerivedPlotsz}. Overall, differences between the groups were larger for IM effect than for the switching effect. Furthermore, the percentage of abnormal performance is generally low in both test materials (range: 0\% - 25\%), with slightly larger proportion in the CCRM material. The proportion of abnormal z-scores in the TD group was relatively low. None of the TD children obtained an abnormal score for the ASL material, whereas the proportion of abnormal score in the CCRM material ranged between 0\% to circa 9\% (2/23).\\
+
+\begin{table}
+
+\caption{\label{tab:ST-DerivedTab}ST: Descriptives for standardised residuals (z-scores) calculated for data measured with the ASL and CCRM speech material.}
+\centering
+\resizebox{\linewidth}{!}{
+\begin{tabular}[t]{lcccccl|>{}lccccc}
+\toprule
+\multicolumn{1}{c}{ } & \multicolumn{6}{c}{APD} & \multicolumn{6}{c}{TD} \\
+\cmidrule(l{3pt}r{3pt}){2-7} \cmidrule(l{3pt}r{3pt}){8-13}
+Derived measure & N & median & sd & min & max & abnormal & N & median & sd & min & max & abnormal\\
+\midrule
+\addlinespace[0.3em]
+\multicolumn{13}{l}{\textbf{ASL}}\\
+\hspace{1em}Switching (Q-NoAlt-Q-Alt) & 20 & 0.07 & 0.80 & -1.67 & 1.05 & 0.00\% & 23 & 0.11 & 1.19 & -2.51 & 1.28 & 0.00\%\\
+\hspace{1em}AMSSN (AMSSN - Q-Alt) & 20 & 0.43 & 1.02 & -1.75 & 1.88 & 0.00\% & 23 & -0.22 & 0.99 & -1.79 & 1.65 & 0.00\%\\
+\hspace{1em}ENG\_F (ENG\_F - Q-Alt) & 20 & 0.55 & 0.74 & -0.66 & 2.21 & 5.00\% & 23 & -0.22 & 1.07 & -2.37 & 1.80 & 0.00\%\\
+\hspace{1em}MDR\_F (MDR\_F - Q-Alt) & 20 & 0.60 & 0.67 & -1.15 & 1.50 & 0.00\% & 23 & -0.01 & 1.13 & -2.93 & 1.91 & 0.00\%\\
+\addlinespace[0.3em]
+\multicolumn{13}{l}{\textbf{CCRM}}\\
+\hspace{1em}Switching (Q-NoAlt-Q-Alt) & 20 & -0.39 & 1.06 & -2.05 & 2.14 & 5.00\% & 23 & 0.15 & 1.66 & -3.95 & 5.09 & 4.35\%\\
+\hspace{1em}AMSSN (AMSSN - Q-Alt) & 20 & 0.13 & 1.18 & -0.94 & 2.48 & 20.00\% & 23 & -0.02 & 1.08 & -2.42 & 1.68 & 0.00\%\\
+\hspace{1em}ENG\_F (ENG\_F - Q-Alt) & 20 & 0.52 & 0.94 & -1.17 & 2.15 & 5.00\% & 23 & -0.06 & 1.15 & -2.02 & 2.57 & 8.70\%\\
+\hspace{1em}MDR\_F (MDR\_F - Q-Alt) & 20 & 0.41 & 1.27 & -2.32 & 3.58 & 10.00\% & 23 & 0.00 & 1.62 & -3.51 & 4.25 & 4.35\%\\
+\hspace{1em}CCRM\_F (CCRM\_F - Q-Alt) & 20 & 0.61 & 1.20 & -1.97 & 2.55 & 25.00\% & 23 & 0.01 & 1.01 & -1.85 & 1.64 & 0.00\%\\
+\bottomrule
+\multicolumn{13}{l}{\textsuperscript{} abnormal: defined as the percentage of abnormal z-score > 1.96.}\\
+\end{tabular}}
+\end{table}
 
 \begin{figure}
 
@@ -1786,9 +1826,28 @@ Generally the percentage of abnormal performance is low across both test materia
 \caption{ST: Boxplots of the listeners age-independent standardised residuals for the derived score (in DC) calculated from data measured with the ASL (A) and the CCRM speech material (B). Residuals were calculated separately for each condition and are based on a model prediction for the TD group only.}\label{fig:ST-DerivedPlotsz}
 \end{figure}
 
-Final model: z\_trim \textasciitilde{} CondCode + material + Group + (1 \textbar{} listener)
+Group differences were examined using two separate models for switching and IM effects, excluding data meaured with the CCRM\_F distractor. Parametric methods assumptions were met for IM data, whereas the assumption of normal distribution for the switching data was rejected. Nevertheless, since nonparametric methods gave similar results, it was decided to report here only the outcomes of the parametric method. Switching effect were examined using LMEM model with Material (ASL/CCRM) and Group (APD/TD) as fixed factors and and random intercepts for subjects (reference levels: Group = APD; Material = ASL). The final model which gave the best fit did not include Material x Group interaction. There was no significant main effect for both Material (\(\chi^{2}\) = 0.00016, \(Df\) = 1, \(p\) = 0.990) and Group (\(\chi^{2}\) = 0.380, \(Df\) = 1, \(p\) = 0.538). Similarly, group differences across the three distractors were tested using LMEM model with Distractor, Material and Group as fixed factors and random intercepts for subjects. The final model and main effects are given in Table~\ref{tab:ST-zIMEffTab}. There was a significant main effect of Group (\(p\)~\textless~0.05), whereas there was no significant main effect for Distractor or Material (\(p\)~\textgreater~0.05).\\
 
-Only main effect for Group is significant.
+\begin{table}
+
+\caption{\label{tab:ST-zIMEffTab}ST: Derived measures (z-score): LMEM model with Distractor (AMSSN, MDR\_F, and ENG\_F), Material (ASL/CCRM) and Group (APD/TD) as fixed factors and random intercepts for subjects. Reference levels: Distractor = AMSSN; Material = ASL; Group = APD}
+\centering
+\begin{tabular}[t]{lcc>{}c}
+\toprule
+\multicolumn{4}{l}{z \textasciitilde{} Distractor + Material + Group + (1 | Subjects)} \\
+\cmidrule(l{3pt}r{3pt}){1-4}
+Main effects & Df & $\chi^{2}$ & p\\
+\midrule
+Condition & 2 & 0.702 & \em{0.704}\\
+Material & 1 & 0.000 & \em{0.984}\\
+Group & 1 & 5.089 & \em{\textbf{0.024}}\\
+\bottomrule
+\multicolumn{4}{l}{\textsuperscript{*} significant p-values (p < 0.05) are shown in}\\
+\multicolumn{4}{l}{bold.}\\
+\end{tabular}
+\end{table}
+
+A separate LMEM model for the full CCRM data, including the CCRM\_F distractor, gave similar results, with a significant main effect of Group (\(\chi^{2}\) = 4.184, \(Df\) = 1, \(p\) = 0.041), whereas there as no signifiacnt main effect of Distractor (\(\chi^{2}\) = 0.990, \(Df\) = 3, \(p\) = 0.804).\\
 
 \hypertarget{lisns-uk}{%
 \subsection{LiSNS-UK}\label{lisns-uk}}
@@ -2092,7 +2151,7 @@ Total & 20 & 1 & 0.91 & 0 & 3 & 23 & 10 & 2.92 & 4 & 15\\
 
 An overview of the childrens' performance split by group is given in Figure~\ref{fig:MatrixPlot}, which provides a simple graphical display indicating which test scores fell outside norms for each participant (filled black cells). Abnormally poor performance for the listeners age-independent scores was defined using standardised norms for the CELF-RS, ECLiPS and the CCC-2 data or was defined as a one-tailed cut-off of \(\pm\)~1.96 (where circa 97.5\% of the normal population is expected to lay within) for the rest of the tasks. Note that DLD and PLI were composed as a way to discriminate children with more structural versus pragmatic language deficit and were based on the CCC-2 data as a combination of abnormal GCC score (\textless{} 55) and the SIDC score. The DLD score (developmental language disorder) denotes a combination of abnormal GCC and a positive SIDC (\(\geq\)~0) which is expected to capture severe deficits in structural language in conjunction with only mild pragmatic difficulties. The PLI score (pragmatic language impairment), on the other hand, denotes a combination of abnormal GCC and a negative SIDC (\(\leq\)~0) which is expected to be a strong indicator for social communication problems with only mild structural language difficulties.\\
 
-As seen in the figure, the proportion of abnormal scores across the APD group is substantially higher than in the TD group. The majority of the APD children (80\%, 16/20) performed abnormally in at least two test conditions either in the ST or LiSNS-UK task, whereas there were only three cases (13\%, 3/23) in the TD children. Another interesting observation is that apart from one TD child, who experienced difficulties in various measures including the CCC-2, none of the other TD children experienced language difficulties. This is in contrast to the APD group where 90\% (18/20) of the children experienced some kind of language deficit. Although the CELF-RS has been reported to be a good marker for children with DLD, nevertheless, the results of the present study suggests otherwise. While performance in the APD group was noticeably poorer than in the TD group, only two APD children obtained abnormally poor CELF-RS score, whereas nearly half of the APD children (45\%, 9/20) exhibited a CCC-2 score indicative of DLD, and about the remaining half (40\% 8/20) obtained a CCC-2 score indicative of pragmatic language and social communication deficit (PLI).\\
+As seen in the figure, the proportion of abnormal scores across the APD group is substantially higher than in the TD group. The majority of the APD children (80\%, 16/20) performed abnormally in at least two test conditions either in the ST or LiSNS-UK task, whereas there were only three cases (13\%, 3/23) in the TD children. Another interesting observation is that apart from one TD child, who experienced difficulties in various measures including the CCC-2, none of the other TD children experienced language difficulties. This is in contrast to the APD group where 90\% (18/20) of the children experienced some kind of language deficit. The CELF-RS has been reported to be a good marker for children with DLD. Nevertheless, in the present study, the test norms were not found to be very sensitive in capturing the APD children language difficulties. Although their performance was noticeably poorer than in the TD group, only two APD children obtained abnormally poor CELF-RS score. Whereas nearly half of the APD children (45\%, 9/20) exhibited a CCC-2 score indicative of DLD, and about the remaining half (40\% 8/20) obtained a CCC-2 score indicative of pragmatic language and social communication deficit (PLI). The association between the above mentioned language measures for the listeners' performance (``normal''/abnormal) was further examined using multiple Spearman's rho correlation tests {[}\emph{rcorr} function, Hmisc R package; \textcite{HmiscPackageR}{]}. Interestingly, there was a highly significant correlation between the CELF-RS and the DLD performance \(\rho\)~=~40, \(p\)~\textless{} 0.001), whereas correlation between CELF-RS and PLI was not significant (\(\rho\)~=~-0.11, \(p\)~\textgreater{} 0.05)). Thereby suggesting that both the CELF-RS and DLD taps into similar skills.\\
 
 \begin{correction}
 {Potential experimental bias of reporters when recruited due to an
@@ -2124,7 +2183,7 @@ The proportion of abnormal scores by measure or task split by group is shown in 
 \subsection{Switching task: effect-size}\label{switching-task-effect-size}}
 
 \hfill\break
-Effect-size {[}Cohen's d; \emph{rstatix::cohens\_d()}{]} was calculated for pairwise group comparisons by material and condition (see Table~\ref{tab:ST-effsizeTab}). Three test conditions resulted in a `large' effect size: CCRM\_F-Alt-CCRM (d = 1.01), AMSSN-Alt-CCRM (d = 1.01) and MDR\_F-ASL-Alt (d = 0.85). Four other conditions resulted in a `moderate' effect-size, with a Cohen's d ranging between 0.63 to 0.75. These conditions comprised of speech distractors (ENG or MDR) from either material and Quiet-NoAlt for the ASL material. The test material which resulted in the largest effect-size was estimated by averaging d across conditions for each type of material. Both materials had a `moderate' average effect-size, whereby the CCRM material had the largeer effect-size of 0.69, following with 0.56 for the ASL material.\\
+Effect-size Cohen's d; \emph{rstatix::cohens\_d()}) was calculated for pairwise group comparisons by material and condition (see Table~\ref{tab:ST-effsizeTab}). Three test conditions resulted in a `large' effect size: CCRM\_F-Alt-CCRM (d = 1.01), AMSSN-Alt-CCRM (d = 1.01) and MDR\_F-ASL-Alt (d = 0.85). Four other conditions resulted in a `moderate' effect-size, with a Cohen's d ranging between 0.63 to 0.75. These conditions comprised of speech distractors (ENG or MDR) from either material and Quiet-NoAlt for the ASL material. The test material which resulted in the largest effect-size was estimated by averaging d across conditions for each type of material. Both materials had a `moderate' average effect-size, whereby the CCRM material had the largeer effect-size of 0.69, following with 0.56 for the ASL material.\\
 
 \begin{table}
 
@@ -2348,8 +2407,24 @@ both items.
 \caption{Association between predictors and performance in the APD group for the switching task composite (PC1.ST), language composite (PC1.Lang), SRM, standard and EHF PTA. Predictors included: 1. APD diagnosis (APD vs. LiD), 2. SPD diagnosis (SPD vs. non-SPD), 3. Regular use of FM-device (FM vs. No FM), 4. History of middle ear problem (MEHx vs. No MEHx), 5. Pressure equalisation tube history (PET vs. No PET), and 6. Auditory training (Training vs. No training). Individual observations are marked in circles. Observations of children diagnosed with APD are filled in dark blue, and LiD observations are filled in light blue. TD group observations are marked in black. Significant p-values for independent t-tests paired-comparisons are marked with asterisk (p < 0.05).}\label{fig:EvalAPD-fig}
 \end{figure}
 
-\hypertarget{exploratory-predictors-td-group}{%
-\subsubsection{Exploratory predictors -- TD group}\label{exploratory-predictors-td-group}}
+\hypertarget{exploratory-predictors-td-vs.-td_sib}{%
+\subsubsection{\texorpdfstring{Exploratory predictors -- TD vs.~TD\(_{sib}\)}{Exploratory predictors -- TD vs.~TD\_\{sib\}}}\label{exploratory-predictors-td-vs.-td_sib}}
+
+Studies have shown a strong association between APD and history of hearing problems (e.g., due to chronic OME) causing auditory deprivation, and Developmental Language Deficit (DLD). Moreover, several studies demonstrated that these factors are genetically influenced (Pennington \& Bishop, 2009; Bishop, Adams, \& Norbury, 2006), while others suggested that some APD-linked aspects (tone sequencing) are more environmentally driven (cf.~Moore 2007; Bishop, 2002).
+
+In the developmental language literature, there are many studies (REFs!) showing that children tends to have similar language skills to their families.
+
+Studying twins or siblings is a useful way to examine both genetic and environmental factors.
+
+Although the present study was not designed to investigate such questions in a controlled and balanced way, as it happens, our control group sample can be subdivided into two groups of children with an APD sibling (TD\(_{sib}\), 8/23) and without (TD, 15/23). Thereby, it is possible that the two groups would preform differently in the study measures. Whether the influencing factors were mostly heritable or acquired by the child's environment, we hypothesised that TD\(_{sib}\) will perform poorer than their non-sibling peers. This supposition arises from the common finding that family members tend to be more alike and so TD\(_{sib}\) should be more APD-like, especially insofar as there appear to be language deficits in the APD group.
+
+The association between potential predictors and performance in the two TD groups was graphically explored. Shown in Figure~\ref{fig:EvalTD-fig} are boxplots comparing between the listeners' performance split by groups for the ST and language PCA weighted scores, SRM z-scores, CELF-RS, ECLiPS Total and CCC-2 GCC scaled scores.
+
+Looking at the boxplots, two noticeable observations emerges. Firstly, the TD\(_{sib}\) children CELF-RS scores are noticeably poorer than compared with the TD children. \textbf{To elaborate?} Give Mdn's? Both groups still perform significantly better than the APD group..
+
+Moreover, parents of TD\(_{sib}\) children tended to score their child higher in the ECLiPS, resulting in higher (i.e., better) Total scaled score. This may suggest some kind of positive rating bias towards the non-APD child. This bias was possibly exasperated by the recruitment procedure, where parents were well informed about the study objectives and whether their child will be assigned to the APD or the control group.
+
+Nonetheless, differences between the two TD groups are relatively small and were found insignificant (see ECLiPS analysis in section ???). In contrast, differences in rating between the groups for the CCC-2 GCC score were much smaller. A possible explanations for the smaller trend in the CCC-2 is that\ldots.\\
 
 \begin{figure}
 
@@ -2363,19 +2438,26 @@ both items.
 \hypertarget{discussion-4}{%
 \section{Discussion}\label{discussion-4}}
 
-\hypertarget{peripheral-hearing}{%
-\chapter{Peripheral hearing}\label{peripheral-hearing}}
+\hypertarget{peripheral-hearing-evaluation}{%
+\subsection{Peripheral hearing evaluation}\label{peripheral-hearing-evaluation}}
 
-\textbf{STANDARD AUDIOMETRY:}
+\hypertarget{standard-audiometry-1}{%
+\subsubsection{Standard Audiometry}\label{standard-audiometry-1}}
 
 \begin{itemize}
 \tightlist
 \item
-  Group difference in the left ear. The small difference (\textasciitilde2.5) suggests it is due to sampling error rather than a real effect. Any similar effect in other studies? Hunter et al., 2020 did not find sig. difference between the ears.
+  Group difference in the left ear. The small difference (\textasciitilde2.5 dB) suggests it is due to sampling error rather than a real effect. Any similar effect in other studies? Hunter et al., 2020 did not find sig. difference between the ears.
 \end{itemize}
 
-\textbf{EHF AUDIOMETRY:}
-- No group difference. However there seem to be again a trend of slightly poorere thresholds for the APD group in the left ear only.
+\hypertarget{extended-audiometry}{%
+\subsubsection{Extended Audiometry}\label{extended-audiometry}}
+
+\begin{itemize}
+\tightlist
+\item
+  No group difference. However there seem to be again a trend of slightly poorer thresholds for the APD group in the left ear only.
+\end{itemize}
 
 Comparison with Hunter data:
 
@@ -2389,9 +2471,6 @@ Freq TD\_LH LiD\_LH TD\_SK APD\_SK
 11.00 6 7 12 14
 16.00 5 9 6 9
 
-\hypertarget{ehf}{%
-\subsection{EHF}\label{ehf}}
-
 Lee's thresholds for 10-21 yrs group: 8=16.35 (1.46-29.33); 11=22.99, 16=48 (20.01-91.35); 20=93.07 (48.57-105.00) all dB SPL
 
 EHF in children: Read Schechter et al., 1986:
@@ -2403,8 +2482,11 @@ EHF in children: Read Schechter et al., 1986:
   11-15 yrs: 10k=21, 12k=22, 16k=51 dB SPL
 \end{itemize}
 
+\hypertarget{central-auditory-evaluation}{%
+\subsection{Central auditory evaluation}\label{central-auditory-evaluation}}
+
 \hypertarget{st-2}{%
-\subsection{ST}\label{st-2}}
+\subsubsection{ST}\label{st-2}}
 
 \begin{correction}
 \textbf{APDsibling} While the causes of APD are not fully understood,
@@ -2415,17 +2497,25 @@ studies demonstrated that these factors are genetically influenced
 (Pennington \& Bishop, 2009; Bishop, Adams, \& Norbury, 2006), while
 others suggested that some APD-linked aspects (tone sequencing) are more
 environmentally driven (cf.~Moore 2007; Bishop, 2002). Studying twins or
-siblings is a usefull way to examin both genetic and environmental
+siblings is a useful way to examine both genetic and environmental
 factors. Although the inclusion of control children with APD sibling(s)
 was not part of the study design and was not carefully balanced for the
 control group sample size, it is possible that the two control groups
 would preform differently in the study measures. Whether the influencing
-factors were mostly heritable or accquiered by the child's environment,
-we hypothesised that the control children with APD sibling will perform
+factors were mostly heritable or acquired by the child's environment, we
+hypothesised that the control children with APD sibling will perform
 poorer than the non-sibling control children.
 \end{correction}
 
 \colorbox[HTML]{CCCCFF}{\emph{Comparison with adults data (SRdTs!)}}\\
+
+Many studies showed throughout the years that children perform poorer than adults in different auditory tasks.
+Examples for different tasks/aspects of listening
+Is the cause peripheral or more central maturation with age?
+
+\textbf{Developmental Psychoacoustics BOOK, Chapter 4: Individual Differences in Auditory Capability Among Preschool Children (Frederic Wightman and Prudence Allen):}
+They found that children displayed an overal poorer performance in a wide range of measures compared to adults. However the quality of the data (the spread and number of trials/reversals) suggests that this impovrished performance is not due to lack of attention or motivation on behalf of the children..
+
 An exploratory comparison between the children's data measured in the present study with data measured across young NH adults collected in Chapter~\ref{Chpt2} further highlights the strong developmental trend, with SRdTs still not entirely ``adult-like'' even at the age of 13 years, especially for speech distractors (see boxplots in Figure~\ref{fig:ST-Age}~A-B). The children in both groups seem to be markedly susceptible to competing CCRM sentences and for familiar- or unfamiliar-speech presented with ASL sentences, with performance at the age of 12 years still largely differing from those obtained by the adults. On the other hand, by the age of 12 years, the TD children reached near to ``adult-like'' performance when CCRM target sentences were presented with ENG\_F speech distractor or when ASL sentences were presented with AMSSN distractor.\\
 
 \colorbox[HTML]{CCCCFF}{\emph{Why CCRM performance is better}}\\
@@ -2460,6 +2550,9 @@ Why there was no interaction between Group x Condition x Material?
 \emph{Points for age effect:}\\
 - Goldsworthy et al.~2018 found that age explained only a small portion of variability in speech perception performance (n.s.) for Quiet, SSN and 2-talker connected-speech distractors (children aged 5-17). See table 3.
 
+\hypertarget{speech-in-noise-where-does-this-go}{%
+\subsubsection{Speech in noise (where does this go?)}\label{speech-in-noise-where-does-this-go}}
+
 \emph{Points for SSN:}\\
 - ``Despite mature peripheral encoding, school-children have more difficulty understanding speech in noise compared with adults. For example, 5-7 year-old children require 3 to 6 dB more favourable SNR than adults to achieve comparable speech detection, word identification, or sentence recognition performance in a speech-shaped noise maker (e.g., Corbin et al., 2016)'' {[}Leibold, Buss and Calandruccio, 2019, Acoustics today{]}. - ``Speech recognition gradually improves until 9-10 years of age , after which mature performance is generally observed'' {[}Leibold, Buss and Calandruccio, 2019, Acoustics today{]}.
 
@@ -2469,11 +2562,17 @@ Why there was no interaction between Group x Condition x Material?
   SSN age effect in other studies are smaller
 \end{itemize}
 
+\hypertarget{lisns-uk-1}{%
+\subsubsection{LiSNS-UK}\label{lisns-uk-1}}
+
+\hypertarget{cognitive-and-language-evaluation}{%
+\subsection{Cognitive and language evaluation}\label{cognitive-and-language-evaluation}}
+
 \hypertarget{ccc-2-1}{%
-\subsection{CCC-2}\label{ccc-2-1}}
+\subsubsection{CCC-2}\label{ccc-2-1}}
 
 \hypertarget{eclips-1}{%
-\subsection{ECLiPS}\label{eclips-1}}
+\subsubsection{ECLiPS}\label{eclips-1}}
 
 \textbf{Discussion:} Correlation with CCC-2 sub-scales \autocite{Barry2014}: Overall, all the EClIPS sub scales shows strong correlation with most of the CCRM 10 sub-scales. Interestingly, PSS strongly correlates with all 10 CCC-2 sub-scales, suggesting that both tests taps into similar abilities.
 
@@ -2482,7 +2581,7 @@ Why there was no interaction between Group x Condition x Material?
 Discussion: - Compare data with Ferguson et al.~2011
 
 \hypertarget{language-pca}{%
-\subsection{Language PCA}\label{language-pca}}
+\subsubsection{Language PCA}\label{language-pca}}
 
 \begin{correction}
 \emph{Discussion(?): Which measures were best described by the PCA?}

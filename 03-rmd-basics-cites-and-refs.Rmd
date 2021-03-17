@@ -4804,10 +4804,10 @@ plyr::ddply(CCRM_Diff,~CondCode*Group,summarise,nConde= length(listener),nOutlie
 
 ```
 
+##### Proportion of duty cycle (DC)
 
-#### Proportion of duty cycle (DC)
-
-Derived scores were calculated by subtracting the individuals performance for the Quiet-Alt condition from the rest of the test conditions (see Figure\ \@ref(fig:ST-DerivedPlotsuRevs)). Whereby differences between the conditions without a distractor (Quiet-NoAlt - Quiet-Alt) describes the cost of switching the stimuli between the two ears. Whereas, differences between the conditions with a distractor describes the IM effect after accounting for the costs of switching. It appears from the figure that performance in the TD and APD group are more similar for less challenging conditions, and becomes more different for more challenging conditions with distractors. In addition, there is no strong age effect.
+\
+Derived scores were calculated by subtracting the individuals' score for the reference condition Quiet-Alt from the rest of the test conditions (see Figure\ \@ref(fig:ST-DerivedPlotsuRevs)). Whereby the cost of switching the stimuli between the two ears was represented by subtracting Q-Alt from the condition without a distractor or alternations (Quiet-NoAlt). Whereas, differences between test conditions with a distractor describes the IM effect after accounting for the costs of switching. It appears from the figure that performance in the TD and APD group are more similar for less challenging conditions, and becomes more different for more challenging conditions with distractors. In addition, there is no strong age effect.\
 
 ```{r, label='ST-DerivedPlotsuRevs', fig.cap="ST: Scatterplot and linear regression lines for the listeners derived scores (in DC) with the ASL (A) and the CCRM speech material (B) as a function of age. Corresponding regression coefficients and statistics are provided for the TD group only. Red indicates data from the APD group and blue indicates data from the TD control group (square shapes: TD children with an APD sibling; triangle shapes: the remaining TD children).", fig.align='center', fig.width=14, fig.asp=0.8, out.width='100%',echo=FALSE, message=FALSE, warning=FALSE,fig.pos='h'}
 
@@ -4909,9 +4909,16 @@ p2 <- p2 + facet_grid(. ~ reorder(CondCode,CondCode), scales = "free", switch = 
 
 ```
 
-**Analysis:**
+Two separate models were used to examine the effect of switching and IM with the derived scores (in DC) as dependent variable (parametric model assumptions were met). Note that data for CCRM_F was excluded from the analysis since it was only measured for the CCRM material. The first model examined the effect of switching using a linear regression model with Material, Sibling and Age as predictors. The model that gave the best fit and test results are given in Table\ \@ref(tab:ST-AgeAltEffTab). There was a (marginally) significant Sibling x Age interaction ($p$ = 0.043). None of the remaining terms were significant (all $p$'s \> 0.05). IM effects were tested using LMEM model for the three distractors (Distractor), Material, Sibling, and Age as fixed factors and random intercepts for subjects. The model that gave the best fit did not include the fixed factors Sibling or Age (see Table\ \@ref(tab:ST-AgeIMEffTab)). There was a highly significant main effect of Distractor ($p$\ \<\ 0.001) as well as a significant effect of Material ($p$\ \< 0.05). Post-hoc paired-comparison t-tests based on the fitted model for Distractor (with Bonferroni correction) found a significant difference in IM effect between AMSSN and MDR ($Estimate$ = -0.24, $95\%-CI$ = -0.29 - -0.19, $p$\ \< 0.001) and AMSSN and ENG_F ($Estimate$ = -0.28, $95\%-CI$ = -0.33 - -0.23, $p$\ \< 0.001), whereas there was no significant difference between the two speech distractors ($Estimate$ = -0.04 $95\%-CI$ = -0.09 - 0.01, $p$ = 0.16).\
 
-Two separate models were used to examine the effect of switching and IM with the derived scores as dependent variable (parametric model assumptions were met). The first model examined the effect of switching using a linear regression model with Material, Sibling and Age as predictors. The model that gave the best fit and test results are given in Table\ \@ref(fig:ST-AgeAltEffTab). There was a (marginally) significant interaction for Sibling x Age (p= 0.043). None of the remaining terms were significant (all p's \>\ 0.05). IM effect was tested using LMEM model for the three distractors (Distractor), Material, Sibling, and Age as fixed factors and random intercepts for subjects. The model that gave the best fit did not include the fixed factors Sibling or Age (see and main effects in Table\ \@ref(tab:ST-AgeIMEffTab). There was a highly significant main effect of Distractor (p\ \<\ 0.001) as well as a significant effect of Material (p\ \<\ 0.05). Post-hoc paired-comparison t-tests based on the fitted model for Distractor (with Bonferroni correction) found a significant difference in IM effect between AMSSN and MDR (Estimate = -0.24, 95\%-CI = -0.29 - -0.19, p\ \<\ 0.001) and AMSSN and ENG_F (Estimate = -0.28, 95\%-CI = -0.33 - -0.23, p\ \<\ 0.001), whereas there was no significant difference between the two speech distractors (Estimate = -0.04 95\%-CI = -0.09 - 0.01, p = 0.16)
+Additional LMEM model looked into IM effect in the CCRM data, including also data for the CCRM_F distractor (parametric model assumptions were met). The model that gave the best fit included the following interaction terms: Distractor x Age \& and Distractor x Sibling. There was a significant Distractor x Age interaction ($\chi^{2}$ = 8.275, $Df$ = 3, $p$ = 0.041), whereas there was no significant interaction for Distractor x Sibling ($\chi^{2}$ = 5.362, $Df$ = 3, $p$ = 0.147) or main effect of Sibling ($\chi^{2}$ = 5.382, $Df$ = 4, $p$ = 0.250).\
+
+**Post-hoc test for Distractor x Age interaction:**
+Model based EMMs suggests opposite age effects between conditions: 
+
+- AMSSN \& MDR_F: IM is the largest for older kids and smallest in younger kids (WHY?!)  
+  
+- ENG_F and CCRM_F: IM is the largest for younger kids and decreases with age.  
 
 ```{r,label='ST-IMEffectDerived', echo=FALSE,results='hide',message=FALSE,warning=FALSE, include=FALSE}
 ##### Age effect? ################################################################# 
@@ -5317,7 +5324,7 @@ for (i in 1:length(ST_IM_DC_tab$p)) {
 
 ```{r,label='ST-AgeIMEffTab',echo=FALSE,warning=FALSE, message=FALSE}
 
-kbl(ST_AgeTab_IM, booktabs = T,escape = F, linesep = "",caption = "ST: Add caption here.",
+kbl(ST_AgeTab_IM, booktabs = T,escape = F, linesep = "",caption = "ST: Derived measures (DC): LMEM model examining the effect of Distractor (AMSSN, MDR\\_F, and ENG\\_F) and Material (ASL/CCRM) as fixed factors and random intercepts for subjects (reference levels: Distractor = AMSSN; Material = ASL; Sibling = TD). Note: only TD data following outliers trimming was included.",
     align = c("lccc"),format = "latex",digits = 3) %>%
     # kable_styling(latex_options = c("scale_down")) %>%
   add_header_above(c("DC ~ Distractor + Material + (1 | Subjects)" = 4), align = "l",line = TRUE) %>%
@@ -5331,7 +5338,7 @@ kbl(ST_AgeTab_IM, booktabs = T,escape = F, linesep = "",caption = "ST: Add capti
 
 ```{r,label='ST-AgeAltEffTab',echo=FALSE,warning=FALSE, message=FALSE}
 
-kbl(ST_IM_DC_tab, booktabs = T,escape = F, linesep = "",row.names = F,caption = "ST: Add caption here.",
+kbl(ST_IM_DC_tab, booktabs = T,escape = F, linesep = "",row.names = F,caption = "ST: Derived measures (DC): A linear regression model with DC as a dependent variable and Material, Sibling and Age as predictors (reference levels: Material = ASL; Sibling = TD). Note: only TD data following outliers trimming was included.",
     align = c("lccccccc"),format = "latex",digits = 3) %>%
     # kable_styling(latex_options = c("scale_down")) %>%
   add_header_above(c("DC ~ Material + Sibling + Age + Material:Sibling + Material:Age + Sibling:Age" = 8), align = "l",line = TRUE) %>%
@@ -5343,11 +5350,280 @@ kbl(ST_IM_DC_tab, booktabs = T,escape = F, linesep = "",row.names = F,caption = 
   # add_header_above(c("SRdT ~ Condition + Material + Age" = 4), align = "l",line = FALSE) %>%
 ```
 
+<!-- CCRM ONLY -->
+```{r,label='ST-IMEffectDerivedCCRM', echo=FALSE,results='hide',message=FALSE,warning=FALSE, include=FALSE, eval=FALSE}
+##### Age effect? ################################################################# 
 
-#### Age-independent z-scores
+# FULL CCRM data
 
-Again, differences between the groups are larger for more challenging conditions with speech distractors.
-Generally the percentage of abnormal performance is low across both test materials (range:), with slightly larger proportion for the CCRM material. 
+# Normality:   met
+# Homogeneity: met
+
+TD_trimmed.CCRM_Diff_s <- TD_trimmed.CCRM_Diff %>% filter(CondCode!="Diff_QNoAlt") %>% 
+  dplyr::select(., listener, Age,Group,Group2, material, CondCode, uRevs) %>% 
+  as.data.frame(.) %>%
+  droplevels()
+
+TD_trimmed.CCRM_Diff_s$listener <- factor(TD_trimmed.CCRM_Diff_s$listener)
+
+
+######## lmer model ##########################################
+
+## Find Best fit 
+# start with a saturated model (3-way interaction with age)
+
+model1 <- lmer(uRevs~CondCode*Group2*Age+(1|listener), TD_trimmed.CCRM_Diff_s, REML=FALSE)
+summary(model1)
+
+(model2<-update(model1,  ~ . - CondCode:Group2:Age))
+anova(model1,model2)
+summary(model2)
+
+(model3<-update(model2,  ~ . - Group2:Age))
+anova(model2,model3)
+summary(model3)
+
+(model4<-update(model3,  ~ . -  CondCode:Age))
+anova(model3,model4)
+summary(model4)
+# model4: uRevs ~ CondCode + Group2 + Age + (1 | listener) + CondCode:Group2
+# model3: uRevs ~ CondCode + Group2 + Age + (1 | listener) + CondCode:Group2 + 
+# model3:     CondCode:Age
+#        npar     AIC     BIC logLik deviance  Chisq Df Pr(>Chisq)  
+# model4   11 -96.709 -69.840 59.355  -118.71                       
+# model3   14 -98.985 -64.787 63.492  -126.98 8.2755  3    0.04065 *
+
+
+# best mode --> model 3: uRevs ~ CondCode + Group2 + Age + CondCode:Group2 + CondCode:Age + (1 | listener)
+
+tab_model(model3)
+# visreg::visreg(model3)
+# visreg::visreg(model3,"CondCode","Group2")
+
+
+BestModel <- model3
+# report::report(model3)
+
+# ---------------------------------------------------------------------------------
+# test main effects:
+rstatix::Anova(BestModel,type="II",test.statistic="Chisq")
+
+# Response: uRevs
+#                    Chisq Df Pr(>Chisq)    
+# CondCode        227.5840  3    < 2e-16 ***
+# Group2            0.0209  1    0.88517    
+# Age               0.0934  1    0.75991    
+# CondCode:Group2   5.5479  3    0.13580    
+# CondCode:Age      8.8459  3    0.03141 * 
+
+# CondCode x Age:
+(BestModel.1 <- update(BestModel,  . ~ . -CondCode:Age))
+CondAge.LMEM <- anova(BestModel,BestModel.1)
+summary(BestModel.1)
+# BestModel.1: uRevs ~ CondCode + Group2 + Age + (1 | listener) + CondCode:Group2
+# BestModel: uRevs ~ CondCode + Group2 + Age + (1 | listener) + CondCode:Group2 + 
+# BestModel:     CondCode:Age
+#             npar     AIC     BIC logLik deviance  Chisq Df Pr(>Chisq)  
+# BestModel.1   11 -96.709 -69.840 59.355  -118.71                       
+# BestModel     14 -98.985 -64.787 63.492  -126.98 8.2755  3    0.04065 *
+
+
+# CondCode x Group2:
+(BestModel.2 <- update(BestModel,  . ~ . -CondCode:Group2))
+CondGroup.LMEM <- anova(BestModel,BestModel.2)
+summary(BestModel.2)
+# BestModel.2: uRevs ~ CondCode + Group2 + Age + (1 | listener) + CondCode:Age
+# BestModel: uRevs ~ CondCode + Group2 + Age + (1 | listener) + CondCode:Group2 + 
+# BestModel:     CondCode:Age
+#             npar     AIC     BIC logLik deviance  Chisq Df Pr(>Chisq)
+# BestModel.2   11 -99.623 -72.754 60.811  -121.62                     
+# BestModel     14 -98.985 -64.787 63.492  -126.98 5.3617  3     0.1471
+
+
+# Group2:
+(BestModel.3 <- update(BestModel,  . ~ . -Group2 -CondCode:Group2))
+Group2.LMEM <- anova(BestModel,BestModel.3)
+summary(BestModel.3)
+
+# -----------------------------------------------------------------------------------------------------
+# Post-hoc paired comparison
+# -----------------------------------------------------------------------------------------------------
+
+# Check effect size of each term in the model:
+# EMAtools::lme.dscore(BestModel,dat=ST_trimmed,type="lme4")
+
+# material: -----------------------------------------------------------------------------------
+
+# emm_s.conf <- emmeans::emmeans(BestModel, pairwise ~ material,adjust="bonferroni") 
+# 
+# postLMEM.1 <- summary(emm_s.conf,infer = c(TRUE,TRUE))$contrasts[] %>% 
+#                data.frame() %>% 
+#                mutate_if(is.numeric, round, 2) %>%
+#                mutate(CI = sprintf("%s - %s",
+#                       round(lower.CL,2),
+#                       round(upper.CL,2))) 
+# 
+# postLMEM.1_d <- ST_trimmed_Diff %>%
+#     rstatix::cohens_d(uRevs ~ material, data=., ci = TRUE) %>% as.data.frame() %>%
+#     select(effsize,magnitude) %>%
+#     dplyr::rename("d"=effsize)
+
+# Condition: -----------------------------------------------------------------------------------
+# emm_s.conf <- emmeans::emmeans(BestModel, pairwise ~ CondCode,adjust="bonferroni") 
+# 
+# postLMEM.1 <- summary(emm_s.conf,infer = c(TRUE,TRUE))$contrasts[] %>% 
+#                data.frame() %>% 
+#                mutate_if(is.numeric, round, 2) %>%
+#                mutate(CI = sprintf("%s - %s",
+#                       round(lower.CL,2),
+#                       round(upper.CL,2))) 
+# 
+# postLMEM.1_d <- ST_trimmed_Diff %>%
+#     rstatix::cohens_d(uRevs ~ CondCode, data=., ci = TRUE) %>% as.data.frame() %>%
+#     select(effsize,magnitude) %>%
+#     dplyr::rename("d"=effsize)
+
+# Condition x Age: -----------------------------------------------------------------------------------
+ST_d_means <- summary(emmeans::emmeans(BestModel, ~ CondCode | Age,adjust="bonferroni",at = list(Age = c(7:12)))) %>% as.data.frame(.)
+#
+ggplot(ST_d_means, aes(x=CondCode, y=emmean, group=as.factor(Age))) +
+  geom_line(aes(colour=as.factor(Age)))+
+  geom_point(aes(colour=as.factor(Age)))+
+  labs(x = " ", y = "estimated marginal means (in DC)") +
+  scale_y_continuous(limits = c(-0.1,0.6)) +
+  scale_colour_brewer(palette = "Dark2",name = "Year") +
+  # scale_x_discrete(labels=c("Diff_AMSSN"="AMSSN \n (AMSSN - Q-Alt)",
+  #                           "Diff_MDR"="MDR_F \n (MDR_F - Q-Alt)","Diff_ENG"="ENG_F \n (ENG_F - Q-Alt)"))+
+  theme_bw() +
+  theme(axis.text = element_text(size = 10, face="bold",colour = "black"),
+        axis.title.x = element_text(size=11, face="bold"),
+        axis.title.y = element_text(size=11, face="bold"),
+        legend.title = element_text(size=11, face="bold"),
+        legend.text  = element_text(size=10, face="bold"),
+        # legend.position='bottom',
+        # legend.direction = "horizontal",
+        legend.background = element_blank(),
+        legend.box.background = element_rect(colour = "black"))
+
+# -------------------------------------------------------------------------
+# get table
+# -------------------------------------------------------------------------
+
+# ST_AgeTab_IM <- data.frame(rbind(
+#   c("Distractor",Cond.LMEM$Df[2],Cond.LMEM$Chisq[2],ifelse(Cond.LMEM$`Pr(>Chisq)`[2] <.001,"\\textbf{< 0.001}",
+#                                                                    ifelse(Cond.LMEM$`Pr(>Chisq)`[2] <.05,
+#                                                                           sprintf("\\textbf{%.03f}",Cond.LMEM$`Pr(>Chisq)`[2]),
+#                                                                           Cond.LMEM$`Pr(>Chisq)`[2]))),
+#     c("Material",Mat.LMEM$Df[2],Mat.LMEM$Chisq[2],sprintf("\\textbf{%0.3f}",Mat.LMEM$`Pr(>Chisq)`[2]))
+#   ))
+# 
+# 
+# ST_AgeTab_IM[,c(2:3)]= apply(ST_AgeTab_IM[,c(2:3)], 2, function(x) as.numeric(as.character(x)))
+# 
+# colnames(ST_AgeTab_IM)[1:4] <- c("Effects","Df",sprintf("$\\chi^{2}$"),"p")
+# -------------------------------------------------------------------------
+
+################################ Assumptions testing ################################ 
+
+# Normality: ~ met
+# Homogeneity: met
+
+# linear model
+w1 <- lm(uRevs~CondCode*Group2*Age, data = TD_trimmed.CCRM_Diff_s)
+
+# 1. Normality (Shapiro-Wilk test) --> NOT met!
+# data is normally distributed if p >.05
+
+# QQ plot of residuals
+qqPlot(residuals(w1))
+
+#jpeg('Q-Q Plot.png', width = 10, height = 6, units = 'in', res = 300)
+par(mfrow=c(1,2))    # set the plotting area into a 1*2 array
+qqnorm(ST_trimmed$uRevs, pch = 1, frame = FALSE,main = "SRdT - Normal Q-Q Plot")
+qqline(ST_trimmed$uRevs, col = "red", lwd = 2)
+qqnorm(rstandard(w1), pch = 1, frame = FALSE,main = "Residuals - Normal Q-Q Plot")
+qqline(rstandard(w1), col = "red", lwd = 2)
+#dev.off()
+
+# Option 1:
+shapiro.test(residuals(w1))
+shapiro.test(residuals(BestModel))
+
+# 2. Homoggeneity of variance (Levene's test) --> NOT met!
+# homogeneity is met if p>.05
+
+# Option 1:
+car::leveneTest(uRevs ~ CondCode * Group2, data=TD_trimmed.CCRM_Diff_s,center=median)
+
+# Option 2: 
+DescTools::LeveneTest(lm(uRevs~ CondCode * Group2, data = TD_trimmed.CCRM_Diff_s))
+
+# Option 3:
+# per condition
+# VarTest <- ASLN %>%
+#   rstatix::group_by(Group) %>%
+#   levene_test(uRevs ~ CondCode)
+
+
+# TD_trimmed.CCRM_Diff_s$Model.F.Res<- residuals(BestModel) #extracts the residuals and places them in a new column in our original data table
+# TD_trimmed.CCRM_Diff_s$Abs.Model.F.Res <-abs(TD_trimmed.CCRM_Diff_s$Model.F.Res) #creates a new column with the absolute value of the residuals
+#TD_trimmed.CCRM_Diff_s$Model.F.Res2 <- TD_trimmed.CCRM_Diff_s$Abs.Model.F.Res^2 #squares the absolute values of the residuals to provide the more robust estimate
+# Levene.Model.F <- lm(Model.F.Res2 ~ listener, data=TD_trimmed.CCRM_Diff_s) #ANOVA of the squared residuals
+# anova(Levene.Model.F) #displays the results
+# 
+# 
+# plot_model(BestModel, type='diag') # [[4]]
+# 
+# plot(fitted(BestModel), resid(BestModel, type = "pearson"))# this will create the plot
+# abline(0,0, col="red")
+```
+
+##### Age-independent z-scores
+\
+As before, descriptive statistics for the listeners' z-scores for the derived measures are given in Table\ \@ref(tab:ST-DerivedTab) and plotted in Figure\ \@ref(fig:ST-DerivedPlotsz). Overall, differences between the groups were larger for IM effect than for the switching effect. Furthermore, the percentage of abnormal performance is generally low in both test materials (range: 0\% - 25\%), with slightly larger proportion in the CCRM material. The proportion of abnormal z-scores in the TD group was relatively low. None of the TD children obtained an abnormal score for the ASL material, whereas the proportion of abnormal score in the CCRM material ranged between 0\% to circa 9\% (2/23).\
+
+```{r,label='ST-DerivedzTab', echo=FALSE, message=FALSE, warning=FALSE, results='hide'}
+ASLN_Diff_s <- ASLN_Diff %>% as.data.frame(.) %>% mutate(material = "ASL")
+
+CCRM_Diff_s <- CCRM_Diff %>% as.data.frame(.) %>% mutate(material = "CCRM")
+
+ST_Diff <- rbind(ASLN_Diff_s,CCRM_Diff_s)
+
+ST_DiffzTab <- ST_Diff%>% ddply(.,~CondCode*material*Group,summarise,N=length(z_trim),median=median(z_trim,na.rm=TRUE),sd=sd(z_trim,na.rm=TRUE), min=min(z_trim,na.rm=TRUE),max=max(z_trim,na.rm=TRUE),
+                          abnormal=paste0(sprintf("%0.2f",(sum(Outlier,na.rm=TRUE)/length(listener)*100)),"\\%")) %>% 
+  mutate_if(is.numeric, round, 2) %>%
+  arrange(., group_by = Group,material) 
+
+
+ST_DiffzTab <- ST_DiffzTab[,-grep("Group",colnames(ST_DiffzTab))]
+ST_DiffzTab <- ST_DiffzTab[,-grep("material",colnames(ST_DiffzTab))]
+
+# APD first then TD
+ST_DiffzTab <- cbind(ST_DiffzTab[1:9,1:ncol(ST_DiffzTab)],ST_DiffzTab[10:nrow(ST_DiffzTab),2:ncol(ST_DiffzTab)])
+ST_DiffzTab$CondCode <- c("Switching (Q-NoAlt-Q-Alt)","AMSSN (AMSSN - Q-Alt)","ENG\\_F (ENG\\_F - Q-Alt)","MDR\\_F (MDR\\_F - Q-Alt)",
+                          "Switching (Q-NoAlt-Q-Alt)","AMSSN (AMSSN - Q-Alt)","ENG\\_F (ENG\\_F - Q-Alt)","MDR\\_F (MDR\\_F - Q-Alt)","CCRM\\_F (CCRM\\_F - Q-Alt)")
+
+colnames(ST_DiffzTab)[1] = "Derived measure"
+# colnames(ST_DiffzTab)[2] = "Material"
+
+# Diff = ST_DiffzTab[3] - ST_DiffzTab[9]
+```
+
+```{r, label='ST-DerivedTab', echo=FALSE}
+# prepare table using kbl()
+# for more options see: https://cran.r-project.org/web/packages/kableExtra/vignettes/awesome_table_in_pdf.pdf
+
+kbl(ST_DiffzTab,booktabs = T, escape = F, linesep = "",caption = "ST: Descriptives for standardised residuals (z-scores) calculated for data measured with the ASL and CCRM speech material.",
+    align = c("lcccccl"),format = "latex") %>%
+  kable_styling(latex_options = c("scale_down")) %>%
+  add_header_above(c(" ", "APD" = 6, "TD" = 6)) %>%
+  column_spec(c(8),border_left = T) %>%
+  kable_styling() %>%
+  pack_rows("ASL", 1, 4) %>%
+  pack_rows("CCRM", 5, 9) %>%
+  add_footnote(c("abnormal: defined as the percentage of abnormal  z-score > 1.96."), notation = "none")
+  # add_footnote(c("abnormal: the percentage of abnormal score, defined as z-score > 1.96.","Percentage in brackets were accounted for observations that were trimmed during the z-score calculation procedure."), notation = "none")
+```
 
 ```{r, label='ST-DerivedPlotsz', fig.cap="ST: Boxplots of the listeners age-independent standardised residuals for the derived score (in DC) calculated from data measured with the ASL (A) and the CCRM speech material (B). Residuals were calculated separately for each condition and are based on a model prediction for the TD group only.", fig.align='center', fig.width=10, fig.asp=.9, out.width='100%',echo=FALSE, message=FALSE, warning=FALSE, results='hide'}
 
@@ -5414,15 +5690,9 @@ library(patchwork)
         plot.tag = element_text(face = 'bold'))
 ```
 
-Final model: z_trim ~ CondCode + material + Group + (1 | listener)
+Group differences were examined using two separate models for switching and IM effects, excluding data meaured with the CCRM_F distractor. Parametric methods assumptions were met for IM data, whereas the assumption of normal distribution for the switching data was rejected. Nevertheless, since nonparametric methods gave similar results, it was decided to report here only the outcomes of the parametric method. Switching effect were examined using LMEM model with Material (ASL/CCRM) and Group (APD/TD) as fixed factors and and random intercepts for subjects (reference levels: Group = APD; Material = ASL). The final model which gave the best fit did not include Material x Group interaction. There was no significant main effect of both Material ($\chi^{2}$ = 0.00016, $Df$ = 1, $p$ = 0.990) and Group ($\chi^{2}$ = 0.380, $Df$ = 1, $p$ = 0.538). Similarly, group differences across the three distractors were tested using LMEM model with Distractor, Material and Group as fixed factors and random intercepts for subjects. The final model and main effects are given in Table\ \@ref(tab:ST-zIMEffTab). There was a significant main effect of Group ($p$\ \<\ 0.05), whereas there was no significant main effect for Distractor or Material ($p$\ \>\ 0.05).\
 
-Only main effect for Group is significant. 
-
-**Analysis**
-LMEM model with Distractor, Material and Group as fixed effects and random intercepts for subjects. Final model with best fit is given in Table\ \@ref(tab:ST-zIMEffTab)
-
-- IM effect: significant main effect of group (Estimated mean difference -0.50, i.e., TD performance was on average 0.5 lower, i.e., better than the APD group)
-```{r,label='ST-GroupEffectDerivedzIM', echo=FALSE,results='hide',message=FALSE,warning=FALSE, include=FALSE, eval=FALSE}
+```{r,label='ST-GroupEffectDerivedzIM', echo=FALSE,results='hide',message=FALSE,warning=FALSE, include=FALSE}
 ##### Age effect? ################################################################# 
 
 # Normality:   met
@@ -5562,7 +5832,7 @@ postLMEM.1 <- summary(emm_s.conf,infer = c(TRUE,TRUE))$contrasts[] %>%
 # get table
 # -------------------------------------------------------------------------
 ST_IMzTab <- data.frame(rbind(
-  c("Condition",Cond.LMEM$Df[2],Cond.LMEM$Chisq[2],sprintf("%0.3f",Cond.LMEM$`Pr(>Chisq)`[2])),
+  c("Distractor",Cond.LMEM$Df[2],Cond.LMEM$Chisq[2],sprintf("%0.3f",Cond.LMEM$`Pr(>Chisq)`[2])),
   c("Material",Mat.LMEM$Df[2],Mat.LMEM$Chisq[2],sprintf("%0.3f",Mat.LMEM$`Pr(>Chisq)`[2])),
   c("Group",Group.LMEM$Df[2],Group.LMEM$Chisq[2],sprintf("\\textbf{%0.3f}",Group.LMEM$`Pr(>Chisq)`[2]))
   ))
@@ -5600,7 +5870,7 @@ car::leveneTest(z_trim ~ material* CondCode * Group, data=ST_Diff_IM,center=medi
 DescTools::LeveneTest(lm(z_trim~ material* CondCode * Group, data = ST_Diff_IM))
 ```
 
-```{r,label='ST-GroupEffectDerivedzAlt', echo=FALSE,results='hide',message=FALSE,warning=FALSE, include=FALSE, eval=FALSE}
+```{r,label='ST-GroupEffectDerivedzAlt', echo=FALSE,results='hide',message=FALSE,warning=FALSE, include=FALSE}
 ##### Age effect? ################################################################# 
 
 # Normality:   NOT met (p=0.001943)
@@ -5612,6 +5882,13 @@ ST_Diff_Switch <- ST_Diff_Switch %>% filter(CondCode=="Diff_QNoAlt") %>%dropleve
 ST_Diff_Switch$listener <- factor(ST_Diff_Switch$listener)
 ST_Diff_Switch$material <- factor(ST_Diff_Switch$material, levels = c("ASL","CCRM"))
 
+######## NONPARAMETRIC method ##########################################
+ST_Altz.nparLD <- nparLD(z_trim ~ material * Group, data = ST_Diff_Switch, subject = "listener", description = TRUE, plot.CI=TRUE)
+
+ST_Altz.nparLD <- data.frame(round(ST_Altz.nparLD$ANOVA.test,3))
+
+colnames(ST_Altz.nparLD)[3] <- "p-value"
+row.names(ST_Altz.nparLD) <- c("Group","Material","Group:Material")
 
 ######## lmer model ##########################################
 
@@ -5633,22 +5910,6 @@ summary(model3)
 anova(model3,model4)
 summary(model4)
 
-(model5<-update(model4,  ~ . -  CondCode:material))
-anova(model4,model5)
-summary(model5)
-
-(model6<-update(model5,  ~ . -  Group))
-anova(model5,model6)
-summary(model6)
-# model6: z_trim ~ CondCode + material + (1 | listener)
-# model5: z_trim ~ CondCode + material + Group + (1 | listener)
-#        npar    AIC    BIC  logLik deviance  Chisq Df Pr(>Chisq)  
-# model6    6 749.90 771.21 -368.95   737.90                       
-# model5    7 746.81 771.68 -366.40   732.81 5.0888  1    0.02408 *
-
-# best model --> model 5: z_trim ~ CondCode + material + Group + (1 | listener)
-
-
 tab_model(model2)
 # visreg::visreg(model5)
 # visreg::visreg(model5,"Group","CondCode")
@@ -5662,30 +5923,19 @@ BestModel <- model2
 rstatix::Anova(BestModel,type="II",test.statistic="Chisq")
 
 # Response: z_trim
-#                 Chisq Df Pr(>Chisq)
-# material       0.0002  1     0.9899
-# Group          0.3818  1     0.5366
-# material:Group 0.8219  1     0.3646
+#           Chisq Df Pr(>Chisq)
+# material 0.0002  1     0.9900
+# Group    0.3818  1     0.5366
 
 # Group:
 (BestModel.1 <- update(BestModel,  . ~ . -Group))
 Group.LMEM <- anova(BestModel,BestModel.1)
 summary(BestModel.1)
-# BestModel.1: z_trim ~ material + (1 | listener)
-# BestModel: z_trim ~ material + Group + (1 | listener)
-#             npar    AIC    BIC  logLik deviance  Chisq Df Pr(>Chisq)
-# BestModel.1    4 284.98 294.79 -138.49   276.98                     
-# BestModel      5 286.60 298.87 -138.30   276.60 0.3801  1     0.5375
 
 #  Material
 (BestModel.2 <- update(BestModel,  . ~ . -material))
 Mat.LMEM <- anova(BestModel,BestModel.2)
 summary(BestModel.2)
-# estModel.2: z_trim ~ Group + (1 | listener)
-# BestModel: z_trim ~ material + Group + (1 | listener)
-#             npar   AIC    BIC logLik deviance Chisq Df Pr(>Chisq)
-# BestModel.2    4 284.6 294.41 -138.3    276.6                    
-# BestModel      5 286.6 298.87 -138.3    276.6 2e-04  1       0.99
 
 #------------------------------------------------------------------------------------------------------
 # Post-hoc paired comparison
@@ -5699,7 +5949,7 @@ ST_AltzTab <- data.frame(rbind(
   c("Group",Group.LMEM$Df[2],Group.LMEM$Chisq[2],sprintf("%0.3f",Group.LMEM$`Pr(>Chisq)`[2]))
   ))
 
-ST_AltzTab[,c(2:3)]= apply(ST_IMzTab[,c(2:3)], 2, function(x) as.numeric(as.character(x)))
+ST_AltzTab[,c(2:3)]= apply(ST_AltzTab[,c(2:3)], 2, function(x) as.numeric(as.character(x)))
 
 colnames(ST_AltzTab)[1:4] <- c("Main effects","Df",sprintf("$\\chi^{2}$"),"p")
 # -------------------------------------------------------------------------
@@ -5734,7 +5984,7 @@ DescTools::LeveneTest(lm(z_trim~ material* CondCode * Group, data = ST_Diff_IM))
 
 ```{r,label='ST-zIMEffTab',echo=FALSE,warning=FALSE, message=FALSE}
 
-kbl(ST_IMzTab, booktabs = T,escape = F, linesep = "",caption = "ST: Add caption here.",
+kbl(ST_IMzTab, booktabs = T,escape = F, linesep = "",caption = "ST: Derived measures (z-score): LMEM model with Distractor (AMSSN, MDR\\_F, and ENG\\_F), Material (ASL/CCRM) and Group (APD/TD) as fixed factors and random intercepts for subjects. Reference levels: Distractor = AMSSN; Material = ASL; Group = APD",
     align = c("lccc"),format = "latex",digits = 3) %>%
     # kable_styling(latex_options = c("scale_down")) %>%
   add_header_above(c("z ~ Distractor + Material + Group + (1 | Subjects)" = 4), align = "l",line = TRUE) %>%
@@ -5745,6 +5995,158 @@ kbl(ST_IMzTab, booktabs = T,escape = F, linesep = "",caption = "ST: Add caption 
   # add_header_above(c("+ Condition:Material + Condition:Age + Material:Age + (1 | Subjects)" = 4)) %>%
   # add_header_above(c("SRdT ~ Condition + Material + Age" = 4), align = "l",line = FALSE) %>%
 ```
+
+A separate LMEM model for the full CCRM data, including the CCRM_F distractor, gave similar results, with a significant main effect of Group ($\chi^{2}$ = 4.184, $Df$ = 1, $p$ = 0.041), whereas there as no signifiacnt main effect of Distractor ($\chi^{2}$ = 0.990, $Df$ = 3, $p$ = 0.804).\
+
+<!-- CCRM Only -->
+```{r,label='ST-GroupEffectDerivedzIMCCRM', echo=FALSE,results='hide',message=FALSE,warning=FALSE, include=FALSE}
+##### Age effect? ################################################################# 
+
+# Normality:   met
+# Homogeneity: met
+
+CCRM_Diff_s <- CCRM_Diff %>% as.data.frame(.) %>% mutate(material = "CCRM") %>%
+  filter(CondCode !="Diff_QNoAlt") %>%
+  dplyr::select(., listener, Age,Group,Group2, material, CondCode, uRevs, z_trim) %>% 
+  droplevels()
+
+
+CCRM_Diff_s$listener <- factor(CCRM_Diff_s$listener)
+
+######## lmer model ##########################################
+
+## Find Best fit 
+# start with a saturated model (3-way interaction with age)
+
+model1 <- lmer(z_trim~CondCode*Group+(1|listener), CCRM_Diff_s, REML=FALSE)
+summary(model1)
+
+(model2<-update(model1,  ~ . - CondCode:Group))
+anova(model1,model2)
+summary(model2)
+
+(model3<-update(model2,  ~ . - Group))
+anova(model2,model3)
+summary(model3)
+# model3: z_trim ~ CondCode + (1 | listener)
+# model2: z_trim ~ CondCode + Group + (1 | listener)
+#        npar    AIC    BIC  logLik deviance  Chisq Df Pr(>Chisq)  
+# model3    6 530.63 549.51 -259.31   518.63                       
+# model2    7 528.44 550.48 -257.22   514.44 4.1835  1    0.04082 *
+
+
+# best model --> model z_trim ~ CondCode + Group + (1 | listener)
+
+
+tab_model(model2)
+# visreg::visreg(model2)
+# visreg::visreg(model2,"Group","CondCode")
+
+BestModel <- model2
+# report::report(model2)
+
+# ---------------------------------------------------------------------------------
+# test main effects:
+rstatix::Anova(BestModel,type="II",test.statistic="Chisq")
+
+# Response: z_trim
+#           Chisq Df Pr(>Chisq)  
+# CondCode 0.9940  3    0.80271  
+# Group    4.3938  1    0.03607 *
+
+# Group:
+(BestModel.1 <- update(BestModel,  . ~ . -Group))
+Group.LMEM <- anova(BestModel,BestModel.1)
+summary(BestModel.1)
+# BestModel.1: z_trim ~ CondCode + (1 | listener)
+# BestModel: z_trim ~ CondCode + Group + (1 | listener)
+#             npar    AIC    BIC  logLik deviance  Chisq Df Pr(>Chisq)  
+# BestModel.1    6 530.63 549.51 -259.31   518.63                       
+# BestModel      7 528.44 550.48 -257.22   514.44 4.1835  1    0.04082 *
+
+#  CondCode
+(BestModel.2 <- update(BestModel,  . ~ . -CondCode))
+Cond.LMEM <- anova(BestModel,BestModel.2)
+summary(BestModel.2)
+# BestModel.2: z_trim ~ Group + (1 | listener)
+# BestModel: z_trim ~ CondCode + Group + (1 | listener)
+#             npar    AIC    BIC  logLik deviance  Chisq Df Pr(>Chisq)
+# BestModel.2    4 523.43 536.02 -257.72   515.43                     
+# BestModel      7 528.44 550.48 -257.22   514.44 0.9902  3     0.8036
+
+#------------------------------------------------------------------------------------------------------
+# Post-hoc paired comparison
+# -----------------------------------------------------------------------------------------------------
+
+# Check effect size of each term in the model:
+# EMAtools::lme.dscore(BestModel,dat=ST_trimmed,type="lme4")
+
+# CondCode x Group:
+# (ref1 <- emmeans::lsmeans(BestModel,~ material*Age))
+# comps <- emmeans::contrast(ref1,alpha=0.05,method="pairwise",adjust=NULL) #,adjust=NULL) adjust="bonferroni"
+# summary(comps)
+
+# Group:
+# emm_s.conf <- emmeans::emmeans(BestModel, pairwise ~ Group,adjust="bonferroni")
+# postLMEM.1 <- summary(emm_s.conf,infer = c(TRUE,TRUE))$contrasts[] %>%
+#                data.frame() %>%
+#                mutate_if(is.numeric, round, 2) %>%
+#                mutate(CI = sprintf("%s - %s",
+#                       round(lower.CL,2),
+#                       round(upper.CL,2))) %>%
+#                select(contrast, estimate:df, t.ratio:CI)
+# 
+# postLMEM.1$p.value <- ifelse(postLMEM.1$p.value <.001,"\\textbf{< 0.001}", 
+#                              ifelse(postLMEM.1$p.value <.05, sprintf("\\textbf{%.02f}",postLMEM.1$p.value),
+#                                     postLMEM.1$p.value))
+# 
+# postLMEM.1_d <- ST_Diff_IM %>% 
+#     rstatix::cohens_d(z_trim ~ Group, data=., ci = TRUE) %>% as.data.frame() %>%
+#     select(effsize,magnitude) %>%
+#     dplyr::rename("d"=effsize)
+
+# -------------------------------------------------------------------------
+# get table
+# -------------------------------------------------------------------------
+# ST_IMzTab <- data.frame(rbind(
+#   c("Condition",Cond.LMEM$Df[2],Cond.LMEM$Chisq[2],sprintf("%0.3f",Cond.LMEM$`Pr(>Chisq)`[2])),
+#   c("Material",Mat.LMEM$Df[2],Mat.LMEM$Chisq[2],sprintf("%0.3f",Mat.LMEM$`Pr(>Chisq)`[2])),
+#   c("Group",Group.LMEM$Df[2],Group.LMEM$Chisq[2],sprintf("\\textbf{%0.3f}",Group.LMEM$`Pr(>Chisq)`[2]))
+#   ))
+# 
+# ST_IMzTab[,c(2:3)]= apply(ST_IMzTab[,c(2:3)], 2, function(x) as.numeric(as.character(x)))
+# 
+# colnames(ST_IMzTab)[1:4] <- c("Main effects","Df",sprintf("$\\chi^{2}$"),"p")
+# -------------------------------------------------------------------------
+
+################################ Assumptions testing ################################ 
+
+# Normality:   met
+# Homogeneity: met
+
+# linear model
+w1 <- lm(z_trim~CondCode*Group, data = CCRM_Diff_s)
+
+# 1. Normality (Shapiro-Wilk test) --> NOT met!
+# data is normally distributed if p >.05
+
+# QQ plot of residuals
+qqPlot(residuals(w1))
+
+# Option 1:
+shapiro.test(residuals(w1))
+shapiro.test(residuals(BestModel))
+
+# 2. Homoggeneity of variance (Levene's test) --> NOT met!
+# homogeneity is met if p>.05
+
+# Option 1:
+car::leveneTest(z_trim ~ CondCode * Group, data=CCRM_Diff_s,center=median)
+
+# Option 2: 
+DescTools::LeveneTest(lm(z_trim~ CondCode * Group, data = CCRM_Diff_s))
+```
+
 
 <!-- get ggpairs plots for appendix: -->
 ```{r ST-zASLcor, fig.align='center', fig.asp=0.5, fig.width=14, message=FALSE, warning=FALSE, dev='png', include=FALSE, out.width='90%', results='hide'}
@@ -8622,7 +9024,9 @@ leveneTest(residuals(m) ~ Group2, data = ECLiPS_Total)
 ## Overall performance
 An overview of the childrens' performance split by group is given in Figure \@ref(fig:MatrixPlot), which provides a simple graphical display indicating which test scores fell outside norms for each participant (filled black cells). Abnormally poor performance for the listeners age-independent scores was defined using standardised norms for the CELF-RS, ECLiPS and the CCC-2 data or was defined as a one-tailed cut-off of $\pm$ 1.96 (where circa 97.5% of the normal population is expected to lay within) for the rest of the tasks. Note that DLD and PLI were composed as a way to discriminate children with more structural versus pragmatic language deficit and were based on the CCC-2 data as a combination of abnormal GCC score (\< 55) and the SIDC score. The DLD score (developmental language disorder) denotes a combination of abnormal GCC and a positive SIDC ($\geq$\ 0) which is expected to capture severe deficits in structural language in conjunction with only mild pragmatic difficulties. The PLI score (pragmatic language impairment), on the other hand, denotes a combination of abnormal GCC and a negative SIDC ($\leq$\ 0) which is expected to be a strong indicator for social communication problems with only mild structural language difficulties.\
 
-As seen in the figure, the proportion of abnormal scores across the APD group is substantially higher than in the TD group. The majority of the APD children (80\%, 16/20) performed abnormally in at least two test conditions either in the ST or LiSNS-UK task, whereas there were only three cases (13\%, 3/23) in the TD children. Another interesting observation is that apart from one TD child, who experienced difficulties in various measures including the CCC-2, none of the other TD children experienced language difficulties. This is in contrast to the APD group where 90\% (18/20) of the children experienced some kind of language deficit. Although the CELF-RS has been reported to be a good marker for children with DLD, nevertheless, the results of the present study suggests otherwise. While performance in the APD group was noticeably poorer than in the TD group, only two APD children obtained abnormally poor CELF-RS score, whereas nearly half of the APD children (45\%, 9/20) exhibited a CCC-2 score indicative of DLD, and about the remaining half (40\% 8/20) obtained a CCC-2 score indicative of pragmatic language and social communication deficit (PLI).\
+As seen in the figure, the proportion of abnormal scores across the APD group is substantially higher than in the TD group. The majority of the APD children (80\%, 16/20) performed abnormally in at least two test conditions either in the ST or LiSNS-UK task, whereas there were only three cases (13\%, 3/23) in the TD children. Another interesting observation is that apart from one TD child, who experienced difficulties in various measures including the CCC-2, none of the other TD children experienced language difficulties. This is in contrast to the APD group where 90\% (18/20) of the children experienced some kind of language deficit. The CELF-RS has been reported to be a good marker for children with DLD. Nevertheless, in the present study, the test norms were not found to be very sensitive in capturing the APD children language difficulties. Although their performance was noticeably poorer than in the TD group, only two APD children obtained abnormally poor CELF-RS score. Whereas nearly half of the APD children (45\%, 9/20) exhibited a CCC-2 score indicative of DLD, and about the remaining half (40\% 8/20) obtained a CCC-2 score indicative of pragmatic language and social communication deficit (PLI). The association between the above mentioned language measures for the listeners' performance ("normal"/abnormal) was further examined using multiple Spearman's rho correlation tests [*rcorr* function, Hmisc R package; @HmiscPackageR]. Interestingly, there was a highly significant correlation between the CELF-RS and the DLD performance $\rho$ = 40, $p$ \< 0.001), whereas correlation between CELF-RS and PLI was not significant ($\rho$ = -0.11, $p$\ \> 0.05)). Thereby suggesting that both the CELF-RS and DLD taps into similar skills.\
+
+<!-- Although the CELF-RS has been reported to be a good marker for children with DLD, nevertheless, the results of the present study suggests otherwise. While performance in the APD group was noticeably poorer than in the TD group, only two APD children obtained abnormally poor CELF-RS score, whereas nearly half of the APD children (45\%, 9/20) exhibited a CCC-2 score indicative of DLD, and about the remaining half (40\% 8/20) obtained a CCC-2 score indicative of pragmatic language and social communication deficit (PLI).\ -->
 
 ```{block type='correction'}
 [Potential experimental bias of reporters when recruited due to an informed group affiliation? email Courtenay!]{.correction}
@@ -8763,6 +9167,17 @@ t2 <- t2 + labs(x = "", y = "",title = bquote(bold(TD[sib] ~ "                  
         plot.tag = element_text(face = 'bold'))
 ```
 
+```{r, echo=FALSE, eval=FALSE}
+# Test correlation between RS and DLD or PLI:
+
+# Results: Although RS is less sensitive than DLD, they both correlates! (rho=0.40), where as correlation between RS and PLI is n.s. and negative (rho=-0.11).
+
+corstars(FullData_w[,5:9], result="none", method="spearman",p.adj = "none")
+# corstars(FullData_w[,5:9], result="none", method="spearman",p.adj = "fdr")
+```
+
+
+
 ```{r,label='Abnormal-perTestPlot', fig.align='center', fig.asp=0.5, fig.cap="Overall perfromance: proportion of abnormal score per measure or task split by groups.", fig.width=14, out.width='100%', echo=FALSE}
 
 # FullData_w <- read.csv(file.path(FileDir,'Files','AbnormalScore_w.csv'),header=T)
@@ -8898,7 +9313,7 @@ kbl(effectsize::cohens_d(ST_w$PCA.ASL,ST_w$PCA.CCRM) %>%
     booktabs = T,escape = F, linesep = "", caption = "Cohen's d for PCA: ASL - CCRM.",format = "latex",digits = 2)
 ```
 \
-Effect-size [Cohen's d; *rstatix::cohens_d()*] was calculated for pairwise group comparisons by material and condition (see Table\ \@ref(tab:ST-effsizeTab)). Three test conditions resulted in a 'large' effect size: CCRM_F-Alt-CCRM (d = 1.01), AMSSN-Alt-CCRM (d = 1.01) and MDR_F-ASL-Alt (d = 0.85). Four other conditions resulted in a 'moderate' effect-size, with a Cohen's d ranging between 0.63 to 0.75. These conditions comprised of speech distractors (ENG or MDR) from either material and Quiet-NoAlt for the ASL material. The test material which resulted in the largest effect-size was estimated by averaging d across conditions for each type of material. Both materials had a 'moderate' average effect-size, whereby the CCRM material had the largeer effect-size of 0.69, following with 0.56 for the ASL material.\
+Effect-size Cohen's d; *rstatix::cohens_d()*) was calculated for pairwise group comparisons by material and condition (see Table\ \@ref(tab:ST-effsizeTab)). Three test conditions resulted in a 'large' effect size: CCRM_F-Alt-CCRM (d = 1.01), AMSSN-Alt-CCRM (d = 1.01) and MDR_F-ASL-Alt (d = 0.85). Four other conditions resulted in a 'moderate' effect-size, with a Cohen's d ranging between 0.63 to 0.75. These conditions comprised of speech distractors (ENG or MDR) from either material and Quiet-NoAlt for the ASL material. The test material which resulted in the largest effect-size was estimated by averaging d across conditions for each type of material. Both materials had a 'moderate' average effect-size, whereby the CCRM material had the largeer effect-size of 0.69, following with 0.56 for the ASL material.\
 
 ```{r,label='ST-effsizeTab',echo=FALSE,message=FALSE, cache=TRUE}
 # remove CCRM_F condition
@@ -9330,6 +9745,7 @@ library(patchwork)
 ```
 
 Again, the relationship between the PCA components (PC1.Lang, PC2.Lang and PC3.Lang) and the three calculated composites that reflects the component interpretations is illustrated in Figure\ \@ref(fig:PCALang-ggpairs). The calculated components were based on the listeners scaled scores, where *Lang1* represents the overall performance aggregated across all the language scores, *Lang2* represents discrepancy between expressive language skills (CELF-RS) and listening and communication skills (all ECLiPS subscales), and lastly, *Lang3* stands for discrepancy between structural and pragmatic \& social skills. As seen in the figure, correlations were high between each PCA component and the corresponding calculated composites (range: 1 to 0.58).\
+
 ```{r, label='PCALang-ggpairs', fig.cap="Language measures PCA: Comparison between the listeners weighted scores by components, PC1.Lang - PC3.Lang (A), and calculated measures, Lang1 - Lang3 (B).", fig.align='center', fig.width=11, fig.asp=0.8, out.width='100%', message=FALSE, warning=FALSE, echo=FALSE, results='hide'}
 
 # require(GGally)
@@ -9634,6 +10050,10 @@ Eval_L <- Eval %>%
 # scale_fill_manual(values=c("blue","lightblue","black"))+
 
 # stat_compare_means(): method="wilcox.test" OR method="t.test"
+
+# Mark all APD kids with some kind of diagnosed language deficits
+# Eval_L$DLD <- ifelse(Eval_L$listener %in% c("APD01","APD05","APD12","APD13","APD14","APD16","APD17","APD19","APD21"),1,0)
+# Eval_L$DLD <- as.factor(Eval_L$DLD)
 
 t1 <- ggplot(Eval_L, aes(x=Diagnosis,y=score)) +
   geom_boxplot(position=position_dodge(width=0.8),outlier.shape=NA) + 
@@ -10013,7 +10433,22 @@ t10 <- ggplot(Eval_APD, aes(x=AuditoryTraining,y=uRevs_SRM)) +
         plot.tag = element_text(face = 'bold'))
 ```
 
-#### Exploratory predictors -- TD group
+#### Exploratory predictors -- TD vs. TD$_{sib}$
+Studies have shown a strong association between APD and history of hearing problems (e.g., due to chronic OME) causing auditory deprivation, and Developmental Language Deficit (DLD). Moreover, several studies demonstrated that these factors are genetically influenced (Pennington \& Bishop, 2009; Bishop, Adams, & Norbury, 2006), while others suggested that some APD-linked aspects (tone sequencing) are more environmentally driven (cf. Moore 2007; Bishop, 2002). 
+
+In the developmental language literature, there are many studies (REFs!) showing that children tends to have similar language skills to their families.
+
+Studying twins or siblings is a useful way to examine both genetic and environmental factors. 
+
+Although the present study was not designed to investigate such questions in a controlled and balanced way, as it happens, our control group sample can be subdivided into two groups of children with an APD sibling (TD$_{sib}$, 8/23) and without (TD, 15/23). Thereby, it is possible that the two groups would preform differently in the study measures. Whether the influencing factors were mostly heritable or acquired by the child's environment, we hypothesised that TD$_{sib}$ will perform poorer than their non-sibling peers. This supposition arises from the common finding that family members tend to be more alike and so TD$_{sib}$ should be more APD-like, especially insofar as there appear to be language deficits in the APD group. 
+
+The association between potential predictors and performance in the two TD groups was graphically explored. Shown in Figure\ \@ref(fig:EvalTD-fig) are boxplots comparing between the listeners' performance split by groups for the ST and language PCA weighted scores, SRM z-scores, CELF-RS, ECLiPS Total and CCC-2 GCC scaled scores. 
+
+Looking at the boxplots, two noticeable observations emerges. Firstly, the TD$_{sib}$ children CELF-RS scores are noticeably poorer than compared with the TD children. **To elaborate?** Give Mdn's? Both groups still perform significantly better than the APD group..
+
+Moreover, parents of TD$_{sib}$ children tended to score their child higher in the ECLiPS, resulting in higher (i.e., better) Total scaled score. This may suggest some kind of positive rating bias towards the non-APD child. This bias was possibly exasperated by the recruitment procedure, where parents were well informed about the study objectives and whether their child will be assigned to the APD or the control group.
+
+Nonetheless, differences between the two TD groups are relatively small and were found insignificant (see ECLiPS analysis in section ???). In contrast, differences in rating between the groups for the CCC-2 GCC score were much smaller. A possible explanations for the smaller trend in the CCC-2 is that....\
 
 ```{r, echo=FALSE, fig.align='center', fig.asp=0.6, fig.cap="Add text here. Significant p-values for independent t-test comparison are marked with asterisk (p < 0.05).", fig.width=14, message=FALSE, warning=FALSE, label='EvalTD-fig', out.width='100%'}
 
@@ -10127,14 +10562,14 @@ t5 <-  ggplot(Eval_TD, aes(x=Group2,y=CCC2.GCC, fill=Group2)) +
   
 ## Discussion
 
-# Peripheral hearing
+### Peripheral hearing evaluation
 
-**STANDARD AUDIOMETRY:**
+#### Standard Audiometry
 
-- Group difference in the left ear. The small difference (~2.5) suggests it is due to sampling error rather than a real effect. Any similar effect in other studies? Hunter et al., 2020 did not find sig. difference between the ears. 
+- Group difference in the left ear. The small difference (~2.5 dB) suggests it is due to sampling error rather than a real effect. Any similar effect in other studies? Hunter et al., 2020 did not find sig. difference between the ears. 
 
-**EHF AUDIOMETRY:**
-- No group difference. However there seem to be again a trend of slightly poorere thresholds for the APD group in the left ear only.
+#### Extended Audiometry
+- No group difference. However there seem to be again a trend of slightly poorer thresholds for the APD group in the left ear only.
  
 Comparison with Hunter data:
  
@@ -10148,7 +10583,6 @@ Freq	TD_LH	LiD_LH	TD_SK	APD_SK
 11.00	6	7	12	14
 16.00	5	9	6	9
 
-### EHF
 
 Lee's thresholds for 10-21 yrs group: 8=16.35 (1.46-29.33); 11=22.99, 16=48 (20.01-91.35); 20=93.07 (48.57-105.00) all dB SPL
 
@@ -10158,15 +10592,25 @@ EHF in children: Read Schechter et al., 1986:
 
 -   11-15 yrs: 10k=21, 12k=22, 16k=51 dB SPL
 
-### ST
+### Central auditory evaluation 
+
+#### ST
 
 ```{block type='correction'}
 **APDsibling**
-While the causes of APD are not fully understood, amongst others, studies have shown a strong association between APD and history of hearing problems (e.g., due to chronic OME) causing auditory deprivation, and Developmental Language Deficit (DLD). Moreover, several studies demonstrated that these factors are genetically influenced (Pennington \& Bishop, 2009; Bishop, Adams, & Norbury, 2006), while others suggested that some APD-linked aspects (tone sequencing) are more environmentally driven (cf. Moore 2007; Bishop, 2002). Studying twins or siblings is a usefull way to examin both genetic and environmental factors. Although the inclusion of control children with APD sibling(s) was not part of the study design and was not carefully balanced for the control group sample size, it is possible that the two control groups would preform differently in the study measures. Whether the influencing factors were mostly heritable or accquiered by the child's environment, we hypothesised that the control children with APD sibling will perform poorer than the non-sibling control children. 
+While the causes of APD are not fully understood, amongst others, studies have shown a strong association between APD and history of hearing problems (e.g., due to chronic OME) causing auditory deprivation, and Developmental Language Deficit (DLD). Moreover, several studies demonstrated that these factors are genetically influenced (Pennington \& Bishop, 2009; Bishop, Adams, & Norbury, 2006), while others suggested that some APD-linked aspects (tone sequencing) are more environmentally driven (cf. Moore 2007; Bishop, 2002). Studying twins or siblings is a useful way to examine both genetic and environmental factors. Although the inclusion of control children with APD sibling(s) was not part of the study design and was not carefully balanced for the control group sample size, it is possible that the two control groups would preform differently in the study measures. Whether the influencing factors were mostly heritable or acquired by the child's environment, we hypothesised that the control children with APD sibling will perform poorer than the non-sibling control children. 
 ```
 
 [*Comparison with adults data (SRdTs!)*]{.correction}
 \
+
+Many studies showed throughout the years that children perform poorer than adults in different auditory tasks.
+Examples for different tasks/aspects of listening
+Is the cause peripheral or more central maturation with age? 
+
+**Developmental Psychoacoustics BOOK, Chapter 4: Individual Differences in Auditory Capability Among Preschool Children (Frederic Wightman and Prudence Allen):**
+They found that children displayed an overal poorer performance in a wide range of measures compared to adults. However the quality of the data (the spread and number of trials/reversals) suggests that this impovrished performance is not due to lack of attention or motivation on behalf of the children..
+
 An exploratory comparison between the children's data measured in the present study with data measured across young NH adults collected in Chapter \@ref(Chpt2) further highlights the strong developmental trend, with SRdTs still not entirely "adult-like" even at the age of 13 years, especially for speech distractors (see boxplots in Figure \@ref(fig:ST-Age) A-B). The children in both groups seem to be markedly susceptible to competing CCRM sentences and for familiar- or unfamiliar-speech presented with ASL sentences, with performance at the age of 12 years still largely differing from those obtained by the adults. On the other hand, by the age of 12 years, the TD children reached near to "adult-like" performance when CCRM target sentences were presented with ENG_F speech distractor or when ASL sentences were presented with AMSSN distractor.\
 
 [*Why CCRM performance is better*]{.correction}
@@ -10212,21 +10656,27 @@ Why there was no interaction between Group x Condition x Material?
 *Points for age effect:*\
 - Goldsworthy et al. 2018 found that age explained only a small portion of variability in speech perception performance (n.s.) for Quiet, SSN and 2-talker connected-speech distractors (children aged 5-17). See table 3.
 
+#### Speech in noise (where does this go?)
+
 *Points for SSN:*\
 - "Despite mature peripheral encoding, school-children have more difficulty understanding speech in noise compared with adults. For example, 5-7 year-old children require 3 to 6 dB more favourable SNR than adults to achieve comparable speech detection, word identification, or sentence recognition performance in a speech-shaped noise maker (e.g., Corbin et al., 2016)" [Leibold, Buss and Calandruccio, 2019, Acoustics today]. - "Speech recognition gradually improves until 9-10 years of age , after which mature performance is generally observed" [Leibold, Buss and Calandruccio, 2019, Acoustics today].
 
--   SSN age effect in other studies are smaller
+- SSN age effect in other studies are smaller
 
-### CCC-2
+#### LiSNS-UK
 
-### ECLiPS
+### Cognitive and language evaluation
+
+#### CCC-2
+
+#### ECLiPS
 **Discussion:** Correlation with CCC-2 sub-scales [@Barry2014]: Overall, all the EClIPS sub scales shows strong correlation with most of the CCRM 10 sub-scales. Interestingly, PSS strongly correlates with all 10 CCC-2 sub-scales, suggesting that both tests taps into similar abilities.
 
 **In the results:** compare scores with scores obtained by: <https://www.nature.com/articles/s41598-018-25316-9.pdf> and Moore et al. 2020 (Listening Difficulties in Children: Behaviour and Brain Activation Produced by Dichotic Listening of CV Syllables)
 
 Discussion: - Compare data with Ferguson et al. 2011
 
-### Language PCA
+#### Language PCA
 ```{block type='correction'}
 *Discussion(?): Which measures were best described by the PCA?*  
   
