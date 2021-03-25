@@ -1,0 +1,524 @@
+---
+title: 'ST: Derived measures'
+author: "Shiran Koifman"
+date: "19/03/2021"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r, include=FALSE}
+if(!require(ggplot2)){install.packages("ggplot2")}
+if(!require(plyr)){install.packages("plyr")}
+if(!require(dplyr)){install.packages("dplyr")}
+if(!require(psych)){install.packages("psych")}
+if(!require(english)){install.packages("english")}
+if(!require(stringr)){install.packages("stringr")}
+if(!require(nparLD)){install.packages("nparLD")}
+if(!require(apa)){install.packages("apa")}
+
+require(ggplot2)
+require(ggbeeswarm)
+require(psych)
+require(english)
+require(stringr)
+require(knitr)
+require(kableExtra)
+require(lme4)
+require(sjPlot)
+require(car)
+require(ggpubr)
+require(patchwork)
+require(coin)
+require(effsize)
+require(rstatix)
+require(graphics)
+require(nparLD)
+require(apa)
+require(tidyr)
+library(conflicted)
+require(plyr)
+library(dplyr)
+# library(viridis)
+
+# fix conflicts:
+conflict_prefer("filter", "dplyr")
+conflict_prefer("arrange", "dplyr")
+conflict_prefer("mutate", "dplyr")
+conflict_prefer("select", "dplyr")
+conflict_prefer("plot_grid", "cowplot")
+conflict_prefer("summarise", "dplyr")
+conflict_prefer("%>%", "magrittr")
+
+## Initialisation ----------------------------------------------------------------------------------------------------
+date <- Sys.Date()
+FileDir <- getwd()
+
+# deviance level for abnormal z-score
+CutOff <- 1.96
+
+## get data ----------------------------------------------------------------------------------------------------------
+
+d <- read.csv(file.path(FileDir,'ST_trimmed_Diff.csv'),header=T)
+d_z <- read.csv(file.path(FileDir,'ST_Derived_z.csv'),header=T)
+```
+
+## DC data
+
+### Switching cost analysis
+
+```{r,label='ST-getSwitchedData_DC', echo=FALSE}
+
+ST_trimmed_Diff_switch <- d %>% filter(CondCode=="Diff_QNoAlt") %>% select(., -z) %>% droplevels() %>% as.data.frame(.) 
+
+ST_trimmed_Diff_switch$listener <- factor(ST_trimmed_Diff_switch$listener)
+ST_trimmed_Diff_switch$material <- factor(ST_trimmed_Diff_switch$material, levels = c("ASL","CCRM"))
+
+ez::ezPrecis(ST_trimmed_Diff_switch)
+
+# count subjects observations
+var_select = c("listener")
+plyr::count(ST_trimmed_Diff_switch, var_select)
+
+ddply(ST_trimmed_Diff_switch,~Group2*material,summarise,N=length(uRevs),median=median(uRevs,na.rm=TRUE),mean=mean(uRevs,na.rm=TRUE),sd=sd(uRevs,na.rm=TRUE), min=min(uRevs,na.rm=TRUE),max=max(uRevs,na.rm=TRUE)) %>%
+   mutate_if(is.numeric, round, 2) %>% arrange(., group_by = material)
+```
+
+
+It seems to make no difference if I simplify the model by removing the three-way or some two-way interaction terms.
+
+```{r,label='ST-SwitchEffectDerived', echo=FALSE,results='hide',message=FALSE,warning=FALSE, include=FALSE}
+##### Age effect? ################################################################# 
+
+# Normality:   met
+# Homogeneity: met
+
+######## Parametric model ##########################################
+
+# ----------------------------------------------------------------------------------------
+## Find Best fit 
+# ----------------------------------------------------------------------------------------
+
+model1 <- lmer(uRevs~material*Group2*Age+(1|listener), ST_trimmed_Diff_switch, REML=FALSE)
+# lmer is singular..
+summary(model1)
+
+# look for other optimisers: -------------------------------------------------------------
+# model1 <- lmer(uRevs~material*Group2*Age+(1|listener), ST_trimmed_Diff_switch, REML=FALSE,control=lmerControl(optimizer="bobyqa", optCtrl=list(maxfun=2e5)))
+# model1 <- lmer(uRevs~material*Group2*Age+(1|listener), ST_trimmed_Diff_switch, REML=FALSE,control = lmerControl(optimizer= "optimx",optCtrl  = list(method="nlminb")))
+
+allFit(model1, verbose=TRUE)
+
+# none helped, the model is simply overfitted due to small sample size..
+# try remove the most complex part (three-way interaction)
+# ----------------------------------------------------------------------------------------
+
+(model2<-update(model1,  ~ . - material:Group2:Age))
+# anova(model1,model2)
+# summary(model2)
+(model3<-update(model2,  ~ . - material:Group2))
+# anova(model2,model3)
+# summary(model3)
+(model4<-update(model3,  ~ . - material:Age))
+# anova(model3,model4)
+# summary(model4)
+(model5<-update(model4,  ~ . - Group2:Age))
+# anova(model4,model5)
+# summary(model5)
+(model6<-update(model5,  ~ . - material))
+# anova(model5,model6)
+# summary(model6)
+(model7<-update(model6,  ~ . - Group2))
+# anova(model6,model7)
+# summary(model7)
+
+anova(model1,model2,model3,model4,model5,model6,model7)
+
+tab_model(model4)
+BestModel <- model4
+
+# model's plots:
+# visreg::visreg(model4)
+# visreg::visreg(model5,"Group2","Age")
+
+# ---------------------------------------------------------------------------------
+## test main effects:
+# ---------------------------------------------------------------------------------
+# just a quick check to have a general overview
+rstatix::Anova(BestModel,type="II",test.statistic="Chisq")
+
+# Response: uRevs
+#             Chisq Df Pr(>Chisq)   
+# material   0.1682  1   0.681722   
+# Group2     2.7561  1   0.096883 . 
+# Age        6.9824  1   0.008231 **
+# Group2:Age 4.4058  1   0.035817 * 
+
+# Group:Age
+(BestModel.1 <- update(BestModel,  . ~ . -Group2:Age))
+GroupAge.LMEM <- anova(BestModel,BestModel.1)
+summary(BestModel.1)
+# BestModel.1: uRevs ~ material + Group2 + Age + (1 | listener)
+# BestModel: uRevs ~ material + Group2 + Age + (1 | listener) + Group2:Age
+#             npar     AIC     BIC logLik deviance  Chisq Df Pr(>Chisq)  
+# BestModel.1    6 -76.123 -65.841 44.061  -88.123                       
+# BestModel      7 -78.307 -66.312 46.154  -92.307 4.1848  1    0.04079 *
+
+# material:Age
+(BestModel.2 <- update(BestModel,  . ~ . -material))
+Mat.LMEM <- anova(BestModel,BestModel.2)
+summary(BestModel.2)
+# BestModel.2: uRevs ~ Group2 + Age + (1 | listener) + Group2:Age
+# BestModel: uRevs ~ material + Group2 + Age + (1 | listener) + Group2:Age
+#             npar     AIC     BIC logLik deviance  Chisq Df Pr(>Chisq)
+# BestModel.2    6 -80.139 -69.858 46.070  -92.139                     
+# BestModel      7 -78.307 -66.312 46.154  -92.307 0.1678  1      0.682
+
+#################################################################################
+```
+
+A separate lmer model without Age did not give *'isSingular?'* warning. 
+
+```{r}
+######## Parametric model ############################################################
+## Find Best fit 
+
+model1 <- lmer(uRevs~material*Group2+(1|listener), ST_trimmed_Diff_switch, REML=FALSE)
+summary(model1)
+
+(model2<-update(model1,  ~ . - material:Group2)) # --> singular fit!
+# anova(model1,model2)
+# summary(model2)
+(model3<-update(model2,  ~ . - material)) # --> singular fit!
+# anova(model2,model3)
+# summary(model3)
+(model4<-update(model3,  ~ . - Group2))
+# anova(model3,model4)
+
+anova(model1,model2,model3,model4)
+
+tab_model(model4)
+summary(model4)
+
+BestModel<- model4
+
+################################ Assumptions testing ################################ 
+
+# Normality:   met
+# Homogeneity: met
+
+# linear model
+w1 <- lm(uRevs~material*Group2, data = ST_trimmed_Diff_switch)
+
+# 1. Normality (Shapiro-Wilk test) --> NOT met!
+# data is normally distributed if p >.05
+
+# QQ plot of residuals
+qqPlot(residuals(w1))
+
+#dev.off()
+
+# Option 1:
+shapiro.test(residuals(w1))
+shapiro.test(residuals(BestModel))
+
+# 2. Homoggeneity of variance (Levene's test) --> NOT met!
+# homogeneity is met if p>.05
+
+# Option 1:
+car::leveneTest(uRevs ~ material * Group2, data=ST_trimmed_Diff_switch,center=median)
+
+# Option 2: 
+DescTools::LeveneTest(lm(uRevs~ material * Group2, data = ST_trimmed_Diff_switch))
+```
+
+
+I tried to run an explicit anova test with repeated measures using the anova_test function, but I get the following error message: "system is exactly singular". 
+
+```{r}
+res.aov <- anova_test(data = ST_trimmed_Diff_switch, dv = uRevs, wid = listener, within = material, between = c(Group2,Age),detailed=TRUE)
+get_anova_table(res.aov)
+```
+
+
+I also tried a simplified anova test using the aov function and it seems to run, but I am not sure I used it correctly. 
+
+```{r}
+model1.aov <- aov(uRevs ~ material*Group2*Age + Error(listener), data = ST_trimmed_Diff_switch)
+summary(model1.aov)
+
+```
+
+
+
+### IM analysis
+
+```{r,label='ST-getIMData_DC', echo=FALSE}
+
+
+
+
+ST_trimmed_Diff <- d %>% filter(CondCode %in% c("Diff_AMSSN","Diff_MDR","Diff_ENG")) %>% select(., -z) %>% droplevels() %>% as.data.frame(.) 
+
+ST_trimmed_Diff$listener <- factor(ST_trimmed_Diff$listener)
+ST_trimmed_Diff$material <- factor(ST_trimmed_Diff$material, levels = c("ASL","CCRM"))
+
+ez::ezPrecis(ST_trimmed_Diff)
+
+# count subjects observations
+var_select = c("listener")
+plyr::count(ST_trimmed_Diff, var_select)
+
+ddply(ST_trimmed_Diff,~Group2*material*CondCode,summarise,N=length(uRevs),median=median(uRevs,na.rm=TRUE),mean=mean(uRevs,na.rm=TRUE),sd=sd(uRevs,na.rm=TRUE), min=min(uRevs,na.rm=TRUE),max=max(uRevs,na.rm=TRUE)) %>%
+   mutate_if(is.numeric, round, 2) %>% arrange(., group_by = material)
+```
+
+```{r,label='ST-IMEffectDerived', echo=FALSE,results='hide',message=FALSE,warning=FALSE, include=FALSE}
+######## lmer model ##########################################
+
+## Find Best fit 
+# start with a saturated model (3-way interaction with age)
+
+model1 <- lmer(uRevs~CondCode*material*Age*Group2+(1|listener), ST_trimmed_Diff, REML=FALSE)
+summary(model1)
+
+(model2<-update(model1,  ~ . - CondCode:material:Age:Group2))
+anova(model1,model2)
+summary(model2)
+
+(model3<-update(model2,  ~ . - CondCode:Age:Group2))
+anova(model2,model3)
+summary(model3)
+
+(model4<-update(model3,  ~ . -  material:Age:Group2))
+anova(model3,model4)
+summary(model4)
+
+(model5<-update(model4,  ~ . - CondCode:material:Age))
+anova(model4,model5)
+summary(model5)
+
+(model6<-update(model5,  ~ . - CondCode:material:Group2))
+anova(model5,model6)
+summary(model6)
+
+(model7<-update(model6,  ~ . - CondCode:Group2))
+anova(model6,model7)
+summary(model7)
+
+(model8<-update(model7,  ~ . - Age:Group2))
+anova(model7,model8)
+summary(model8)
+
+(model9<-update(model8,  ~ . - material:Group2))
+anova(model8,model9)
+summary(model9)
+
+(model10<-update(model9,  ~ . - material:Age))
+anova(model9,model10)
+summary(model10)
+
+(model11<-update(model10,  ~ . - CondCode:material))
+anova(model10,model11)
+summary(model11)
+
+(model12<-update(model11,  ~ . - CondCode:Age))
+anova(model11,model12)
+summary(model12)
+
+# best model --> model11: uRevs ~ CondCode + material + Age + Group2 + CondCode:Age + (1 | listener)
+
+tab_model(model11)
+# visreg::visreg(model11)
+# visreg::visreg(model11,"CondCode","Age")
+
+
+BestModel <- model11
+# report::report(model11)
+
+# ---------------------------------------------------------------------------------
+# test main effects:
+rstatix::Anova(BestModel,type="II",test.statistic="Chisq")
+
+# Response: uRevs
+#                 Chisq Df Pr(>Chisq)    
+# CondCode     195.5448  2    < 2e-16 ***
+# material       4.6656  1    0.03077 *  
+# Age            0.3538  1    0.55198    
+# Group2         1.0998  1    0.29432    
+# CondCode:Age   7.6074  2    0.02229 * 
+
+
+# CondCode x Age:
+(BestModel.1 <- update(BestModel,  . ~ . -CondCode:Age))
+CondAge.LMEM <- anova(BestModel,BestModel.1)
+summary(BestModel.1)
+# BestModel.1: uRevs ~ CondCode + material + Age + Group2 + (1 | listener)
+# BestModel: uRevs ~ CondCode + material + Age + Group2 + (1 | listener) + 
+# BestModel:     CondCode:Age
+#             npar     AIC     BIC logLik deviance  Chisq Df Pr(>Chisq)  
+# BestModel.1    8 -185.26 -162.44 100.63  -201.26                       
+# BestModel     10 -188.57 -160.05 104.28  -208.57 7.3045  2    0.02593 *
+
+# Group2
+(BestModel.2 <- update(BestModel,  . ~ . -Group2))
+Group2.LMEM <- anova(BestModel,BestModel.2)
+summary(BestModel.2)
+# BestModel.2: uRevs ~ CondCode + material + Age + (1 | listener) + CondCode:Age
+# BestModel: uRevs ~ CondCode + material + Age + Group2 + (1 | listener) + 
+# BestModel:     CondCode:Age
+#             npar     AIC     BIC logLik deviance  Chisq Df Pr(>Chisq)
+# BestModel.2    9 -189.50 -163.83 103.75  -207.50                     
+# BestModel     10 -188.57 -160.05 104.28  -208.57 1.0668  1     0.3017
+
+# material
+(BestModel.3 <- update(BestModel,  . ~ . -material))
+Mat.LMEM <- anova(BestModel,BestModel.3)
+summary(BestModel.3)
+# BestModel.3: uRevs ~ CondCode + Age + Group2 + (1 | listener) + CondCode:Age
+# BestModel: uRevs ~ CondCode + material + Age + Group2 + (1 | listener) + 
+# BestModel:     CondCode:Age
+#             npar     AIC     BIC logLik deviance  Chisq Df Pr(>Chisq)  
+# BestModel.3    9 -185.98 -160.31 101.99  -203.98                       
+# BestModel     10 -188.57 -160.05 104.28  -208.57 4.5822  1    0.03231 *
+
+# -----------------------------------------------------------------------------------------------------
+# Post-hoc paired comparison
+# -----------------------------------------------------------------------------------------------------
+
+# Check effect size of each term in the model:
+# EMAtools::lme.dscore(BestModel,dat=ST_trimmed,type="lme4")
+
+
+# Material: -----------------------------------------------------------------------------------
+# emm_s.conf <- emmeans::emmeans(BestModel, pairwise ~ material,adjust="bonferroni") 
+
+# -------------------------------------------------------------------------
+# get table
+# -------------------------------------------------------------------------
+
+# Response: uRevs
+#                 Chisq Df Pr(>Chisq)    
+# CondCode     195.5448  2    < 2e-16 ***
+# material       4.6656  1    0.03077 *  
+# Age            0.3538  1    0.55198    
+# Group2         1.0998  1    0.29432    
+# CondCode:Age   7.6074  2    0.02229 * 
+
+ST_AgeTab_IM <- data.frame(rbind(
+  c("Material",Mat.LMEM$Df[2],Mat.LMEM$Chisq[2],ifelse(Mat.LMEM$`Pr(>Chisq)`[2] <.001,"\\textbf{< 0.001}",
+                                                                   ifelse(Mat.LMEM$`Pr(>Chisq)`[2] <.05,
+                                                                          sprintf("\\textbf{%.03f}",Mat.LMEM$`Pr(>Chisq)`[2]),
+                                                                          Mat.LMEM$`Pr(>Chisq)`[2]))),
+    c("Sibling",Group2.LMEM$Df[2],Group2.LMEM$Chisq[2],ifelse(Group2.LMEM$`Pr(>Chisq)`[2] <.001,"\\textbf{< 0.001}",
+                                                                   ifelse(Group2.LMEM$`Pr(>Chisq)`[2] <.05,
+                                                                          sprintf("\\textbf{%.03f}",Group2.LMEM$`Pr(>Chisq)`[2]),
+                                                                          Group2.LMEM$`Pr(>Chisq)`[2]))),
+    c("Distractor:Age",CondAge.LMEM$Df[2],CondAge.LMEM$Chisq[2],ifelse(CondAge.LMEM$`Pr(>Chisq)`[2] <.001,"\\textbf{< 0.001}",
+                                                                   ifelse(CondAge.LMEM$`Pr(>Chisq)`[2] <.05,
+                                                                          sprintf("\\textbf{%.03f}",CondAge.LMEM$`Pr(>Chisq)`[2]),
+                                                                          CondAge.LMEM$`Pr(>Chisq)`[2])))
+  ))
+
+
+ST_AgeTab_IM[,c(2:3)]= apply(ST_AgeTab_IM[,c(2:3)], 2, function(x) as.numeric(as.character(x)))
+
+colnames(ST_AgeTab_IM)[1:4] <- c("Effects","$Df$",sprintf("$\\chi^{2}$"),"$p$")
+# -------------------------------------------------------------------------
+
+################################ Assumptions testing ################################ 
+
+# Normality: ~ met
+# Homogeneity: met
+
+# linear model
+w1 <- lm(uRevs~CondCode*material*Age*Group2, data = ST_trimmed_Diff)
+
+# 1. Normality (Shapiro-Wilk test) --> NOT met!
+# data is normally distributed if p >.05
+
+# QQ plot of residuals
+qqPlot(residuals(w1))
+
+#jpeg('Q-Q Plot.png', width = 10, height = 6, units = 'in', res = 300)
+par(mfrow=c(1,2))    # set the plotting area into a 1*2 array
+qqnorm(ST_trimmed$uRevs, pch = 1, frame = FALSE,main = "SRdT - Normal Q-Q Plot")
+qqline(ST_trimmed$uRevs, col = "red", lwd = 2)
+qqnorm(rstandard(w1), pch = 1, frame = FALSE,main = "Residuals - Normal Q-Q Plot")
+qqline(rstandard(w1), col = "red", lwd = 2)
+#dev.off()
+
+# Option 1:
+shapiro.test(residuals(w1))
+shapiro.test(residuals(BestModel))
+
+# 2. Homoggeneity of variance (Levene's test) --> NOT met!
+# homogeneity is met if p>.05
+
+# Option 1:
+car::leveneTest(uRevs ~ material* CondCode * Group2, data=ST_trimmed_Diff,center=median)
+
+# Option 2: 
+DescTools::LeveneTest(lm(uRevs~ material* CondCode * Group2, data = ST_trimmed_Diff))
+
+# Option 3:
+# per condition
+# VarTest <- ASLN %>%
+#   rstatix::group_by(Group) %>%
+#   levene_test(uRevs ~ CondCode)
+
+
+ST_trimmed_Diff$Model.F.Res<- residuals(BestModel) #extracts the residuals and places them in a new column in our original data table
+ST_trimmed_Diff$Abs.Model.F.Res <-abs(ST_trimmed_Diff$Model.F.Res) #creates a new column with the absolute value of the residuals
+ST_trimmed_Diff$Model.F.Res2 <- ST_trimmed_Diff$Abs.Model.F.Res^2 #squares the absolute values of the residuals to provide the more robust estimate
+Levene.Model.F <- lm(Model.F.Res2 ~ listener, data=ST_trimmed_Diff) #ANOVA of the squared residuals
+anova(Levene.Model.F) #displays the results
+
+
+plot_model(BestModel, type='diag') # [[4]]
+
+plot(fitted(BestModel), resid(BestModel, type = "pearson"))# this will create the plot
+abline(0,0, col="red")
+```
+
+**Condition x Age **
+
+The interaction is driven by opposite age effect for AMSSN condition. The model suggests the effect of IM for AMSSN was the largest for older kids and the smallest for the youngest. 
+
+The age effect for the speech distractors is as one would expect, where IM decreased with age.
+
+I'm not too sure there is a good explanation to this interaction..
+
+
+```{r}
+# Condition x Age: -----------------------------------------------------------------------------------
+ST_d_means <- summary(emmeans::emmeans(BestModel, ~ CondCode | Age,adjust="bonferroni",at = list(Age = c(7:12)))) %>% as.data.frame(.)
+
+ggplot(ST_d_means, aes(x=CondCode, y=emmean, group=as.factor(Age))) +
+  geom_line(aes(colour=as.factor(Age)))+
+  geom_point(aes(colour=as.factor(Age)))+
+  labs(x = " ", y = "estimated marginal means (in DC)") +
+  scale_y_continuous(limits = c(-0.1,0.4)) +
+  scale_colour_brewer(palette = "Dark2",name = "Year") +
+  scale_x_discrete(labels=c("Diff_AMSSN"="AMSSN \n (AMSSN - Q-Alt)",
+                            "Diff_MDR"="MDR_F \n (MDR_F - Q-Alt)","Diff_ENG"="ENG_F \n (ENG_F - Q-Alt)"))+
+  theme_bw() +
+  theme(axis.text = element_text(size = 10, face="bold",colour = "black"),
+        axis.title.x = element_text(size=11, face="bold"),
+        axis.title.y = element_text(size=11, face="bold"),
+        legend.title = element_text(size=11, face="bold"),
+        legend.text  = element_text(size=10, face="bold"),
+        # legend.position='bottom',
+        # legend.direction = "horizontal",
+        legend.background = element_blank(),
+        legend.box.background = element_rect(colour = "black"))
+```
+
+
+## z-scores
+
+### Switching cost analysis
+
+### IM analysis
